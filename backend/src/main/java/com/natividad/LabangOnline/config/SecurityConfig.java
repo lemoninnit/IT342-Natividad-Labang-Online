@@ -1,6 +1,7 @@
 package com.natividad.LabangOnline.config;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,6 +28,7 @@ public class SecurityConfig {
         .cors(Customizer.withDefaults())
         .authorizeHttpRequests(auth -> auth
             .requestMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
+            .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
             .anyRequest().permitAll());
     return http.build();
   }

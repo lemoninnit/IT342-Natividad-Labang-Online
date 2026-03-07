@@ -1,11 +1,13 @@
 package com.natividad.LabangOnline.auth;
 
-import com.natividad.LabangOnline.user.User;
-import com.natividad.LabangOnline.user.UserRepository;
 import java.util.Optional;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.natividad.LabangOnline.user.User;
+import com.natividad.LabangOnline.user.UserRepository;
 
 @Service
 public class AuthService {
@@ -46,6 +48,15 @@ public class AuthService {
     user.setActive(true);
 
     userRepository.save(user);
+  }
+
+  public boolean login(LoginRequest request) {
+    String email = Optional.ofNullable(request.getEmail()).orElse("").trim().toLowerCase();
+    String password = Optional.ofNullable(request.getPassword()).orElse("");
+
+    return userRepository.findByEmailIgnoreCase(email)
+        .filter(user -> passwordEncoder.matches(password, user.getPasswordHash()))
+        .isPresent();
   }
 }
 

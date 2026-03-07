@@ -2,20 +2,46 @@ package com.natividad.LabangOnline.auth;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
 public class RegisterRequest {
 
+  @NotBlank
   private String firstName;
+
   private String middleName;
+
+  @NotBlank
   private String lastName;
+
   private LocalDate dob;
+
   private String gender;
+
+  @NotBlank
   private String street;
+
+  @NotBlank
   private String purok;
+
+  @NotBlank
   private String barangay;
+
+  @NotBlank
   private String city;
+
+  @NotBlank
   private String province;
+
+  @NotBlank
   private String phone;
+
+  @Email
+  @NotBlank
   private String email;
+
+  @NotBlank
   private String password;
 
   public RegisterRequest() {
