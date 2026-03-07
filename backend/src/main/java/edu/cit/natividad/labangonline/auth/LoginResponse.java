@@ -1,13 +1,13 @@
-package com.natividad.LabangOnline.auth;
+package edu.cit.natividad.labangonline.auth;
 
-public class RegisterResponse {
+public class LoginResponse {
 
   private String status;
 
-  public RegisterResponse() {
+  public LoginResponse() {
   }
 
-  public RegisterResponse(String status) {
+  public LoginResponse(String status) {
     this.status = status;
   }
 
@@ -19,4 +19,3 @@ public class RegisterResponse {
     this.status = status;
   }
 }
-

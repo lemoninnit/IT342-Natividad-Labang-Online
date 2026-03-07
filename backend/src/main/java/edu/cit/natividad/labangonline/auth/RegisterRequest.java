@@ -1,4 +1,4 @@
-package com.natividad.LabangOnline.auth;
+package edu.cit.natividad.labangonline.auth;
 
 import java.time.LocalDate;
 

@@ -1,4 +1,4 @@
-package com.natividad.LabangOnline.config;
+package edu.cit.natividad.labangonline.config;
 
 import java.util.List;
 

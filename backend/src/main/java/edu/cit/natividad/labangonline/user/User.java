@@ -1,4 +1,4 @@
-package com.natividad.LabangOnline.user;
+package edu.cit.natividad.labangonline.user;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

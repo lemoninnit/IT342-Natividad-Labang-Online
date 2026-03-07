@@ -12,8 +12,8 @@
     <relativePath/>
   </parent>
 
-  <groupId>com.labangonline</groupId>
-  <artifactId>labangonline-backend</artifactId>
+  <groupId>edu.cit.natividad</groupId>
+  <artifactId>labangonline</artifactId>
   <version>1.0.0</version>
   <name>LabangOnline Backend</name>
   <description>Barangay Labangon Online Services Backend API</description>
