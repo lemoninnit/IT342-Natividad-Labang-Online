@@ -43,10 +43,10 @@ public class AuthController {
 
   @PostMapping("/login")
   public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
-    boolean ok = authService.login(request);
-    if (!ok) {
+    var result = authService.login(request);
+    if (!result.isSuccess()) {
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new LoginResponse("INVALID_CREDENTIALS"));
     }
-    return ResponseEntity.ok(new LoginResponse("OK"));
+    return ResponseEntity.ok(new LoginResponse("OK", result.getUser()));
   }
 }

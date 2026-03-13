@@ -1,96 +1,5 @@
 import { useState } from "react";
-import { supabase } from "../../lib/supabaseClient";
-import bcrypt from "bcryptjs";
 import "./Login.css";
-
-// 4.4 Forgot Password Modal
-function ForgotPasswordModal({ onClose }) {
-  const [email, setEmail] = useState("");
-  const [sent, setSent] = useState(false);
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email.trim()) { setError("Email is required."); return; }
-    if (!emailRegex.test(email)) { setError("Enter a valid email address."); return; }
-    setError("");
-    setLoading(true);
-
-    try {
-      // Check if email exists in users table
-      const { data: user } = await supabase
-        .from("users")
-        .select("id, first_name")
-        .eq("email", email.toLowerCase())
-        .single();
-
-      if (!user) {
-        setError("No account found with this email address.");
-        setLoading(false);
-        return;
-      }
-
-      // Generate reset token
-      const token = crypto.randomUUID();
-      const expiresAt = new Date(Date.now() + 60 * 60 * 1000).toISOString(); // 1 hour
-
-      await supabase.from("password_reset_tokens").insert({
-        user_id: user.id,
-        token,
-        expires_at: expiresAt,
-      });
-
-      // In production: send email via your backend
-      // For now we just show success
-      console.log("Reset token generated:", token);
-      setSent(true);
-
-    } catch (err) {
-      setError("Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-card" onClick={e => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose}>✕</button>
-        {!sent ? (
-          <>
-            <div className="modal-icon">🔑</div>
-            <h2 className="modal-title">Reset Password</h2>
-            <p className="modal-desc">
-              Enter your registered email and we'll send you a password reset link.
-            </p>
-            <form onSubmit={handleSubmit} noValidate>
-              <div className="form-group">
-                <label>Email Address <span className="req">*</span></label>
-                <input type="email" value={email} onChange={e => setEmail(e.target.value)}
-                  placeholder="yourname@email.com" className={error ? "error" : ""} />
-                {error && <span className="err-msg">{error}</span>}
-              </div>
-              <button type="submit" className="btn-primary btn-full" disabled={loading}>
-                {loading ? "Sending..." : "Send Reset Link"}
-              </button>
-            </form>
-          </>
-        ) : (
-          <>
-            <div className="modal-icon">📧</div>
-            <h2 className="modal-title">Check Your Email</h2>
-            <p className="modal-desc">
-              A password reset link has been sent to <strong>{email}</strong>.
-            </p>
-            <button className="btn-primary btn-full" onClick={onClose}>Back to Login</button>
-          </>
-        )}
-      </div>
-    </div>
-  );
-}
 
 // 4.1 Login Form
 export default function Login() {
@@ -100,8 +9,6 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [showForgot, setShowForgot] = useState(false);
-  const [attempts, setAttempts] = useState(0);
 
   function validate(data) {
     const errs = {};
@@ -129,8 +36,6 @@ export default function Login() {
     setErrors(prev => ({ ...prev, [name]: errs[name] }));
   }
 
-  // 4.2 Authenticate against Supabase users table
-  // 4.3 Store session in memory
   async function handleSubmit(e) {
     e.preventDefault();
     const errs = validate(form);
@@ -140,59 +45,48 @@ export default function Login() {
       return;
     }
 
-    // 4.5 Lock after 5 attempts
-    if (attempts >= 5) {
-      setLoginError("Too many failed attempts. Please reset your password.");
-      return;
-    }
-
     setLoading(true);
     setLoginError("");
 
     try {
-      // Fetch user by email
-      const { data: user, error: fetchError } = await supabase
-        .from("users")
-        .select("id, first_name, last_name, email, password_hash, role, is_active")
-        .eq("email", form.email.trim().toLowerCase())
-        .single();
+      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
+      const response = await fetch(`${API_URL}/api/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: form.email.trim().toLowerCase(),
+          password: form.password,
+        }),
+      });
 
-      // 4.5 User not found
-      if (fetchError || !user) {
-        setAttempts(a => a + 1);
+      if (response.status === 401) {
         setLoginError("Incorrect email or password. Please try again.");
         setLoading(false);
         return;
       }
 
-      // 4.5 Account inactive
-      if (!user.is_active) {
+      if (!response.ok) {
+        setLoginError("Login failed. Please try again.");
+        setLoading(false);
+        return;
+      }
+
+      const body = await response.json();
+      const user = body.user;
+
+      if (!user || !user.active) {
         setLoginError("Your account is not active. Please contact Barangay Labangon.");
         setLoading(false);
         return;
       }
 
-      // 4.2 Verify bcrypt password
-      const passwordMatch = await bcrypt.compare(form.password, user.password_hash);
-
-      if (!passwordMatch) {
-        const newAttempts = attempts + 1;
-        setAttempts(newAttempts);
-        // 4.5 Specific error messages
-        if (newAttempts >= 5) {
-          setLoginError("Too many failed attempts. Please reset your password.");
-        } else {
-          setLoginError(`Incorrect email or password. ${5 - newAttempts} attempt(s) remaining.`);
-        }
-        setLoading(false);
-        return;
-      }
-
-      // 4.3 Session — store user info in memory (sessionStorage for tab persistence)
+      // Store session
       const sessionData = {
         userId: user.id,
-        firstName: user.first_name,
-        lastName: user.last_name,
+        firstName: user.firstName,
+        lastName: user.lastName,
         email: user.email,
         role: user.role,
         loginTime: new Date().toISOString(),
@@ -216,7 +110,6 @@ export default function Login() {
 
   return (
     <div className="login-page">
-      {showForgot && <ForgotPasswordModal onClose={() => setShowForgot(false)} />}
 
       <header className="login-header">
         <div className="logo-mark">
@@ -253,12 +146,7 @@ export default function Login() {
           </div>
 
           <div className="form-group">
-            <div className="label-row">
-              <label>Password <span className="req">*</span></label>
-              <button type="button" className="forgot-link" onClick={() => setShowForgot(true)}>
-                Forgot password?
-              </button>
-            </div>
+            <label>Password <span className="req">*</span></label>
             <div className="input-with-icon">
               <input type={showPassword ? "text" : "password"} name="password"
                 value={form.password} onChange={handleChange} onBlur={handleBlur}

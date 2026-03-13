@@ -50,13 +50,14 @@ public class AuthService {
     userRepository.save(user);
   }
 
-  public boolean login(LoginRequest request) {
+  public LoginResult login(LoginRequest request) {
     String email = Optional.ofNullable(request.getEmail()).orElse("").trim().toLowerCase();
     String password = Optional.ofNullable(request.getPassword()).orElse("");
 
-    return userRepository.findByEmailIgnoreCase(email)
-        .filter(user -> passwordEncoder.matches(password, user.getPasswordHash()))
-        .isPresent();
+    Optional<User> userOpt = userRepository.findByEmailIgnoreCase(email)
+        .filter(user -> passwordEncoder.matches(password, user.getPasswordHash()) && user.isActive());
+
+    return userOpt.map(LoginResult::success).orElse(LoginResult.failure());
   }
 }
 
