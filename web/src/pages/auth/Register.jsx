@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Layout from "../../components/Layout";
 import "./Register.css";
 
 // 3.4 Validation
@@ -194,15 +195,8 @@ export default function Register() {
   }
 
   return (
+    <Layout>
     <div className="register-page">
-      <header className="register-header">
-        <div className="logo-mark">
-          <span className="logo-icon">🏠</span>
-          <span className="logo-text">LabangOnline</span>
-        </div>
-        <p className="header-sub">Barangay Labangon · Cebu City</p>
-      </header>
-
       <div className="register-card">
         <div className="card-header">
           <h1 className="card-title">Create Your Account</h1>
@@ -403,10 +397,7 @@ export default function Register() {
           Already have an account? <a href="/login">Sign in here</a>
         </p>
       </div>
-
-      <footer className="register-footer">
-        <p>© 2025 Barangay Labangon, Cebu City · All rights reserved</p>
-      </footer>
     </div>
+    </Layout>
   );
 }

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Layout from "../../components/Layout";
 import "./Login.css";
 
 // 4.1 Login Form
@@ -109,74 +110,63 @@ export default function Login() {
   }
 
   return (
-    <div className="login-page">
-
-      <header className="login-header">
-        <div className="logo-mark">
-          <span className="logo-icon">🏠</span>
-          <span className="logo-text">LabangOnline</span>
-        </div>
-        <p className="header-sub">Barangay Labangon · Cebu City</p>
-      </header>
-
-      <div className="login-card">
-        <div className="card-header">
-          <h1 className="card-title">Welcome Back</h1>
-          <p className="card-subtitle">Sign in to your Barangay Labangon account</p>
-        </div>
-
-        {/* 4.5 Error banner */}
-        {loginError && (
-          <div className="alert-error">
-            <span className="alert-icon">⚠️</span>
-            <span>{loginError}</span>
-          </div>
-        )}
-
-        {/* 4.1 Login Form */}
-        <form onSubmit={handleSubmit} noValidate>
-          <div className="form-group">
-            <label>Email Address <span className="req">*</span></label>
-            <input type="email" name="email" value={form.email}
-              onChange={handleChange} onBlur={handleBlur}
-              placeholder="yourname@email.com"
-              className={errors.email && touched.email ? "error" : ""}
-              autoComplete="email" />
-            {errors.email && touched.email && <span className="err-msg">{errors.email}</span>}
+    <Layout>
+      <div className="login-page">
+        <div className="login-card">
+          <div className="card-header">
+            <h1 className="card-title">Sign In</h1>
+            <p className="card-subtitle">Welcome back to LabangOnline</p>
           </div>
 
-          <div className="form-group">
-            <label>Password <span className="req">*</span></label>
-            <div className="input-with-icon">
-              <input type={showPassword ? "text" : "password"} name="password"
-                value={form.password} onChange={handleChange} onBlur={handleBlur}
-                placeholder="Enter your password"
-                className={errors.password && touched.password ? "error" : ""}
-                autoComplete="current-password" />
-              <button type="button" className="eye-btn" onClick={() => setShowPassword(v => !v)}>
-                {showPassword ? "🙈" : "👁️"}
-              </button>
+          {/* 4.5 Error banner */}
+          {loginError && (
+            <div className="alert-error">
+              <span className="alert-icon">⚠️</span>
+              <span>{loginError}</span>
             </div>
-            {errors.password && touched.password && <span className="err-msg">{errors.password}</span>}
-          </div>
+          )}
 
-          <button type="submit" className="btn-primary btn-full btn-login" disabled={loading}>
-            {loading ? (
-              <span className="loading-row"><span className="spinner" /> Signing in...</span>
-            ) : "Sign In"}
-          </button>
-        </form>
+          {/* 4.1 Login Form */}
+          <form onSubmit={handleSubmit} noValidate>
+            <div className="form-group">
+              <label>Email Address <span className="req">*</span></label>
+              <input type="email" name="email" value={form.email}
+                onChange={handleChange} onBlur={handleBlur}
+                placeholder="yourname@email.com"
+                className={errors.email && touched.email ? "error" : ""}
+                autoComplete="email" />
+              {errors.email && touched.email && <span className="err-msg">{errors.email}</span>}
+            </div>
 
-        <div className="divider"><span>or</span></div>
+            <div className="form-group">
+              <label>Password <span className="req">*</span></label>
+              <div className="input-with-icon">
+                <input type={showPassword ? "text" : "password"} name="password"
+                  value={form.password} onChange={handleChange} onBlur={handleBlur}
+                  placeholder="Enter your password"
+                  className={errors.password && touched.password ? "error" : ""}
+                  autoComplete="current-password" />
+                <button type="button" className="eye-btn" onClick={() => setShowPassword(v => !v)}>
+                  {showPassword ? "🙈" : "👁️"}
+                </button>
+              </div>
+              {errors.password && touched.password && <span className="err-msg">{errors.password}</span>}
+            </div>
 
-        <p className="register-link">
-          Don't have an account? <a href="/">Register here</a>
-        </p>
+            <button type="submit" className="btn-primary btn-full btn-login" disabled={loading}>
+              {loading ? (
+                <span className="loading-row"><span className="spinner" /> Signing in...</span>
+              ) : "Sign In"}
+            </button>
+          </form>
+
+          <div className="divider"><span>or</span></div>
+
+          <p className="register-link">
+            Don't have an account? <a href="/register">Register here</a>
+          </p>
+        </div>
       </div>
-
-      <footer className="login-footer">
-        <p>© 2025 Barangay Labangon, Cebu City · All rights reserved</p>
-      </footer>
-    </div>
+    </Layout>
   );
 }

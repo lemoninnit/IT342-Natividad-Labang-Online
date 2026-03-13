@@ -1,11 +1,14 @@
 package edu.cit.natividad.labangonline.user;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Entity
@@ -16,45 +19,70 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @NotBlank
+  @Size(max = 100)
   @Column(name = "first_name", nullable = false, length = 100)
   private String firstName;
 
+  @Size(max = 100)
   @Column(name = "middle_name", length = 100)
   private String middleName;
 
+  @NotBlank
+  @Size(max = 100)
   @Column(name = "last_name", nullable = false, length = 100)
   private String lastName;
 
   @Column(name = "date_of_birth")
   private LocalDate dob;
 
+  @Size(max = 50)
   @Column(name = "gender", length = 50)
   private String gender;
 
+  @NotBlank
+  @Size(max = 255)
   @Column(name = "street_address", nullable = false, length = 255)
   private String street;
 
+  @NotBlank
+  @Size(max = 100)
   @Column(name = "purok", nullable = false, length = 100)
   private String purok;
 
+  @NotBlank
+  @Size(max = 100)
   @Column(name = "barangay", nullable = false, length = 100)
   private String barangay;
 
+  @NotBlank
+  @Size(max = 100)
   @Column(name = "city", nullable = false, length = 100)
   private String city;
 
+  @NotBlank
+  @Size(max = 100)
   @Column(name = "province", nullable = false, length = 100)
   private String province;
 
+  @NotBlank
+  @Size(max = 20)
   @Column(name = "phone_number", nullable = false, length = 20)
   private String phoneNumber;
 
-  @Column(name = "email", nullable = false, length = 255)
+  @Email
+  @NotBlank
+  @Size(max = 255)
+  @Column(name = "email", nullable = false, unique = true, length = 255)
   private String email;
 
+  @NotBlank
+  @Size(max = 255)
   @Column(name = "password_hash", nullable = false, length = 255)
   private String passwordHash;
 
+  @NotBlank
+  @Size(max = 50)
   @Column(name = "role", nullable = false, length = 50)
   private String role;
 
