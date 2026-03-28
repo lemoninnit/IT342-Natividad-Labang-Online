@@ -83,26 +83,44 @@ class RegisterActivity : AppCompatActivity() {
 
                 val response = apiService.register(request)
 
-                when (response.status) {
-                    "OK" -> {
-                        showSuccessMessage("Registration successful! Redirecting to login...")
-                        binding.successMessage.text = "Account created successfully!"
-                        binding.successMessage.visibility = View.VISIBLE
-                        
-                        // Redirect to Login after 2 seconds
-                        android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
-                            startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
-                            finish()
-                        }, 2000)
+                if (response.isSuccessful) {
+                    val body = response.body()
+                    when (body?.status) {
+                        "OK" -> {
+                            showSuccessMessage("Registration successful! Redirecting to login...")
+                            binding.successMessage.text = "Account created successfully!"
+                            binding.successMessage.visibility = View.VISIBLE
+
+                            android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+                                startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+                                finish()
+                            }, 2000)
+                        }
+                        "EMAIL_EXISTS" -> {
+                            showErrorMessage("Email already registered. Please use a different email.")
+                        }
+                        "PHONE_EXISTS" -> {
+                            showErrorMessage("Phone number already registered. Please use a different phone.")
+                        }
+                        else -> {
+                            showErrorMessage("Registration failed: ${body?.status ?: "Unknown response"}")
+                        }
                     }
-                    "EMAIL_EXISTS" -> {
-                        showErrorMessage("Email already registered. Please use a different email.")
-                    }
-                    "PHONE_EXISTS" -> {
-                        showErrorMessage("Phone number already registered. Please use a different phone.")
-                    }
-                    else -> {
-                        showErrorMessage("Registration failed: ${response.status}")
+                } else {
+                    when (response.code()) {
+                        409 -> {
+                            val errorBody = response.errorBody()?.string()?.trim() ?: ""
+                            if (errorBody.contains("EMAIL_EXISTS")) {
+                                showErrorMessage("Email already registered. Please use a different email.")
+                            } else if (errorBody.contains("PHONE_EXISTS")) {
+                                showErrorMessage("Phone number already registered. Please use a different phone.")
+                            } else {
+                                showErrorMessage("Registration failed: Email or phone already used")
+                            }
+                        }
+                        else -> {
+                            showErrorMessage("Registration failed: ${response.code()}")
+                        }
                     }
                 }
             } catch (e: Exception) {

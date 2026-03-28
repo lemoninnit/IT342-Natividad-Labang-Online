@@ -15,6 +15,9 @@ class DashboardActivity : AppCompatActivity() {
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val userName = intent.getStringExtra("USER_NAME").takeIf { !it.isNullOrBlank() }
+        binding.userNameDisplay.text = userName ?: "Labang Online Community"
+
         binding.logoutButton.setOnClickListener {
             handleLogout()
         }

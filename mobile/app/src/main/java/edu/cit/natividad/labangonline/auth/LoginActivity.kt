@@ -6,8 +6,6 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.button.MaterialButton
 import edu.cit.natividad.labangonline.api.ApiClient
 import edu.cit.natividad.labangonline.api.models.LoginRequest
 import edu.cit.natividad.labangonline.dashboard.DashboardActivity
@@ -52,14 +50,23 @@ class LoginActivity : AppCompatActivity() {
             try {
                 val response = apiService.login(LoginRequest(email, password))
 
-                if (response.status == "OK") {
-                    // Save user data locally (you can use DataStore or SharedPreferences)
-                    showSuccessMessage("Login successful!")
-                    // Navigate to Dashboard
-                    startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
-                    finish()
+                if (response.isSuccessful) {
+                    val body = response.body()
+                    if (body?.status == "OK") {
+                        val userName = body.user?.let { "${it.firstName} ${it.lastName}".trim() } ?: ""
+                        showSuccessMessage("Login successful!")
+                        startActivity(Intent(this@LoginActivity, DashboardActivity::class.java).apply {
+                            putExtra("USER_NAME", userName)
+                        })
+                        finish()
+                    } else {
+                        showErrorMessage("Login failed: ${body?.status ?: "Invalid credentials"}")
+                    }
                 } else {
-                    showErrorMessage("Login failed: Invalid credentials")
+                    when (response.code()) {
+                        401 -> showErrorMessage("Invalid email or password")
+                        else -> showErrorMessage("Login failed: ${response.code()}")
+                    }
                 }
             } catch (e: Exception) {
                 showErrorMessage("Error: ${e.message}")
