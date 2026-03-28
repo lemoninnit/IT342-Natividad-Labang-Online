@@ -612,7 +612,7 @@ updated_at   | 2026-03-28 14:30:45
 ## 8. Development Environment
 
 ### Requirements
-- Android Studio Arctic Fox (2020.3.1) or newer
+- Android Studio (Iguana 2023.2.1)
 - JDK 11+
 - Kotlin 1.8+
 - Gradle 7.0+

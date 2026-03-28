@@ -222,7 +222,7 @@ Response (INVALID):
 ## Installation & Build
 
 ### Prerequisites
-- Android Studio (Arctic Fox or newer)
+- Android Studio (Iguana 2023.2.1)
 - JDK 11+
 - Gradle 7.0+
 - Android SDK 34
