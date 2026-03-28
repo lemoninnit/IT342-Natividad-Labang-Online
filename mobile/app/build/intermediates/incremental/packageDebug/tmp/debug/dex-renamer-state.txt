@@ -1,0 +1,22 @@
+#Sat Mar 28 17:10:40 SGT 2026
+base.0=D\:\\IT342_G5_Natividad_Lab1\\IT342-Natividad-Labang-Online\\mobile\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=D\:\\IT342_G5_Natividad_Lab1\\IT342-Natividad-Labang-Online\\mobile\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.2=D\:\\IT342_G5_Natividad_Lab1\\IT342-Natividad-Labang-Online\\mobile\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
+base.3=D\:\\IT342_G5_Natividad_Lab1\\IT342-Natividad-Labang-Online\\mobile\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\2\\classes.dex
+base.4=D\:\\IT342_G5_Natividad_Lab1\\IT342-Natividad-Labang-Online\\mobile\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\3\\classes.dex
+base.5=D\:\\IT342_G5_Natividad_Lab1\\IT342-Natividad-Labang-Online\\mobile\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\5\\classes.dex
+base.6=D\:\\IT342_G5_Natividad_Lab1\\IT342-Natividad-Labang-Online\\mobile\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
+path.0=classes.dex
+path.1=0/classes.dex
+path.2=1/classes.dex
+path.3=2/classes.dex
+path.4=3/classes.dex
+path.5=5/classes.dex
+path.6=classes2.dex
+renamed.0=classes.dex
+renamed.1=classes2.dex
+renamed.2=classes3.dex
+renamed.3=classes4.dex
+renamed.4=classes5.dex
+renamed.5=classes6.dex
+renamed.6=classes7.dex

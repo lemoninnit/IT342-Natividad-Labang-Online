@@ -1,0 +1,38 @@
+{
+    "logs": [
+        {
+            "outputFile": "edu.cit.natividad.labangonline.app-mergeDebugResources-35:/values-v16/values-v16.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\caches\\transforms-3\\18def9f4daef113457581080ac8ec8e5\\transformed\\appcompat-1.6.1\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "223"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "121",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "289"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\caches\\transforms-3\\9f1aa5f8e440a7e4980e59dd55205044\\transformed\\core-1.10.1\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_card">#1e293b</color>
+    <color name="bg_input">#0f172a</color>
+    <color name="bg_primary">#0b1020</color>
+    <color name="bg_secondary">#111827</color>
+    <color name="border_default">#1e293b</color>
+    <color name="border_green">#10b981</color>
+    <color name="border_subtle">#334155</color>
+    <color name="labang_green">#10b981</color>
+    <color name="labang_green_dark">#059669</color>
+    <color name="labang_green_light">#1a3d31</color>
+    <color name="status_error">#ef4444</color>
+    <color name="status_info">#3b82f6</color>
+    <color name="status_success">#10b981</color>
+    <color name="status_warning">#f59e0b</color>
+    <color name="text_disabled">#334155</color>
+    <color name="text_muted">#64748b</color>
+    <color name="text_primary">#e2e8f0</color>
+    <color name="text_secondary">#94a3b8</color>
+    <dimen name="corner_radius_large">12dp</dimen>
+    <dimen name="corner_radius_medium">8dp</dimen>
+    <dimen name="corner_radius_small">4dp</dimen>
+    <dimen name="padding_extra_large">32dp</dimen>
+    <dimen name="padding_large">24dp</dimen>
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="text_size_body">14sp</dimen>
+    <dimen name="text_size_display">32sp</dimen>
+    <dimen name="text_size_headline">24sp</dimen>
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_subtitle">16sp</dimen>
+    <dimen name="text_size_title">18sp</dimen>
+    <string name="app_description">Barangay Labangon Community Service Hub</string>
+    <string name="app_logo_description">Labang Online logo</string>
+    <string name="app_name">Labang Online</string>
+    <string name="error_email_required">Email is required</string>
+    <string name="error_invalid_email">Please enter a valid email</string>
+    <string name="error_invalid_login">Invalid email or password</string>
+    <string name="error_password_required">Password is required</string>
+    <string name="error_password_short">Password must be at least 8 characters</string>
+    <string name="login_button">Login</string>
+    <string name="login_title">Login to Your Account</string>
+    <string name="logout_button">Logout</string>
+    <string name="register_button">Create Account</string>
+    <string name="register_link">Don\'t have an account? Create one</string>
+    <string name="register_subtitle">Join Labang Online Community</string>
+    <string name="register_title">Create New Account</string>
+    <string name="welcome_message">Welcome to Labang Online!</string>
+    <style name="LabangButton.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="backgroundTint">@color/bg_card</item>
+        <item name="android:textColor">@color/labang_green</item>
+        <item name="strokeColor">@color/labang_green</item>
+        <item name="strokeWidth">1.5dp</item>
+        <item name="cornerRadius">10dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="LabangButton.Primary" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/labang_green</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="cornerRadius">10dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="LabangTextInputStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="boxBackgroundColor">@color/bg_input</item>
+        <item name="boxStrokeColor">@color/labang_green</item>
+        <item name="hintTextColor">@color/text_muted</item>
+        <item name="android:textColorHint">@color/text_disabled</item>
+        <item name="boxCornerRadiusTopStart">10dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+        <item name="boxCornerRadiusBottomStart">10dp</item>
+        <item name="boxCornerRadiusBottomEnd">10dp</item>
+    </style>
+    <style name="Theme.LabangOnline" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        
+        <item name="colorPrimary">@color/labang_green</item>
+        <item name="colorPrimaryVariant">@color/labang_green_dark</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+
+        
+        <item name="colorSecondary">@color/labang_green</item>
+        <item name="colorSecondaryVariant">@color/labang_green_dark</item>
+        <item name="colorOnSecondary">@android:color/white</item>
+
+        
+        <item name="android:colorBackground">@color/bg_primary</item>
+        <item name="colorSurface">@color/bg_card</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+
+        
+        <item name="android:statusBarColor">@color/bg_secondary</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        
+        <item name="textInputStyle">@style/LabangTextInputStyle</item>
+    </style>
+</resources>

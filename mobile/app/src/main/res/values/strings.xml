@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Labang Online</string>
     <string name="app_description">Barangay Labangon Community Service Hub</string>
+    <string name="app_logo_description">Labang Online logo</string>
     
     <!-- Login Activity -->
     <string name="login_title">Login to Your Account</string>

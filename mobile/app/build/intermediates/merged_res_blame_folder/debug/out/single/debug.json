@@ -1,0 +1,62 @@
+[
+    {
+        "merged": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-merged_res-37:\\layout_activity_login.xml.flat",
+        "source": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-main-39:\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-merged_res-37:\\drawable_circle_dark_bg.xml.flat",
+        "source": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\circle_dark_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-merged_res-37:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-main-39:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-merged_res-37:\\drawable_error_bg.xml.flat",
+        "source": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\error_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-merged_res-37:\\layout_activity_dashboard.xml.flat",
+        "source": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-main-39:\\layout\\activity_dashboard.xml"
+    },
+    {
+        "merged": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-merged_res-37:\\drawable_logo.png.flat",
+        "source": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\logo.png"
+    },
+    {
+        "merged": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-merged_res-37:\\drawable_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-merged_res-37:\\drawable_circle_green_bg.xml.flat",
+        "source": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\circle_green_bg.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.labangonline.app-merged_res-37:/layout_activity_register.xml.flat",
+        "source": "edu.cit.natividad.labangonline.app-main-39:/layout/activity_register.xml"
+    },
+    {
+        "merged": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-merged_res-37:\\drawable_ic_launcher.xml.flat",
+        "source": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-merged_res-37:\\drawable_badge_bg.xml.flat",
+        "source": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\badge_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-merged_res-37:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-main-39:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-merged_res-37:\\layout_activity_register.xml.flat",
+        "source": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-main-39:\\layout\\activity_register.xml"
+    },
+    {
+        "merged": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-merged_res-37:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-main-39:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-merged_res-37:\\drawable_notice_bg.xml.flat",
+        "source": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\daemon\\8.2\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\notice_bg.xml"
+    }
+]

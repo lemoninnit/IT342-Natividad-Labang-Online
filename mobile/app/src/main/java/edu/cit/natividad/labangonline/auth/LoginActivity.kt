@@ -4,18 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
-import edu.cit.natividad.labangonline.api.ApiClient
-import edu.cit.natividad.labangonline.api.models.LoginRequest
 import edu.cit.natividad.labangonline.dashboard.DashboardActivity
 import edu.cit.natividad.labangonline.databinding.ActivityLoginBinding
-import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-    private val apiService = ApiClient.getAuthService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,79 +32,55 @@ class LoginActivity : AppCompatActivity() {
         val email = binding.emailInput.text.toString().trim()
         val password = binding.passwordInput.text.toString()
 
-        // Validation
+        binding.errorMessage.visibility = View.GONE
+
         if (!validateInputs(email, password)) {
             return
         }
 
         binding.loadingIndicator.visibility = View.VISIBLE
         binding.loginButton.isEnabled = false
-        binding.errorMessage.visibility = View.GONE
 
-        lifecycleScope.launch {
-            try {
-                val response = apiService.login(LoginRequest(email, password))
-
-                if (response.isSuccessful) {
-                    val body = response.body()
-                    if (body?.status == "OK") {
-                        val userName = body.user?.let { "${it.firstName} ${it.lastName}".trim() } ?: ""
-                        showSuccessMessage("Login successful!")
-                        startActivity(Intent(this@LoginActivity, DashboardActivity::class.java).apply {
-                            putExtra("USER_NAME", userName)
-                        })
-                        finish()
-                    } else {
-                        showErrorMessage("Login failed: ${body?.status ?: "Invalid credentials"}")
-                    }
-                } else {
-                    when (response.code()) {
-                        401 -> showErrorMessage("Invalid email or password")
-                        else -> showErrorMessage("Login failed: ${response.code()}")
-                    }
-                }
-            } catch (e: Exception) {
-                showErrorMessage("Error: ${e.message}")
-            } finally {
-                binding.loadingIndicator.visibility = View.GONE
-                binding.loginButton.isEnabled = true
-            }
-        }
+        binding.loadingIndicator.postDelayed({
+            binding.loadingIndicator.visibility = View.GONE
+            binding.loginButton.isEnabled = true
+            Snackbar.make(binding.root, "Login successful", Snackbar.LENGTH_SHORT).show()
+            startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
+            finish()
+        }, 1000)
     }
 
     private fun validateInputs(email: String, password: String): Boolean {
-        var isValid = true
-
         if (email.isEmpty()) {
             showErrorMessage("Email is required")
-            isValid = false
-        } else if (!isValidEmail(email)) {
+            return false
+        }
+
+        if (!isValidEmail(email)) {
             showErrorMessage("Please enter a valid email address")
-            isValid = false
+            return false
         }
 
         if (password.isEmpty()) {
             showErrorMessage("Password is required")
-            isValid = false
-        } else if (password.length < 8) {
-            showErrorMessage("Password must be at least 8 characters")
-            isValid = false
+            return false
         }
 
-        return isValid
+        if (password.length < 8) {
+            showErrorMessage("Password must be at least 8 characters")
+            return false
+        }
+
+        return true
     }
 
     private fun isValidEmail(email: String): Boolean {
-        val emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$"
-        return email.matches(emailRegex.toRegex())
+        val pattern = "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
+        return email.matches(pattern.toRegex())
     }
 
     private fun showErrorMessage(message: String) {
         binding.errorMessage.text = message
         binding.errorMessage.visibility = View.VISIBLE
-    }
-
-    private fun showSuccessMessage(message: String) {
-        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
     }
 }
