@@ -19,10 +19,7 @@ export default function Dashboard() {
   }, []);
 
   function handleLogout() {
-    if (confirm("Are you sure you want to logout?")) {
-      sessionStorage.removeItem("labangonline_session");
-      window.location.href = "/login";
-    }
+    window.location.href = "/logout";
   }
 
   if (loading) {
@@ -113,33 +110,6 @@ export default function Dashboard() {
               </div>
               <div className="profile-status">
                 <span className="status-badge active">Verified Resident</span>
-              </div>
-            </div>
-          </section>
-
-          {/* Quick Actions */}
-          <section className="dashboard-section">
-            <div className="section-header">
-              <h2>Quick Actions</h2>
-            </div>
-            <div className="quick-actions">
-              <div className="action-card">
-                <div className="action-icon">📄</div>
-                <h4>Request Document</h4>
-                <p>Get certificates, barangay clearance, and more</p>
-                <a href="#document-request" className="action-btn">Request Now</a>
-              </div>
-              <div className="action-card">
-                <div className="action-icon">📋</div>
-                <h4>File a Report</h4>
-                <p>Report issues or concerns to barangay</p>
-                <a href="#file-report" className="action-btn">File Report</a>
-              </div>
-              <div className="action-card">
-                <div className="action-icon">📢</div>
-                <h4>View Announcements</h4>
-                <p>Latest updates and announcements</p>
-                <a href="#announcements" className="action-btn">View All</a>
               </div>
             </div>
           </section>
