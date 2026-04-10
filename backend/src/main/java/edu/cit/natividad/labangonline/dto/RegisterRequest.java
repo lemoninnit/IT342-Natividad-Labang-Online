@@ -1,7 +1,8 @@
-package edu.cit.natividad.labangonline.auth;
+package edu.cit.natividad.labangonline.dto;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
@@ -15,6 +16,7 @@ public class RegisterRequest {
   @NotBlank
   private String lastName;
 
+  @JsonFormat(pattern = "yyyy-MM-dd")
   private LocalDate dob;
 
   private String gender;

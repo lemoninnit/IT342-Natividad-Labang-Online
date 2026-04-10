@@ -1,8 +1,10 @@
-package edu.cit.natividad.labangonline.user;
+package edu.cit.natividad.labangonline.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import edu.cit.natividad.labangonline.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 

@@ -1,6 +1,6 @@
-package edu.cit.natividad.labangonline.auth;
+package edu.cit.natividad.labangonline.service;
 
-import edu.cit.natividad.labangonline.user.User;
+import edu.cit.natividad.labangonline.entity.User;
 
 public class LoginResult {
 

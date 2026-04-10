@@ -1,4 +1,4 @@
-package edu.cit.natividad.labangonline.auth;
+package edu.cit.natividad.labangonline.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

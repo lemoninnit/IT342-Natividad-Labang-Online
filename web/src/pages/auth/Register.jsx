@@ -19,6 +19,7 @@ function validateForm(form) {
   if (form.barangay.toLowerCase() !== "labangon")
     errors.barangay = "Only residents of Barangay Labangon may register.";
   if (!form.city.trim()) errors.city = "City is required.";
+  if (!form.province.trim()) errors.province = "Province is required.";
   const phoneRegex = /^(09|\+639)\d{9}$/;
   if (!form.phone.trim()) errors.phone = "Contact number is required.";
   else if (!phoneRegex.test(form.phone.replace(/\s/g, "")))
@@ -26,12 +27,24 @@ function validateForm(form) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!form.email.trim()) errors.email = "Email address is required.";
   else if (!emailRegex.test(form.email)) errors.email = "Enter a valid email address.";
-  if (!form.password) errors.password = "Password is required.";
-  else if (form.password.length < 8) errors.password = "Password must be at least 8 characters.";
-  else if (!/[A-Z]/.test(form.password)) errors.password = "Include at least one uppercase letter.";
-  else if (!/[0-9]/.test(form.password)) errors.password = "Include at least one number.";
-  if (!form.confirmPassword) errors.confirmPassword = "Please confirm your password.";
-  else if (form.password !== form.confirmPassword) errors.confirmPassword = "Passwords do not match.";
+  if (!form.password) {
+    if (form.confirmPassword) errors.password = "Password is required.";
+  } else if (form.password.length < 8) {
+    errors.password = "Password must be at least 8 characters.";
+  } else if (!/[A-Z]/.test(form.password)) {
+    errors.password = "Include at least one uppercase letter.";
+  } else if (!/[0-9]/.test(form.password)) {
+    errors.password = "Include at least one number.";
+  }
+
+  if (form.confirmPassword || form.password) {
+    if (!form.confirmPassword) {
+      errors.confirmPassword = "Please confirm your password.";
+    } else if (form.password !== form.confirmPassword) {
+      errors.confirmPassword = "Passwords do not match.";
+    }
+  }
+
   if (!form.agreeTerms) errors.agreeTerms = "You must agree to the terms and conditions.";
   return errors;
 }
@@ -88,7 +101,7 @@ export default function Register() {
 
   const stepFields = {
     1: ["firstName", "lastName", "dob", "gender"],
-    2: ["street", "purok", "barangay", "city", "phone", "email"],
+    2: ["street", "purok", "barangay", "city", "province", "phone", "email"],
     3: ["password", "confirmPassword", "agreeTerms"],
   };
 
@@ -102,7 +115,17 @@ export default function Register() {
     });
     setTouched(prev => ({ ...prev, ...stepTouched }));
     setErrors(prev => ({ ...prev, ...stepErrors }));
-    if (Object.keys(stepErrors).length === 0) setStep(s => s + 1);
+    if (Object.keys(stepErrors).length === 0) {
+      setErrors(prev => {
+        const nextErrors = { ...prev };
+        const nextStep = step + 1;
+        if (stepFields[nextStep]) {
+          stepFields[nextStep].forEach(field => delete nextErrors[field]);
+        }
+        return nextErrors;
+      });
+      setStep(s => s + 1);
+    }
   }
 
   async function handleSubmit(e) {
@@ -161,7 +184,11 @@ export default function Register() {
 
       if (!response.ok) {
         const body = await response.json().catch(() => null);
-        setServerError(body?.message || "Registration failed. Please try again.");
+        const fallbackMessage = body?.status
+          ? body.status.replace(/_/g, " ").toLowerCase()
+          : "Registration failed. Please try again.";
+        const errorMessage = body?.message || fallbackMessage;
+        setServerError(errorMessage.charAt(0).toUpperCase() + errorMessage.slice(1));
         return;
       }
 

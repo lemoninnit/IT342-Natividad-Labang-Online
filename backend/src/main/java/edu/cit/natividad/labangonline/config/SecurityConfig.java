@@ -10,6 +10,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -26,9 +27,10 @@ public class SecurityConfig {
     http
         .csrf(AbstractHttpConfigurer::disable)
         .cors(Customizer.withDefaults())
+        .httpBasic(AbstractHttpConfigurer::disable)
+        .formLogin(AbstractHttpConfigurer::disable)
+        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(auth -> auth
-            .requestMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
-            .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
             .anyRequest().permitAll());
     return http.build();
   }
@@ -36,7 +38,14 @@ public class SecurityConfig {
   @Bean
   public CorsConfigurationSource corsConfigurationSource(@Value("${frontend.url}") String frontendUrl) {
     CorsConfiguration config = new CorsConfiguration();
-    config.setAllowedOrigins(List.of(frontendUrl));
+    List<String> allowedOrigins = List.of(
+        frontendUrl,
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000"
+    );
+    config.setAllowedOriginPatterns(allowedOrigins);
     config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
     config.setAllowedHeaders(List.of("*"));
     config.setAllowCredentials(true);

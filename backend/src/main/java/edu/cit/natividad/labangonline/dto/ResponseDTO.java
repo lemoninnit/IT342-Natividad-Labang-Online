@@ -1,4 +1,4 @@
-package edu.cit.natividad.labangonline.request;
+package edu.cit.natividad.labangonline.dto;
 
 public class ResponseDTO {
     private boolean success;

@@ -1,4 +1,4 @@
-package edu.cit.natividad.labangonline.user;
+package edu.cit.natividad.labangonline.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

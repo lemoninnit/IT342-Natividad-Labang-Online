@@ -1,4 +1,4 @@
-package edu.cit.natividad.labangonline.auth;
+package edu.cit.natividad.labangonline.service;
 
 import java.util.Optional;
 
@@ -6,8 +6,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.cit.natividad.labangonline.user.User;
-import edu.cit.natividad.labangonline.user.UserRepository;
+import edu.cit.natividad.labangonline.dto.LoginRequest;
+import edu.cit.natividad.labangonline.dto.RegisterRequest;
+import edu.cit.natividad.labangonline.entity.User;
+import edu.cit.natividad.labangonline.repository.UserRepository;
+
 
 @Service
 public class AuthService {

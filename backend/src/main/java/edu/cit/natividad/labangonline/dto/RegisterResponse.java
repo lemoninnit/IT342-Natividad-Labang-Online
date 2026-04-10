@@ -1,4 +1,4 @@
-package edu.cit.natividad.labangonline.auth;
+package edu.cit.natividad.labangonline.dto;
 
 public class RegisterResponse {
 

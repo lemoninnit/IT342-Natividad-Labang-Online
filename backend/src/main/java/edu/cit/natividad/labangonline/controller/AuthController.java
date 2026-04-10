@@ -1,4 +1,4 @@
-package edu.cit.natividad.labangonline.auth;
+package edu.cit.natividad.labangonline.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,7 +7,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.cit.natividad.labangonline.user.UserRepository;
+import edu.cit.natividad.labangonline.dto.LoginRequest;
+import edu.cit.natividad.labangonline.dto.LoginResponse;
+import edu.cit.natividad.labangonline.dto.RegisterRequest;
+import edu.cit.natividad.labangonline.dto.RegisterResponse;
+import edu.cit.natividad.labangonline.repository.UserRepository;
+import edu.cit.natividad.labangonline.service.AuthService;
 
 import jakarta.validation.Valid;
 

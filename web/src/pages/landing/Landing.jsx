@@ -24,7 +24,6 @@ export default function Landing() {
                 Sign In
               </a>
             </div>
-            <p className="hero-cta">Already have an account? <a href="/login" className="hero-link">Log in here</a></p>
           </div>
           <div className="hero-decoration">
             <div className="decoration-circle circle-1"></div>

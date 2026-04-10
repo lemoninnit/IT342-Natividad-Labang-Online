@@ -1,7 +1,7 @@
 package edu.cit.natividad.labangonline.strategy;
 
-import edu.cit.natividad.labangonline.request.RequestDTO;
-import edu.cit.natividad.labangonline.request.ResponseDTO;
+import edu.cit.natividad.labangonline.dto.RequestDTO;
+import edu.cit.natividad.labangonline.dto.ResponseDTO;
 import org.springframework.stereotype.Component;
 
 @Component

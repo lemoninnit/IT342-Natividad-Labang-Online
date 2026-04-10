@@ -1,5 +1,7 @@
-package edu.cit.natividad.labangonline.request;
+package edu.cit.natividad.labangonline.service;
 
+import edu.cit.natividad.labangonline.dto.RequestDTO;
+import edu.cit.natividad.labangonline.dto.ResponseDTO;
 import edu.cit.natividad.labangonline.factory.RequestStrategyFactory;
 import edu.cit.natividad.labangonline.strategy.RequestProcessingStrategy;
 import org.springframework.stereotype.Service;
