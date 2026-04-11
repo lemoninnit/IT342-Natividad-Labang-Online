@@ -535,3 +535,124 @@ body {
     transform: translateY(0);
   }
 }
+
+/* ──────── PLACEHOLDER SECTION ──────── */
+.placeholder-section {
+  background: var(--bg-card);
+  border: 2px dashed var(--border);
+  border-radius: 12px;
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.placeholder-section p {
+  color: var(--text-muted);
+  font-size: 16px;
+  margin: 0;
+}
+
+/* ──────── NAV ITEM BUTTON ──────── */
+.nav-item {
+  background: none;
+  border: none;
+  text-align: left;
+}
+
+.nav-item.active {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--accent);
+  border-left: 4px solid var(--accent);
+  padding-left: 12px;
+}
+
+/* ──────── PROFILE HEADER SECTION ──────── */
+/* ──────── INFO SECTIONS ──────── */
+.info-section {
+  padding: 24px 28px !important;
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.info-section-title {
+  color: #cbd5e1;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin: 0 0 20px 0;
+  padding-bottom: 16px;
+  border-bottom: 2px solid rgba(16, 185, 129, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.info-section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  align-items: flex-start;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.info-label {
+  color: #94a3b8;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.info-value {
+  color: #e2e8f0;
+  font-size: 14px;
+  text-align: left;
+  word-break: break-word;
+  font-weight: 500;
+}
+
+.status-check {
+  color: #10b981;
+  font-weight: 600;
+}
+
+/* ──────── RESIDENT ID SECTION ──────── */
+.resident-id-container {
+  margin-top: 16px;
+}
+
+.resident-id-placeholder {
+  border: 2px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.id-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.resident-id-placeholder p {
+  color: #94a3b8;
+  font-size: 14px;
+  margin: 0;
+}

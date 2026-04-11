@@ -1,0 +1,166 @@
+.document-request-page {
+  min-height: 100vh;
+  background-color: #0b1020;
+  padding: 28px;
+}
+
+.document-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.header-profile {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-details h1 {
+  color: #e2e8f0;
+  font-size: 28px;
+  margin: 0 0 8px 0;
+  font-weight: 700;
+}
+
+.resident-badge {
+  display: inline-block;
+  background-color: #10b981;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-new-request {
+  background-color: #10b981;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-new-request:hover {
+  background-color: #059669;
+  transform: translateY(-2px);
+}
+
+.document-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.modal-overlay-full {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.modal-full {
+  position: relative;
+  background: white;
+  border-radius: 12px;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  width: 100%;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #666;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  color: #94a3b8;
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .document-request-page {
+    padding: 16px;
+  }
+
+  .document-header {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .header-profile {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-new-request {
+    width: 100%;
+  }
+
+  .modal-overlay-full {
+    padding: 16px;
+  }
+
+  .modal-full {
+    max-height: 95vh;
+  }
+}

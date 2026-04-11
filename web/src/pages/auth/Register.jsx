@@ -10,23 +10,43 @@ function validateForm(form) {
   if (!form.dob) {
     errors.dob = "Date of birth is required.";
   } else {
-    const age = new Date().getFullYear() - new Date(form.dob).getFullYear();
-    if (age < 1 || age > 120) errors.dob = "Please enter a valid date of birth.";
+    const dobDate = new Date(form.dob);
+    const today = new Date();
+    if (dobDate > today) {
+      errors.dob = "Date of birth cannot be in the future.";
+    } else {
+      const age = today.getFullYear() - dobDate.getFullYear();
+      const monthDiff = today.getMonth() - dobDate.getMonth();
+      const dayDiff = today.getDate() - dobDate.getDate();
+      const actualAge = monthDiff < 0 || (monthDiff === 0 && dayDiff < 0) ? age - 1 : age;
+      if (actualAge < 1 || actualAge > 120) errors.dob = "Please enter a valid date of birth.";
+    }
   }
+  
+  // Address validation - no special symbols except spaces, hyphens, dots, and commas
+  const addressRegex = /^[a-zA-Z0-9\s\-.,/]*$/;
   if (!form.street.trim()) errors.street = "Street/house number is required.";
+  else if (!addressRegex.test(form.street)) errors.street = "Address contains invalid symbols.";
+  
   if (!form.purok.trim()) errors.purok = "Purok is required.";
+  else if (!addressRegex.test(form.purok)) errors.purok = "Purok contains invalid symbols.";
+  
   // 3.2 Barangay Labangon verification
   if (form.barangay.toLowerCase() !== "labangon")
     errors.barangay = "Only residents of Barangay Labangon may register.";
+  
   if (!form.city.trim()) errors.city = "City is required.";
   if (!form.province.trim()) errors.province = "Province is required.";
+  
   const phoneRegex = /^(09|\+639)\d{9}$/;
   if (!form.phone.trim()) errors.phone = "Contact number is required.";
   else if (!phoneRegex.test(form.phone.replace(/\s/g, "")))
     errors.phone = "Enter a valid Philippine mobile number (e.g. 09XXXXXXXXX).";
+  
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!form.email.trim()) errors.email = "Email address is required.";
   else if (!emailRegex.test(form.email)) errors.email = "Enter a valid email address.";
+  
   if (!form.password) {
     if (form.confirmPassword) errors.password = "Password is required.";
   } else if (form.password.length < 8) {
