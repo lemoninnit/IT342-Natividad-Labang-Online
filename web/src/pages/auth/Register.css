@@ -1,747 +1,300 @@
+/* ══════════════════════════════════════════════
+   REGISTER PAGE — CSS
+══════════════════════════════════════════════ */
+
 :root {
-  --bg-dark: #0f172a;
-  --bg-card: #1e293b;
-  --accent: #10b981;
-  --accent-hover: #059669;
-  --text-light: #e2e8f0;
-  --text-muted: #94a3b8;
-  --border: rgba(255, 255, 255, 0.08);
-  --shadow: rgba(0, 0, 0, 0.35);
-  --error: #ef4444;
-  --error-light: rgba(239, 68, 68, 0.1);
-  --success: #10b981;
-  --success-light: rgba(16, 185, 129, 0.1);
-  --glow: rgba(16, 185, 129, 0.4);
+  --bg:            #0b1020;
+  --card:          #1a2235;
+  --accent:        #10b981;
+  --accent-hv:     #059669;
+  --text:          #e2e8f0;
+  --muted:         #94a3b8;
+  --hint:          #5e7490;
+  --border:        rgba(255, 255, 255, 0.08);
+  --error:         #ef4444;
+  --error-bg:      rgba(239, 68, 68, 0.08);
+  --prefilled-bg:  rgba(16, 185, 129, 0.06);
+  --prefilled-bdr: rgba(16, 185, 129, 0.15);
+  --notice-bg:     rgba(16, 185, 129, 0.07);
+  --notice-bdr:    rgba(16, 185, 129, 0.25);
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background: var(--bg-dark);
-  color: var(--text-light);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
 }
 
-/* ──────── PAGE LAYOUT ──────── */
-.register-page {
+/* ── Page ── */
+.reg-page {
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  padding: 24px 16px;
-  animation: fadeIn 0.5s ease both;
+  align-items: center;   /* FIXED */
+  justify-content: center;
+  background: linear-gradient(160deg, #0b1020 0%, #0f172a 100%);
+  padding: 20px 16px;
 }
 
-/* ──────── CARD ──────── */
-.register-card {
-  background: var(--bg-card);
-  border-radius: 16px;
+/* ── Card ── */
+.reg-card {
+  background: var(--card);
   border: 1px solid var(--border);
-  box-shadow: 0 8px 32px var(--shadow);
+  border-radius: 16px;
+  margin: 0 auto;
   width: 100%;
-  max-width: 560px;
-  padding: 40px 44px;
-  z-index: 1;
-  animation: fadeUp 0.5s ease both 0.1s;
+  max-width: 700px;
+  padding: 36px 44px 36px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+  animation: slideUp 0.4s ease both;
 }
 
-.card-header {
-  margin-bottom: 28px;
-  text-align: center;
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.card-title {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--text-light);
-  margin-bottom: 6px;
-}
-
-.card-subtitle {
-  color: var(--text-muted);
-  font-size: 14px;
-}
-
-/* ──────── STEP INDICATOR ──────── */
-.step-indicator {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  position: relative;
-  margin-bottom: 32px;
-  padding: 0 8px;
-}
-
-.step-indicator::before {
-  content: "";
-  position: absolute;
-  top: 16px;
-  left: calc(8px + 16px);
-  right: calc(8px + 16px);
-  height: 2px;
-  background: var(--border);
-  z-index: 0;
-}
-
-.step-indicator::after {
-  content: "";
-  position: absolute;
-  top: 16px;
-  left: calc(8px + 16px);
-  width: var(--progress, 0%);
-  height: 2px;
-  background: var(--accent);
-  z-index: 1;
-  transition: width 0.4s ease;
-}
-
-.step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  z-index: 2;
-}
-
-.step-circle {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 2px solid var(--border);
-  background: rgba(255, 255, 255, 0.04);
+/* ── Logo row (matches login page) ── */
+.reg-logo-row {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-muted);
-  transition: all 0.3s ease;
+  gap: 8px;
+  margin-bottom: 20px;
 }
 
-.step.active .step-circle {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: white;
-  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
-}
+.reg-logo-icon { font-size: 22px; }
 
-.step.done .step-circle {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: white;
-}
-
-.step-label {
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--text-muted);
-  text-align: center;
-  white-space: nowrap;
-}
-
-.step.active .step-label {
+.reg-logo-text {
+  font-size: 16px;
+  font-weight: 700;
   color: var(--accent);
-  font-weight: 600;
-}
-
-/* ──────── FORM ELEMENTS ──────── */
-.form-step {
-  animation: fadeIn 0.3s ease both;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-
-.form-group {
-  margin-bottom: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-label {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-light);
   letter-spacing: 0.2px;
 }
 
-.req {
-  color: var(--error);
+/* ── Header ── */
+.reg-header { margin-bottom: 24px; }
+
+.reg-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+  letter-spacing: -0.3px;
 }
 
-input, select, textarea {
+.reg-subtitle {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ── 2-col row ── */
+.reg-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+/* ── Field group ── */
+.reg-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* ── Label ── */
+.reg-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* ── Input base ── */
+.reg-input {
   width: 100%;
-  padding: 11px 14px;
+  padding: 10px 13px;
+  background: rgba(255,255,255,0.04);
   border: 1px solid var(--border);
-  border-radius: 10px;
-  font-family: inherit;
+  border-radius: 8px;
   font-size: 14px;
-  color: var(--text-light);
-  background: rgba(255, 255, 255, 0.04);
+  font-family: inherit;
+  color: var(--text);
   outline: none;
-  transition: all 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  color-scheme: dark;
 }
 
-select {
-  color: var(--text-light);
-}
+.reg-input::placeholder { color: var(--hint); opacity: 1; }
 
-select option {
-  background: var(--bg-card);
-  color: var(--text-light);
-}
-
-input:focus, select:focus {
+.reg-input:focus {
   border-color: var(--accent);
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255,255,255,0.07);
+  box-shadow: 0 0 0 3px rgba(16,185,129,0.1);
 }
 
-input.error, select.error {
+/* error state — only after touch */
+.reg-input.input-error {
   border-color: var(--error);
-  background: var(--error-light);
+  background: var(--error-bg);
+}
+.reg-input.input-error:focus {
+  box-shadow: 0 0 0 3px rgba(239,68,68,0.1);
 }
 
-input::placeholder {
-  color: var(--text-muted);
+/* prefilled / read-only */
+.reg-input-prefilled {
+  background: var(--prefilled-bg);
+  border-color: var(--prefilled-bdr);
+  cursor: default;
+}
+.reg-input-prefilled:focus {
+  border-color: var(--prefilled-bdr);
+  box-shadow: none;
+  background: var(--prefilled-bg);
 }
 
-.err-msg {
+/* ── Hint text ── */
+.reg-hint {
+  font-size: 11.5px;
+  color: var(--hint);
+}
+
+/* ── Error message — ONLY when touched + invalid ── */
+.reg-error {
   font-size: 12px;
   color: var(--error);
   font-weight: 500;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
 }
+.reg-error::before { content: "⚠ "; }
 
-.err-msg::before {
-  content: "⚠ ";
-}
+/* ── Password eye toggle ── */
+.pw-wrap { position: relative; }
+.pw-wrap .reg-input { padding-right: 40px; }
 
-/* ──────── INFO BANNER ──────── */
-.info-banner {
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.2);
-  border-left: 4px solid var(--accent);
-  border-radius: 10px;
-  padding: 12px 16px;
-  font-size: 13px;
-  color: var(--text-muted);
-  margin-bottom: 20px;
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-  line-height: 1.5;
-}
-
-.banner-icon {
-  font-size: 16px;
-  flex-shrink: 0;
-}
-
-/* ──────── PASSWORD ──────── */
-.input-with-icon {
-  position: relative;
-}
-
-.input-with-icon input {
-  padding-right: 44px;
-}
-
-.eye-btn {
+.pw-eye {
   position: absolute;
-  right: 12px;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 16px;
-  padding: 0;
-  color: var(--text-muted);
+  font-size: 15px;
+  color: var(--muted);
   opacity: 0.7;
+  padding: 0;
+  line-height: 1;
   transition: opacity 0.2s;
 }
+.pw-eye:hover { opacity: 1; }
 
-.eye-btn:hover {
-  opacity: 1;
+/* ── Verification notice ── */
+.reg-notice {
+  display: flex;
+  gap: 14px;
+  background: var(--notice-bg);
+  border: 1px solid var(--notice-bdr);
+  border-left: 4px solid var(--accent);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin: 20px 0 24px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
 }
 
-.strength-bar-wrap {
+.reg-notice-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+.reg-notice-title {
+  color: var(--accent);
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.reg-notice-list {
+  margin: 6px 0 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.reg-notice-sublist {
+  margin: 4px 0 0 16px;
+  list-style: disc;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* ── Footer row ── */
+.reg-footer-row {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-top: 6px;
-}
-
-.strength-bar {
-  display: flex;
-  gap: 4px;
-  flex: 1;
-}
-
-.strength-seg {
-  height: 4px;
-  flex: 1;
-  border-radius: 2px;
-  background: var(--border);
-  transition: background 0.3s;
-}
-
-.strength-seg.strength-1 {
-  background: #ef4444;
-}
-
-.strength-seg.strength-2 {
-  background: #f97316;
-}
-
-.strength-seg.strength-3 {
-  background: #eab308;
-}
-
-.strength-seg.strength-4 {
-  background: #84cc16;
-}
-
-.strength-seg.strength-5 {
-  background: #10b981;
-}
-
-.strength-label {
-  font-size: 11px;
-  font-weight: 600;
-  white-space: nowrap;
-  min-width: 70px;
-  text-align: right;
-}
-
-.strength-label-1 {
-  color: #ef4444;
-}
-
-.strength-label-2 {
-  color: #f97316;
-}
-
-.strength-label-3 {
-  color: #eab308;
-}
-
-.strength-label-4 {
-  color: #84cc16;
-}
-
-.strength-label-5 {
-  color: #10b981;
-}
-
-.pw-hints {
-  list-style: none;
-  display: flex;
+  gap: 20px;
   flex-wrap: wrap;
-  gap: 6px 14px;
-  margin-top: 8px;
 }
 
-.pw-hints li {
-  font-size: 12px;
-  color: var(--text-muted);
-  padding-left: 16px;
-  position: relative;
+/* ── Submit button ── */
+.reg-btn-submit {
+  padding: 11px 26px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 0 18px rgba(16,185,129,0.25);
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.reg-btn-submit:hover {
+  background: var(--accent-hv);
+  box-shadow: 0 0 26px rgba(16,185,129,0.35);
+  transform: translateY(-1px);
+}
+.reg-btn-submit:active { transform: translateY(0); }
+
+/* ── "Already have an account?" — plain text + link only, no button ── */
+.reg-have-account {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.reg-signin-link {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 3px;
   transition: color 0.2s;
 }
-
-.pw-hints li::before {
-  content: "○";
-  position: absolute;
-  left: 0;
-  transition: all 0.2s;
-}
-
-.pw-hints li.met {
-  color: var(--success);
-}
-
-.pw-hints li.met::before {
-  content: "✓";
-  color: var(--success);
-}
-
-/* ──────── CHECKBOX ──────── */
-.checkbox-group {
-  margin-top: 4px;
-}
-
-.checkbox-label {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
-
-.checkbox-label input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
-  margin-top: 2px;
-  accent-color: var(--accent);
-  cursor: pointer;
-}
-
-.checkbox-label a {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-.checkbox-label a:hover {
+.reg-signin-link:hover {
+  color: var(--accent-hv);
   text-decoration: underline;
 }
 
-/* ──────── BUTTONS ──────── */
-.form-nav {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  margin-top: 28px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border);
-}
+/* ══ RESPONSIVE ══ */
+@media (max-width: 640px) {
+  .reg-card { padding: 28px 20px 28px; }
 
-.btn-primary, .btn-secondary {
-  padding: 12px 28px;
-  border-radius: 10px;
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-  transition: all 0.2s ease;
-  letter-spacing: 0.2px;
-}
-
-.btn-primary {
-  background: var(--accent);
-  color: white;
-  box-shadow: 0 0 20px var(--glow);
-}
-
-.btn-primary:hover {
-  background: var(--accent-hover);
-  box-shadow: 0 0 30px var(--glow);
-  transform: translateY(-2px);
-}
-
-.btn-primary:active {
-  transform: translateY(0);
-}
-
-.btn-secondary {
-  background: transparent;
-  color: var(--accent);
-  border: 1px solid var(--border);
-}
-
-.btn-secondary:hover {
-  border-color: var(--accent);
-  background: rgba(16, 185, 129, 0.1);
-}
-
-.btn-submit {
-  background: var(--accent);
-  padding: 12px 36px;
-}
-
-/* ──────── LOGIN LINK ──────── */
-.login-link {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 13px;
-  color: var(--text-muted);
-}
-
-.login-link a {
-  color: var(--accent);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.login-link a:hover {
-  text-decoration: underline;
-}
-
-/* ──────── WELCOME CARD ──────── */
-.welcome-card {
-  text-align: center;
-  padding: 60px 44px;
-  animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
-}
-
-.welcome-icon {
-  font-size: 64px;
-  margin-bottom: 20px;
-  animation: bounce 0.8s ease 0.3s both;
-}
-
-.welcome-title {
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--text-light);
-  margin-bottom: 12px;
-}
-
-.welcome-subtitle {
-  font-size: 16px;
-  color: var(--text-light);
-  margin-bottom: 8px;
-}
-
-.welcome-desc {
-  font-size: 14px;
-  color: var(--text-muted);
-  line-height: 1.7;
-  max-width: 400px;
-  margin: 0 auto 32px;
-}
-
-.welcome-btn {
-  display: inline-block;
-  text-decoration: none;
-  padding: 14px 40px;
-  background: var(--accent);
-  color: white;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 15px;
-  transition: all 0.2s;
-  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
-}
-
-.welcome-btn:hover {
-  background: var(--accent-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
-}
-
-/* ──────── ANIMATIONS ──────── */
-@keyframes fadeDown {
-  from {
-    opacity: 0;
-    transform: translateY(-16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateX(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes bounce {
-  0% {
-    transform: scale(0);
-    opacity: 0;
-  }
-  60% {
-    transform: scale(1.15);
-  }
-  80% {
-    transform: scale(0.95);
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-/* ──────── RESPONSIVE ──────── */
-@media (max-width: 600px) {
-  .register-card {
-    padding: 28px 22px;
-  }
-
-  .form-row {
+  .reg-row {
     grid-template-columns: 1fr;
     gap: 0;
   }
+  .reg-row .reg-group { margin-bottom: 16px; }
 
-  .card-title {
-    font-size: 24px;
-  }
+  .reg-title { font-size: 20px; }
 
-  .step-label {
-    display: none;
-  }
-
-  .form-nav {
+  .reg-footer-row {
     flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
   }
-
-  .btn-primary, .btn-secondary {
-    width: 100%;
-    text-align: center;
-  }
-
-  .welcome-card {
-    padding: 40px 22px;
-  }
-
-  .welcome-icon {
-    font-size: 48px;
-  }
-
-  .welcome-title {
-    font-size: 24px;
-  }
-}
-
-.btn-secondary {
-  background: white;
-  color: var(--primary);
-  border: 1.5px solid var(--border);
-}
-.btn-secondary:hover {
-  border-color: var(--primary);
-  background: var(--primary-light);
-}
-
-.btn-submit {
-  background: linear-gradient(135deg, #1B4D3E, #2d7a60);
-  padding: 12px 36px;
-}
-
-/* ──────── LOGIN LINK ──────── */
-.login-link {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 13px;
-  color: var(--text-muted);
-}
-.login-link a { color: var(--primary); font-weight: 600; text-decoration: none; }
-.login-link a:hover { text-decoration: underline; }
-
-/* ──────── WELCOME CARD ──────── */
-.welcome-card {
-  text-align: center;
-  padding: 60px 44px;
-  animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
-}
-
-.welcome-icon { font-size: 64px; margin-bottom: 20px; animation: bounce 0.8s ease 0.3s both; }
-.welcome-title {
-  font-family: 'Fraunces', serif;
-  font-size: 32px;
-  color: var(--primary);
-  margin-bottom: 12px;
-}
-.welcome-subtitle { font-size: 16px; color: var(--text); margin-bottom: 8px; }
-.welcome-desc {
-  font-size: 14px;
-  color: var(--text-muted);
-  line-height: 1.7;
-  max-width: 400px;
-  margin: 0 auto 32px;
-}
-.welcome-btn {
-  display: inline-block;
-  text-decoration: none;
-  padding: 14px 40px;
-  background: var(--primary);
-  color: white;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 15px;
-  transition: all 0.2s;
-  box-shadow: 0 4px 14px rgba(27,77,62,0.3);
-}
-.welcome-btn:hover {
-  background: var(--primary-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(27,77,62,0.38);
-}
-
-/* ──────── FOOTER ──────── */
-.register-footer {
-  margin-top: 32px;
-  z-index: 1;
-  font-size: 12px;
-  color: var(--text-muted);
-  text-align: center;
-}
-
-/* ──────── ANIMATIONS ──────── */
-@keyframes fadeDown {
-  from { opacity: 0; transform: translateY(-16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateX(10px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-@keyframes scaleIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to   { opacity: 1; transform: scale(1); }
-}
-@keyframes bounce {
-  0%   { transform: scale(0); opacity: 0; }
-  60%  { transform: scale(1.15); }
-  80%  { transform: scale(0.95); }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-/* ──────── RESPONSIVE ──────── */
-@media (max-width: 600px) {
-  .register-card { padding: 28px 22px; }
-  .form-row { grid-template-columns: 1fr; gap: 0; }
-  .card-title { font-size: 24px; }
-  .step-label { display: none; }
-  .form-nav { flex-direction: column; }
-  .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+  .reg-btn-submit { width: 100%; text-align: center; }
 }
