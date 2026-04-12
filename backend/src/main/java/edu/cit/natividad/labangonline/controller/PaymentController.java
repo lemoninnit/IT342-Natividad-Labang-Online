@@ -100,4 +100,28 @@ public class PaymentController {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
   }
+
+  @PutMapping("/{paymentId}/approve")
+  public ResponseEntity<Map<String, String>> approvePayment(@PathVariable Long paymentId) {
+    try {
+      paymentService.approvePayment(paymentId);
+      Map<String, String> response = new HashMap<>();
+      response.put("message", "Payment approved successfully");
+      return ResponseEntity.ok(response);
+    } catch (Exception e) {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+  }
+
+  @PutMapping("/{paymentId}/reject")
+  public ResponseEntity<Map<String, String>> rejectPayment(@PathVariable Long paymentId) {
+    try {
+      paymentService.rejectPayment(paymentId);
+      Map<String, String> response = new HashMap<>();
+      response.put("message", "Payment rejected successfully");
+      return ResponseEntity.ok(response);
+    } catch (Exception e) {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+  }
 }

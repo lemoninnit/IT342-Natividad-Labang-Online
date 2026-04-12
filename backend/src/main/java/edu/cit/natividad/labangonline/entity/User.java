@@ -41,6 +41,26 @@ public class User {
   @Column(name = "gender", length = 50)
   private String gender;
 
+  @Size(max = 100)
+  @Column(name = "username", length = 100, unique = true)
+  private String username;
+
+  @Size(max = 50)
+  @Column(name = "civil_status", length = 50)
+  private String civilStatus;
+
+  @Column(name = "resident_confirmed", nullable = false)
+  private boolean residentConfirmed = false;
+
+  @Column(name = "resident_id_url", length = 255)
+  private String residentIdUrl;
+
+  @Column(name = "profile_picture")
+  private byte[] profilePicture;
+
+  @Column(name = "resident_id_image")
+  private byte[] residentIdImage;
+
   @NotBlank
   @Size(max = 255)
   @Column(name = "street_address", nullable = false, length = 255)
@@ -65,6 +85,11 @@ public class User {
   @Size(max = 100)
   @Column(name = "province", nullable = false, length = 100)
   private String province;
+
+  @NotBlank
+  @Size(max = 20)
+  @Column(name = "postal_code", nullable = false, length = 20)
+  private String postalCode;
 
   @NotBlank
   @Size(max = 20)
@@ -141,6 +166,38 @@ public class User {
     this.gender = gender;
   }
 
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public String getCivilStatus() {
+    return civilStatus;
+  }
+
+  public void setCivilStatus(String civilStatus) {
+    this.civilStatus = civilStatus;
+  }
+
+  public boolean isResidentConfirmed() {
+    return residentConfirmed;
+  }
+
+  public void setResidentConfirmed(boolean residentConfirmed) {
+    this.residentConfirmed = residentConfirmed;
+  }
+
+  public String getResidentIdUrl() {
+    return residentIdUrl;
+  }
+
+  public void setResidentIdUrl(String residentIdUrl) {
+    this.residentIdUrl = residentIdUrl;
+  }
+
   public String getStreet() {
     return street;
   }
@@ -181,6 +238,14 @@ public class User {
     this.province = province;
   }
 
+  public String getPostalCode() {
+    return postalCode;
+  }
+
+  public void setPostalCode(String postalCode) {
+    this.postalCode = postalCode;
+  }
+
   public String getPhoneNumber() {
     return phoneNumber;
   }
@@ -219,6 +284,22 @@ public class User {
 
   public void setActive(boolean active) {
     this.active = active;
+  }
+
+  public byte[] getProfilePicture() {
+    return profilePicture;
+  }
+
+  public void setProfilePicture(byte[] profilePicture) {
+    this.profilePicture = profilePicture;
+  }
+
+  public byte[] getResidentIdImage() {
+    return residentIdImage;
+  }
+
+  public void setResidentIdImage(byte[] residentIdImage) {
+    this.residentIdImage = residentIdImage;
   }
 }
 

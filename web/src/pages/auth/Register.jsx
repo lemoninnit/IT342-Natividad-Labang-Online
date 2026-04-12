@@ -1,15 +1,20 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import Layout from "../../components/Layout";
 import "./Register.css";
+import { authAPI } from "../../lib/api";
 
 export default function Register() {
   const [formData, setFormData] = useState({
-    fullName: "",
+    firstName: "",
+    middleName: "",
+    lastName: "",
     username: "",
     email: "",
     phone: "+63",
     dateOfBirth: "",
+    civilStatus: "Single",
     addressLine: "",
+    purok: "",
     barangay: "Labangon",
     city: "Cebu City",
     province: "Cebu",
@@ -22,12 +27,16 @@ export default function Register() {
   const [touched, setTouched] = useState({});
   const [showPw, setShowPw]   = useState(false);
   const [showCpw, setShowCpw] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [regError, setRegError] = useState("");
 
   /* ── validation rules ── */
   const validate = (name, value) => {
     switch (name) {
-      case "fullName":
-        return !value.trim() ? "Full name is required" : "";
+      case "firstName":
+        return !value.trim() ? "First name is required" : "";
+      case "lastName":
+        return !value.trim() ? "Last name is required" : "";
       case "username":
         if (!value.trim()) return "Username is required";
         if (value.length < 3) return "Username must be at least 3 characters";
@@ -45,6 +54,8 @@ export default function Register() {
         return !value ? "Date of birth is required" : "";
       case "addressLine":
         return !value.trim() ? "Address line is required" : "";
+      case "purok":
+        return !value.trim() ? "Purok is required" : "";
       case "password":
         if (!value) return "Password is required";
         if (value.length < 8) return "Must be at least 8 characters";
@@ -72,9 +83,9 @@ export default function Register() {
     setErrors((p) => ({ ...p, [name]: validate(name, value) }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const fields = ["fullName","username","email","phone","dateOfBirth","addressLine","password","confirmPassword"];
+    const fields = ["firstName", "lastName", "username", "email", "phone", "dateOfBirth", "addressLine", "purok", "password", "confirmPassword"];
     const newTouched = {};
     const newErrors  = {};
     fields.forEach((f) => {
@@ -83,8 +94,49 @@ export default function Register() {
     });
     setTouched(newTouched);
     setErrors(newErrors);
+    
     if (Object.values(newErrors).every((e) => !e)) {
-      alert("Registration successful!");
+      setLoading(true);
+      setRegError("");
+      try {
+        const response = await authAPI.register({
+          firstName: formData.firstName,
+          middleName: formData.middleName,
+          lastName: formData.lastName,
+          username: formData.username,
+          email: formData.email.trim().toLowerCase(),
+          phone: formData.phone,
+          dob: formData.dateOfBirth,
+          civilStatus: formData.civilStatus,
+          street: formData.addressLine,
+          purok: formData.purok,
+          barangay: formData.barangay,
+          city: formData.city,
+          province: formData.province,
+          postalCode: formData.postalCode,
+          password: formData.password,
+        });
+
+        if (response.status === 201) {
+          window.location.href = "/register-success";
+        }
+      } catch (err) {
+        if (err.response) {
+          const data = err.response.data;
+          if (data.message === "EMAIL_EXISTS") {
+            setRegError("Email is already registered.");
+          } else if (data.message === "PHONE_EXISTS") {
+            setRegError("Phone number is already registered.");
+          } else {
+            setRegError("Registration failed. Please try again.");
+          }
+        } else {
+          setRegError("Something went wrong. Please try again.");
+          console.error(err);
+        }
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -103,22 +155,59 @@ export default function Register() {
           <p className="reg-subtitle">Register as a resident of Barangay Labangon</p>
         </div>
 
+        {/* ── Error banner ── */}
+        {regError && (
+          <div className="reg-alert-error">
+            <span className="reg-alert-icon">⚠️</span>
+            <span>{regError}</span>
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} noValidate>
 
-          {/* ── Row 1: Full Name + Username ── */}
+          {/* ── Row 1: First Name + Last Name ── */}
           <div className="reg-row">
             <div className="reg-group">
-              <label className="reg-label">Full name</label>
+              <label className="reg-label">First name</label>
               <input
-                name="fullName"
+                name="firstName"
                 type="text"
-                placeholder="Juan Dela Cruz"
-                value={formData.fullName}
+                placeholder="Juan"
+                value={formData.firstName}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className={inputCls("fullName")}
+                className={inputCls("firstName")}
               />
-              {hasError("fullName") && <span className="reg-error">{errors.fullName}</span>}
+              {hasError("firstName") && <span className="reg-error">{errors.firstName}</span>}
+            </div>
+
+            <div className="reg-group">
+              <label className="reg-label">Last name</label>
+              <input
+                name="lastName"
+                type="text"
+                placeholder="Dela Cruz"
+                value={formData.lastName}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={inputCls("lastName")}
+              />
+              {hasError("lastName") && <span className="reg-error">{errors.lastName}</span>}
+            </div>
+          </div>
+
+          {/* ── Row 2: Middle Name + Username ── */}
+          <div className="reg-row">
+            <div className="reg-group">
+              <label className="reg-label">Middle name (optional)</label>
+              <input
+                name="middleName"
+                type="text"
+                placeholder="Santos"
+                value={formData.middleName}
+                onChange={handleChange}
+                className="reg-input"
+              />
             </div>
 
             <div className="reg-group">
@@ -136,7 +225,7 @@ export default function Register() {
             </div>
           </div>
 
-          {/* ── Row 2: Email + Phone ── */}
+          {/* ── Row 3: Email + Phone ── */}
           <div className="reg-row">
             <div className="reg-group">
               <label className="reg-label">Email</label>
@@ -173,7 +262,7 @@ export default function Register() {
             </div>
           </div>
 
-          {/* ── Row 3: Date of Birth + Address Line ── */}
+          {/* ── Row 4: Date of Birth + Civil Status ── */}
           <div className="reg-row">
             <div className="reg-group">
               <label className="reg-label">Date of birth</label>
@@ -189,11 +278,29 @@ export default function Register() {
             </div>
 
             <div className="reg-group">
+              <label className="reg-label">Civil Status</label>
+              <select
+                name="civilStatus"
+                value={formData.civilStatus}
+                onChange={handleChange}
+                className="reg-input"
+              >
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+                <option value="Widowed">Widowed</option>
+                <option value="Separated">Separated</option>
+              </select>
+            </div>
+          </div>
+
+          {/* ── Row 5: Address Line + Purok ── */}
+          <div className="reg-row">
+            <div className="reg-group">
               <label className="reg-label">Address line</label>
               <input
                 name="addressLine"
                 type="text"
-                placeholder="123 Mabuhay Street, Purok 5"
+                placeholder="123 Mabuhay Street"
                 value={formData.addressLine}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -204,9 +311,23 @@ export default function Register() {
                 : <span className="reg-hint">Street, house number, etc.</span>
               }
             </div>
+
+            <div className="reg-group">
+              <label className="reg-label">Purok</label>
+              <input
+                name="purok"
+                type="text"
+                placeholder="Purok 5"
+                value={formData.purok}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={inputCls("purok")}
+              />
+              {hasError("purok") && <span className="reg-error">{errors.purok}</span>}
+            </div>
           </div>
 
-          {/* ── Row 4: Barangay (prefilled) + City (prefilled) ── */}
+          {/* ── Row 6: Barangay (prefilled) + City (prefilled) ── */}
           <div className="reg-row">
             <div className="reg-group">
               <label className="reg-label">Barangay</label>
@@ -231,7 +352,7 @@ export default function Register() {
             </div>
           </div>
 
-          {/* ── Row 5: Province (prefilled) + Postal Code (prefilled) ── */}
+          {/* ── Row 7: Province (prefilled) + Postal Code (prefilled) ── */}
           <div className="reg-row">
             <div className="reg-group">
               <label className="reg-label">Province</label>
@@ -256,7 +377,7 @@ export default function Register() {
             </div>
           </div>
 
-          {/* ── Row 6: Password + Confirm Password ── */}
+          {/* ── Row 8: Password + Confirm Password ── */}
           <div className="reg-row">
             <div className="reg-group">
               <label className="reg-label">Password</label>

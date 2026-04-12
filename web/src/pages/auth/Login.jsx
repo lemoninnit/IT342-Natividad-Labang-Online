@@ -4,7 +4,7 @@ import "./Login.css";
 
 // 4.1 Login Form
 export default function Login() {
-  const [form, setForm] = useState({ email: "", password: "" });
+  const [form, setForm] = useState({ username: "", password: "" });
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
   const [showPassword, setShowPassword] = useState(false);
@@ -13,9 +13,7 @@ export default function Login() {
 
   function validate(data) {
     const errs = {};
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!data.email.trim()) errs.email = "Email is required.";
-    else if (!emailRegex.test(data.email)) errs.email = "Enter a valid email address.";
+    if (!data.username.trim()) errs.username = "Username is required.";
     if (!data.password) errs.password = "Password is required.";
     return errs;
   }
@@ -42,7 +40,7 @@ export default function Login() {
     const errs = validate(form);
     if (Object.keys(errs).length > 0) {
       setErrors(errs);
-      setTouched({ email: true, password: true });
+      setTouched({ username: true, password: true });
       return;
     }
 
@@ -57,13 +55,13 @@ export default function Login() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email: form.email.trim().toLowerCase(),
+          username: form.username.trim(),
           password: form.password,
         }),
       });
 
       if (response.status === 401) {
-        setLoginError("Incorrect email or password. Please try again.");
+        setLoginError("Incorrect username/password or account is not yet confirmed by the Barangay.");
         setLoading(false);
         return;
       }
@@ -95,8 +93,8 @@ export default function Login() {
       sessionStorage.setItem("labangonline_session", JSON.stringify(sessionData));
 
       // Redirect based on role
-      if (user.role === "admin") {
-        window.location.href = "/admin/dashboard";
+      if (user.role.toUpperCase() === "ADMIN") {
+        window.location.href = "/admin";
       } else {
         window.location.href = "/dashboard";
       }
@@ -129,13 +127,13 @@ export default function Login() {
           {/* 4.1 Login Form */}
           <form onSubmit={handleSubmit} noValidate>
             <div className="form-group">
-              <label>Email Address <span className="req">*</span></label>
-              <input type="email" name="email" value={form.email}
+              <label>Username <span className="req">*</span></label>
+              <input type="text" name="username" value={form.username}
                 onChange={handleChange} onBlur={handleBlur}
-                placeholder="yourname@email.com"
-                className={errors.email && touched.email ? "error" : ""}
-                autoComplete="email" />
-              {errors.email && touched.email && <span className="err-msg">{errors.email}</span>}
+                placeholder="Enter your username"
+                className={errors.username && touched.username ? "error" : ""}
+                autoComplete="username" />
+              {errors.username && touched.username && <span className="err-msg">{errors.username}</span>}
             </div>
 
             <div className="form-group">

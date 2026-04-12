@@ -15,4 +15,8 @@ public interface CertificateRequestRepository
   List<CertificateRequest> findByUserIdOrderByCreatedAtDesc(Long userId);
 
   CertificateRequest findByIdAndUserId(Long id, Long userId);
+
+  List<CertificateRequest> findByStatusOrderByCreatedAtDesc(CertificateRequest.RequestStatus status);
+  
+  List<CertificateRequest> findAllByOrderByCreatedAtDesc();
 }

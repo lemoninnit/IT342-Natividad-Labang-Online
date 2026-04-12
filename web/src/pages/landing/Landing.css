@@ -79,26 +79,27 @@
   margin-right: auto;
 }
 
-.hero-buttons {
+.hero-actions {
   display: flex;
-  gap: 16px;
+  gap: 24px; /* Changed from 16px to 24px */
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 24px;
 }
 
 .btn {
-  padding: 16px 36px;
+  padding: 14px 28px;
   border-radius: 10px;
   border: none;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
   transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  min-width: 160px;
 }
 
 .btn-primary {
@@ -467,7 +468,7 @@
     font-size: 16px;
   }
 
-  .hero-buttons {
+  .hero-actions {
     flex-direction: column;
     gap: 12px;
   }

@@ -41,26 +41,23 @@ export default function PaymentMethodSelection({ requestId, onMethodSelected, on
 
         {error && <div className="alert alert-error">{error}</div>}
 
-        <div className="payment-methods">
+        <div className="payment-methods-grid">
           {paymentMethods.map(method => (
             <div
               key={method.id}
-              className={`payment-method ${selectedMethod === method.id ? 'selected' : ''}`}
+              className={`payment-method-card ${selectedMethod === method.id ? 'selected' : ''}`}
               onClick={() => handleMethodSelect(method.id)}
             >
-              <input
-                type="radio"
-                name="paymentMethod"
-                value={method.id}
-                checked={selectedMethod === method.id}
-                onChange={() => handleMethodSelect(method.id)}
-              />
-              <div className="method-content">
-                <span className="method-icon">{method.icon}</span>
-                <div className="method-info">
+              <div className="method-main-content">
+                <div className="method-icon-box">{method.icon}</div>
+                <div className="method-text">
                   <h3>{method.name}</h3>
                   <p>{method.description}</p>
                 </div>
+              </div>
+              
+              <div className="method-selection-indicator">
+                <div className={`radio-circle ${selectedMethod === method.id ? 'checked' : ''}`}></div>
               </div>
             </div>
           ))}

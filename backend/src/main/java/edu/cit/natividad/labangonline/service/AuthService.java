@@ -39,26 +39,33 @@ public class AuthService {
     user.setLastName(request.getLastName().trim());
     user.setDob(request.getDob());
     user.setGender(request.getGender());
+    user.setUsername(request.getUsername());
+    user.setCivilStatus(request.getCivilStatus());
+    user.setResidentConfirmed(false); // New users start as unconfirmed
     user.setStreet(request.getStreet().trim());
     user.setPurok(request.getPurok().trim());
     user.setBarangay(request.getBarangay().trim());
     user.setCity(request.getCity().trim());
     user.setProvince(request.getProvince().trim());
+    user.setPostalCode(request.getPostalCode().trim());
     user.setPhoneNumber(phone);
     user.setEmail(email);
     user.setPasswordHash(passwordEncoder.encode(request.getPassword()));
-    user.setRole("resident");
+    user.setRole("RESIDENT");
     user.setActive(true);
 
     userRepository.save(user);
   }
 
   public LoginResult login(LoginRequest request) {
-    String email = Optional.ofNullable(request.getEmail()).orElse("").trim().toLowerCase();
+    String username = Optional.ofNullable(request.getUsername()).orElse("").trim();
     String password = Optional.ofNullable(request.getPassword()).orElse("");
 
-    Optional<User> userOpt = userRepository.findByEmailIgnoreCase(email)
+    Optional<User> userOpt = userRepository.findByUsernameIgnoreCase(username)
         .filter(user -> passwordEncoder.matches(password, user.getPasswordHash()) && user.isActive());
+
+    // Check if resident is confirmed, but let admins bypass this
+    userOpt = userOpt.filter(user -> user.getRole().equals("ADMIN") || user.isResidentConfirmed());
 
     return userOpt.map(LoginResult::success).orElse(LoginResult.failure());
   }

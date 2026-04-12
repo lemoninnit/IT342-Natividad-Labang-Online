@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import "./Dashboard.css";
 import CertificateRequestPage from "./CertificateRequestPage";
+import FileReportPage from "./FileReportPage";
+import EditProfile from "./EditProfile";
+import Announcements from "../../components/Announcements";
+import { authAPI } from "../../lib/api";
 
 // Dashboard Component
 export default function Dashboard() {
@@ -8,23 +12,42 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("personal-info");
+  const [showEditModal, setShowEditModal] = useState(false);
 
-  useEffect(() => {
+  const fetchUserData = () => {
     const sessionData = sessionStorage.getItem("labangonline_session");
     if (!sessionData) {
       window.location.href = "/login";
       return;
     }
-    const user = JSON.parse(sessionData);
-    setSession(user);
-    // Store userId in localStorage for API calls
-    localStorage.setItem('userId', user.id);
-    setLoading(false);
+    const sessionUser = JSON.parse(sessionData);
+    
+    authAPI.getProfile(sessionUser.userId)
+      .then(res => {
+        setSession(res.data);
+        localStorage.setItem('userId', res.data.id);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Failed to fetch user data:", err);
+        setSession(sessionUser);
+        setLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    fetchUserData();
   }, []);
 
-  function handleLogout() {
-    window.location.href = "/logout";
-  }
+  const handleProfileUpdate = () => {
+    fetchUserData();
+    setShowEditModal(false);
+  };
+
+  const getImageUrl = (byteArray) => {
+    if (!byteArray) return null;
+    return `data:image/jpeg;base64,${byteArray}`;
+  };
 
   if (loading) {
     return (
@@ -38,18 +61,33 @@ export default function Dashboard() {
     return null;
   }
 
+  function handleLogout() {
+    window.location.href = "/logout";
+  }
+
   return (
     <div className="dashboard-wrapper">
       {/* Sidebar */}
       <aside className={`dashboard-sidebar ${sidebarOpen ? "open" : ""}`}>
         <div className="sidebar-header">
-          <div className="sidebar-logo">🏘️ LabangOnline</div>
-          <button className="sidebar-close" onClick={() => setSidebarOpen(false)}>
-            ✕
-          </button>
+          <div className="sidebar-logo">
+            <img src="/src/assets/logo.png" alt="Logo" className="logo-img" />
+            <span>LabangOnline</span>
+          </div>
         </div>
 
         <nav className="sidebar-nav">
+          <button
+            className={`nav-item ${activeSection === "announcements" ? "active" : ""}`}
+            onClick={() => {
+              setActiveSection("announcements");
+              setSidebarOpen(false);
+            }}
+          >
+            <span className="nav-icon">📢</span>
+            <span className="nav-text">Announcements</span>
+            <span className="announcement-badge">3</span>
+          </button>
           <button 
             className={`nav-item ${activeSection === "personal-info" ? "active" : ""}`}
             onClick={() => {
@@ -58,8 +96,18 @@ export default function Dashboard() {
             }}
           >
             <span className="nav-icon">👤</span>
-            <span>Personal Information</span>
+            <span className="nav-text">Personal Info</span>
           </button>
+
+          {session.role === 'ADMIN' && (
+            <button 
+              className="nav-item admin-nav-item"
+              onClick={() => window.location.href = "/admin"}
+            >
+              <span className="nav-icon">🛡️</span>
+              <span className="nav-text">Admin Panel</span>
+            </button>
+          )}
           <button 
             className={`nav-item ${activeSection === "certificate-request" ? "active" : ""}`}
             onClick={() => {
@@ -68,7 +116,7 @@ export default function Dashboard() {
             }}
           >
             <span className="nav-icon">📄</span>
-            <span>Document Request</span>
+            <span className="nav-text">Document Request</span>
           </button>
           <button 
             className={`nav-item ${activeSection === "file-report" ? "active" : ""}`}
@@ -78,141 +126,135 @@ export default function Dashboard() {
             }}
           >
             <span className="nav-icon">📋</span>
-            <span>File a Report</span>
-          </button>
-          <button 
-            className={`nav-item ${activeSection === "announcements" ? "active" : ""}`}
-            onClick={() => {
-              setActiveSection("announcements");
-              setSidebarOpen(false);
-            }}
-          >
-            <span className="nav-icon">📢</span>
-            <span>Announcements</span>
+            <span className="nav-text">File Report</span>
           </button>
         </nav>
-
-        <div className="sidebar-footer">
-          <button className="btn-logout" onClick={handleLogout}>
-            <span>🚪</span> Logout
-          </button>
-        </div>
       </aside>
 
       {/* Main Content */}
       <main className="dashboard-main">
         {/* Top Navigation Bar */}
         <div className="dashboard-topbar">
-          <button className="menu-toggle" onClick={() => setSidebarOpen(!sidebarOpen)}>
-            ☰ Menu
-          </button>
-          <div className="topbar-user">
-            <span className="user-name">
-              {session.firstName} {session.lastName}
-            </span>
-            <button className="user-avatar" onClick={handleLogout}>
-              {session.firstName[0]}
-            </button>
+          <div className="topbar-left">
+          </div>
+          <div className="topbar-right">
+            <div className="topbar-user">
+              <div className="user-avatar-circle">
+                <img src={getImageUrl(session.profilePicture) || "/src/assets/pfp.png"} alt="User Profile" className="avatar-img" />
+              </div>
+              <span className="user-full-name">
+                {session.firstName} {session.lastName}
+              </span>
+            </div>
+            <button className="btn-logout-red" onClick={handleLogout}>LOGOUT</button>
           </div>
         </div>
 
         {/* Page Content */}
         <div className="dashboard-content">
           {activeSection === "personal-info" && (
-            <>
-              {/* User Information Section */}
-              <section className="dashboard-section info-section">
-                <h3 className="info-section-title">👤 PERSONAL INFORMATION</h3>
-                <div className="info-section-content">
-                  <div className="info-row">
-                    <span className="info-label">First Name:</span>
-                    <span className="info-value">{session.firstName || 'Not provided'}</span>
+            <div className="personal-info-container">
+              {/* Header Section */}
+              <div className="info-header-card">
+                <div className="info-header-left">
+                  <div className="info-avatar-large">
+                    <img src={getImageUrl(session.profilePicture) || "/src/assets/pfp.png"} alt="User Profile" className="avatar-img-large" />
                   </div>
-                  <div className="info-row">
-                    <span className="info-label">Middle Name:</span>
-                    <span className="info-value">{session.middleName || 'Not provided'}</span>
-                  </div>
-                  <div className="info-row">
-                    <span className="info-label">Last Name:</span>
-                    <span className="info-value">{session.lastName || 'Not provided'}</span>
-                  </div>
-                  <div className="info-row">
-                    <span className="info-label">Date of Birth:</span>
-                    <span className="info-value">
-                      {session.dob 
-                        ? new Date(session.dob).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
-                        : 'Not provided'}
-                    </span>
-                  </div>
-                  <div className="info-row">
-                    <span className="info-label">Gender:</span>
-                    <span className="info-value">{session.gender ? session.gender.charAt(0).toUpperCase() + session.gender.slice(1) : 'Not provided'}</span>
+                  <div className="info-header-text">
+                    <h2>{session.firstName} {session.lastName}</h2>
+                    <span className="badge-resident">RESIDENT</span>
                   </div>
                 </div>
-              </section>
+                <button className="btn-edit-info" onClick={() => setShowEditModal(true)}>EDIT INFORMATION</button>
+              </div>
 
-              {/* Address Information Section */}
-              <section className="dashboard-section info-section">
-                <h3 className="info-section-title">📍 ADDRESS DETAILS</h3>
-                <div className="info-section-content">
-                  <div className="info-row">
-                    <span className="info-label">Street Address:</span>
-                    <span className="info-value">{session.street || 'Not provided'}</span>
-                  </div>
-                  <div className="info-row">
-                    <span className="info-label">Purok:</span>
-                    <span className="info-value">{session.purok || 'Not provided'}</span>
-                  </div>
-                  <div className="info-row">
-                    <span className="info-label">Barangay:</span>
-                    <span className="info-value">{session.barangay || 'Not provided'}</span>
-                  </div>
-                  <div className="info-row">
-                    <span className="info-label">City/Municipality:</span>
-                    <span className="info-value">{session.city || 'Not provided'}</span>
-                  </div>
-                  <div className="info-row">
-                    <span className="info-label">Province:</span>
-                    <span className="info-value">{session.province || 'Not provided'}</span>
+              {/* Edit Modal */}
+              {showEditModal && (
+                <div className="modal-overlay-edit">
+                  <div className="modal-content-edit">
+                    <button className="modal-close-btn" onClick={() => setShowEditModal(false)}>✕</button>
+                    <EditProfile 
+                      user={session} 
+                      onUpdate={handleProfileUpdate} 
+                      onCancel={() => setShowEditModal(false)} 
+                    />
                   </div>
                 </div>
-              </section>
+              )}
 
-              {/* Contact Information Section */}
-              <section className="dashboard-section info-section">
-                <h3 className="info-section-title">📞 CONTACT INFORMATION</h3>
-                <div className="info-section-content">
-                  <div className="info-row">
-                    <span className="info-label">Mobile Number:</span>
-                    <span className="info-value">{session.phoneNumber || 'Not provided'}</span>
+              {/* Information Grid */}
+              <div className="info-details-grid">
+                <section className="info-section">
+                  <h3 className="section-title">USER INFORMATION</h3>
+                  <div className="info-table">
+                    <div className="info-row">
+                      <span className="label">Full Name:</span>
+                      <span className="value">{session.firstName} {session.lastName}</span>
+                    </div>
+                    <div className="info-row">
+                      <span className="label">Username:</span>
+                      <span className="value">{session.username || 'Not set'}</span>
+                    </div>
+                    <div className="info-row">
+                      <span className="label">Email:</span>
+                      <span className="value">{session.email}</span>
+                    </div>
+                    <div className="info-row">
+                      <span className="label">Date of Birth:</span>
+                      <span className="value">
+                        {session.dob 
+                          ? new Date(session.dob).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+                          : 'Not provided'}
+                      </span>
+                    </div>
+                    <div className="info-row">
+                      <span className="label">Civil Status:</span>
+                      <span className="value">{session.civilStatus || 'Single'}</span>
+                    </div>
+                    <div className="info-row">
+                      <span className="label">Address:</span>
+                      <span className="value">
+                        {session.street}, {session.purok}, {session.barangay}, {session.city}, {session.province}, {session.postalCode}
+                      </span>
+                    </div>
+                    <div className="info-row">
+                      <span className="label">Resident Confirmed:</span>
+                      <span className={`value ${session.residentConfirmed ? 'confirmed-yes' : 'confirmed-no'}`}>
+                        {session.residentConfirmed ? '✓ Yes' : 'Pending'}
+                      </span>
+                    </div>
                   </div>
-                  <div className="info-row">
-                    <span className="info-label">Email Address:</span>
-                    <span className="info-value">{session.email || 'Not provided'}</span>
-                  </div>
-                  <div className="info-row">
-                    <span className="info-label">Account Role:</span>
-                    <span className="info-value">{session.role || 'RESIDENT'}</span>
-                  </div>
-                </div>
-              </section>
+                </section>
 
-              {/* Resident ID Section */}
-              <section className="dashboard-section info-section">
-                <h3 className="info-section-title">RESIDENT ID</h3>
-                <div className="resident-id-container">
-                  <div className="resident-id-placeholder">
-                    <div className="id-icon">🆔</div>
-                    <p>No Resident ID uploaded yet</p>
+                <section className="info-section">
+                  <h3 className="section-title">CONTACT INFORMATION</h3>
+                  <div className="info-table">
+                    <div className="info-row">
+                      <span className="label">Mobile:</span>
+                      <span className="value">{session.phoneNumber}</span>
+                    </div>
+                    <div className="info-row">
+                      <span className="label">Email:</span>
+                      <span className="value">{session.email}</span>
+                    </div>
                   </div>
-                </div>
-              </section>
+                </section>
 
-              {/* Footer Info */}
-              <section className="dashboard-section footer-section">
-                <p>For support or inquiries, please visit Barangay Labangon Hall or contact us at the official barangay office.</p>
-              </section>
-            </>
+                <section className="info-section">
+                  <h3 className="section-title">RESIDENT ID</h3>
+                  <div className="resident-id-card">
+                    {session.residentIdImage ? (
+                      <img src={getImageUrl(session.residentIdImage)} alt="Resident ID" className="id-image-preview" />
+                    ) : (
+                      <div className="id-placeholder">
+                        <img src="/src/assets/resident.png" alt="Default Resident ID" className="id-img-default" />
+                        <p>No Resident ID uploaded yet</p>
+                      </div>
+                    )}
+                  </div>
+                </section>
+              </div>
+            </div>
           )}
 
           {activeSection === "certificate-request" && (
@@ -220,25 +262,11 @@ export default function Dashboard() {
           )}
 
           {activeSection === "file-report" && (
-            <section className="dashboard-section">
-              <div className="section-header">
-                <h2>File a Report</h2>
-              </div>
-              <div className="placeholder-section">
-                <p>Coming soon! File reports feature will be available here.</p>
-              </div>
-            </section>
+            <FileReportPage />
           )}
 
           {activeSection === "announcements" && (
-            <section className="dashboard-section">
-              <div className="section-header">
-                <h2>Announcements</h2>
-              </div>
-              <div className="placeholder-section">
-                <p>Coming soon! View latest announcements and updates from the barangay.</p>
-              </div>
-            </section>
+            <Announcements />
           )}
         </div>
       </main>

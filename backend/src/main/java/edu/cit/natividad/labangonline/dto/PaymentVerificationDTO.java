@@ -6,6 +6,7 @@ public class PaymentVerificationDTO implements Serializable {
 
   private Long paymentId;
   private String referenceNumber;
+  private String proofImage; // base64 encoded
   private String status;
 
   public PaymentVerificationDTO() {
@@ -25,6 +26,14 @@ public class PaymentVerificationDTO implements Serializable {
 
   public void setReferenceNumber(String referenceNumber) {
     this.referenceNumber = referenceNumber;
+  }
+
+  public String getProofImage() {
+    return proofImage;
+  }
+
+  public void setProofImage(String proofImage) {
+    this.proofImage = proofImage;
   }
 
   public String getStatus() {

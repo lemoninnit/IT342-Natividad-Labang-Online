@@ -21,6 +21,10 @@ public class RegisterRequest {
 
   private String gender;
 
+  private String username;
+
+  private String civilStatus;
+
   @NotBlank
   private String street;
 
@@ -35,6 +39,9 @@ public class RegisterRequest {
 
   @NotBlank
   private String province;
+
+  @NotBlank
+  private String postalCode;
 
   @NotBlank
   private String phone;
@@ -89,6 +96,22 @@ public class RegisterRequest {
     this.gender = gender;
   }
 
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public String getCivilStatus() {
+    return civilStatus;
+  }
+
+  public void setCivilStatus(String civilStatus) {
+    this.civilStatus = civilStatus;
+  }
+
   public String getStreet() {
     return street;
   }
@@ -127,6 +150,14 @@ public class RegisterRequest {
 
   public void setProvince(String province) {
     this.province = province;
+  }
+
+  public String getPostalCode() {
+    return postalCode;
+  }
+
+  public void setPostalCode(String postalCode) {
+    this.postalCode = postalCode;
   }
 
   public String getPhone() {

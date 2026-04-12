@@ -28,10 +28,10 @@ public class CertificateRequest {
 
   public enum RequestStatus {
     PENDING,
-    APPROVED,
-    REJECTED,
     PAID,
-    COMPLETED,
+    UNPAID,
+    DONE,
+    REJECTED,
     FAILED_PAYMENT_VERIFICATION
   }
 

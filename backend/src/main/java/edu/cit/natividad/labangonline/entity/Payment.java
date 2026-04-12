@@ -54,6 +54,9 @@ public class Payment {
   @Column(name = "reference_number")
   private String referenceNumber;
 
+  @Column(name = "proof_image", columnDefinition = "BYTEA")
+  private byte[] proofImage;
+
   @Column(name = "qr_code_path")
   private String qrCodePath;
 
@@ -112,6 +115,14 @@ public class Payment {
 
   public void setReferenceNumber(String referenceNumber) {
     this.referenceNumber = referenceNumber;
+  }
+
+  public byte[] getProofImage() {
+    return proofImage;
+  }
+
+  public void setProofImage(byte[] proofImage) {
+    this.proofImage = proofImage;
   }
 
   public String getQrCodePath() {

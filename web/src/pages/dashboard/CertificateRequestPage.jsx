@@ -7,10 +7,12 @@ import RequestHistory from '../../components/RequestHistory'
 import '../../styles/CertificateRequestPage.css'
 
 export default function CertificateRequestPage() {
-  const [currentStep, setCurrentStep] = useState('view') // view, request-form, payment-method, gcash-payment, otc-payment
+  const [currentStep, setCurrentStep] = useState('selection') // selection, view, request-form, payment-method, gcash-payment, otc-payment
   const [selectedRequestId, setSelectedRequestId] = useState(null)
   const [historyRefresh, setHistoryRefresh] = useState(0)
   const [session, setSession] = useState(null)
+
+  const [selectedCert, setSelectedCert] = useState(null)
 
   useEffect(() => {
     const sessionData = sessionStorage.getItem("labangonline_session");
@@ -18,6 +20,11 @@ export default function CertificateRequestPage() {
       setSession(JSON.parse(sessionData));
     }
   }, []);
+
+  const handleCertSelect = (cert) => {
+    setSelectedCert(cert)
+    setCurrentStep('request-form')
+  }
 
   const handleRequestSubmitted = (newRequest) => {
     setSelectedRequestId(newRequest.id)
@@ -52,18 +59,15 @@ export default function CertificateRequestPage() {
   // Header section with profile and button
   const renderHeader = () => (
     <div className="document-header">
-      <div className="header-profile">
-        <div className="profile-avatar">{session?.firstName?.[0]}{session?.lastName?.[0]}</div>
-        <div className="profile-details">
-          <h1>{session?.firstName} {session?.lastName}</h1>
-          <span className="resident-badge">RESIDENT</span>
-        </div>
+      <div className="header-title-section">
+        <h1>Request Certificate</h1>
+        <p>Select the type of certificate you need and we'll guide you through the process</p>
       </div>
       <button 
-        className="btn-new-request"
-        onClick={() => setCurrentStep('request-form')}
+        className="btn-view-records"
+        onClick={() => setCurrentStep(currentStep === 'view' ? 'selection' : 'view')}
       >
-        NEW REQUEST
+        {currentStep === 'view' ? '📄 Request a Certificate' : '📂 View Request Records'}
       </button>
     </div>
   )
@@ -78,8 +82,20 @@ export default function CertificateRequestPage() {
         {renderHeader()}
         <div className="modal-overlay-full">
           <div className="modal-full">
-            <button className="close-btn" onClick={() => setCurrentStep('view')}>✕</button>
-            <CertificateRequestForm onSuccess={handleRequestSubmitted} />
+            <button className="back-btn-themed" onClick={() => {
+              setCurrentStep('selection')
+              setSelectedCert(null)
+            }}>
+              <span className="back-icon">←</span> Back
+            </button>
+            <CertificateRequestForm 
+              onSuccess={handleRequestSubmitted} 
+              onCancel={() => {
+                setCurrentStep('selection')
+                setSelectedCert(null)
+              }}
+              initialCert={selectedCert}
+            />
           </div>
         </div>
       </div>
@@ -108,6 +124,8 @@ export default function CertificateRequestPage() {
         <div className="modal-overlay-full">
           <GCashPayment
             requestId={selectedRequestId}
+            price={selectedCert?.price || '₱50.00'}
+            priceVal={selectedCert?.priceVal || 50}
             onPaymentComplete={handlePaymentComplete}
             onCancel={handleCancel}
           />
@@ -123,6 +141,8 @@ export default function CertificateRequestPage() {
         <div className="modal-overlay-full">
           <OTCPayment
             requestId={selectedRequestId}
+            price={selectedCert?.price || '₱50.00'}
+            priceVal={selectedCert?.priceVal || 50}
             onPaymentComplete={handlePaymentComplete}
             onCancel={handleCancel}
           />
@@ -132,14 +152,97 @@ export default function CertificateRequestPage() {
   }
 
   // Main view with request history
+  if (currentStep === 'view') {
+    return (
+      <div className="document-request-page">
+        {renderHeader()}
+        <div className="document-content">
+          <RequestHistory 
+            refreshTrigger={historyRefresh}
+            onSelectRequest={handleSelectPaymentMethod}
+          />
+        </div>
+      </div>
+    )
+  }
+
+  const certificateOptions = [
+    {
+      id: 'BARANGAY_CLEARANCE',
+      title: 'Barangay Clearance',
+      description: 'Required for employment, business permits, and other legal purposes within the barangay.',
+      price: '₱50.00',
+      priceVal: 50,
+      icon: '📄'
+    },
+    {
+      id: 'RESIDENCY_CERTIFICATE',
+      title: 'Certificate of Residency',
+      description: 'Proof of residence in Barangay Labangon for government transactions and applications.',
+      price: '₱30.00',
+      priceVal: 30,
+      icon: '🏠'
+    },
+    {
+      id: 'INDIGENCY_CERTIFICATE',
+      title: 'Certificate of Indigency',
+      description: 'For residents requiring financial assistance or applying for free medical services.',
+      price: '₱20.00',
+      priceVal: 20,
+      icon: '📝'
+    },
+    {
+      id: 'GOOD_MORAL_CHARACTER',
+      title: 'Good Moral Character',
+      description: 'Required for school applications, employment, and character reference purposes.',
+      price: '₱40.00',
+      priceVal: 40,
+      icon: '⭐'
+    },
+    {
+      id: 'BUSINESS_PERMIT',
+      title: 'Business Clearance',
+      description: 'Required for starting or renewing a business within Barangay Labangon.',
+      price: '₱100.00',
+      priceVal: 100,
+      icon: '🏢'
+    }
+  ]
+
   return (
     <div className="document-request-page">
       {renderHeader()}
+      
       <div className="document-content">
-        <RequestHistory 
-          refreshTrigger={historyRefresh}
-          onSelectRequest={handleSelectPaymentMethod}
-        />
+        <div className="important-notice">
+          <span className="info-icon">ℹ️</span>
+          <p><strong>Important:</strong> Make sure your profile information is complete and accurate before requesting certificates. Processing time is typically 3-5 business days.</p>
+        </div>
+
+        <div className="certificate-grid">
+          {certificateOptions.map(cert => (
+            <div key={cert.id} className="cert-card" onClick={() => handleCertSelect(cert)}>
+              <div className="cert-icon-wrapper">{cert.icon}</div>
+              <h3 className="cert-title">{cert.title}</h3>
+              <p className="cert-desc">{cert.description}</p>
+              <div className="cert-footer">
+                <span className="cert-price">{cert.price}</span>
+                <span className="cert-arrow">→</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="requirements-section">
+          <h3 className="req-title">General Requirements</h3>
+          <ul className="req-list">
+            <li><span className="check">✓</span> Valid government-issued ID</li>
+            <li><span className="check">✓</span> Proof of residency in Barangay Labangon</li>
+            <li><span className="check">✓</span> Completed and verified user profile</li>
+            <li><span className="check">✓</span> Payment for processing fees (if applicable)</li>
+            <li><span className="check">✓</span> Additional documents may be required depending on certificate type</li>
+          </ul>
+        </div>
       </div>
     </div>
   )

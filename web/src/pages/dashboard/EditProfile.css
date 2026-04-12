@@ -1,0 +1,439 @@
+.edit-modal-body {
+  padding: 40px;
+  color: #ffffff;
+  max-width: 1000px;
+  width: 90vw;
+  margin: 0 auto;
+}
+
+/* Custom Scrollbar for the Edit Modal */
+.edit-modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.edit-modal-body::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 10px;
+}
+
+.edit-modal-body::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.3);
+  border-radius: 10px;
+  transition: background 0.2s;
+}
+
+.edit-modal-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.5);
+}
+
+/* For Firefox */
+.edit-modal-body {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(16, 185, 129, 0.3) rgba(255, 255, 255, 0.02);
+}
+
+.edit-header-modal {
+  margin-bottom: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 24px;
+}
+
+.edit-header-modal h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #ffffff;
+}
+
+.edit-header-modal p {
+  font-size: 16px;
+  color: #94a3b8;
+}
+
+.form-grid-modal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.edit-section-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+.section-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #10b981;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.input-group-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group-modal label {
+  font-size: 14px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.input-group-modal input, 
+.input-group-modal select {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 14px 18px;
+  color: #ffffff;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.input-group-modal input:focus, 
+.input-group-modal select:focus {
+  border-color: #10b981;
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+.address-grid-modal {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+/* File Upload UI */
+.pfp-edit-row {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.pfp-preview-large {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #10b981;
+  position: relative;
+  background: #000;
+}
+
+.pfp-preview-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.id-edit-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.id-preview-box-modal {
+  width: 320px;
+  height: 200px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px dashed rgba(16, 185, 129, 0.3);
+  background: rgba(0, 0, 0, 0.2);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.id-preview-box-modal img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.upload-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-upload-label {
+  background: #10b981;
+  color: #000;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-block;
+  transition: all 0.2s;
+}
+
+.btn-upload-label:hover {
+  background: #059669;
+  transform: translateY(-2px);
+}
+
+.pfp-hint {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.form-footer-modal {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.btn-cancel-modal {
+  background: transparent;
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-cancel-modal:hover {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.btn-save-modal {
+  background: #10b981;
+  color: #000000;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+  transition: all 0.2s;
+}
+
+.btn-save-modal:hover {
+  background: #059669;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+/* Confirmation View */
+.confirm-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.confirm-modal-content {
+  background: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 800px;
+  padding: 40px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.confirm-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.confirm-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.confirm-header p {
+  color: #94a3b8;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.review-images {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.review-image-item h4 {
+  font-size: 13px;
+  color: #10b981;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.review-img-box {
+  background: #000;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.review-img-box.circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid #10b981;
+}
+
+.review-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.review-img-box.id-box {
+  width: 100%;
+  aspect-ratio: 1.6 / 1;
+}
+
+.review-img-box.id-box img {
+  object-fit: contain;
+}
+
+.review-info-list {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.review-info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.review-info-item:last-child {
+  border-bottom: none;
+}
+
+.review-info-label {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.review-info-value {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.btn-confirm-final {
+  flex: 2;
+  background: #10b981;
+  color: #000;
+  border: none;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-confirm-final:hover {
+  background: #059669;
+  transform: translateY(-2px);
+}
+
+.btn-back-edit {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-back-edit:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.loader-small {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #10b981;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.form-message {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.form-message.success {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.form-message.error {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+

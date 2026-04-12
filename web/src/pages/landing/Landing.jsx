@@ -16,7 +16,7 @@ export default function Landing() {
             <p className="hero-subtitle">
               Request certificates, file reports, and stay connected to Barangay Labangon—24/7, without the lines.
             </p>
-            <div className="hero-buttons">
+            <div className="hero-actions">
               <a href="/register" className="btn btn-primary">
                 <span className="btn-icon">→</span> Get Started
               </a>
