@@ -10,6 +10,8 @@ export default function AdminDashboard() {
   const [complaints, setComplaints] = useState([])
   const [loading, setLoading] = useState(true)
   const [selectedImage, setSelectedImage] = useState(null)
+  const [selectedUser, setSelectedUser] = useState(null)
+  const [statusFilter, setStatusFilter] = useState('ALL')
 
   useEffect(() => {
     // Check if user is admin
@@ -168,106 +170,146 @@ export default function AdminDashboard() {
     </div>
   )
 
-  const renderCertificates = () => (
-    <div className="mgmt-container">
-      <div className="data-card">
-        <div className="card-header">
-          <h2 className="card-title">Certificate Requests</h2>
-          <div className="card-actions">
-            <span className="count-badge">{certificates.length} Total Requests</span>
+  const renderCertificates = () => {
+    const filteredCerts = statusFilter === 'ALL' 
+      ? certificates 
+      : certificates.filter(cert => cert.status === statusFilter)
+
+    return (
+      <div className="mgmt-container">
+        <div className="data-card">
+          <div className="card-header">
+            <h2 className="card-title">Certificate Requests</h2>
+            <div className="card-actions">
+              <span className="count-badge">{filteredCerts.length} Requests</span>
+            </div>
+          </div>
+
+          {/* Status Filter */}
+          <div className="filter-bar">
+            <div className="filter-label">Filter by Status:</div>
+            <div className="filter-buttons">
+              {['ALL', 'PENDING', 'PAID', 'DONE', 'REJECTED'].map(status => (
+                <button
+                  key={status}
+                  className={`filter-btn ${statusFilter === status ? 'active' : ''}`}
+                  onClick={() => setStatusFilter(status)}
+                >
+                  {status}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="table-wrapper">
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>Resident Name</th>
+                  <th>Contact Info</th>
+                  <th>Certificate Type</th>
+                  <th>Purpose</th>
+                  <th>Payment Method</th>
+                  <th>Reference</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredCerts.length > 0 ? (
+                  filteredCerts.map(cert => (
+                    <tr key={cert.id}>
+                      <td>
+                        <div className="user-info">
+                          <span className="user-name">{cert.user?.firstName} {cert.user?.lastName}</span>
+                          <span className="user-id">ID: #{cert.user?.id}</span>
+                        </div>
+                      </td>
+                      <td>
+                        <div className="contact-info">
+                          <span className="info-email">{cert.user?.email}</span>
+                          <span className="info-phone">{cert.user?.phoneNumber || 'N/A'}</span>
+                        </div>
+                      </td>
+                      <td>
+                        <div className="cert-type-info">
+                          <span className="cert-type">{cert.certificateType?.replace(/_/g, ' ')}</span>
+                          <span className="cert-date">{new Date(cert.createdAt).toLocaleDateString()}</span>
+                        </div>
+                      </td>
+                      <td className="purpose-cell">
+                        <div className="purpose-text" title={cert.purpose}>{cert.purpose}</div>
+                      </td>
+                      <td>
+                        {cert.payment ? (
+                          <div className="payment-method">
+                            <span className="method-pill">{cert.payment.paymentMethod?.replace(/_/g, ' ')}</span>
+                          </div>
+                        ) : (
+                          <span className="no-data">Unpaid</span>
+                        )}
+                      </td>
+                      <td>
+                        {cert.payment?.referenceNumber ? (
+                          <div className="ref-display">
+                            <span className="ref-text">{cert.payment.referenceNumber}</span>
+                            {cert.payment.proofImage && (
+                              <button
+                                className="btn-text-link"
+                                onClick={() => setSelectedImage(getImageUrl(cert.payment.proofImage))}
+                                title="Click to view payment proof"
+                              >
+                                📷 View
+                              </button>
+                            )}
+                          </div>
+                        ) : (
+                          <span className="no-data">N/A</span>
+                        )}
+                      </td>
+                      <td>
+                        <span className={`status-badge status-${cert.status?.toLowerCase()}`}>
+                          {cert.status}
+                        </span>
+                      </td>
+                      <td className="action-buttons">
+                        <div className="action-group">
+                          <button
+                            className="btn-action btn-info"
+                            onClick={() => setSelectedUser(cert.user)}
+                            title="View full user details"
+                          >
+                            👤 Details
+                          </button>
+                          <select
+                            className="status-select"
+                            value={cert.status}
+                            onChange={(e) => handleUpdateCertStatus(cert.id, e.target.value)}
+                            title="Update request status"
+                          >
+                            <option value="PENDING">PENDING</option>
+                            <option value="PAID">PAID</option>
+                            <option value="DONE">DONE</option>
+                            <option value="REJECTED">REJECTED</option>
+                          </select>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="8" className="empty-state">
+                      No certificate requests found
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
           </div>
         </div>
-        <div className="table-wrapper">
-          <table className="admin-table">
-            <thead>
-              <tr>
-                <th>Resident</th>
-                <th>Request Details</th>
-                <th>Purpose</th>
-                <th>Payment Info</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {certificates.map(cert => (
-                <tr key={cert.id}>
-                  <td>
-                    <div className="user-info">
-                      <span className="user-name">{cert.user?.firstName} {cert.user?.lastName}</span>
-                      <span className="user-id">User ID: {cert.user?.id}</span>
-                    </div>
-                  </td>
-                  <td>
-                    <div className="cert-type-info">
-                      <span className="cert-type">{cert.certificateType.replace(/_/g, ' ')}</span>
-                      <span className="cert-date">{new Date(cert.createdAt).toLocaleDateString()}</span>
-                    </div>
-                  </td>
-                  <td className="purpose-cell">
-                    <div className="purpose-text" title={cert.purpose}>{cert.purpose}</div>
-                  </td>
-                  <td>
-                    {cert.payment ? (
-                      <div className="payment-info-stack">
-                        <div className="method-pill">
-                          {cert.payment.paymentMethod?.replace(/_/g, ' ')}
-                        </div>
-                        {cert.payment.paymentMethod === 'GCASH' && cert.payment.proofImage && (
-                          <button 
-                            className="btn-text-link"
-                            onClick={() => setSelectedImage(getImageUrl(cert.payment.proofImage))}
-                          >
-                            View Receipt
-                          </button>
-                        )}
-                        <span className="ref-text">Ref: {cert.payment.referenceNumber || 'N/A'}</span>
-                      </div>
-                    ) : (
-                      <span className="no-data">Unpaid</span>
-                    )}
-                  </td>
-                  <td>
-                    <span className={`status-badge status-${cert.status.toLowerCase()}`}>
-                      {cert.status}
-                    </span>
-                  </td>
-                  <td className="action-buttons">
-                    {cert.status === 'PAID' && (
-                      <button className="btn-action btn-verify" onClick={() => handleUpdateCertStatus(cert.id, 'DONE')}>
-                        Complete Request
-                      </button>
-                    )}
-                    {cert.status === 'PENDING' && cert.payment && cert.payment.status === 'PROCESSING' && (
-                      <div className="approval-group">
-                        <button 
-                          className="btn-action btn-verify" 
-                          onClick={() => handleApprovePayment(cert.payment.id)}
-                        >
-                          Approve
-                        </button>
-                        <button 
-                          className="btn-action btn-reject" 
-                          onClick={() => handleRejectPayment(cert.payment.id)}
-                        >
-                          Reject
-                        </button>
-                      </div>
-                    )}
-                    {cert.status === 'PENDING' && (!cert.payment || cert.payment.status !== 'PROCESSING') && (
-                      <button className="btn-action btn-reject" onClick={() => handleUpdateCertStatus(cert.id, 'REJECTED')}>
-                        Cancel Request
-                      </button>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
       </div>
-    </div>
-  )
+    )
+  }
 
   const renderReports = () => (
     <div className="mgmt-container">
@@ -383,9 +425,73 @@ export default function AdminDashboard() {
 
       {selectedImage && (
         <div className="id-preview-modal" onClick={() => setSelectedImage(null)}>
-          <button className="close-id-modal">✕</button>
-          <div className="id-modal-content" onClick={e => e.stopPropagation()}>
-            <img src={selectedImage} alt="Resident ID Full" />
+          <div className="modal-container" onClick={e => e.stopPropagation()}>
+            <button className="btn-close-modal" onClick={() => setSelectedImage(null)}>✕</button>
+            <img src={selectedImage} alt="Document Preview" className="preview-image" />
+          </div>
+        </div>
+      )}
+
+      {selectedUser && (
+        <div className="user-details-modal" onClick={() => setSelectedUser(null)}>
+          <div className="user-modal-content" onClick={e => e.stopPropagation()}>
+            <div className="user-modal-header">
+              <h2>User Details</h2>
+              <button className="btn-close-modal" onClick={() => setSelectedUser(null)}>✕</button>
+            </div>
+            <div className="user-details-grid">
+              <div className="detail-section">
+                <h3>Personal Information</h3>
+                <div className="detail-row">
+                  <span className="detail-label">Full Name:</span>
+                  <span className="detail-value">{selectedUser.firstName} {selectedUser.lastName}</span>
+                </div>
+                <div className="detail-row">
+                  <span className="detail-label">User ID:</span>
+                  <span className="detail-value">#{selectedUser.id}</span>
+                </div>
+                <div className="detail-row">
+                  <span className="detail-label">Email:</span>
+                  <span className="detail-value">{selectedUser.email}</span>
+                </div>
+                <div className="detail-row">
+                  <span className="detail-label">Phone Number:</span>
+                  <span className="detail-value">{selectedUser.phoneNumber || 'Not provided'}</span>
+                </div>
+              </div>
+              <div className="detail-section">
+                <h3>Address Information</h3>
+                <div className="detail-row">
+                  <span className="detail-label">Street:</span>
+                  <span className="detail-value">{selectedUser.street || 'Not provided'}</span>
+                </div>
+                <div className="detail-row">
+                  <span className="detail-label">Barangay:</span>
+                  <span className="detail-value">{selectedUser.barangay || 'Not provided'}</span>
+                </div>
+                <div className="detail-row">
+                  <span className="detail-label">City/Municipality:</span>
+                  <span className="detail-value">{selectedUser.city || 'Not provided'}</span>
+                </div>
+                <div className="detail-row">
+                  <span className="detail-label">Zip Code:</span>
+                  <span className="detail-value">{selectedUser.zipCode || 'Not provided'}</span>
+                </div>
+              </div>
+              <div className="detail-section">
+                <h3>Status</h3>
+                <div className="detail-row">
+                  <span className="detail-label">Verification Status:</span>
+                  <span className={`status-badge ${selectedUser.residentConfirmed ? 'status-done' : 'status-pending'}`}>
+                    {selectedUser.residentConfirmed ? 'Verified' : 'Pending'}
+                  </span>
+                </div>
+                <div className="detail-row">
+                  <span className="detail-label">Member Since:</span>
+                  <span className="detail-value">{new Date(selectedUser.createdAt).toLocaleDateString()}</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
