@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Layout from "../../components/Layout";
+import Layout from "../../shared/Layout";
 import "./Landing.css";
 
 export default function Landing() {
