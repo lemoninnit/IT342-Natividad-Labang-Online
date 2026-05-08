@@ -239,7 +239,7 @@
 
 .cert-type {
   font-weight: 600;
-  color: #3b82f6;
+  color: #10b981;
 }
 
 .cert-date {
@@ -306,8 +306,8 @@
 }
 
 .incident-type-tag {
-  background: rgba(239, 68, 68, 0.1);
-  color: #ef4444;
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
   padding: 4px 12px;
   border-radius: 6px;
   font-size: 11px;
@@ -334,7 +334,7 @@
 
 .status-pending { background: rgba(245, 158, 11, 0.1); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.2); }
 .status-paid { background: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.2); }
-.status-done { background: rgba(59, 130, 246, 0.1); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.2); }
+.status-done { background: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.2); }
 .status-rejected { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); }
 .status-failed { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); }
 
@@ -380,14 +380,24 @@
   transform: translateY(-2px);
 }
 
+.btn-info {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.btn-info:hover {
+  background: rgba(16, 185, 129, 0.2);
+}
+
 .btn-view {
-  background: rgba(59, 130, 246, 0.1);
-  color: #3b82f6;
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
 .btn-view:hover {
-  background: rgba(59, 130, 246, 0.2);
+  background: rgba(16, 185, 129, 0.2);
 }
 
 .btn-text-link {

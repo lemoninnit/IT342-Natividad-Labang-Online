@@ -29,16 +29,22 @@ export default function Announcements() {
 
   useEffect(() => {
     const sessionData = sessionStorage.getItem("labangonline_session")
+    const path = window.location.pathname
+    const is_admin_path = path.startsWith('/admin')
+
     if (sessionData) {
       try {
         const session = JSON.parse(sessionData)
-        setIsAdmin(session.role === 'ADMIN')
-        if (session.role === 'ADMIN') {
+        setIsAdmin(session.role === 'ADMIN' || is_admin_path)
+        if (session.role === 'ADMIN' || is_admin_path) {
           setFormData(prev => ({ ...prev, postedBy: `${session.firstName} ${session.lastName}` }))
         }
       } catch (e) {
         console.error("Session parse error in Announcements:", e)
+        if (is_admin_path) setIsAdmin(true)
       }
+    } else if (is_admin_path) {
+      setIsAdmin(true)
     }
     fetchAnnouncements()
   }, [])
@@ -132,10 +138,15 @@ export default function Announcements() {
     }
 
     try {
+      const dataToSubmit = { ...formData }
+      if (!dataToSubmit.expiresAt) {
+        dataToSubmit.expiresAt = null
+      }
+
       if (isEditing) {
-        await announcementAPI.update(formData.id, formData)
+        await announcementAPI.update(formData.id, dataToSubmit)
       } else {
-        await announcementAPI.create(formData)
+        await announcementAPI.create(dataToSubmit)
       }
       resetForm()
       fetchAnnouncements()

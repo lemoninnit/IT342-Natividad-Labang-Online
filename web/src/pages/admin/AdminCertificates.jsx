@@ -8,7 +8,8 @@ export default function AdminCertificates() {
   const [loading, setLoading] = useState(true)
   const [selectedRequest, setSelectedRequest] = useState(null)
   const [selectedImage, setSelectedImage] = useState(null)
-  const [statusFilter, setStatusFilter] = useState('ALL')
+  const [typeFilter, setTypeFilter] = useState('ALL')
+  const [searchQuery, setSearchQuery] = useState('')
 
   useEffect(() => {
     const fetchCertificates = async () => {
@@ -45,9 +46,24 @@ export default function AdminCertificates() {
     return `data:image/jpeg;base64,${data}`
   }
 
-  const filteredCerts = statusFilter === 'ALL'
-    ? certificates
-    : certificates.filter(cert => cert.status === statusFilter)
+  const filteredCerts = certificates.filter(cert => {
+    const matchesType = typeFilter === 'ALL' || cert.certificateType === typeFilter
+    const matchesSearch = searchQuery.trim() === '' || 
+      `${cert.user?.firstName} ${cert.user?.lastName}`.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      cert.user?.email?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      cert.certificateType?.toLowerCase().includes(searchQuery.toLowerCase().replace(/ /g, '_'))
+    
+    return matchesType && matchesSearch
+  })
+
+  const certTypes = [
+    { label: 'ALL', value: 'ALL' },
+    { label: 'BARANGAY CLEARANCE', value: 'BARANGAY_CLEARANCE' },
+    { label: 'RESIDENCY', value: 'RESIDENCY_CERTIFICATE' },
+    { label: 'INDIGENCY', value: 'INDIGENCY_CERTIFICATE' },
+    { label: 'BUSINESS PERMIT', value: 'BUSINESS_PERMIT' },
+    { label: 'GOOD MORAL', value: 'GOOD_MORAL_CHARACTER' }
+  ]
 
   return (
     <AdminLayout activeSection="certificates" title="Certificate Requests" subtitle="Review and manage all resident certificate requests.">
@@ -56,22 +72,40 @@ export default function AdminCertificates() {
           <div className="card-header">
             <h2 className="card-title">Certificate Requests</h2>
             <div className="card-actions">
-              <span className="count-badge">{filteredCerts.length} Requests</span>
+              <div className="search-box" style={{ width: '250px' }}>
+                <input 
+                  type="text" 
+                  placeholder="Search requests..." 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  style={{ 
+                    width: '100%',
+                    padding: '8px 12px',
+                    borderRadius: '8px',
+                    background: 'rgba(255,255,255,0.05)',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    color: '#fff'
+                  }}
+                />
+              </div>
             </div>
           </div>
 
-          <div className="filter-bar">
-            <div className="filter-label">Filter by Status:</div>
+          <div className="filter-bar" style={{ display: 'flex', alignItems: 'center' }}>
+            <div className="filter-label">Filter by Type:</div>
             <div className="filter-buttons">
-              {['ALL', 'PENDING', 'UNPAID', 'PAID', 'DONE', 'REJECTED'].map(status => (
+              {certTypes.map(type => (
                 <button
-                  key={status}
-                  className={`filter-btn ${statusFilter === status ? 'active' : ''}`}
-                  onClick={() => setStatusFilter(status)}
+                  key={type.value}
+                  className={`filter-btn ${typeFilter === type.value ? 'active' : ''}`}
+                  onClick={() => setTypeFilter(type.value)}
                 >
-                  {status}
+                  {type.label}
                 </button>
               ))}
+            </div>
+            <div style={{ marginLeft: 'auto' }}>
+              <span className="count-badge">{filteredCerts.length} Requests</span>
             </div>
           </div>
 

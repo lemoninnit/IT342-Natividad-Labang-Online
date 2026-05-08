@@ -7,6 +7,8 @@ export default function AdminReports() {
   const [complaints, setComplaints] = useState([])
   const [loading, setLoading] = useState(true)
   const [selectedReport, setSelectedReport] = useState(null)
+  const [statusFilter, setStatusFilter] = useState('ALL')
+  const [searchQuery, setSearchQuery] = useState('')
 
   useEffect(() => {
     const fetchComplaints = async () => {
@@ -34,6 +36,16 @@ export default function AdminReports() {
     }
   }
 
+  const filteredComplaints = complaints.filter(report => {
+    const matchesStatus = statusFilter === 'ALL' || report.status === statusFilter
+    const matchesSearch = searchQuery.trim() === '' || 
+      `${report.user?.firstName} ${report.user?.lastName}`.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      report.incidentType?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      report.description?.toLowerCase().includes(searchQuery.toLowerCase())
+    
+    return matchesStatus && matchesSearch
+  })
+
   return (
     <AdminLayout activeSection="reports" title="Incident Reports" subtitle="Review report details and manage resident incident cases.">
       <div className="mgmt-container">
@@ -41,9 +53,43 @@ export default function AdminReports() {
           <div className="card-header">
             <h2 className="card-title">Incident Reports</h2>
             <div className="card-actions">
-              <span className="count-badge">{complaints.length} Total Reports</span>
+              <div className="search-box" style={{ width: '250px' }}>
+                <input 
+                  type="text" 
+                  placeholder="Search reports..." 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  style={{ 
+                    width: '100%',
+                    padding: '8px 12px',
+                    borderRadius: '8px',
+                    background: 'rgba(255,255,255,0.05)',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    color: '#fff'
+                  }}
+                />
+              </div>
             </div>
           </div>
+
+          <div className="filter-bar" style={{ display: 'flex', alignItems: 'center' }}>
+            <div className="filter-label">Filter by Status:</div>
+            <div className="filter-buttons">
+              {['ALL', 'PENDING', 'REVIEWED', 'REJECTED'].map(status => (
+                <button
+                  key={status}
+                  className={`filter-btn ${statusFilter === status ? 'active' : ''}`}
+                  onClick={() => setStatusFilter(status)}
+                >
+                  {status}
+                </button>
+              ))}
+            </div>
+            <div style={{ marginLeft: 'auto' }}>
+              <span className="count-badge">{filteredComplaints.length} Total Reports</span>
+            </div>
+          </div>
+
           <div className="table-wrapper">
             <table className="admin-table">
               <thead>
@@ -56,7 +102,7 @@ export default function AdminReports() {
                 </tr>
               </thead>
               <tbody>
-                {complaints.length > 0 ? complaints.map(report => (
+                {filteredComplaints.length > 0 ? filteredComplaints.map(report => (
                   <tr key={report.id}>
                     <td>
                       <div className="user-info">
