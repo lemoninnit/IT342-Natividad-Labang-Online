@@ -416,9 +416,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 1100;
   padding: 20px;
   overflow: hidden;
+}
+
+.request-details-modal {
+  z-index: 1000;
 }
 
 .modal-container {
@@ -481,7 +485,7 @@
   z-index: 10;
 }
 
-.btn-close-modal:hover {
+..btn-close-modal:hover {
   background: rgba(16, 185, 129, 0.2);
   border-color: rgba(16, 185, 129, 0.6);
   transform: scale(1.1);
@@ -490,6 +494,111 @@
 
 .btn-close-modal:active {
   transform: scale(0.95);
+}
+
+.request-details-modal,
+.user-details-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.request-modal-content,
+.user-modal-content {
+  position: relative;
+  width: min(980px, 100%);
+  max-height: 90vh;
+  background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 28px 32px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+  overflow-y: auto;
+}
+
+.request-modal-header,
+.user-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.request-modal-header h2,
+.user-modal-header h2 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.request-detail-grid,
+.user-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.request-detail-section,
+.detail-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.request-detail-section.full-width {
+  grid-column: 1 / -1;
+}
+
+.request-detail-row,
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+.request-label,
+.detail-label {
+  color: #94a3b8;
+  font-size: 13px;
+  font-weight: 600;
+  min-width: 160px;
+}
+
+.request-value,
+.detail-value {
+  color: #e2e8f0;
+  font-size: 14px;
+  text-align: right;
+  min-width: 120px;
+}
+
+.request-purpose-box {
+  display: inline-block;
+  width: 100%;
+  color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 14px 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  text-align: left;
+}
+
+@media (max-width: 920px) {
+  .request-detail-grid,
+  .user-details-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Certificate Filter Bar */

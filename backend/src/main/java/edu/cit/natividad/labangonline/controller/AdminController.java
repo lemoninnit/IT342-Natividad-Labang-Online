@@ -1,5 +1,6 @@
 package edu.cit.natividad.labangonline.controller;
 
+import edu.cit.natividad.labangonline.dto.AdminCertificateRequestResponseDTO;
 import edu.cit.natividad.labangonline.entity.CertificateRequest;
 import edu.cit.natividad.labangonline.entity.Complaint;
 import edu.cit.natividad.labangonline.entity.User;
@@ -42,12 +43,12 @@ public class AdminController {
 
     // Certificate Request Management
     @GetMapping("/certificates/all")
-    public ResponseEntity<List<CertificateRequest>> getAllCertificates() {
+    public ResponseEntity<List<AdminCertificateRequestResponseDTO>> getAllCertificates() {
         return ResponseEntity.ok(adminService.getAllCertificateRequests());
     }
 
     @PutMapping("/certificates/{id}/status")
-    public ResponseEntity<CertificateRequest> updateCertificateStatus(
+    public ResponseEntity<AdminCertificateRequestResponseDTO> updateCertificateStatus(
             @PathVariable Long id, 
             @RequestBody Map<String, String> body) {
         try {

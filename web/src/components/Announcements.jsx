@@ -212,7 +212,7 @@ export default function Announcements() {
           </div>
           {isAdmin && !showForm && (
             <button className="btn-create-announce" onClick={() => setShowForm(true)}>
-              + New Announcement
+              Add Announcement
             </button>
           )}
         </div>

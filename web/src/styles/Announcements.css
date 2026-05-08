@@ -3,6 +3,19 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  min-height: calc(100vh - 140px);
+}
+
+.announcements-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+  gap: 24px;
+  padding: 24px 28px;
+  background: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 24px;
 }
 
 .announcements-header {
@@ -30,6 +43,24 @@
   display: flex;
   gap: 16px;
   align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-create-announce {
+  background: #10b981;
+  color: #000;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-create-announce:hover {
+  background: #059669;
+  transform: translateY(-1px);
 }
 
 /* ── SEARCH BOX ── */

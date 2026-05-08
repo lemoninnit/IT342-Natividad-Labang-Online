@@ -36,6 +36,38 @@ CREATE INDEX idx_users_email ON users(email);
 CREATE INDEX idx_users_username ON users(username);
 CREATE INDEX idx_users_phone ON users(phone_number);
 
+DROP TABLE IF EXISTS payments CASCADE;
+DROP TABLE IF EXISTS certificate_requests CASCADE;
+
+CREATE TABLE certificate_requests (
+    id SERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    certificate_type VARCHAR(50) NOT NULL,
+    purpose TEXT NOT NULL,
+    attachment_path VARCHAR(255),
+    status VARCHAR(50) NOT NULL DEFAULT 'PENDING',
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_certificate_requests_status ON certificate_requests(status);
+CREATE INDEX idx_certificate_requests_user_id ON certificate_requests(user_id);
+
+CREATE TABLE payments (
+    id SERIAL PRIMARY KEY,
+    certificate_request_id BIGINT NOT NULL UNIQUE REFERENCES certificate_requests(id) ON DELETE CASCADE,
+    payment_method VARCHAR(50) NOT NULL,
+    amount NUMERIC(10,2) NOT NULL,
+    status VARCHAR(50) NOT NULL DEFAULT 'PENDING',
+    reference_number VARCHAR(100),
+    proof_image BYTEA,
+    qr_code_path VARCHAR(255),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_payments_certificate_request_id ON payments(certificate_request_id);
+
 -- Function to update updated_at timestamp
 CREATE OR REPLACE FUNCTION update_updated_at_column()
 RETURNS TRIGGER AS $$
@@ -48,5 +80,15 @@ $$ language 'plpgsql';
 -- Trigger to automatically update updated_at
 CREATE TRIGGER update_users_updated_at
     BEFORE UPDATE ON users
+    FOR EACH ROW
+    EXECUTE PROCEDURE update_updated_at_column();
+
+CREATE TRIGGER update_certificate_requests_updated_at
+    BEFORE UPDATE ON certificate_requests
+    FOR EACH ROW
+    EXECUTE PROCEDURE update_updated_at_column();
+
+CREATE TRIGGER update_payments_updated_at
+    BEFORE UPDATE ON payments
     FOR EACH ROW
     EXECUTE PROCEDURE update_updated_at_column();

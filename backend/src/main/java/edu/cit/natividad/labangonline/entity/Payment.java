@@ -1,5 +1,6 @@
 package edu.cit.natividad.labangonline.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -35,6 +36,7 @@ public class Payment {
   private Long id;
 
   @OneToOne(optional = false)
+  @JsonIgnore
   private CertificateRequest certificateRequest;
 
   @NotNull
