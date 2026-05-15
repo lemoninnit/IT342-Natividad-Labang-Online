@@ -4,15 +4,18 @@ package edu.cit.natividad.labangonline.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import edu.cit.natividad.labangonline.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -20,51 +23,159 @@ import java.lang.String;
 
 public final class ActivityRegisterBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final CoordinatorLayout rootView;
 
   @NonNull
   public final TextInputEditText addressInput;
 
   @NonNull
+  public final TextInputLayout addressLayout;
+
+  @NonNull
   public final MaterialButton backButton;
+
+  @NonNull
+  public final TextInputEditText barangayInput;
+
+  @NonNull
+  public final TextInputEditText cityInput;
+
+  @NonNull
+  public final AutoCompleteTextView civilStatusInput;
+
+  @NonNull
+  public final TextInputLayout civilStatusLayout;
+
+  @NonNull
+  public final TextInputEditText confirmPasswordInput;
+
+  @NonNull
+  public final TextInputLayout confirmPasswordLayout;
+
+  @NonNull
+  public final TextInputEditText dobInput;
+
+  @NonNull
+  public final TextInputLayout dobLayout;
 
   @NonNull
   public final TextInputEditText emailInput;
 
   @NonNull
-  public final TextView errorMessage;
+  public final TextInputLayout emailLayout;
+
+  @NonNull
+  public final LinearLayout errorBanner;
+
+  @NonNull
+  public final TextView errorBannerText;
+
+  @NonNull
+  public final TextInputEditText firstNameInput;
+
+  @NonNull
+  public final TextInputLayout firstNameLayout;
+
+  @NonNull
+  public final TextInputEditText lastNameInput;
+
+  @NonNull
+  public final TextInputLayout lastNameLayout;
 
   @NonNull
   public final ProgressBar loadingIndicator;
 
   @NonNull
-  public final TextInputEditText nameInput;
+  public final TextInputEditText middleNameInput;
 
   @NonNull
   public final TextInputEditText passwordInput;
 
   @NonNull
+  public final TextInputLayout passwordLayout;
+
+  @NonNull
+  public final TextInputEditText phoneInput;
+
+  @NonNull
+  public final TextInputLayout phoneLayout;
+
+  @NonNull
+  public final TextInputEditText postalCodeInput;
+
+  @NonNull
+  public final TextInputEditText provinceInput;
+
+  @NonNull
+  public final TextInputEditText purokInput;
+
+  @NonNull
+  public final TextInputLayout purokLayout;
+
+  @NonNull
   public final MaterialButton registerButton;
 
-  private ActivityRegisterBinding(@NonNull LinearLayout rootView,
-      @NonNull TextInputEditText addressInput, @NonNull MaterialButton backButton,
-      @NonNull TextInputEditText emailInput, @NonNull TextView errorMessage,
-      @NonNull ProgressBar loadingIndicator, @NonNull TextInputEditText nameInput,
-      @NonNull TextInputEditText passwordInput, @NonNull MaterialButton registerButton) {
+  @NonNull
+  public final TextInputEditText usernameInput;
+
+  @NonNull
+  public final TextInputLayout usernameLayout;
+
+  private ActivityRegisterBinding(@NonNull CoordinatorLayout rootView,
+      @NonNull TextInputEditText addressInput, @NonNull TextInputLayout addressLayout,
+      @NonNull MaterialButton backButton, @NonNull TextInputEditText barangayInput,
+      @NonNull TextInputEditText cityInput, @NonNull AutoCompleteTextView civilStatusInput,
+      @NonNull TextInputLayout civilStatusLayout, @NonNull TextInputEditText confirmPasswordInput,
+      @NonNull TextInputLayout confirmPasswordLayout, @NonNull TextInputEditText dobInput,
+      @NonNull TextInputLayout dobLayout, @NonNull TextInputEditText emailInput,
+      @NonNull TextInputLayout emailLayout, @NonNull LinearLayout errorBanner,
+      @NonNull TextView errorBannerText, @NonNull TextInputEditText firstNameInput,
+      @NonNull TextInputLayout firstNameLayout, @NonNull TextInputEditText lastNameInput,
+      @NonNull TextInputLayout lastNameLayout, @NonNull ProgressBar loadingIndicator,
+      @NonNull TextInputEditText middleNameInput, @NonNull TextInputEditText passwordInput,
+      @NonNull TextInputLayout passwordLayout, @NonNull TextInputEditText phoneInput,
+      @NonNull TextInputLayout phoneLayout, @NonNull TextInputEditText postalCodeInput,
+      @NonNull TextInputEditText provinceInput, @NonNull TextInputEditText purokInput,
+      @NonNull TextInputLayout purokLayout, @NonNull MaterialButton registerButton,
+      @NonNull TextInputEditText usernameInput, @NonNull TextInputLayout usernameLayout) {
     this.rootView = rootView;
     this.addressInput = addressInput;
+    this.addressLayout = addressLayout;
     this.backButton = backButton;
+    this.barangayInput = barangayInput;
+    this.cityInput = cityInput;
+    this.civilStatusInput = civilStatusInput;
+    this.civilStatusLayout = civilStatusLayout;
+    this.confirmPasswordInput = confirmPasswordInput;
+    this.confirmPasswordLayout = confirmPasswordLayout;
+    this.dobInput = dobInput;
+    this.dobLayout = dobLayout;
     this.emailInput = emailInput;
-    this.errorMessage = errorMessage;
+    this.emailLayout = emailLayout;
+    this.errorBanner = errorBanner;
+    this.errorBannerText = errorBannerText;
+    this.firstNameInput = firstNameInput;
+    this.firstNameLayout = firstNameLayout;
+    this.lastNameInput = lastNameInput;
+    this.lastNameLayout = lastNameLayout;
     this.loadingIndicator = loadingIndicator;
-    this.nameInput = nameInput;
+    this.middleNameInput = middleNameInput;
     this.passwordInput = passwordInput;
+    this.passwordLayout = passwordLayout;
+    this.phoneInput = phoneInput;
+    this.phoneLayout = phoneLayout;
+    this.postalCodeInput = postalCodeInput;
+    this.provinceInput = provinceInput;
+    this.purokInput = purokInput;
+    this.purokLayout = purokLayout;
     this.registerButton = registerButton;
+    this.usernameInput = usernameInput;
+    this.usernameLayout = usernameLayout;
   }
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public CoordinatorLayout getRoot() {
     return rootView;
   }
 
@@ -95,9 +206,63 @@ public final class ActivityRegisterBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.addressLayout;
+      TextInputLayout addressLayout = ViewBindings.findChildViewById(rootView, id);
+      if (addressLayout == null) {
+        break missingId;
+      }
+
       id = R.id.backButton;
       MaterialButton backButton = ViewBindings.findChildViewById(rootView, id);
       if (backButton == null) {
+        break missingId;
+      }
+
+      id = R.id.barangayInput;
+      TextInputEditText barangayInput = ViewBindings.findChildViewById(rootView, id);
+      if (barangayInput == null) {
+        break missingId;
+      }
+
+      id = R.id.cityInput;
+      TextInputEditText cityInput = ViewBindings.findChildViewById(rootView, id);
+      if (cityInput == null) {
+        break missingId;
+      }
+
+      id = R.id.civilStatusInput;
+      AutoCompleteTextView civilStatusInput = ViewBindings.findChildViewById(rootView, id);
+      if (civilStatusInput == null) {
+        break missingId;
+      }
+
+      id = R.id.civilStatusLayout;
+      TextInputLayout civilStatusLayout = ViewBindings.findChildViewById(rootView, id);
+      if (civilStatusLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.confirmPasswordInput;
+      TextInputEditText confirmPasswordInput = ViewBindings.findChildViewById(rootView, id);
+      if (confirmPasswordInput == null) {
+        break missingId;
+      }
+
+      id = R.id.confirmPasswordLayout;
+      TextInputLayout confirmPasswordLayout = ViewBindings.findChildViewById(rootView, id);
+      if (confirmPasswordLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.dobInput;
+      TextInputEditText dobInput = ViewBindings.findChildViewById(rootView, id);
+      if (dobInput == null) {
+        break missingId;
+      }
+
+      id = R.id.dobLayout;
+      TextInputLayout dobLayout = ViewBindings.findChildViewById(rootView, id);
+      if (dobLayout == null) {
         break missingId;
       }
 
@@ -107,9 +272,45 @@ public final class ActivityRegisterBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.errorMessage;
-      TextView errorMessage = ViewBindings.findChildViewById(rootView, id);
-      if (errorMessage == null) {
+      id = R.id.emailLayout;
+      TextInputLayout emailLayout = ViewBindings.findChildViewById(rootView, id);
+      if (emailLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.errorBanner;
+      LinearLayout errorBanner = ViewBindings.findChildViewById(rootView, id);
+      if (errorBanner == null) {
+        break missingId;
+      }
+
+      id = R.id.errorBannerText;
+      TextView errorBannerText = ViewBindings.findChildViewById(rootView, id);
+      if (errorBannerText == null) {
+        break missingId;
+      }
+
+      id = R.id.firstNameInput;
+      TextInputEditText firstNameInput = ViewBindings.findChildViewById(rootView, id);
+      if (firstNameInput == null) {
+        break missingId;
+      }
+
+      id = R.id.firstNameLayout;
+      TextInputLayout firstNameLayout = ViewBindings.findChildViewById(rootView, id);
+      if (firstNameLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.lastNameInput;
+      TextInputEditText lastNameInput = ViewBindings.findChildViewById(rootView, id);
+      if (lastNameInput == null) {
+        break missingId;
+      }
+
+      id = R.id.lastNameLayout;
+      TextInputLayout lastNameLayout = ViewBindings.findChildViewById(rootView, id);
+      if (lastNameLayout == null) {
         break missingId;
       }
 
@@ -119,9 +320,9 @@ public final class ActivityRegisterBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.nameInput;
-      TextInputEditText nameInput = ViewBindings.findChildViewById(rootView, id);
-      if (nameInput == null) {
+      id = R.id.middleNameInput;
+      TextInputEditText middleNameInput = ViewBindings.findChildViewById(rootView, id);
+      if (middleNameInput == null) {
         break missingId;
       }
 
@@ -131,14 +332,73 @@ public final class ActivityRegisterBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.passwordLayout;
+      TextInputLayout passwordLayout = ViewBindings.findChildViewById(rootView, id);
+      if (passwordLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.phoneInput;
+      TextInputEditText phoneInput = ViewBindings.findChildViewById(rootView, id);
+      if (phoneInput == null) {
+        break missingId;
+      }
+
+      id = R.id.phoneLayout;
+      TextInputLayout phoneLayout = ViewBindings.findChildViewById(rootView, id);
+      if (phoneLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.postalCodeInput;
+      TextInputEditText postalCodeInput = ViewBindings.findChildViewById(rootView, id);
+      if (postalCodeInput == null) {
+        break missingId;
+      }
+
+      id = R.id.provinceInput;
+      TextInputEditText provinceInput = ViewBindings.findChildViewById(rootView, id);
+      if (provinceInput == null) {
+        break missingId;
+      }
+
+      id = R.id.purokInput;
+      TextInputEditText purokInput = ViewBindings.findChildViewById(rootView, id);
+      if (purokInput == null) {
+        break missingId;
+      }
+
+      id = R.id.purokLayout;
+      TextInputLayout purokLayout = ViewBindings.findChildViewById(rootView, id);
+      if (purokLayout == null) {
+        break missingId;
+      }
+
       id = R.id.registerButton;
       MaterialButton registerButton = ViewBindings.findChildViewById(rootView, id);
       if (registerButton == null) {
         break missingId;
       }
 
-      return new ActivityRegisterBinding((LinearLayout) rootView, addressInput, backButton,
-          emailInput, errorMessage, loadingIndicator, nameInput, passwordInput, registerButton);
+      id = R.id.usernameInput;
+      TextInputEditText usernameInput = ViewBindings.findChildViewById(rootView, id);
+      if (usernameInput == null) {
+        break missingId;
+      }
+
+      id = R.id.usernameLayout;
+      TextInputLayout usernameLayout = ViewBindings.findChildViewById(rootView, id);
+      if (usernameLayout == null) {
+        break missingId;
+      }
+
+      return new ActivityRegisterBinding((CoordinatorLayout) rootView, addressInput, addressLayout,
+          backButton, barangayInput, cityInput, civilStatusInput, civilStatusLayout,
+          confirmPasswordInput, confirmPasswordLayout, dobInput, dobLayout, emailInput, emailLayout,
+          errorBanner, errorBannerText, firstNameInput, firstNameLayout, lastNameInput,
+          lastNameLayout, loadingIndicator, middleNameInput, passwordInput, passwordLayout,
+          phoneInput, phoneLayout, postalCodeInput, provinceInput, purokInput, purokLayout,
+          registerButton, usernameInput, usernameLayout);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

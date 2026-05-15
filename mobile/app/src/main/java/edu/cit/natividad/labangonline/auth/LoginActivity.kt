@@ -1,12 +1,19 @@
 package edu.cit.natividad.labangonline.auth
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
+import edu.cit.natividad.labangonline.R
+import edu.cit.natividad.labangonline.api.ApiClient
+import edu.cit.natividad.labangonline.api.models.LoginRequest
 import edu.cit.natividad.labangonline.dashboard.DashboardActivity
 import edu.cit.natividad.labangonline.databinding.ActivityLoginBinding
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
 
@@ -17,70 +24,126 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        with(binding) {
-            loginButton.setOnClickListener {
-                handleLogin()
-            }
+        // Show registration success message if redirected from Register
+        if (intent.getBooleanExtra("REGISTRATION_SUCCESS", false)) {
+            Snackbar.make(binding.root, "Registration successful! You can now log in.", Snackbar.LENGTH_LONG)
+                .setBackgroundTint(ContextCompat.getColor(this, R.color.labang_green))
+                .setTextColor(ContextCompat.getColor(this, android.R.color.white))
+                .show()
+        }
 
-            registerButton.setOnClickListener {
-                startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
-            }
+        setupClickListeners()
+    }
+
+    private fun setupClickListeners() {
+        binding.loginButton.setOnClickListener {
+            handleLogin()
+        }
+
+        binding.registerButton.setOnClickListener {
+            startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
         }
     }
 
     private fun handleLogin() {
-        val email = binding.emailInput.text.toString().trim()
+        val username = binding.usernameInput.text.toString().trim()
         val password = binding.passwordInput.text.toString()
 
-        binding.errorMessage.visibility = View.GONE
+        hideError()
 
-        if (!validateInputs(email, password)) {
+        if (!validateInputs(username, password)) {
             return
         }
 
-        binding.loadingIndicator.visibility = View.VISIBLE
-        binding.loginButton.isEnabled = false
+        setLoading(true)
 
-        binding.loadingIndicator.postDelayed({
-            binding.loadingIndicator.visibility = View.GONE
-            binding.loginButton.isEnabled = true
-            Snackbar.make(binding.root, "Login successful", Snackbar.LENGTH_SHORT).show()
-            startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
-            finish()
-        }, 1000)
+        lifecycleScope.launch {
+            try {
+                val response = ApiClient.getAuthService().login(LoginRequest(username, password))
+
+                if (response.isSuccessful && response.body() != null) {
+                    val loginResponse = response.body()!!
+                    val user = loginResponse.user
+
+                    if (!user.active) {
+                        showError("Your account is not active. Please contact Barangay Labangon.")
+                        setLoading(false)
+                        return@launch
+                    }
+
+                    // Store JWT Token and User Data securely
+                    saveSession(loginResponse.token, user.username, user.role)
+
+                    Snackbar.make(binding.root, "Login successful", Snackbar.LENGTH_SHORT).show()
+                    
+                    // Redirect based on role (similar to web logic)
+                    val nextIntent = if (user.role.equals("ADMIN", ignoreCase = true)) {
+                        // For now, redirect to dashboard as mobile might not have admin views yet
+                        Intent(this@LoginActivity, DashboardActivity::class.java)
+                    } else {
+                        Intent(this@LoginActivity, DashboardActivity::class.java)
+                    }
+                    
+                    startActivity(nextIntent)
+                    finish()
+                } else {
+                    if (response.code() == 401) {
+                        showError("Incorrect username/password or account is not yet confirmed by the Barangay.")
+                    } else {
+                        showError("Login failed. Please try again.")
+                    }
+                }
+            } catch (e: Exception) {
+                showError("Something went wrong. Please check your connection.")
+                e.printStackTrace()
+            } finally {
+                setLoading(false)
+            }
+        }
     }
 
-    private fun validateInputs(email: String, password: String): Boolean {
-        if (email.isEmpty()) {
-            showErrorMessage("Email is required")
-            return false
-        }
+    private fun validateInputs(username: String, password: String): Boolean {
+        var isValid = true
 
-        if (!isValidEmail(email)) {
-            showErrorMessage("Please enter a valid email address")
-            return false
+        if (username.isEmpty()) {
+            binding.usernameLayout.error = "Username is required."
+            isValid = false
+        } else {
+            binding.usernameLayout.error = null
         }
 
         if (password.isEmpty()) {
-            showErrorMessage("Password is required")
-            return false
+            binding.passwordLayout.error = "Password is required."
+            isValid = false
+        } else {
+            binding.passwordLayout.error = null
         }
 
-        if (password.length < 8) {
-            showErrorMessage("Password must be at least 8 characters")
-            return false
+        return isValid
+    }
+
+    private fun saveSession(token: String, username: String, role: String) {
+        val sharedPref = getSharedPreferences("labangonline_prefs", Context.MODE_PRIVATE)
+        with(sharedPref.edit()) {
+            putString("jwt_token", token)
+            putString("username", username)
+            putString("role", role)
+            apply()
         }
-
-        return true
     }
 
-    private fun isValidEmail(email: String): Boolean {
-        val pattern = "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
-        return email.matches(pattern.toRegex())
+    private fun setLoading(isLoading: Boolean) {
+        binding.loadingIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
+        binding.loginButton.isEnabled = !isLoading
+        binding.registerButton.isEnabled = !isLoading
     }
 
-    private fun showErrorMessage(message: String) {
+    private fun showError(message: String) {
         binding.errorMessage.text = message
-        binding.errorMessage.visibility = View.VISIBLE
+        binding.errorBanner.visibility = View.VISIBLE
+    }
+
+    private fun hideError() {
+        binding.errorBanner.visibility = View.GONE
     }
 }

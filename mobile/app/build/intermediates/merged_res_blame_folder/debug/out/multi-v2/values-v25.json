@@ -4,7 +4,7 @@
             "outputFile": "edu.cit.natividad.labangonline.app-mergeDebugResources-35:/values-v25/values-v25.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\caches\\transforms-3\\18def9f4daef113457581080ac8ec8e5\\transformed\\appcompat-1.6.1\\res\\values-v25\\values-v25.xml",
+                    "source": "C:\\Users\\Moka\\.gradle\\caches\\8.9\\transforms\\2474abc7d210d2f47c56e7adc33f5500\\transformed\\appcompat-1.6.1\\res\\values-v25\\values-v25.xml",
                     "from": {
                         "startLines": "2,3,4,6",
                         "startColumns": "4,4,4,4",
