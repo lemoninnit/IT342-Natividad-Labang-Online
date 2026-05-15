@@ -2950,6 +2950,7 @@ drawable design_password_eye
 drawable design_snackbar_background
 drawable error_bg
 drawable ic_arrow_back_black_24
+drawable ic_calendar
 drawable ic_call_answer
 drawable ic_call_answer_low
 drawable ic_call_answer_video
@@ -3042,6 +3043,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable spinner_border
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
@@ -3117,6 +3119,7 @@ id actions
 id activity_chooser_view_content
 id add
 id addressInput
+id addressLayout
 id alertTitle
 id aligned
 id all
@@ -3135,6 +3138,7 @@ id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
 id backButton
+id barangayInput
 id barrier
 id baseline
 id beginOnFirstDraw
@@ -3163,6 +3167,9 @@ id checkbox
 id checked
 id chronometer
 id circle_center
+id cityInput
+id civilStatusInput
+id civilStatusLayout
 id clear_text
 id clip_horizontal
 id clip_vertical
@@ -3170,6 +3177,8 @@ id clockwise
 id closest
 id collapseActionView
 id compress
+id confirmPasswordInput
+id confirmPasswordLayout
 id confirm_button
 id constraint
 id container
@@ -3205,6 +3214,8 @@ id disableIntraAutoTransition
 id disablePostScroll
 id disableScroll
 id disjoint
+id dobInput
+id dobLayout
 id dragAnticlockwise
 id dragClockwise
 id dragDown
@@ -3222,12 +3233,15 @@ id edge
 id edit_query
 id elastic
 id emailInput
+id emailLayout
 id embed
 id emptyState
 id end
 id endToStart
 id enterAlways
 id enterAlwaysCollapsed
+id errorBanner
+id errorBannerText
 id errorMessage
 id exitUntilCollapsed
 id expand_activities_button
@@ -3237,6 +3251,8 @@ id fill
 id fill_horizontal
 id fill_vertical
 id filled
+id firstNameInput
+id firstNameLayout
 id fitCenter
 id fitEnd
 id fitStart
@@ -3280,6 +3296,8 @@ id item_touch_helper_previous_elevation
 id jumpToEnd
 id jumpToStart
 id labeled
+id lastNameInput
+id lastNameLayout
 id layout
 id left
 id leftToRight
@@ -3321,6 +3339,7 @@ id material_value_index
 id matrix
 id message
 id middle
+id middleNameInput
 id mini
 id month_grid
 id month_navigation_bar
@@ -3353,7 +3372,6 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id mtrl_view_tag_bottom_padding
 id multiply
-id nameInput
 id navigation_bar_item_active_indicator_view
 id navigation_bar_item_icon_container
 id navigation_bar_item_icon_view
@@ -3386,17 +3404,24 @@ id parentPanel
 id parentRelative
 id parent_matrix
 id passwordInput
+id passwordLayout
 id password_toggle
 id path
 id pathRelative
 id peekHeight
 id percent
+id phoneInput
+id phoneLayout
 id pin
 id position
 id postLayout
+id postalCodeInput
 id pressed
 id progress_circular
 id progress_horizontal
+id provinceInput
+id purokInput
+id purokLayout
 id radio
 id ratio
 id rectangles
@@ -3535,6 +3560,8 @@ id unlabeled
 id up
 id useLogo
 id userNameDisplay
+id usernameInput
+id usernameLayout
 id vertical_only
 id view_offset_helper
 id view_transition
@@ -4213,9 +4240,9 @@ style Base_Widget_MaterialComponents_TextView
 style CardView
 style CardView_Dark
 style CardView_Light
+style HelperTextAppearance
 style LabangButton_Outlined
 style LabangButton_Primary
-style LabangTextInputStyle
 style MaterialAlertDialog_Material3
 style MaterialAlertDialog_Material3_Animation
 style MaterialAlertDialog_Material3_Body_Text
@@ -4250,6 +4277,8 @@ style Platform_V21_AppCompat_Light
 style Platform_V25_AppCompat
 style Platform_V25_AppCompat_Light
 style Platform_Widget_AppCompat_Spinner
+style RegisterInputLayout
+style RegisterLabel
 style RtlOverlay_DialogWindowTitle_AppCompat
 style RtlOverlay_Widget_AppCompat_ActionBar_TitleItem
 style RtlOverlay_Widget_AppCompat_DialogTitle_Icon
@@ -4475,6 +4504,7 @@ style Theme_Design_Light_BottomSheetDialog
 style Theme_Design_Light_NoActionBar
 style Theme_Design_NoActionBar
 style Theme_LabangOnline
+style Theme_LabangOnline_DatePicker
 style Theme_Material3_Dark
 style Theme_Material3_Dark_BottomSheetDialog
 style Theme_Material3_Dark_Dialog

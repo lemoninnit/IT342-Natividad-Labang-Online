@@ -4,16 +4,17 @@ package edu.cit.natividad.labangonline.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import edu.cit.natividad.labangonline.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -21,10 +22,10 @@ import java.lang.String;
 
 public final class ActivityLoginBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final CoordinatorLayout rootView;
 
   @NonNull
-  public final TextInputEditText emailInput;
+  public final LinearLayout errorBanner;
 
   @NonNull
   public final TextView errorMessage;
@@ -36,32 +37,41 @@ public final class ActivityLoginBinding implements ViewBinding {
   public final MaterialButton loginButton;
 
   @NonNull
-  public final ImageView logoView;
-
-  @NonNull
   public final TextInputEditText passwordInput;
 
   @NonNull
-  public final MaterialButton registerButton;
+  public final TextInputLayout passwordLayout;
 
-  private ActivityLoginBinding(@NonNull LinearLayout rootView,
-      @NonNull TextInputEditText emailInput, @NonNull TextView errorMessage,
+  @NonNull
+  public final TextView registerButton;
+
+  @NonNull
+  public final TextInputEditText usernameInput;
+
+  @NonNull
+  public final TextInputLayout usernameLayout;
+
+  private ActivityLoginBinding(@NonNull CoordinatorLayout rootView,
+      @NonNull LinearLayout errorBanner, @NonNull TextView errorMessage,
       @NonNull ProgressBar loadingIndicator, @NonNull MaterialButton loginButton,
-      @NonNull ImageView logoView, @NonNull TextInputEditText passwordInput,
-      @NonNull MaterialButton registerButton) {
+      @NonNull TextInputEditText passwordInput, @NonNull TextInputLayout passwordLayout,
+      @NonNull TextView registerButton, @NonNull TextInputEditText usernameInput,
+      @NonNull TextInputLayout usernameLayout) {
     this.rootView = rootView;
-    this.emailInput = emailInput;
+    this.errorBanner = errorBanner;
     this.errorMessage = errorMessage;
     this.loadingIndicator = loadingIndicator;
     this.loginButton = loginButton;
-    this.logoView = logoView;
     this.passwordInput = passwordInput;
+    this.passwordLayout = passwordLayout;
     this.registerButton = registerButton;
+    this.usernameInput = usernameInput;
+    this.usernameLayout = usernameLayout;
   }
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public CoordinatorLayout getRoot() {
     return rootView;
   }
 
@@ -86,9 +96,9 @@ public final class ActivityLoginBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.emailInput;
-      TextInputEditText emailInput = ViewBindings.findChildViewById(rootView, id);
-      if (emailInput == null) {
+      id = R.id.errorBanner;
+      LinearLayout errorBanner = ViewBindings.findChildViewById(rootView, id);
+      if (errorBanner == null) {
         break missingId;
       }
 
@@ -110,26 +120,39 @@ public final class ActivityLoginBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.logo_view;
-      ImageView logoView = ViewBindings.findChildViewById(rootView, id);
-      if (logoView == null) {
-        break missingId;
-      }
-
       id = R.id.passwordInput;
       TextInputEditText passwordInput = ViewBindings.findChildViewById(rootView, id);
       if (passwordInput == null) {
         break missingId;
       }
 
+      id = R.id.passwordLayout;
+      TextInputLayout passwordLayout = ViewBindings.findChildViewById(rootView, id);
+      if (passwordLayout == null) {
+        break missingId;
+      }
+
       id = R.id.registerButton;
-      MaterialButton registerButton = ViewBindings.findChildViewById(rootView, id);
+      TextView registerButton = ViewBindings.findChildViewById(rootView, id);
       if (registerButton == null) {
         break missingId;
       }
 
-      return new ActivityLoginBinding((LinearLayout) rootView, emailInput, errorMessage,
-          loadingIndicator, loginButton, logoView, passwordInput, registerButton);
+      id = R.id.usernameInput;
+      TextInputEditText usernameInput = ViewBindings.findChildViewById(rootView, id);
+      if (usernameInput == null) {
+        break missingId;
+      }
+
+      id = R.id.usernameLayout;
+      TextInputLayout usernameLayout = ViewBindings.findChildViewById(rootView, id);
+      if (usernameLayout == null) {
+        break missingId;
+      }
+
+      return new ActivityLoginBinding((CoordinatorLayout) rootView, errorBanner, errorMessage,
+          loadingIndicator, loginButton, passwordInput, passwordLayout, registerButton,
+          usernameInput, usernameLayout);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

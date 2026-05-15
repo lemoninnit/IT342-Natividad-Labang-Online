@@ -4,7 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 // Request Models
 data class LoginRequest(
-    val email: String,
+    @SerializedName("username")
+    val username: String,
+    @SerializedName("password")
     val password: String
 )
 
@@ -15,10 +17,12 @@ data class RegisterRequest(
     val middleName: String? = null,
     @SerializedName("lastName")
     val lastName: String,
+    @SerializedName("username")
+    val username: String,
     @SerializedName("dob")
     val dob: String,
-    @SerializedName("gender")
-    val gender: String,
+    @SerializedName("civilStatus")
+    val civilStatus: String,
     @SerializedName("street")
     val street: String,
     @SerializedName("purok")
@@ -29,6 +33,8 @@ data class RegisterRequest(
     val city: String,
     @SerializedName("province")
     val province: String,
+    @SerializedName("postalCode")
+    val postalCode: String,
     @SerializedName("phone")
     val phone: String,
     @SerializedName("email")
@@ -39,10 +45,27 @@ data class RegisterRequest(
 
 // Response Models
 data class LoginResponse(
-    @SerializedName("status")
-    val status: String,
+    @SerializedName("token")
+    val token: String,
     @SerializedName("user")
-    val user: User? = null
+    val user: UserDto
+)
+
+data class UserDto(
+    @SerializedName("id")
+    val id: Long,
+    @SerializedName("username")
+    val username: String,
+    @SerializedName("firstName")
+    val firstName: String,
+    @SerializedName("lastName")
+    val lastName: String,
+    @SerializedName("email")
+    val email: String,
+    @SerializedName("role")
+    val role: String,
+    @SerializedName("active")
+    val active: Boolean
 )
 
 data class RegisterResponse(

@@ -1,4 +1,4 @@
- package edu.cit.natividad.labangonline.strategy;
+package edu.cit.natividad.labangonline.shared.strategy;
 
 import edu.cit.natividad.labangonline.shared.dto.RequestDTO;
 import edu.cit.natividad.labangonline.shared.dto.ResponseDTO;

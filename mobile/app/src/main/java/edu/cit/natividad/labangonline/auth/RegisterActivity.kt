@@ -3,107 +3,244 @@ package edu.cit.natividad.labangonline.auth
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
+import com.google.android.material.textfield.TextInputLayout
 import edu.cit.natividad.labangonline.R
+import edu.cit.natividad.labangonline.api.ApiClient
+import edu.cit.natividad.labangonline.api.models.RegisterRequest
 import edu.cit.natividad.labangonline.databinding.ActivityRegisterBinding
+import kotlinx.coroutines.launch
 import java.util.Calendar
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
+    private val calendar = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupGenderSpinner()
+        setupSpinners()
         setupDatePicker()
+        setupRealTimeValidation()
 
         binding.registerButton.setOnClickListener { handleRegistration() }
         binding.backButton.setOnClickListener { finish() }
     }
 
-    private fun setupGenderSpinner() {
-        val genderOptions = listOf("Select gender", "Male", "Female", "Prefer not to say")
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, genderOptions)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.genderSpinner.adapter = adapter
+    private fun setupSpinners() {
+        val civilStatusOptions = listOf("Single", "Married", "Widowed", "Separated")
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, civilStatusOptions)
+        binding.civilStatusInput.setAdapter(adapter)
+        binding.civilStatusInput.setText(civilStatusOptions[0], false)
     }
 
     private fun setupDatePicker() {
         binding.dobInput.setOnClickListener {
-            val cal = Calendar.getInstance()
             DatePickerDialog(
                 this,
+                R.style.Theme_LabangOnline_DatePicker,
                 { _, year, month, day ->
+                    calendar.set(year, month, day)
                     val formatted = "%02d/%02d/%04d".format(month + 1, day, year)
                     binding.dobInput.setText(formatted)
+                    validateField("dateOfBirth")
                 },
-                cal.get(Calendar.YEAR),
-                cal.get(Calendar.MONTH),
-                cal.get(Calendar.DAY_OF_MONTH)
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
             ).show()
         }
     }
 
+    private fun setupRealTimeValidation() {
+        val watcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                // We will validate on focus lost or on button click mostly to match web "touched" behavior
+            }
+        }
+
+        val fields = listOf(
+            binding.firstNameInput to "firstName",
+            binding.lastNameInput to "lastName",
+            binding.usernameInput to "username",
+            binding.emailInput to "email",
+            binding.phoneInput to "phone",
+            binding.addressInput to "addressLine",
+            binding.purokInput to "purok",
+            binding.passwordInput to "password",
+            binding.confirmPasswordInput to "confirmPassword"
+        )
+
+        fields.forEach { (view, name) ->
+            view.setOnFocusChangeListener { _, hasFocus ->
+                if (!hasFocus) validateField(name)
+            }
+            view.addTextChangedListener(watcher)
+        }
+    }
+
+    private fun validateField(name: String): String? {
+        val value = when (name) {
+            "firstName" -> binding.firstNameInput.text.toString()
+            "lastName" -> binding.lastNameInput.text.toString()
+            "username" -> binding.usernameInput.text.toString()
+            "email" -> binding.emailInput.text.toString()
+            "phone" -> binding.phoneInput.text.toString()
+            "dateOfBirth" -> binding.dobInput.text.toString()
+            "addressLine" -> binding.addressInput.text.toString()
+            "purok" -> binding.purokInput.text.toString()
+            "password" -> binding.passwordInput.text.toString()
+            "confirmPassword" -> binding.confirmPasswordInput.text.toString()
+            else -> ""
+        }
+
+        val error = when (name) {
+            "firstName" -> if (value.isBlank()) "First name is required" else null
+            "lastName" -> if (value.isBlank()) "Last name is required" else null
+            "username" -> {
+                if (value.isBlank()) "Username is required"
+                else if (value.length < 3) "Username must be at least 3 characters"
+                else null
+            }
+            "email" -> {
+                if (value.isBlank()) "Email is required"
+                else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(value).matches()) "Invalid email address"
+                else null
+            }
+            "phone" -> {
+                val cleanPhone = value.replace("\\s".toRegex(), "")
+                if (value.isBlank() || value == "+63") "Phone number is required"
+                else if (!cleanPhone.matches("^(\\+63)[0-9]{10}$".toRegex())) "Invalid Philippine mobile number (13 digits including +63)"
+                else null
+            }
+            "dateOfBirth" -> if (value.isBlank()) "Date of birth is required" else null
+            "addressLine" -> if (value.isBlank()) "Address line is required" else null
+            "purok" -> if (value.isBlank()) "Purok is required" else null
+            "password" -> {
+                if (value.isBlank()) "Password is required"
+                else if (value.length < 8) "Must be at least 8 characters"
+                else null
+            }
+            "confirmPassword" -> {
+                if (value.isBlank()) "Please confirm your password"
+                else if (value != binding.passwordInput.text.toString()) "Passwords do not match"
+                else null
+            }
+            else -> null
+        }
+
+        val layout = when (name) {
+            "firstName" -> binding.firstNameLayout
+            "lastName" -> binding.lastNameLayout
+            "username" -> binding.usernameLayout
+            "email" -> binding.emailLayout
+            "phone" -> binding.phoneLayout
+            "dateOfBirth" -> binding.dobLayout
+            "addressLine" -> binding.addressLayout
+            "purok" -> binding.purokLayout
+            "password" -> binding.passwordLayout
+            "confirmPassword" -> binding.confirmPasswordLayout
+            else -> null
+        }
+
+        layout?.error = error
+        layout?.isErrorEnabled = error != null
+        return error
+    }
+
     private fun handleRegistration() {
-        val firstName  = binding.firstNameInput.text.toString().trim()
-        val lastName   = binding.lastNameInput.text.toString().trim()
-        val email      = binding.emailInput.text.toString().trim()
-        val phone      = binding.phoneInput.text.toString().trim()
-        val password   = binding.passwordInput.text.toString()
-        val confirm    = binding.confirmPasswordInput.text.toString()
-        val agreedToTerms = binding.agreeTermsCheckbox.isChecked
+        val fieldNames = listOf(
+            "firstName", "lastName", "username", "email", "phone",
+            "dateOfBirth", "addressLine", "purok", "password", "confirmPassword"
+        )
 
-        binding.errorMessage.visibility = View.GONE
+        var hasErrors = false
+        fieldNames.forEach { name ->
+            if (validateField(name) != null) hasErrors = true
+        }
 
-        if (!validateInputs(firstName, lastName, email, phone, password, confirm, agreedToTerms)) return
+        if (hasErrors) return
 
-        binding.loadingIndicator.visibility = View.VISIBLE
-        binding.registerButton.isEnabled = false
+        lifecycleScope.launch {
+            try {
+                setLoading(true)
+                hideErrorBanner()
 
-        binding.loadingIndicator.postDelayed({
-            binding.loadingIndicator.visibility = View.GONE
-            binding.registerButton.isEnabled = true
-            Snackbar.make(binding.root, "Registration successful!", Snackbar.LENGTH_SHORT).show()
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-        }, 1200)
+                // Format DOB to yyyy-MM-dd for backend
+                val dobParts = binding.dobInput.text.toString().split("/")
+                val formattedDob = "${dobParts[2]}-${dobParts[0]}-${dobParts[1]}"
+
+                val request = RegisterRequest(
+                    firstName = binding.firstNameInput.text.toString().trim(),
+                    middleName = binding.middleNameInput.text.toString().trim().ifBlank { null },
+                    lastName = binding.lastNameInput.text.toString().trim(),
+                    username = binding.usernameInput.text.toString().trim(),
+                    email = binding.emailInput.text.toString().trim().lowercase(),
+                    phone = binding.phoneInput.text.toString().trim(),
+                    dob = formattedDob,
+                    civilStatus = binding.civilStatusInput.text.toString(),
+                    street = binding.addressInput.text.toString().trim(),
+                    purok = binding.purokInput.text.toString().trim(),
+                    barangay = binding.barangayInput.text.toString(),
+                    city = binding.cityInput.text.toString(),
+                    province = binding.provinceInput.text.toString(),
+                    postalCode = binding.postalCodeInput.text.toString(),
+                    password = binding.passwordInput.text.toString()
+                )
+
+                val response = ApiClient.getAuthService().register(request)
+
+                if (response.isSuccessful) {
+                    // Navigate to Success Activity (or show success and move to login)
+                    val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                    intent.putExtra("REGISTRATION_SUCCESS", true)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    when {
+                        errorBody?.contains("EMAIL_EXISTS") == true -> showErrorBanner("Email is already registered.")
+                        errorBody?.contains("PHONE_EXISTS") == true -> showErrorBanner("Phone number is already registered.")
+                        errorBody?.contains("USERNAME_EXISTS") == true -> showErrorBanner("Username is already taken.")
+                        else -> showErrorBanner("Registration failed. Please try again.")
+                    }
+                }
+            } catch (e: Exception) {
+                showErrorBanner("Something went wrong. Please check your connection.")
+                e.printStackTrace()
+            } finally {
+                setLoading(false)
+            }
+        }
     }
 
-    private fun validateInputs(
-        firstName: String, lastName: String,
-        email: String, phone: String,
-        password: String, confirm: String,
-        agreedToTerms: Boolean
-    ): Boolean {
-        if (firstName.isEmpty()) { showError("First name is required"); return false }
-        if (lastName.isEmpty())  { showError("Last name is required");  return false }
-        if (email.isEmpty())     { showError("Email is required");       return false }
-        if (!isValidEmail(email)) { showError("Enter a valid email address"); return false }
-        if (phone.isEmpty())     { showError("Mobile number is required"); return false }
-        if (!isValidPhone(phone)) { showError("Enter a valid PH number (09XXXXXXXXX)"); return false }
-        if (password.isEmpty())  { showError("Password is required");   return false }
-        if (password.length < 8) { showError("Password must be at least 8 characters"); return false }
-        if (!password.any { it.isUpperCase() }) { showError("Password needs at least one uppercase letter"); return false }
-        if (!password.any { it.isDigit() })     { showError("Password needs at least one number"); return false }
-        if (password != confirm) { showError("Passwords do not match"); return false }
-        if (!agreedToTerms)      { showError("You must agree to the Terms and Conditions"); return false }
-        return true
+    private fun setLoading(isLoading: Boolean) {
+        binding.loadingIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
+        binding.registerButton.isEnabled = !isLoading
+        binding.backButton.isEnabled = !isLoading
     }
 
-    private fun isValidEmail(email: String) =
-        email.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$".toRegex())
+    private fun showErrorBanner(message: String) {
+        binding.errorBannerText.text = message
+        binding.errorBanner.visibility = View.VISIBLE
+        // Scroll to top to see the error
+        binding.root.findViewById<View>(R.id.errorBanner).parent.requestChildFocus(
+            binding.errorBanner, binding.errorBanner
+        )
+    }
 
-    private fun isValidPhone(phone: String) =
-        phone.replace("\\s".toRegex(), "").matches("^(09|\\+639)\\d{9}$".toRegex())
-
-    private fun showError(message: String) {
-        binding.errorMessage.text = message
-        binding.errorMessage.visibility = View.VISIBLE
+    private fun hideErrorBanner() {
+        binding.errorBanner.visibility = View.GONE
     }
 }

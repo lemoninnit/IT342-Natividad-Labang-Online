@@ -7,7 +7,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object ApiClient {
-    private const val BASE_URL = "http://10.0.2.2:8080/api/"
+    // Change this to your server's IP address (e.g., "192.168.1.5")
+    // 10.0.2.2 is the default IP to access localhost from the Android Emulator
+    private const val SERVER_IP = "10.0.2.2" 
+    private const val BASE_URL = "http://$SERVER_IP:8080/api/"
 
     private val httpClient = OkHttpClient.Builder()
         .connectTimeout(30, TimeUnit.SECONDS)

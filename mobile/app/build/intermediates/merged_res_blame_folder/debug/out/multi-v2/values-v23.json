@@ -4,26 +4,7 @@
             "outputFile": "edu.cit.natividad.labangonline.app-mergeDebugResources-35:/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\caches\\transforms-3\\3249cc7d1df274e5ee2802c216d80049\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endLines": "4",
-                        "endColumns": "12",
-                        "endOffsets": "200"
-                    },
-                    "to": {
-                        "startLines": "50",
-                        "startColumns": "4",
-                        "startOffsets": "3232",
-                        "endLines": "52",
-                        "endColumns": "12",
-                        "endOffsets": "3377"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\caches\\transforms-3\\88de6dd4316ca1f6d232ef5827386c26\\transformed\\material-1.9.0\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\Moka\\.gradle\\caches\\8.9\\transforms\\3e7ed3b7f13073ee02420cbc47f36b43\\transformed\\material-1.9.0\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,5,8,13,17,20,23,26,31,34,38",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
@@ -42,7 +23,26 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\l13y17w18.LABHCI\\.gradle\\caches\\transforms-3\\18def9f4daef113457581080ac8ec8e5\\transformed\\appcompat-1.6.1\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\Moka\\.gradle\\caches\\8.9\\transforms\\67379527241f685823a7d1bce4cbbeab\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "200"
+                    },
+                    "to": {
+                        "startLines": "50",
+                        "startColumns": "4",
+                        "startOffsets": "3232",
+                        "endLines": "52",
+                        "endColumns": "12",
+                        "endOffsets": "3377"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Moka\\.gradle\\caches\\8.9\\transforms\\2474abc7d210d2f47c56e7adc33f5500\\transformed\\appcompat-1.6.1\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
