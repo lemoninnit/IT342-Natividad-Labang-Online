@@ -35,22 +35,22 @@ public final class ActivityDashboardBinding implements ViewBinding {
   public final MaterialButton logoutButton;
 
   @NonNull
-  public final TextView noAnnouncementsText;
+  public final TextView userNameDisplay;
 
   @NonNull
-  public final TextView userNameDisplay;
+  public final TextView userRoleDisplay;
 
   private ActivityDashboardBinding(@NonNull LinearLayout rootView,
       @NonNull ListView announcementsList, @NonNull LinearLayout emptyState,
       @NonNull ProgressBar loadingIndicator, @NonNull MaterialButton logoutButton,
-      @NonNull TextView noAnnouncementsText, @NonNull TextView userNameDisplay) {
+      @NonNull TextView userNameDisplay, @NonNull TextView userRoleDisplay) {
     this.rootView = rootView;
     this.announcementsList = announcementsList;
     this.emptyState = emptyState;
     this.loadingIndicator = loadingIndicator;
     this.logoutButton = logoutButton;
-    this.noAnnouncementsText = noAnnouncementsText;
     this.userNameDisplay = userNameDisplay;
+    this.userRoleDisplay = userRoleDisplay;
   }
 
   @Override
@@ -104,20 +104,20 @@ public final class ActivityDashboardBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.noAnnouncementsText;
-      TextView noAnnouncementsText = ViewBindings.findChildViewById(rootView, id);
-      if (noAnnouncementsText == null) {
-        break missingId;
-      }
-
       id = R.id.userNameDisplay;
       TextView userNameDisplay = ViewBindings.findChildViewById(rootView, id);
       if (userNameDisplay == null) {
         break missingId;
       }
 
+      id = R.id.userRoleDisplay;
+      TextView userRoleDisplay = ViewBindings.findChildViewById(rootView, id);
+      if (userRoleDisplay == null) {
+        break missingId;
+      }
+
       return new ActivityDashboardBinding((LinearLayout) rootView, announcementsList, emptyState,
-          loadingIndicator, logoutButton, noAnnouncementsText, userNameDisplay);
+          loadingIndicator, logoutButton, userNameDisplay, userRoleDisplay);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

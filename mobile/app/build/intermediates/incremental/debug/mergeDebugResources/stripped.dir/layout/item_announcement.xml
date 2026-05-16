@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#121414">
+
+    <!-- Title and Date Row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="8dp">
+        
+        <TextView
+            android:id="@+id/announcementTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Announcement Title"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#e3e2e2"
+            android:fontFamily="sans-serif-medium" />
+
+        <TextView
+            android:id="@+id/announcementType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GENERAL"
+            android:textSize="10sp"
+            android:textColor="#000000"
+            android:background="#777777"
+            android:paddingHorizontal="6dp"
+            android:paddingVertical="2dp"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <!-- Content Preview -->
+    <TextView
+        android:id="@+id/announcementContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="This is a short preview of the announcement content..."
+        android:textSize="14sp"
+        android:textColor="#cfc4c5"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Date -->
+    <TextView
+        android:id="@+id/announcementDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Posted on 2026-05-16"
+        android:textSize="12sp"
+        android:textColor="#777777" />
+
+</LinearLayout>

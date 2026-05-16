@@ -3127,6 +3127,10 @@ id allStates
 id always
 id animateToEnd
 id animateToStart
+id announcementContent
+id announcementDate
+id announcementTitle
+id announcementType
 id announcementsList
 id antiClockwise
 id anticipate
@@ -3382,7 +3386,6 @@ id navigation_header_container
 id never
 id neverCompleteToEnd
 id neverCompleteToStart
-id noAnnouncementsText
 id noScroll
 id noState
 id none
@@ -3560,6 +3563,7 @@ id unlabeled
 id up
 id useLogo
 id userNameDisplay
+id userRoleDisplay
 id usernameInput
 id usernameLayout
 id vertical_only
@@ -3713,6 +3717,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout item_announcement
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title

@@ -1,7 +1,7 @@
 [
     {
-        "merged": "edu.cit.natividad.labangonline.app-merged_res-37:/layout_activity_login.xml.flat",
-        "source": "edu.cit.natividad.labangonline.app-main-39:/layout/activity_login.xml"
+        "merged": "edu.cit.natividad.labangonline.app-merged_res-37:/layout_activity_dashboard.xml.flat",
+        "source": "edu.cit.natividad.labangonline.app-main-39:/layout/activity_dashboard.xml"
     },
     {
         "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-merged_res-37:\\drawable_spinner_border.xml.flat",
@@ -38,6 +38,10 @@
     {
         "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-merged_res-37:\\drawable_logo.png.flat",
         "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\logo.png"
+    },
+    {
+        "merged": "edu.cit.natividad.labangonline.app-merged_res-37:/layout_item_announcement.xml.flat",
+        "source": "edu.cit.natividad.labangonline.app-main-39:/layout/item_announcement.xml"
     },
     {
         "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-merged_res-37:\\xml_backup_rules.xml.flat",

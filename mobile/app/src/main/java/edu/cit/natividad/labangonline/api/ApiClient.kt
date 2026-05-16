@@ -8,8 +8,8 @@ import java.util.concurrent.TimeUnit
 
 object ApiClient {
     // Change this to your server's IP address (e.g., "192.168.1.5")
-    // 10.0.2.2 is the default IP to access localhost from the Android Emulator
-    private const val SERVER_IP = "10.0.2.2" 
+    // 192.168.5.234 allows physical device to connect over Wi-Fi
+    private const val SERVER_IP = "192.168.5.234" 
     private const val BASE_URL = "http://$SERVER_IP:8080/api/"
 
     private val httpClient = OkHttpClient.Builder()
