@@ -41,6 +41,21 @@
             android:name=".dashboard.DashboardActivity"
             android:exported="true"
             android:theme="@style/Theme.LabangOnline" />
+
+        <activity
+            android:name=".requests.RequestsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.LabangOnline" />
+
+        <activity
+            android:name=".report.ReportActivity"
+            android:exported="true"
+            android:theme="@style/Theme.LabangOnline" />
+
+        <activity
+            android:name=".announcement.AnnouncementActivity"
+            android:exported="true"
+            android:theme="@style/Theme.LabangOnline" />
     </application>
 
 </manifest>

@@ -53,6 +53,18 @@
             android:name="edu.cit.natividad.labangonline.dashboard.DashboardActivity"
             android:exported="true"
             android:theme="@style/Theme.LabangOnline" />
+        <activity
+            android:name="edu.cit.natividad.labangonline.requests.RequestsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.LabangOnline" />
+        <activity
+            android:name="edu.cit.natividad.labangonline.report.ReportActivity"
+            android:exported="true"
+            android:theme="@style/Theme.LabangOnline" />
+        <activity
+            android:name="edu.cit.natividad.labangonline.announcement.AnnouncementActivity"
+            android:exported="true"
+            android:theme="@style/Theme.LabangOnline" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"

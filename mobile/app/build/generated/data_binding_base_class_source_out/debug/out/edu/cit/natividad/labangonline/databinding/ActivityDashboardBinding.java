@@ -4,9 +4,9 @@ package edu.cit.natividad.labangonline.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,42 +20,86 @@ import java.lang.String;
 
 public final class ActivityDashboardBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final RelativeLayout rootView;
 
   @NonNull
-  public final ListView announcementsList;
+  public final LinearLayout bottomNav;
 
   @NonNull
-  public final LinearLayout emptyState;
+  public final MaterialButton btnEditInfo;
 
   @NonNull
-  public final ProgressBar loadingIndicator;
+  public final ImageView btnLogout;
 
   @NonNull
-  public final MaterialButton logoutButton;
+  public final LinearLayout btnNavNews;
+
+  @NonNull
+  public final LinearLayout btnNavProfile;
+
+  @NonNull
+  public final LinearLayout btnNavReport;
+
+  @NonNull
+  public final LinearLayout btnNavRequests;
+
+  @NonNull
+  public final LinearLayout topBar;
+
+  @NonNull
+  public final TextView tvAddress;
+
+  @NonNull
+  public final TextView tvCivilStatus;
+
+  @NonNull
+  public final TextView tvDob;
+
+  @NonNull
+  public final TextView tvEmail;
+
+  @NonNull
+  public final TextView tvFullName;
+
+  @NonNull
+  public final TextView tvMobile;
+
+  @NonNull
+  public final TextView tvUsername;
 
   @NonNull
   public final TextView userNameDisplay;
 
-  @NonNull
-  public final TextView userRoleDisplay;
-
-  private ActivityDashboardBinding(@NonNull LinearLayout rootView,
-      @NonNull ListView announcementsList, @NonNull LinearLayout emptyState,
-      @NonNull ProgressBar loadingIndicator, @NonNull MaterialButton logoutButton,
-      @NonNull TextView userNameDisplay, @NonNull TextView userRoleDisplay) {
+  private ActivityDashboardBinding(@NonNull RelativeLayout rootView,
+      @NonNull LinearLayout bottomNav, @NonNull MaterialButton btnEditInfo,
+      @NonNull ImageView btnLogout, @NonNull LinearLayout btnNavNews,
+      @NonNull LinearLayout btnNavProfile, @NonNull LinearLayout btnNavReport,
+      @NonNull LinearLayout btnNavRequests, @NonNull LinearLayout topBar,
+      @NonNull TextView tvAddress, @NonNull TextView tvCivilStatus, @NonNull TextView tvDob,
+      @NonNull TextView tvEmail, @NonNull TextView tvFullName, @NonNull TextView tvMobile,
+      @NonNull TextView tvUsername, @NonNull TextView userNameDisplay) {
     this.rootView = rootView;
-    this.announcementsList = announcementsList;
-    this.emptyState = emptyState;
-    this.loadingIndicator = loadingIndicator;
-    this.logoutButton = logoutButton;
+    this.bottomNav = bottomNav;
+    this.btnEditInfo = btnEditInfo;
+    this.btnLogout = btnLogout;
+    this.btnNavNews = btnNavNews;
+    this.btnNavProfile = btnNavProfile;
+    this.btnNavReport = btnNavReport;
+    this.btnNavRequests = btnNavRequests;
+    this.topBar = topBar;
+    this.tvAddress = tvAddress;
+    this.tvCivilStatus = tvCivilStatus;
+    this.tvDob = tvDob;
+    this.tvEmail = tvEmail;
+    this.tvFullName = tvFullName;
+    this.tvMobile = tvMobile;
+    this.tvUsername = tvUsername;
     this.userNameDisplay = userNameDisplay;
-    this.userRoleDisplay = userRoleDisplay;
   }
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public RelativeLayout getRoot() {
     return rootView;
   }
 
@@ -80,27 +124,93 @@ public final class ActivityDashboardBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.announcementsList;
-      ListView announcementsList = ViewBindings.findChildViewById(rootView, id);
-      if (announcementsList == null) {
+      id = R.id.bottomNav;
+      LinearLayout bottomNav = ViewBindings.findChildViewById(rootView, id);
+      if (bottomNav == null) {
         break missingId;
       }
 
-      id = R.id.emptyState;
-      LinearLayout emptyState = ViewBindings.findChildViewById(rootView, id);
-      if (emptyState == null) {
+      id = R.id.btnEditInfo;
+      MaterialButton btnEditInfo = ViewBindings.findChildViewById(rootView, id);
+      if (btnEditInfo == null) {
         break missingId;
       }
 
-      id = R.id.loadingIndicator;
-      ProgressBar loadingIndicator = ViewBindings.findChildViewById(rootView, id);
-      if (loadingIndicator == null) {
+      id = R.id.btnLogout;
+      ImageView btnLogout = ViewBindings.findChildViewById(rootView, id);
+      if (btnLogout == null) {
         break missingId;
       }
 
-      id = R.id.logoutButton;
-      MaterialButton logoutButton = ViewBindings.findChildViewById(rootView, id);
-      if (logoutButton == null) {
+      id = R.id.btnNavNews;
+      LinearLayout btnNavNews = ViewBindings.findChildViewById(rootView, id);
+      if (btnNavNews == null) {
+        break missingId;
+      }
+
+      id = R.id.btnNavProfile;
+      LinearLayout btnNavProfile = ViewBindings.findChildViewById(rootView, id);
+      if (btnNavProfile == null) {
+        break missingId;
+      }
+
+      id = R.id.btnNavReport;
+      LinearLayout btnNavReport = ViewBindings.findChildViewById(rootView, id);
+      if (btnNavReport == null) {
+        break missingId;
+      }
+
+      id = R.id.btnNavRequests;
+      LinearLayout btnNavRequests = ViewBindings.findChildViewById(rootView, id);
+      if (btnNavRequests == null) {
+        break missingId;
+      }
+
+      id = R.id.topBar;
+      LinearLayout topBar = ViewBindings.findChildViewById(rootView, id);
+      if (topBar == null) {
+        break missingId;
+      }
+
+      id = R.id.tvAddress;
+      TextView tvAddress = ViewBindings.findChildViewById(rootView, id);
+      if (tvAddress == null) {
+        break missingId;
+      }
+
+      id = R.id.tvCivilStatus;
+      TextView tvCivilStatus = ViewBindings.findChildViewById(rootView, id);
+      if (tvCivilStatus == null) {
+        break missingId;
+      }
+
+      id = R.id.tvDob;
+      TextView tvDob = ViewBindings.findChildViewById(rootView, id);
+      if (tvDob == null) {
+        break missingId;
+      }
+
+      id = R.id.tvEmail;
+      TextView tvEmail = ViewBindings.findChildViewById(rootView, id);
+      if (tvEmail == null) {
+        break missingId;
+      }
+
+      id = R.id.tvFullName;
+      TextView tvFullName = ViewBindings.findChildViewById(rootView, id);
+      if (tvFullName == null) {
+        break missingId;
+      }
+
+      id = R.id.tvMobile;
+      TextView tvMobile = ViewBindings.findChildViewById(rootView, id);
+      if (tvMobile == null) {
+        break missingId;
+      }
+
+      id = R.id.tvUsername;
+      TextView tvUsername = ViewBindings.findChildViewById(rootView, id);
+      if (tvUsername == null) {
         break missingId;
       }
 
@@ -110,14 +220,9 @@ public final class ActivityDashboardBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.userRoleDisplay;
-      TextView userRoleDisplay = ViewBindings.findChildViewById(rootView, id);
-      if (userRoleDisplay == null) {
-        break missingId;
-      }
-
-      return new ActivityDashboardBinding((LinearLayout) rootView, announcementsList, emptyState,
-          loadingIndicator, logoutButton, userNameDisplay, userRoleDisplay);
+      return new ActivityDashboardBinding((RelativeLayout) rootView, bottomNav, btnEditInfo,
+          btnLogout, btnNavNews, btnNavProfile, btnNavReport, btnNavRequests, topBar, tvAddress,
+          tvCivilStatus, tvDob, tvEmail, tvFullName, tvMobile, tvUsername, userNameDisplay);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

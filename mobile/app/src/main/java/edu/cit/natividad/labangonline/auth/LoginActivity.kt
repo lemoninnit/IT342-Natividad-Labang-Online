@@ -42,6 +42,7 @@ class LoginActivity : AppCompatActivity() {
 
         binding.registerButton.setOnClickListener {
             startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
+            overridePendingTransition(0, 0)
         }
     }
 
@@ -82,6 +83,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                     
                     startActivity(nextIntent)
+                    overridePendingTransition(0, 0)
                     finish()
                 } else {
                     if (response.code() == 401) {
