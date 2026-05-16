@@ -29,7 +29,7 @@
 18-->[androidx.core:core:1.10.1] C:\Users\Moka\.gradle\caches\8.9\transforms\23fb5b4b4513a66dd2a354c7133372e5\transformed\core-1.10.1\AndroidManifest.xml:26:22-94
 19
 20    <application
-20-->C:\Users\Moka\Desktop\school\IT342-Natividad-Labang-Online\mobile\app\src\main\AndroidManifest.xml:8:5-44:19
+20-->C:\Users\Moka\Desktop\school\IT342-Natividad-Labang-Online\mobile\app\src\main\AndroidManifest.xml:8:5-59:19
 21        android:allowBackup="true"
 21-->C:\Users\Moka\Desktop\school\IT342-Natividad-Labang-Online\mobile\app\src\main\AndroidManifest.xml:9:9-35
 22        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -96,72 +96,96 @@
 54-->C:\Users\Moka\Desktop\school\IT342-Natividad-Labang-Online\mobile\app\src\main\AndroidManifest.xml:42:13-36
 55            android:theme="@style/Theme.LabangOnline" />
 55-->C:\Users\Moka\Desktop\school\IT342-Natividad-Labang-Online\mobile\app\src\main\AndroidManifest.xml:43:13-54
-56
-57        <provider
-57-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Moka\.gradle\caches\8.9\transforms\2971f793a36dbaacb4d13ce6b275d6b4\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
-58            android:name="androidx.startup.InitializationProvider"
-58-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Moka\.gradle\caches\8.9\transforms\2971f793a36dbaacb4d13ce6b275d6b4\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
-59            android:authorities="edu.cit.natividad.labangonline.androidx-startup"
-59-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Moka\.gradle\caches\8.9\transforms\2971f793a36dbaacb4d13ce6b275d6b4\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
-60            android:exported="false" >
-60-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Moka\.gradle\caches\8.9\transforms\2971f793a36dbaacb4d13ce6b275d6b4\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
-61            <meta-data
-61-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Moka\.gradle\caches\8.9\transforms\2971f793a36dbaacb4d13ce6b275d6b4\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
-62                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-62-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Moka\.gradle\caches\8.9\transforms\2971f793a36dbaacb4d13ce6b275d6b4\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
-63                android:value="androidx.startup" />
-63-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Moka\.gradle\caches\8.9\transforms\2971f793a36dbaacb4d13ce6b275d6b4\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
-64            <meta-data
-64-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\Moka\.gradle\caches\8.9\transforms\fcc830edb4c2160d20269e5f5c509c46\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
-65                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-65-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\Moka\.gradle\caches\8.9\transforms\fcc830edb4c2160d20269e5f5c509c46\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:30:17-78
-66                android:value="androidx.startup" />
-66-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\Moka\.gradle\caches\8.9\transforms\fcc830edb4c2160d20269e5f5c509c46\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:31:17-49
-67            <meta-data
-67-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
-68                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-68-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
-69                android:value="androidx.startup" />
-69-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
-70        </provider>
-71
-72        <receiver
-72-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
-73            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-73-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
-74            android:directBootAware="false"
-74-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
-75            android:enabled="true"
-75-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
-76            android:exported="true"
-76-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
-77            android:permission="android.permission.DUMP" >
-77-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
-78            <intent-filter>
-78-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
-79                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-79-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
-79-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
-80            </intent-filter>
-81            <intent-filter>
-81-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
-82                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-82-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
-82-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
-83            </intent-filter>
-84            <intent-filter>
-84-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
-85                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-85-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
-85-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
-86            </intent-filter>
-87            <intent-filter>
-87-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
-88                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-88-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
-88-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
-89            </intent-filter>
-90        </receiver>
-91    </application>
-92
-93</manifest>
+56        <activity
+56-->C:\Users\Moka\Desktop\school\IT342-Natividad-Labang-Online\mobile\app\src\main\AndroidManifest.xml:45:9-48:57
+57            android:name="edu.cit.natividad.labangonline.requests.RequestsActivity"
+57-->C:\Users\Moka\Desktop\school\IT342-Natividad-Labang-Online\mobile\app\src\main\AndroidManifest.xml:46:13-54
+58            android:exported="true"
+58-->C:\Users\Moka\Desktop\school\IT342-Natividad-Labang-Online\mobile\app\src\main\AndroidManifest.xml:47:13-36
+59            android:theme="@style/Theme.LabangOnline" />
+59-->C:\Users\Moka\Desktop\school\IT342-Natividad-Labang-Online\mobile\app\src\main\AndroidManifest.xml:48:13-54
+60        <activity
+60-->C:\Users\Moka\Desktop\school\IT342-Natividad-Labang-Online\mobile\app\src\main\AndroidManifest.xml:50:9-53:57
+61            android:name="edu.cit.natividad.labangonline.report.ReportActivity"
+61-->C:\Users\Moka\Desktop\school\IT342-Natividad-Labang-Online\mobile\app\src\main\AndroidManifest.xml:51:13-50
+62            android:exported="true"
+62-->C:\Users\Moka\Desktop\school\IT342-Natividad-Labang-Online\mobile\app\src\main\AndroidManifest.xml:52:13-36
+63            android:theme="@style/Theme.LabangOnline" />
+63-->C:\Users\Moka\Desktop\school\IT342-Natividad-Labang-Online\mobile\app\src\main\AndroidManifest.xml:53:13-54
+64        <activity
+64-->C:\Users\Moka\Desktop\school\IT342-Natividad-Labang-Online\mobile\app\src\main\AndroidManifest.xml:55:9-58:57
+65            android:name="edu.cit.natividad.labangonline.announcement.AnnouncementActivity"
+65-->C:\Users\Moka\Desktop\school\IT342-Natividad-Labang-Online\mobile\app\src\main\AndroidManifest.xml:56:13-62
+66            android:exported="true"
+66-->C:\Users\Moka\Desktop\school\IT342-Natividad-Labang-Online\mobile\app\src\main\AndroidManifest.xml:57:13-36
+67            android:theme="@style/Theme.LabangOnline" />
+67-->C:\Users\Moka\Desktop\school\IT342-Natividad-Labang-Online\mobile\app\src\main\AndroidManifest.xml:58:13-54
+68
+69        <provider
+69-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Moka\.gradle\caches\8.9\transforms\2971f793a36dbaacb4d13ce6b275d6b4\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+70            android:name="androidx.startup.InitializationProvider"
+70-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Moka\.gradle\caches\8.9\transforms\2971f793a36dbaacb4d13ce6b275d6b4\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+71            android:authorities="edu.cit.natividad.labangonline.androidx-startup"
+71-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Moka\.gradle\caches\8.9\transforms\2971f793a36dbaacb4d13ce6b275d6b4\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+72            android:exported="false" >
+72-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Moka\.gradle\caches\8.9\transforms\2971f793a36dbaacb4d13ce6b275d6b4\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+73            <meta-data
+73-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Moka\.gradle\caches\8.9\transforms\2971f793a36dbaacb4d13ce6b275d6b4\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+74                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+74-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Moka\.gradle\caches\8.9\transforms\2971f793a36dbaacb4d13ce6b275d6b4\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+75                android:value="androidx.startup" />
+75-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Moka\.gradle\caches\8.9\transforms\2971f793a36dbaacb4d13ce6b275d6b4\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+76            <meta-data
+76-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\Moka\.gradle\caches\8.9\transforms\fcc830edb4c2160d20269e5f5c509c46\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
+77                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+77-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\Moka\.gradle\caches\8.9\transforms\fcc830edb4c2160d20269e5f5c509c46\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:30:17-78
+78                android:value="androidx.startup" />
+78-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\Moka\.gradle\caches\8.9\transforms\fcc830edb4c2160d20269e5f5c509c46\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:31:17-49
+79            <meta-data
+79-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+80                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+80-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+81                android:value="androidx.startup" />
+81-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+82        </provider>
+83
+84        <receiver
+84-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+85            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+85-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+86            android:directBootAware="false"
+86-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+87            android:enabled="true"
+87-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+88            android:exported="true"
+88-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+89            android:permission="android.permission.DUMP" >
+89-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+90            <intent-filter>
+90-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+91                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+91-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+91-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+92            </intent-filter>
+93            <intent-filter>
+93-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+94                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+94-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+94-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+95            </intent-filter>
+96            <intent-filter>
+96-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+97                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+97-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+97-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+98            </intent-filter>
+99            <intent-filter>
+99-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+100                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+100-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+100-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Moka\.gradle\caches\8.9\transforms\3f74dfdbf4d26ff6189f7fb3e81cf5c4\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+101            </intent-filter>
+102        </receiver>
+103    </application>
+104
+105</manifest>
