@@ -72,16 +72,13 @@ class LoginActivity : AppCompatActivity() {
                     }
 
                     // Store JWT Token and User Data securely
-                    saveSession(loginResponse.token, user.username, user.role)
+                    val fullName = "${user.firstName} ${user.lastName}".trim()
+                    saveSession(loginResponse.token, user.username, user.role, fullName)
 
                     Snackbar.make(binding.root, "Login successful", Snackbar.LENGTH_SHORT).show()
                     
-                    // Redirect based on role (similar to web logic)
-                    val nextIntent = if (user.role.equals("ADMIN", ignoreCase = true)) {
-                        // For now, redirect to dashboard as mobile might not have admin views yet
-                        Intent(this@LoginActivity, DashboardActivity::class.java)
-                    } else {
-                        Intent(this@LoginActivity, DashboardActivity::class.java)
+                    val nextIntent = Intent(this@LoginActivity, DashboardActivity::class.java).apply {
+                        putExtra("USER_NAME", fullName)
                     }
                     
                     startActivity(nextIntent)
@@ -122,12 +119,13 @@ class LoginActivity : AppCompatActivity() {
         return isValid
     }
 
-    private fun saveSession(token: String, username: String, role: String) {
+    private fun saveSession(token: String, username: String, role: String, fullName: String) {
         val sharedPref = getSharedPreferences("labangonline_prefs", Context.MODE_PRIVATE)
         with(sharedPref.edit()) {
             putString("jwt_token", token)
             putString("username", username)
             putString("role", role)
+            putString("full_name", fullName)
             apply()
         }
     }

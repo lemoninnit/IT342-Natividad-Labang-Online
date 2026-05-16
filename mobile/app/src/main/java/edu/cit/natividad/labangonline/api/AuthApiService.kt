@@ -14,4 +14,7 @@ interface AuthApiService {
 
     @POST("auth/login")
     suspend fun login(@Body request: LoginRequest): Response<LoginResponse>
+
+    @retrofit2.http.GET("announcements")
+    suspend fun getAnnouncements(): Response<List<edu.cit.natividad.labangonline.api.models.Announcement>>
 }

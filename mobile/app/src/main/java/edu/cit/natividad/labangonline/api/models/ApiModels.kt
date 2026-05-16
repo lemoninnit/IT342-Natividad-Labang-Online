@@ -106,3 +106,21 @@ data class User(
     @SerializedName("province")
     val province: String
 )
+
+// Announcement Model
+data class Announcement(
+    @SerializedName("id")
+    val id: Long,
+    @SerializedName("title")
+    val title: String,
+    @SerializedName("content")
+    val content: String,
+    @SerializedName("type")
+    val type: String,
+    @SerializedName("priority")
+    val priority: String,
+    @SerializedName("postedBy")
+    val postedBy: String,
+    @SerializedName("createdAt")
+    val createdAt: String
+)

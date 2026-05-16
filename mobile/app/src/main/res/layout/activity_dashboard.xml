@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#0b1020"
+    android:background="#000000"
     tools:context=".dashboard.DashboardActivity">
 
     <!-- ── Top Bar ── -->
@@ -16,10 +16,8 @@
         android:gravity="center_vertical"
         android:paddingStart="20dp"
         android:paddingEnd="16dp"
-        android:background="#111827"
-        android:elevation="4dp">
+        android:background="#000000">
 
-        <!-- Logo + Name -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -30,32 +28,23 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="🏘️"
-                android:textSize="20sp"
-                android:layout_marginEnd="8dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="LabangOnline"
-                android:textSize="17sp"
+                android:text="Labang Online"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="#10b981"
+                android:textColor="#e3e2e2"
                 android:fontFamily="sans-serif-medium" />
         </LinearLayout>
 
         <!-- Logout button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/logoutButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
-            android:layout_height="36dp"
-            android:text="Logout"
+            android:layout_height="wrap_content"
+            android:text="LOGOUT"
             android:textSize="12sp"
-            android:textColor="#ef4444"
-            app:backgroundTint="#1e293b"
-            app:cornerRadius="8dp"
-            app:strokeColor="#ef4444"
-            app:strokeWidth="1dp" />
+            android:textColor="#777777"
+            android:letterSpacing="0.05" />
     </LinearLayout>
 
     <ScrollView
@@ -68,77 +57,61 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <!-- ── Welcome Banner ── -->
-            <androidx.cardview.widget.CardView
+            <!-- ── Profile Header ── -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                app:cardBackgroundColor="#1e293b"
-                app:cardElevation="0dp"
-                app:cardCornerRadius="16dp">
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="24dp">
+                
+                <!-- Avatar placeholder -->
+                <View
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/circle_dark_bg" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="20dp">
-
-                    <View
-                        android:layout_width="32dp"
-                        android:layout_height="3dp"
-                        android:layout_marginBottom="12dp"
-                        android:background="#10b981" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Welcome back! 👋"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:textColor="#e2e8f0" />
-
+                    android:layout_marginStart="16dp">
+                    
                     <TextView
                         android:id="@+id/userNameDisplay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Juan Dela Cruz"
-                        android:textSize="14sp"
-                        android:textColor="#10b981"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="12dp" />
+                        android:text="Loading..."
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="#e3e2e2" />
 
                     <!-- Resident badge -->
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/userRoleDisplay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:background="@drawable/badge_bg"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="10dp"
-                        android:paddingTop="4dp"
-                        android:paddingBottom="4dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="● RESIDENT"
-                            android:textSize="10sp"
-                            android:textStyle="bold"
-                            android:textColor="#10b981"
-                            android:letterSpacing="0.08" />
-                    </LinearLayout>
+                        android:text="RESIDENT"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"
+                        android:background="#777777"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="2dp"
+                        android:layout_marginTop="4dp"
+                        android:letterSpacing="0.05" />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
             <!-- ── Quick Actions ── -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Quick Actions"
-                android:textSize="14sp"
+                android:text="QUICK ACTIONS"
+                android:textSize="12sp"
                 android:textStyle="bold"
-                android:textColor="#94a3b8"
-                android:letterSpacing="0.06"
+                android:textColor="#777777"
+                android:letterSpacing="0.05"
                 android:layout_marginBottom="12dp" />
 
             <LinearLayout
@@ -153,9 +126,11 @@
                     android:layout_height="90dp"
                     android:layout_weight="1"
                     android:layout_marginEnd="8dp"
-                    app:cardBackgroundColor="#1e293b"
+                    app:cardBackgroundColor="#121414"
                     app:cardElevation="0dp"
-                    app:cardCornerRadius="12dp">
+                    app:cardCornerRadius="12dp"
+                    app:strokeColor="#33777777"
+                    app:strokeWidth="1dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -175,7 +150,7 @@
                             android:layout_height="wrap_content"
                             android:text="Certificates"
                             android:textSize="11sp"
-                            android:textColor="#94a3b8"
+                            android:textColor="#cfc4c5"
                             android:gravity="center"
                             android:layout_marginTop="4dp" />
                     </LinearLayout>
@@ -188,7 +163,7 @@
                     android:layout_weight="1"
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="4dp"
-                    app:cardBackgroundColor="#1e293b"
+                    app:cardBackgroundColor="#121414"
                     app:cardElevation="0dp"
                     app:cardCornerRadius="12dp">
 
@@ -210,7 +185,7 @@
                             android:layout_height="wrap_content"
                             android:text="File Report"
                             android:textSize="11sp"
-                            android:textColor="#94a3b8"
+                            android:textColor="#cfc4c5"
                             android:gravity="center"
                             android:layout_marginTop="4dp" />
                     </LinearLayout>
@@ -222,7 +197,7 @@
                     android:layout_height="90dp"
                     android:layout_weight="1"
                     android:layout_marginStart="8dp"
-                    app:cardBackgroundColor="#1e293b"
+                    app:cardBackgroundColor="#121414"
                     app:cardElevation="0dp"
                     app:cardCornerRadius="12dp">
 
@@ -244,7 +219,7 @@
                             android:layout_height="wrap_content"
                             android:text="News"
                             android:textSize="11sp"
-                            android:textColor="#94a3b8"
+                            android:textColor="#cfc4c5"
                             android:gravity="center"
                             android:layout_marginTop="4dp" />
                     </LinearLayout>
@@ -252,44 +227,28 @@
             </LinearLayout>
 
             <!-- ── Announcements Card ── -->
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="12dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Latest Announcements"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="#94a3b8"
-                    android:letterSpacing="0.06" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="View All →"
-                    android:textSize="12sp"
-                    android:textColor="#10b981" />
-            </LinearLayout>
+                android:text="LATEST ANNOUNCEMENTS"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="#777777"
+                android:letterSpacing="0.05"
+                android:layout_marginBottom="12dp" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="#1e293b"
+                android:layout_marginBottom="24dp"
+                app:cardBackgroundColor="#121414"
                 app:cardElevation="0dp"
-                app:cardCornerRadius="16dp">
+                app:cardCornerRadius="12dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+                    android:orientation="vertical">
 
                     <!-- Loading -->
                     <ProgressBar
@@ -298,16 +257,15 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:visibility="gone"
-                        android:indeterminateTint="#10b981"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp" />
+                        android:indeterminateTint="#777777"
+                        android:layout_margin="16dp" />
 
                     <!-- List -->
                     <ListView
                         android:id="@+id/announcementsList"
                         android:layout_width="match_parent"
                         android:layout_height="300dp"
-                        android:divider="#1e3a5f"
+                        android:divider="#33777777"
                         android:dividerHeight="1dp"
                         android:visibility="gone" />
 
@@ -323,18 +281,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="📭"
-                            android:textSize="32sp"
-                            android:layout_marginBottom="8dp" />
-
-                        <TextView
-                            android:id="@+id/noAnnouncementsText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="No announcements yet"
+                            android:text="No announcements"
                             android:textSize="14sp"
-                            android:textColor="#475569"
-                            android:gravity="center" />
+                            android:textColor="#777777" />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -344,9 +293,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                app:cardBackgroundColor="#1e293b"
+                app:cardBackgroundColor="#121414"
                 app:cardElevation="0dp"
-                app:cardCornerRadius="16dp">
+                app:cardCornerRadius="12dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -354,35 +303,23 @@
                     android:orientation="vertical"
                     android:padding="20dp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_marginBottom="10dp">
-
-                        <View
-                            android:layout_width="3dp"
-                            android:layout_height="16dp"
-                            android:background="#10b981"
-                            android:layout_marginEnd="10dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="About Labang Online"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="#e2e8f0" />
-                    </LinearLayout>
+                        android:text="ABOUT LUMINA"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="#777777"
+                        android:letterSpacing="0.05"
+                        android:layout_marginBottom="12dp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Labang Online is the official digital service portal of Barangay Labangon, Cebu City. It streamlines certificate requests, incident reports, and community announcements for all residents."
-                        android:textSize="13sp"
-                        android:textColor="#64748b"
-                        android:lineSpacingMultiplier="1.5" />
+                        android:text="Lumina Resident Portal is the official digital service hub. Built for ultimate clarity and efficiency, it streamlines certificate requests, incident reports, and community updates."
+                        android:textSize="14sp"
+                        android:textColor="#cfc4c5"
+                        android:lineSpacingMultiplier="1.4" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

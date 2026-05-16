@@ -43,6 +43,10 @@ drawable notice_bg
 drawable spinner_border
 id addressInput
 id addressLayout
+id announcementContent
+id announcementDate
+id announcementTitle
+id announcementType
 id announcementsList
 id backButton
 id barangayInput
@@ -68,7 +72,6 @@ id loginButton
 id logo_view
 id logoutButton
 id middleNameInput
-id noAnnouncementsText
 id passwordInput
 id passwordLayout
 id phoneInput
@@ -79,12 +82,14 @@ id purokInput
 id purokLayout
 id registerButton
 id userNameDisplay
+id userRoleDisplay
 id usernameInput
 id usernameLayout
 layout activity_dashboard
 layout activity_login
 layout activity_main
 layout activity_register
+layout item_announcement
 string app_description
 string app_logo_description
 string app_name

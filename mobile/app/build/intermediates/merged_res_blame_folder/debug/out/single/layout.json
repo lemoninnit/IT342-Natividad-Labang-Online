@@ -1,11 +1,11 @@
 [
     {
-        "merged": "edu.cit.natividad.labangonline.app-mergeDebugResources-36:/layout/activity_login.xml",
-        "source": "edu.cit.natividad.labangonline.app-main-39:/layout/activity_login.xml"
-    },
-    {
         "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-mergeDebugResources-36:\\layout\\activity_register.xml",
         "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\layout\\activity_register.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.labangonline.app-mergeDebugResources-36:/layout/item_announcement.xml",
+        "source": "edu.cit.natividad.labangonline.app-main-39:/layout/item_announcement.xml"
     },
     {
         "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-mergeDebugResources-36:\\layout\\activity_dashboard.xml",
@@ -14,6 +14,10 @@
     {
         "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-mergeDebugResources-36:\\layout\\activity_login.xml",
         "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.labangonline.app-mergeDebugResources-36:/layout/activity_dashboard.xml",
+        "source": "edu.cit.natividad.labangonline.app-main-39:/layout/activity_dashboard.xml"
     },
     {
         "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-mergeDebugResources-36:\\layout\\activity_main.xml",
