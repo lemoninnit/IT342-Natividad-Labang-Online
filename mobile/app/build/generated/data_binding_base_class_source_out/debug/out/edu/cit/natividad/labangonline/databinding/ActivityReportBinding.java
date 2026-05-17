@@ -8,6 +8,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,9 +26,6 @@ public final class ActivityReportBinding implements ViewBinding {
 
   @NonNull
   public final LinearLayout bottomNav;
-
-  @NonNull
-  public final MaterialButton btnCancel;
 
   @NonNull
   public final ImageView btnLogout;
@@ -48,6 +46,9 @@ public final class ActivityReportBinding implements ViewBinding {
   public final MaterialButton btnSubmitReport;
 
   @NonNull
+  public final MaterialButton btnViewReports;
+
+  @NonNull
   public final EditText etAdditionalNotes;
 
   @NonNull
@@ -66,35 +67,39 @@ public final class ActivityReportBinding implements ViewBinding {
   public final EditText etPersonsInvolved;
 
   @NonNull
+  public final ProgressBar loadingIndicator;
+
+  @NonNull
   public final AutoCompleteTextView spinnerIncidentType;
 
   @NonNull
   public final LinearLayout topBar;
 
   private ActivityReportBinding(@NonNull RelativeLayout rootView, @NonNull LinearLayout bottomNav,
-      @NonNull MaterialButton btnCancel, @NonNull ImageView btnLogout,
-      @NonNull LinearLayout btnNavNews, @NonNull LinearLayout btnNavProfile,
-      @NonNull LinearLayout btnNavReport, @NonNull LinearLayout btnNavRequests,
-      @NonNull MaterialButton btnSubmitReport, @NonNull EditText etAdditionalNotes,
+      @NonNull ImageView btnLogout, @NonNull LinearLayout btnNavNews,
+      @NonNull LinearLayout btnNavProfile, @NonNull LinearLayout btnNavReport,
+      @NonNull LinearLayout btnNavRequests, @NonNull MaterialButton btnSubmitReport,
+      @NonNull MaterialButton btnViewReports, @NonNull EditText etAdditionalNotes,
       @NonNull EditText etDescription, @NonNull EditText etIncidentDate,
       @NonNull EditText etIncidentTime, @NonNull EditText etLocation,
-      @NonNull EditText etPersonsInvolved, @NonNull AutoCompleteTextView spinnerIncidentType,
-      @NonNull LinearLayout topBar) {
+      @NonNull EditText etPersonsInvolved, @NonNull ProgressBar loadingIndicator,
+      @NonNull AutoCompleteTextView spinnerIncidentType, @NonNull LinearLayout topBar) {
     this.rootView = rootView;
     this.bottomNav = bottomNav;
-    this.btnCancel = btnCancel;
     this.btnLogout = btnLogout;
     this.btnNavNews = btnNavNews;
     this.btnNavProfile = btnNavProfile;
     this.btnNavReport = btnNavReport;
     this.btnNavRequests = btnNavRequests;
     this.btnSubmitReport = btnSubmitReport;
+    this.btnViewReports = btnViewReports;
     this.etAdditionalNotes = etAdditionalNotes;
     this.etDescription = etDescription;
     this.etIncidentDate = etIncidentDate;
     this.etIncidentTime = etIncidentTime;
     this.etLocation = etLocation;
     this.etPersonsInvolved = etPersonsInvolved;
+    this.loadingIndicator = loadingIndicator;
     this.spinnerIncidentType = spinnerIncidentType;
     this.topBar = topBar;
   }
@@ -129,12 +134,6 @@ public final class ActivityReportBinding implements ViewBinding {
       id = R.id.bottomNav;
       LinearLayout bottomNav = ViewBindings.findChildViewById(rootView, id);
       if (bottomNav == null) {
-        break missingId;
-      }
-
-      id = R.id.btnCancel;
-      MaterialButton btnCancel = ViewBindings.findChildViewById(rootView, id);
-      if (btnCancel == null) {
         break missingId;
       }
 
@@ -174,6 +173,12 @@ public final class ActivityReportBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnViewReports;
+      MaterialButton btnViewReports = ViewBindings.findChildViewById(rootView, id);
+      if (btnViewReports == null) {
+        break missingId;
+      }
+
       id = R.id.etAdditionalNotes;
       EditText etAdditionalNotes = ViewBindings.findChildViewById(rootView, id);
       if (etAdditionalNotes == null) {
@@ -210,6 +215,12 @@ public final class ActivityReportBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.loadingIndicator;
+      ProgressBar loadingIndicator = ViewBindings.findChildViewById(rootView, id);
+      if (loadingIndicator == null) {
+        break missingId;
+      }
+
       id = R.id.spinnerIncidentType;
       AutoCompleteTextView spinnerIncidentType = ViewBindings.findChildViewById(rootView, id);
       if (spinnerIncidentType == null) {
@@ -222,10 +233,10 @@ public final class ActivityReportBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityReportBinding((RelativeLayout) rootView, bottomNav, btnCancel, btnLogout,
-          btnNavNews, btnNavProfile, btnNavReport, btnNavRequests, btnSubmitReport,
+      return new ActivityReportBinding((RelativeLayout) rootView, bottomNav, btnLogout, btnNavNews,
+          btnNavProfile, btnNavReport, btnNavRequests, btnSubmitReport, btnViewReports,
           etAdditionalNotes, etDescription, etIncidentDate, etIncidentTime, etLocation,
-          etPersonsInvolved, spinnerIncidentType, topBar);
+          etPersonsInvolved, loadingIndicator, spinnerIncidentType, topBar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -5,12 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.google.android.material.button.MaterialButton;
@@ -23,7 +23,7 @@ import java.lang.String;
 
 public final class ActivityRegisterBinding implements ViewBinding {
   @NonNull
-  private final CoordinatorLayout rootView;
+  private final LinearLayout rootView;
 
   @NonNull
   public final TextInputEditText addressInput;
@@ -32,10 +32,16 @@ public final class ActivityRegisterBinding implements ViewBinding {
   public final TextInputLayout addressLayout;
 
   @NonNull
-  public final MaterialButton backButton;
+  public final LinearLayout authHeader;
+
+  @NonNull
+  public final TextView backButton;
 
   @NonNull
   public final TextInputEditText barangayInput;
+
+  @NonNull
+  public final ImageView btnLogoBack;
 
   @NonNull
   public final TextInputEditText cityInput;
@@ -121,9 +127,10 @@ public final class ActivityRegisterBinding implements ViewBinding {
   @NonNull
   public final TextInputLayout usernameLayout;
 
-  private ActivityRegisterBinding(@NonNull CoordinatorLayout rootView,
+  private ActivityRegisterBinding(@NonNull LinearLayout rootView,
       @NonNull TextInputEditText addressInput, @NonNull TextInputLayout addressLayout,
-      @NonNull MaterialButton backButton, @NonNull TextInputEditText barangayInput,
+      @NonNull LinearLayout authHeader, @NonNull TextView backButton,
+      @NonNull TextInputEditText barangayInput, @NonNull ImageView btnLogoBack,
       @NonNull TextInputEditText cityInput, @NonNull AutoCompleteTextView civilStatusInput,
       @NonNull TextInputLayout civilStatusLayout, @NonNull TextInputEditText confirmPasswordInput,
       @NonNull TextInputLayout confirmPasswordLayout, @NonNull TextInputEditText dobInput,
@@ -141,8 +148,10 @@ public final class ActivityRegisterBinding implements ViewBinding {
     this.rootView = rootView;
     this.addressInput = addressInput;
     this.addressLayout = addressLayout;
+    this.authHeader = authHeader;
     this.backButton = backButton;
     this.barangayInput = barangayInput;
+    this.btnLogoBack = btnLogoBack;
     this.cityInput = cityInput;
     this.civilStatusInput = civilStatusInput;
     this.civilStatusLayout = civilStatusLayout;
@@ -175,7 +184,7 @@ public final class ActivityRegisterBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public CoordinatorLayout getRoot() {
+  public LinearLayout getRoot() {
     return rootView;
   }
 
@@ -212,8 +221,14 @@ public final class ActivityRegisterBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.authHeader;
+      LinearLayout authHeader = ViewBindings.findChildViewById(rootView, id);
+      if (authHeader == null) {
+        break missingId;
+      }
+
       id = R.id.backButton;
-      MaterialButton backButton = ViewBindings.findChildViewById(rootView, id);
+      TextView backButton = ViewBindings.findChildViewById(rootView, id);
       if (backButton == null) {
         break missingId;
       }
@@ -221,6 +236,12 @@ public final class ActivityRegisterBinding implements ViewBinding {
       id = R.id.barangayInput;
       TextInputEditText barangayInput = ViewBindings.findChildViewById(rootView, id);
       if (barangayInput == null) {
+        break missingId;
+      }
+
+      id = R.id.btnLogoBack;
+      ImageView btnLogoBack = ViewBindings.findChildViewById(rootView, id);
+      if (btnLogoBack == null) {
         break missingId;
       }
 
@@ -392,13 +413,13 @@ public final class ActivityRegisterBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityRegisterBinding((CoordinatorLayout) rootView, addressInput, addressLayout,
-          backButton, barangayInput, cityInput, civilStatusInput, civilStatusLayout,
-          confirmPasswordInput, confirmPasswordLayout, dobInput, dobLayout, emailInput, emailLayout,
-          errorBanner, errorBannerText, firstNameInput, firstNameLayout, lastNameInput,
-          lastNameLayout, loadingIndicator, middleNameInput, passwordInput, passwordLayout,
-          phoneInput, phoneLayout, postalCodeInput, provinceInput, purokInput, purokLayout,
-          registerButton, usernameInput, usernameLayout);
+      return new ActivityRegisterBinding((LinearLayout) rootView, addressInput, addressLayout,
+          authHeader, backButton, barangayInput, btnLogoBack, cityInput, civilStatusInput,
+          civilStatusLayout, confirmPasswordInput, confirmPasswordLayout, dobInput, dobLayout,
+          emailInput, emailLayout, errorBanner, errorBannerText, firstNameInput, firstNameLayout,
+          lastNameInput, lastNameLayout, loadingIndicator, middleNameInput, passwordInput,
+          passwordLayout, phoneInput, phoneLayout, postalCodeInput, provinceInput, purokInput,
+          purokLayout, registerButton, usernameInput, usernameLayout);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

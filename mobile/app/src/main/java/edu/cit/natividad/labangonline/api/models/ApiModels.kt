@@ -75,36 +75,27 @@ data class RegisterResponse(
 
 // User Model
 data class User(
-    @SerializedName("id")
-    val id: Long,
-    @SerializedName("firstName")
-    val firstName: String,
-    @SerializedName("middleName")
-    val middleName: String?,
-    @SerializedName("lastName")
-    val lastName: String,
-    @SerializedName("email")
-    val email: String,
-    @SerializedName("phoneNumber")
-    val phoneNumber: String,
-    @SerializedName("role")
-    val role: String,
-    @SerializedName("active")
-    val active: Boolean,
-    @SerializedName("dob")
-    val dob: String?,
-    @SerializedName("gender")
-    val gender: String?,
-    @SerializedName("street")
-    val street: String,
-    @SerializedName("purok")
-    val purok: String,
-    @SerializedName("barangay")
-    val barangay: String,
-    @SerializedName("city")
-    val city: String,
-    @SerializedName("province")
-    val province: String
+    @SerializedName("id") val id: Long,
+    @SerializedName("firstName") val firstName: String,
+    @SerializedName("middleName") val middleName: String?,
+    @SerializedName("lastName") val lastName: String,
+    @SerializedName("username") val username: String?,
+    @SerializedName("email") val email: String,
+    @SerializedName("phoneNumber") val phoneNumber: String,
+    @SerializedName("role") val role: String,
+    @SerializedName("active") val active: Boolean,
+    @SerializedName("dob") val dob: String?,
+    @SerializedName("gender") val gender: String?,
+    @SerializedName("civilStatus") val civilStatus: String?,
+    @SerializedName("residentConfirmed") val residentConfirmed: Boolean,
+    @SerializedName("profilePicture") val profilePicture: String?, // Assuming base64 encoded string from backend
+    @SerializedName("residentIdImage") val residentIdImage: String?,
+    @SerializedName("street") val street: String,
+    @SerializedName("purok") val purok: String,
+    @SerializedName("barangay") val barangay: String,
+    @SerializedName("city") val city: String,
+    @SerializedName("province") val province: String,
+    @SerializedName("postalCode") val postalCode: String?
 )
 
 // Announcement Model
@@ -123,4 +114,66 @@ data class Announcement(
     val postedBy: String,
     @SerializedName("createdAt")
     val createdAt: String
+)
+
+data class CertificateRequestDTO(
+    @SerializedName("certificateType") val certificateType: String,
+    @SerializedName("purpose") val purpose: String,
+    @SerializedName("attachmentPath") val attachmentPath: String? = null
+)
+
+data class CertificateRequestResponseDTO(
+    @SerializedName("id") val id: Long,
+    @SerializedName("certificateType") val certificateType: String,
+    @SerializedName("purpose") val purpose: String,
+    @SerializedName("status") val status: String,
+    @SerializedName("createdAt") val requestDate: String?,
+    @SerializedName("updatedAt") val updatedAt: String?,
+    @SerializedName("remarks") val remarks: String?,
+    @SerializedName("attachmentPath") val attachmentPath: String?,
+    @SerializedName("payment") val payment: PaymentResponseDTO?
+)
+
+data class PaymentResponseDTO(
+    @SerializedName("id") val id: Long,
+    @SerializedName("paymentMethod") val paymentMethod: String,
+    @SerializedName("amount") val amount: Double,
+    @SerializedName("status") val status: String,
+    @SerializedName("referenceNumber") val referenceNumber: String?
+)
+
+data class PaymentDTO(
+    @SerializedName("certificateRequestId") val certificateRequestId: Long,
+    @SerializedName("paymentMethod") val paymentMethod: String,
+    @SerializedName("amount") val amount: Double,
+    @SerializedName("referenceNumber") val referenceNumber: String? = null
+)
+
+data class PaymentVerificationDTO(
+    @SerializedName("paymentId") val paymentId: Long,
+    @SerializedName("referenceNumber") val referenceNumber: String?,
+    @SerializedName("proofImage") val proofImage: String? = null,
+    @SerializedName("status") val status: String? = null
+)
+
+data class PaymentResponse(
+    @SerializedName("paymentId") val paymentId: Long,
+    @SerializedName("referenceNumber") val referenceNumber: String?,
+    @SerializedName("amount") val amount: Double?,
+    @SerializedName("paymentMethod") val paymentMethod: String?,
+    @SerializedName("status") val status: String?,
+    @SerializedName("message") val message: String?
+)
+
+data class ComplaintResponseDTO(
+    @SerializedName("id") val id: Long,
+    @SerializedName("incidentType") val incidentType: String,
+    @SerializedName("incidentDate") val incidentDate: String,
+    @SerializedName("incidentTime") val incidentTime: String,
+    @SerializedName("location") val location: String,
+    @SerializedName("description") val description: String,
+    @SerializedName("personsInvolved") val personsInvolved: String?,
+    @SerializedName("additionalNotes") val additionalNotes: String?,
+    @SerializedName("status") val status: String,
+    @SerializedName("createdAt") val createdAt: String
 )

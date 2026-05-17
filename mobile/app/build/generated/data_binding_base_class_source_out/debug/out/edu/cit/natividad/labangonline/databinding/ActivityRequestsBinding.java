@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
 import edu.cit.natividad.labangonline.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -43,12 +44,30 @@ public final class ActivityRequestsBinding implements ViewBinding {
   public final MaterialButton btnRecords;
 
   @NonNull
+  public final MaterialCardView cardBarangayClearance;
+
+  @NonNull
+  public final MaterialCardView cardBusinessClearance;
+
+  @NonNull
+  public final MaterialCardView cardCertIndigency;
+
+  @NonNull
+  public final MaterialCardView cardCertResidency;
+
+  @NonNull
+  public final MaterialCardView cardGoodMoral;
+
+  @NonNull
   public final LinearLayout topBar;
 
   private ActivityRequestsBinding(@NonNull RelativeLayout rootView, @NonNull LinearLayout bottomNav,
       @NonNull ImageView btnLogout, @NonNull LinearLayout btnNavNews,
       @NonNull LinearLayout btnNavProfile, @NonNull LinearLayout btnNavReport,
       @NonNull LinearLayout btnNavRequests, @NonNull MaterialButton btnRecords,
+      @NonNull MaterialCardView cardBarangayClearance,
+      @NonNull MaterialCardView cardBusinessClearance, @NonNull MaterialCardView cardCertIndigency,
+      @NonNull MaterialCardView cardCertResidency, @NonNull MaterialCardView cardGoodMoral,
       @NonNull LinearLayout topBar) {
     this.rootView = rootView;
     this.bottomNav = bottomNav;
@@ -58,6 +77,11 @@ public final class ActivityRequestsBinding implements ViewBinding {
     this.btnNavReport = btnNavReport;
     this.btnNavRequests = btnNavRequests;
     this.btnRecords = btnRecords;
+    this.cardBarangayClearance = cardBarangayClearance;
+    this.cardBusinessClearance = cardBusinessClearance;
+    this.cardCertIndigency = cardCertIndigency;
+    this.cardCertResidency = cardCertResidency;
+    this.cardGoodMoral = cardGoodMoral;
     this.topBar = topBar;
   }
 
@@ -130,6 +154,36 @@ public final class ActivityRequestsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.cardBarangayClearance;
+      MaterialCardView cardBarangayClearance = ViewBindings.findChildViewById(rootView, id);
+      if (cardBarangayClearance == null) {
+        break missingId;
+      }
+
+      id = R.id.cardBusinessClearance;
+      MaterialCardView cardBusinessClearance = ViewBindings.findChildViewById(rootView, id);
+      if (cardBusinessClearance == null) {
+        break missingId;
+      }
+
+      id = R.id.cardCertIndigency;
+      MaterialCardView cardCertIndigency = ViewBindings.findChildViewById(rootView, id);
+      if (cardCertIndigency == null) {
+        break missingId;
+      }
+
+      id = R.id.cardCertResidency;
+      MaterialCardView cardCertResidency = ViewBindings.findChildViewById(rootView, id);
+      if (cardCertResidency == null) {
+        break missingId;
+      }
+
+      id = R.id.cardGoodMoral;
+      MaterialCardView cardGoodMoral = ViewBindings.findChildViewById(rootView, id);
+      if (cardGoodMoral == null) {
+        break missingId;
+      }
+
       id = R.id.topBar;
       LinearLayout topBar = ViewBindings.findChildViewById(rootView, id);
       if (topBar == null) {
@@ -137,7 +191,9 @@ public final class ActivityRequestsBinding implements ViewBinding {
       }
 
       return new ActivityRequestsBinding((RelativeLayout) rootView, bottomNav, btnLogout,
-          btnNavNews, btnNavProfile, btnNavReport, btnNavRequests, btnRecords, topBar);
+          btnNavNews, btnNavProfile, btnNavReport, btnNavRequests, btnRecords,
+          cardBarangayClearance, cardBusinessClearance, cardCertIndigency, cardCertResidency,
+          cardGoodMoral, topBar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

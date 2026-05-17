@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import edu.cit.natividad.labangonline.R;
 import java.lang.NullPointerException;
@@ -20,25 +21,55 @@ public final class ItemAnnouncementBinding implements ViewBinding {
   private final MaterialCardView rootView;
 
   @NonNull
-  public final TextView announcementContent;
+  public final MaterialButton btnDetails;
 
   @NonNull
-  public final TextView announcementDate;
+  public final MaterialCardView cardPriority;
 
   @NonNull
-  public final TextView announcementTitle;
+  public final MaterialCardView cardType;
 
   @NonNull
-  public final TextView announcementType;
+  public final TextView tvAuthor;
+
+  @NonNull
+  public final TextView tvContent;
+
+  @NonNull
+  public final TextView tvDate;
+
+  @NonNull
+  public final TextView tvExpires;
+
+  @NonNull
+  public final TextView tvPriority;
+
+  @NonNull
+  public final TextView tvTime;
+
+  @NonNull
+  public final TextView tvTitle;
+
+  @NonNull
+  public final TextView tvType;
 
   private ItemAnnouncementBinding(@NonNull MaterialCardView rootView,
-      @NonNull TextView announcementContent, @NonNull TextView announcementDate,
-      @NonNull TextView announcementTitle, @NonNull TextView announcementType) {
+      @NonNull MaterialButton btnDetails, @NonNull MaterialCardView cardPriority,
+      @NonNull MaterialCardView cardType, @NonNull TextView tvAuthor, @NonNull TextView tvContent,
+      @NonNull TextView tvDate, @NonNull TextView tvExpires, @NonNull TextView tvPriority,
+      @NonNull TextView tvTime, @NonNull TextView tvTitle, @NonNull TextView tvType) {
     this.rootView = rootView;
-    this.announcementContent = announcementContent;
-    this.announcementDate = announcementDate;
-    this.announcementTitle = announcementTitle;
-    this.announcementType = announcementType;
+    this.btnDetails = btnDetails;
+    this.cardPriority = cardPriority;
+    this.cardType = cardType;
+    this.tvAuthor = tvAuthor;
+    this.tvContent = tvContent;
+    this.tvDate = tvDate;
+    this.tvExpires = tvExpires;
+    this.tvPriority = tvPriority;
+    this.tvTime = tvTime;
+    this.tvTitle = tvTitle;
+    this.tvType = tvType;
   }
 
   @Override
@@ -68,32 +99,74 @@ public final class ItemAnnouncementBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.announcementContent;
-      TextView announcementContent = ViewBindings.findChildViewById(rootView, id);
-      if (announcementContent == null) {
+      id = R.id.btnDetails;
+      MaterialButton btnDetails = ViewBindings.findChildViewById(rootView, id);
+      if (btnDetails == null) {
         break missingId;
       }
 
-      id = R.id.announcementDate;
-      TextView announcementDate = ViewBindings.findChildViewById(rootView, id);
-      if (announcementDate == null) {
+      id = R.id.cardPriority;
+      MaterialCardView cardPriority = ViewBindings.findChildViewById(rootView, id);
+      if (cardPriority == null) {
         break missingId;
       }
 
-      id = R.id.announcementTitle;
-      TextView announcementTitle = ViewBindings.findChildViewById(rootView, id);
-      if (announcementTitle == null) {
+      id = R.id.cardType;
+      MaterialCardView cardType = ViewBindings.findChildViewById(rootView, id);
+      if (cardType == null) {
         break missingId;
       }
 
-      id = R.id.announcementType;
-      TextView announcementType = ViewBindings.findChildViewById(rootView, id);
-      if (announcementType == null) {
+      id = R.id.tvAuthor;
+      TextView tvAuthor = ViewBindings.findChildViewById(rootView, id);
+      if (tvAuthor == null) {
         break missingId;
       }
 
-      return new ItemAnnouncementBinding((MaterialCardView) rootView, announcementContent,
-          announcementDate, announcementTitle, announcementType);
+      id = R.id.tvContent;
+      TextView tvContent = ViewBindings.findChildViewById(rootView, id);
+      if (tvContent == null) {
+        break missingId;
+      }
+
+      id = R.id.tvDate;
+      TextView tvDate = ViewBindings.findChildViewById(rootView, id);
+      if (tvDate == null) {
+        break missingId;
+      }
+
+      id = R.id.tvExpires;
+      TextView tvExpires = ViewBindings.findChildViewById(rootView, id);
+      if (tvExpires == null) {
+        break missingId;
+      }
+
+      id = R.id.tvPriority;
+      TextView tvPriority = ViewBindings.findChildViewById(rootView, id);
+      if (tvPriority == null) {
+        break missingId;
+      }
+
+      id = R.id.tvTime;
+      TextView tvTime = ViewBindings.findChildViewById(rootView, id);
+      if (tvTime == null) {
+        break missingId;
+      }
+
+      id = R.id.tvTitle;
+      TextView tvTitle = ViewBindings.findChildViewById(rootView, id);
+      if (tvTitle == null) {
+        break missingId;
+      }
+
+      id = R.id.tvType;
+      TextView tvType = ViewBindings.findChildViewById(rootView, id);
+      if (tvType == null) {
+        break missingId;
+      }
+
+      return new ItemAnnouncementBinding((MaterialCardView) rootView, btnDetails, cardPriority,
+          cardType, tvAuthor, tvContent, tvDate, tvExpires, tvPriority, tvTime, tvTitle, tvType);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

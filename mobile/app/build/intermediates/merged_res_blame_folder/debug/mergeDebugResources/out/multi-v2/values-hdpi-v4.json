@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "edu.cit.natividad.labangonline.app-mergeDebugResources-35:/values-hdpi-v4/values-hdpi-v4.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Moka\\.gradle\\caches\\8.9\\transforms\\6f6768a9471ed96c1f7c0cd286fe3b2f\\transformed\\appcompat-1.6.1\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    }
+                }
+            ]
+        }
+    ]
+}

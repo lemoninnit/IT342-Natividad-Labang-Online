@@ -4,12 +4,12 @@ package edu.cit.natividad.labangonline.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.google.android.material.button.MaterialButton;
@@ -22,7 +22,13 @@ import java.lang.String;
 
 public final class ActivityLoginBinding implements ViewBinding {
   @NonNull
-  private final CoordinatorLayout rootView;
+  private final LinearLayout rootView;
+
+  @NonNull
+  public final LinearLayout authHeader;
+
+  @NonNull
+  public final ImageView btnLogoBack;
 
   @NonNull
   public final LinearLayout errorBanner;
@@ -51,13 +57,15 @@ public final class ActivityLoginBinding implements ViewBinding {
   @NonNull
   public final TextInputLayout usernameLayout;
 
-  private ActivityLoginBinding(@NonNull CoordinatorLayout rootView,
-      @NonNull LinearLayout errorBanner, @NonNull TextView errorMessage,
-      @NonNull ProgressBar loadingIndicator, @NonNull MaterialButton loginButton,
-      @NonNull TextInputEditText passwordInput, @NonNull TextInputLayout passwordLayout,
-      @NonNull TextView registerButton, @NonNull TextInputEditText usernameInput,
-      @NonNull TextInputLayout usernameLayout) {
+  private ActivityLoginBinding(@NonNull LinearLayout rootView, @NonNull LinearLayout authHeader,
+      @NonNull ImageView btnLogoBack, @NonNull LinearLayout errorBanner,
+      @NonNull TextView errorMessage, @NonNull ProgressBar loadingIndicator,
+      @NonNull MaterialButton loginButton, @NonNull TextInputEditText passwordInput,
+      @NonNull TextInputLayout passwordLayout, @NonNull TextView registerButton,
+      @NonNull TextInputEditText usernameInput, @NonNull TextInputLayout usernameLayout) {
     this.rootView = rootView;
+    this.authHeader = authHeader;
+    this.btnLogoBack = btnLogoBack;
     this.errorBanner = errorBanner;
     this.errorMessage = errorMessage;
     this.loadingIndicator = loadingIndicator;
@@ -71,7 +79,7 @@ public final class ActivityLoginBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public CoordinatorLayout getRoot() {
+  public LinearLayout getRoot() {
     return rootView;
   }
 
@@ -96,6 +104,18 @@ public final class ActivityLoginBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.authHeader;
+      LinearLayout authHeader = ViewBindings.findChildViewById(rootView, id);
+      if (authHeader == null) {
+        break missingId;
+      }
+
+      id = R.id.btnLogoBack;
+      ImageView btnLogoBack = ViewBindings.findChildViewById(rootView, id);
+      if (btnLogoBack == null) {
+        break missingId;
+      }
+
       id = R.id.errorBanner;
       LinearLayout errorBanner = ViewBindings.findChildViewById(rootView, id);
       if (errorBanner == null) {
@@ -150,9 +170,9 @@ public final class ActivityLoginBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityLoginBinding((CoordinatorLayout) rootView, errorBanner, errorMessage,
-          loadingIndicator, loginButton, passwordInput, passwordLayout, registerButton,
-          usernameInput, usernameLayout);
+      return new ActivityLoginBinding((LinearLayout) rootView, authHeader, btnLogoBack, errorBanner,
+          errorMessage, loadingIndicator, loginButton, passwordInput, passwordLayout,
+          registerButton, usernameInput, usernameLayout);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -5,7 +5,7 @@ pluginManagement {
         mavenCentral()
     }
     plugins {
-        id 'com.android.application' version '8.0.0'
+        id 'com.android.application' version '8.3.0'
         id 'org.jetbrains.kotlin.android' version '1.8.22'
         id 'org.jetbrains.kotlin.plugin.parcelize' version '1.8.22'
     }

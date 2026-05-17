@@ -112,8 +112,12 @@ export default function ReportHistory({ reports = [], onRefresh }) {
         </div>
         <div className="summary-card">
           <span className="summary-label">REVIEWED:</span>
-          <span className="summary-value">{reports.filter(r => r.status === 'REVIEWED').length}</span>
+          <span className="summary-value">{reports.filter(r => r.status === 'REVIEWED' || r.status === 'RESOLVED').length}</span>
         </div>
+      </div>
+      <div className="rejected-summary-card">
+        <span className="summary-label">REJECTED:</span>
+        <span className="summary-value">{reports.filter(r => r.status === 'REJECTED').length}</span>
       </div>
     </div>
   )

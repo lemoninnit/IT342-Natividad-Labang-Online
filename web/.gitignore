@@ -1,32 +1,34 @@
 # =========================
-# Android / Mobile (IMPORTANT)
+# Android
 # =========================
 *.apk
 *.aab
 *.dex
 *.class
-
-**/build/
-build/
-*/build/
+*.hprof
 
 .gradle/
 **/.gradle/
 
+build/
+**/build/
+
 local.properties
 
-# Android Studio
 .idea/
 *.iml
-*.hprof
 
-# Generated files
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Generated
 navigation.xml
 outputs/
 intermediates/
 
 # =========================
-# Node / Web (if you have frontend)
+# Web / Node
 # =========================
 node_modules/
 dist/
@@ -41,15 +43,15 @@ logs/
 npm-debug.log*
 yarn-debug.log*
 pnpm-debug.log*
-lerna-debug.log*
-
-# =========================
-# OS Files
-# =========================
-.DS_Store
 
 # =========================
 # Editor
 # =========================
 .vscode/
 !.vscode/extensions.json
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db

@@ -8,11 +8,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
 import edu.cit.natividad.labangonline.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -24,6 +27,21 @@ public final class ActivityAnnouncementBinding implements ViewBinding {
 
   @NonNull
   public final LinearLayout bottomNav;
+
+  @NonNull
+  public final MaterialCardView btnFilterAlerts;
+
+  @NonNull
+  public final MaterialCardView btnFilterAll;
+
+  @NonNull
+  public final MaterialCardView btnFilterEvents;
+
+  @NonNull
+  public final MaterialCardView btnFilterGeneral;
+
+  @NonNull
+  public final MaterialCardView btnFilterMaintenance;
 
   @NonNull
   public final ImageView btnLogout;
@@ -44,31 +62,70 @@ public final class ActivityAnnouncementBinding implements ViewBinding {
   public final MaterialButton btnRefresh;
 
   @NonNull
+  public final MaterialCardView cardEmptyState;
+
+  @NonNull
   public final EditText etSearch;
 
   @NonNull
   public final ImageView ivSearchIcon;
 
   @NonNull
+  public final RecyclerView rvAnnouncements;
+
+  @NonNull
   public final LinearLayout topBar;
 
+  @NonNull
+  public final TextView tvFilterAlerts;
+
+  @NonNull
+  public final TextView tvFilterAll;
+
+  @NonNull
+  public final TextView tvFilterEvents;
+
+  @NonNull
+  public final TextView tvFilterGeneral;
+
+  @NonNull
+  public final TextView tvFilterMaintenance;
+
   private ActivityAnnouncementBinding(@NonNull RelativeLayout rootView,
-      @NonNull LinearLayout bottomNav, @NonNull ImageView btnLogout,
-      @NonNull LinearLayout btnNavNews, @NonNull LinearLayout btnNavProfile,
-      @NonNull LinearLayout btnNavReport, @NonNull LinearLayout btnNavRequests,
-      @NonNull MaterialButton btnRefresh, @NonNull EditText etSearch,
-      @NonNull ImageView ivSearchIcon, @NonNull LinearLayout topBar) {
+      @NonNull LinearLayout bottomNav, @NonNull MaterialCardView btnFilterAlerts,
+      @NonNull MaterialCardView btnFilterAll, @NonNull MaterialCardView btnFilterEvents,
+      @NonNull MaterialCardView btnFilterGeneral, @NonNull MaterialCardView btnFilterMaintenance,
+      @NonNull ImageView btnLogout, @NonNull LinearLayout btnNavNews,
+      @NonNull LinearLayout btnNavProfile, @NonNull LinearLayout btnNavReport,
+      @NonNull LinearLayout btnNavRequests, @NonNull MaterialButton btnRefresh,
+      @NonNull MaterialCardView cardEmptyState, @NonNull EditText etSearch,
+      @NonNull ImageView ivSearchIcon, @NonNull RecyclerView rvAnnouncements,
+      @NonNull LinearLayout topBar, @NonNull TextView tvFilterAlerts, @NonNull TextView tvFilterAll,
+      @NonNull TextView tvFilterEvents, @NonNull TextView tvFilterGeneral,
+      @NonNull TextView tvFilterMaintenance) {
     this.rootView = rootView;
     this.bottomNav = bottomNav;
+    this.btnFilterAlerts = btnFilterAlerts;
+    this.btnFilterAll = btnFilterAll;
+    this.btnFilterEvents = btnFilterEvents;
+    this.btnFilterGeneral = btnFilterGeneral;
+    this.btnFilterMaintenance = btnFilterMaintenance;
     this.btnLogout = btnLogout;
     this.btnNavNews = btnNavNews;
     this.btnNavProfile = btnNavProfile;
     this.btnNavReport = btnNavReport;
     this.btnNavRequests = btnNavRequests;
     this.btnRefresh = btnRefresh;
+    this.cardEmptyState = cardEmptyState;
     this.etSearch = etSearch;
     this.ivSearchIcon = ivSearchIcon;
+    this.rvAnnouncements = rvAnnouncements;
     this.topBar = topBar;
+    this.tvFilterAlerts = tvFilterAlerts;
+    this.tvFilterAll = tvFilterAll;
+    this.tvFilterEvents = tvFilterEvents;
+    this.tvFilterGeneral = tvFilterGeneral;
+    this.tvFilterMaintenance = tvFilterMaintenance;
   }
 
   @Override
@@ -101,6 +158,36 @@ public final class ActivityAnnouncementBinding implements ViewBinding {
       id = R.id.bottomNav;
       LinearLayout bottomNav = ViewBindings.findChildViewById(rootView, id);
       if (bottomNav == null) {
+        break missingId;
+      }
+
+      id = R.id.btnFilterAlerts;
+      MaterialCardView btnFilterAlerts = ViewBindings.findChildViewById(rootView, id);
+      if (btnFilterAlerts == null) {
+        break missingId;
+      }
+
+      id = R.id.btnFilterAll;
+      MaterialCardView btnFilterAll = ViewBindings.findChildViewById(rootView, id);
+      if (btnFilterAll == null) {
+        break missingId;
+      }
+
+      id = R.id.btnFilterEvents;
+      MaterialCardView btnFilterEvents = ViewBindings.findChildViewById(rootView, id);
+      if (btnFilterEvents == null) {
+        break missingId;
+      }
+
+      id = R.id.btnFilterGeneral;
+      MaterialCardView btnFilterGeneral = ViewBindings.findChildViewById(rootView, id);
+      if (btnFilterGeneral == null) {
+        break missingId;
+      }
+
+      id = R.id.btnFilterMaintenance;
+      MaterialCardView btnFilterMaintenance = ViewBindings.findChildViewById(rootView, id);
+      if (btnFilterMaintenance == null) {
         break missingId;
       }
 
@@ -140,6 +227,12 @@ public final class ActivityAnnouncementBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.cardEmptyState;
+      MaterialCardView cardEmptyState = ViewBindings.findChildViewById(rootView, id);
+      if (cardEmptyState == null) {
+        break missingId;
+      }
+
       id = R.id.etSearch;
       EditText etSearch = ViewBindings.findChildViewById(rootView, id);
       if (etSearch == null) {
@@ -152,15 +245,53 @@ public final class ActivityAnnouncementBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.rvAnnouncements;
+      RecyclerView rvAnnouncements = ViewBindings.findChildViewById(rootView, id);
+      if (rvAnnouncements == null) {
+        break missingId;
+      }
+
       id = R.id.topBar;
       LinearLayout topBar = ViewBindings.findChildViewById(rootView, id);
       if (topBar == null) {
         break missingId;
       }
 
-      return new ActivityAnnouncementBinding((RelativeLayout) rootView, bottomNav, btnLogout,
-          btnNavNews, btnNavProfile, btnNavReport, btnNavRequests, btnRefresh, etSearch,
-          ivSearchIcon, topBar);
+      id = R.id.tvFilterAlerts;
+      TextView tvFilterAlerts = ViewBindings.findChildViewById(rootView, id);
+      if (tvFilterAlerts == null) {
+        break missingId;
+      }
+
+      id = R.id.tvFilterAll;
+      TextView tvFilterAll = ViewBindings.findChildViewById(rootView, id);
+      if (tvFilterAll == null) {
+        break missingId;
+      }
+
+      id = R.id.tvFilterEvents;
+      TextView tvFilterEvents = ViewBindings.findChildViewById(rootView, id);
+      if (tvFilterEvents == null) {
+        break missingId;
+      }
+
+      id = R.id.tvFilterGeneral;
+      TextView tvFilterGeneral = ViewBindings.findChildViewById(rootView, id);
+      if (tvFilterGeneral == null) {
+        break missingId;
+      }
+
+      id = R.id.tvFilterMaintenance;
+      TextView tvFilterMaintenance = ViewBindings.findChildViewById(rootView, id);
+      if (tvFilterMaintenance == null) {
+        break missingId;
+      }
+
+      return new ActivityAnnouncementBinding((RelativeLayout) rootView, bottomNav, btnFilterAlerts,
+          btnFilterAll, btnFilterEvents, btnFilterGeneral, btnFilterMaintenance, btnLogout,
+          btnNavNews, btnNavProfile, btnNavReport, btnNavRequests, btnRefresh, cardEmptyState,
+          etSearch, ivSearchIcon, rvAnnouncements, topBar, tvFilterAlerts, tvFilterAll,
+          tvFilterEvents, tvFilterGeneral, tvFilterMaintenance);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

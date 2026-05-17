@@ -191,8 +191,12 @@ export default function RequestHistory({ refreshTrigger, onSelectRequest }) {
         </div>
         <div className="summary-card">
           <span className="summary-label">COMPLETED:</span>
-          <span className="summary-value">{requests.filter(r => r.status === 'DONE' || r.status === 'PAID').length}</span>
+          <span className="summary-value">{requests.filter(r => r.status === 'DONE' || r.status === 'PAID' || r.status === 'APPROVED').length}</span>
         </div>
+      </div>
+      <div className="rejected-summary-card">
+        <span className="summary-label">REJECTED:</span>
+        <span className="summary-value">{requests.filter(r => r.status === 'REJECTED').length}</span>
       </div>
     </div>
   )
