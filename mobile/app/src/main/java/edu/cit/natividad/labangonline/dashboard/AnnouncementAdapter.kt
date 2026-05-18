@@ -20,10 +20,10 @@ class AnnouncementAdapter(
 
         val announcement = getItem(position) ?: return view
 
-        val titleView = view.findViewById<TextView>(R.id.announcementTitle)
-        val typeView = view.findViewById<TextView>(R.id.announcementType)
-        val contentView = view.findViewById<TextView>(R.id.announcementContent)
-        val dateView = view.findViewById<TextView>(R.id.announcementDate)
+        val titleView = view.findViewById<TextView>(R.id.tvTitle)
+        val typeView = view.findViewById<TextView>(R.id.tvType)
+        val contentView = view.findViewById<TextView>(R.id.tvContent)
+        val dateView = view.findViewById<TextView>(R.id.tvDate)
 
         titleView.text = announcement.title
         typeView.text = announcement.type

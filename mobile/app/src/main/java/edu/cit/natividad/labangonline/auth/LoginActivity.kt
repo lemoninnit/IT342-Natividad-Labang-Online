@@ -11,7 +11,8 @@ import com.google.android.material.snackbar.Snackbar
 import edu.cit.natividad.labangonline.R
 import edu.cit.natividad.labangonline.api.ApiClient
 import edu.cit.natividad.labangonline.api.models.LoginRequest
-import edu.cit.natividad.labangonline.dashboard.DashboardActivity
+import edu.cit.natividad.labangonline.api.UserManager
+import edu.cit.natividad.labangonline.dashboard.ProfileActivity
 import edu.cit.natividad.labangonline.databinding.ActivityLoginBinding
 import kotlinx.coroutines.launch
 
@@ -36,14 +37,41 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setupClickListeners() {
+        binding.btnLogoBack.setOnClickListener {
+            val intent = Intent(this@LoginActivity, edu.cit.natividad.labangonline.LabangOnlineApplication::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            startActivity(intent)
+            overridePendingTransition(0, 0)
+            finish()
+        }
+
         binding.loginButton.setOnClickListener {
             handleLogin()
         }
 
-        binding.registerButton.setOnClickListener {
-            startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
-            overridePendingTransition(0, 0)
+        // Standardize bottom link with SpannableString to prevent ugly text wraps/clipping
+        val registerText = "Don't have an account? Register here"
+        val spannable = android.text.SpannableString(registerText)
+        val greenColor = ContextCompat.getColor(this, R.color.labang_green)
+        val clickSpan = object : android.text.style.ClickableSpan() {
+            override fun onClick(widget: View) {
+                startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
+                overridePendingTransition(0, 0)
+            }
+            override fun updateDrawState(ds: android.text.TextPaint) {
+                super.updateDrawState(ds)
+                ds.color = greenColor
+                ds.isUnderlineText = false
+                ds.isFakeBoldText = true
+            }
         }
+        val startIdx = registerText.indexOf("Register here")
+        if (startIdx != -1) {
+            spannable.setSpan(clickSpan, startIdx, registerText.length, android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        }
+        binding.registerButton.text = spannable
+        binding.registerButton.movementMethod = android.text.method.LinkMovementMethod.getInstance()
+        binding.registerButton.highlightColor = android.graphics.Color.TRANSPARENT
     }
 
     private fun handleLogin() {
@@ -74,11 +102,21 @@ class LoginActivity : AppCompatActivity() {
 
                     // Store JWT Token and User Data securely
                     val fullName = "${user.firstName} ${user.lastName}".trim()
-                    saveSession(loginResponse.token, user.username, user.role, fullName)
+                    saveSession(loginResponse.token, user.id, user.username, user.role, fullName)
+
+                    // Preload the full profile in the background before launching the profile screen
+                    try {
+                        val profileResponse = ApiClient.getUserService().getUserProfile(user.id)
+                        if (profileResponse.isSuccessful && profileResponse.body() != null) {
+                            UserManager.setCurrentUser(profileResponse.body()!!, this@LoginActivity)
+                        }
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
 
                     Snackbar.make(binding.root, "Login successful", Snackbar.LENGTH_SHORT).show()
                     
-                    val nextIntent = Intent(this@LoginActivity, DashboardActivity::class.java).apply {
+                    val nextIntent = Intent(this@LoginActivity, ProfileActivity::class.java).apply {
                         putExtra("USER_NAME", fullName)
                     }
                     
@@ -121,10 +159,11 @@ class LoginActivity : AppCompatActivity() {
         return isValid
     }
 
-    private fun saveSession(token: String, username: String, role: String, fullName: String) {
+    private fun saveSession(token: String, userId: Long, username: String, role: String, fullName: String) {
         val sharedPref = getSharedPreferences("labangonline_prefs", Context.MODE_PRIVATE)
         with(sharedPref.edit()) {
             putString("jwt_token", token)
+            putLong("user_id", userId)
             putString("username", username)
             putString("role", role)
             putString("full_name", fullName)

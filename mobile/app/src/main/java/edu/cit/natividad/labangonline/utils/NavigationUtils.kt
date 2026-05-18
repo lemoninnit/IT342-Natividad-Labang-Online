@@ -6,10 +6,12 @@ import android.content.Intent
 import android.view.View
 import edu.cit.natividad.labangonline.R
 import edu.cit.natividad.labangonline.announcement.AnnouncementActivity
-import edu.cit.natividad.labangonline.dashboard.DashboardActivity
+import edu.cit.natividad.labangonline.dashboard.ProfileActivity
 import edu.cit.natividad.labangonline.report.ReportActivity
 import edu.cit.natividad.labangonline.requests.RequestsActivity
 import edu.cit.natividad.labangonline.auth.LoginActivity
+
+import edu.cit.natividad.labangonline.api.UserManager
 
 fun Activity.setupBottomNavigation() {
     findViewById<View>(R.id.btnNavNews)?.setOnClickListener {
@@ -21,8 +23,8 @@ fun Activity.setupBottomNavigation() {
         }
     }
     findViewById<View>(R.id.btnNavProfile)?.setOnClickListener {
-        if (this !is DashboardActivity) {
-            startActivity(Intent(this, DashboardActivity::class.java).apply {
+        if (this !is ProfileActivity) {
+            startActivity(Intent(this, ProfileActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             })
             overridePendingTransition(0, 0)
@@ -47,19 +49,33 @@ fun Activity.setupBottomNavigation() {
 
     // Top Bar Logout Button
     findViewById<View>(R.id.btnLogout)?.setOnClickListener {
-        com.google.android.material.dialog.MaterialAlertDialogBuilder(this, R.style.Theme_LabangOnline_DatePicker)
-            .setTitle("Confirm Logout")
-            .setMessage("Are you sure you want to log out?")
-            .setPositiveButton("Logout") { _, _ ->
-                val sharedPref = getSharedPreferences("labangonline_prefs", Context.MODE_PRIVATE)
-                sharedPref.edit().clear().apply()
-                startActivity(Intent(this, LoginActivity::class.java).apply {
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                })
-                overridePendingTransition(0, 0)
-                finishAffinity()
-            }
-            .setNegativeButton("Cancel", null)
-            .show()
+        showLogoutDialog()
     }
+}
+
+fun Activity.showLogoutDialog() {
+    val dialogView = layoutInflater.inflate(R.layout.dialog_logout, null)
+    val dialog = android.app.AlertDialog.Builder(this)
+        .setView(dialogView)
+        .create()
+
+    dialog.window?.setBackgroundDrawable(android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT))
+
+    dialogView.findViewById<View>(R.id.btnCancelLogout).setOnClickListener {
+        dialog.dismiss()
+    }
+
+    dialogView.findViewById<View>(R.id.btnConfirmLogout).setOnClickListener {
+        dialog.dismiss()
+        val sharedPref = getSharedPreferences("labangonline_prefs", Context.MODE_PRIVATE)
+        sharedPref.edit().clear().apply()
+        UserManager.clear(this)
+        startActivity(Intent(this, LoginActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        })
+        overridePendingTransition(0, 0)
+        finishAffinity()
+    }
+
+    dialog.show()
 }

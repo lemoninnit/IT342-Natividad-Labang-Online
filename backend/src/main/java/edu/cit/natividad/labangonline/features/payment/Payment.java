@@ -10,12 +10,17 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Index;
 import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "payments")
+@Table(name = "payments", indexes = {
+    @Index(name = "idx_payments_cert_req_id", columnList = "certificate_request_id"),
+    @Index(name = "idx_payments_status", columnList = "status"),
+    @Index(name = "idx_payments_created_at", columnList = "created_at DESC")
+})
 public class Payment {
 
   public enum PaymentMethod {

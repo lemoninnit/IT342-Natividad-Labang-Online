@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Layout from "../../shared/Layout";
 import "./Login.css";
+import { prefetchUserData } from "../../lib/api";
 
 // 4.1 Login Form
 export default function Login() {
@@ -91,6 +92,13 @@ export default function Login() {
         loginTime: new Date().toISOString(),
       };
       sessionStorage.setItem("labangonline_session", JSON.stringify(sessionData));
+
+      // Trigger background pre-fetching for user/admin data
+      try {
+        await prefetchUserData(user.id, user.role.toUpperCase() === "ADMIN");
+      } catch (err) {
+        console.warn("Background prefetch failed:", err);
+      }
 
       // Redirect based on role
       if (user.role.toUpperCase() === "ADMIN") {

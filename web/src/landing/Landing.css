@@ -42,6 +42,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -81,14 +82,15 @@
 
 .hero-actions {
   display: flex;
-  gap: 24px; /* Changed from 16px to 24px */
+  gap: 24px;
+  /* Changed from 16px to 24px */
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 24px;
 }
 
 .btn {
-  padding: 14px 28px;
+  padding: 14px 20px;
   border-radius: 10px;
   border: none;
   font-size: 15px;
@@ -99,7 +101,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 160px;
+  min-width: 100px;
 }
 
 .btn-primary {
@@ -444,11 +446,11 @@
   .hero-title {
     font-size: 44px;
   }
-  
+
   .quick-actions-header h2 {
     font-size: 32px;
   }
-  
+
   .about h2 {
     font-size: 32px;
   }

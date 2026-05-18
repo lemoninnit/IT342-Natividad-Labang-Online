@@ -7,16 +7,24 @@ import './FileReportPage.css'
 
 export default function FileReportPage() {
   const [currentView, setCurrentView] = useState('form') // 'form', 'history'
-  const [reports, setReports] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [reports, setReports] = useState(() => {
+    const cached = localStorage.getItem('cached_user_reports');
+    return cached ? JSON.parse(cached) : [];
+  });
+  const [loading, setLoading] = useState(() => {
+    return !localStorage.getItem('cached_user_reports');
+  });
   const [error, setError] = useState('')
   const [session, setSession] = useState(null)
 
-  const loadReports = async () => {
-    setLoading(true)
+  const loadReports = async (showLoader = false) => {
+    if (showLoader || !localStorage.getItem('cached_user_reports')) {
+      setLoading(true);
+    }
     try {
       const response = await reportAPI.getUserReports()
       setReports(response.data)
+      localStorage.setItem('cached_user_reports', JSON.stringify(response.data))
     } catch (err) {
       console.error('Failed to load reports:', err)
       setError('Failed to load your reports history.')
@@ -31,7 +39,7 @@ export default function FileReportPage() {
       setSession(JSON.parse(sessionData));
     }
     
-    loadReports()
+    loadReports(false)
   }, []);
 
   const handleReportSubmitted = (newReport) => {

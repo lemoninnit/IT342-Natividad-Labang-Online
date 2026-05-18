@@ -8,6 +8,8 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.Cacheable;
 
 import edu.cit.natividad.labangonline.features.payment.PaymentDTO;
 import edu.cit.natividad.labangonline.features.payment.PaymentVerificationDTO;
@@ -22,12 +24,34 @@ public class PaymentService {
 
   private final PaymentRepository paymentRepository;
   private final CertificateRequestRepository certificateRequestRepository;
+  private final CacheManager cacheManager;
 
   public PaymentService(
       PaymentRepository paymentRepository,
-      CertificateRequestRepository certificateRequestRepository) {
+      CertificateRequestRepository certificateRequestRepository,
+      CacheManager cacheManager) {
     this.paymentRepository = paymentRepository;
     this.certificateRequestRepository = certificateRequestRepository;
+    this.cacheManager = cacheManager;
+  }
+
+  private void evictCaches(Long userId, Long certificateRequestId) {
+    if (cacheManager == null) return;
+    
+    org.springframework.cache.Cache paymentCache = cacheManager.getCache("paymentByCertRequest");
+    if (paymentCache != null && certificateRequestId != null) {
+      paymentCache.evict(certificateRequestId);
+    }
+    
+    org.springframework.cache.Cache userRequestsCache = cacheManager.getCache("userRequests");
+    if (userRequestsCache != null && userId != null) {
+      userRequestsCache.evict(userId);
+    }
+    
+    org.springframework.cache.Cache allRequestsCache = cacheManager.getCache("allCertificateRequests");
+    if (allRequestsCache != null) {
+      allRequestsCache.clear();
+    }
   }
 
   public Payment initiatePayment(Long userId, PaymentDTO dto) {
@@ -54,6 +78,7 @@ public class PaymentService {
     payment.setReferenceNumber(generateReferenceNumber());
 
     Payment saved = paymentRepository.save(payment);
+    evictCaches(userId, dto.getCertificateRequestId());
     return saved;
   }
 
@@ -111,6 +136,7 @@ public class PaymentService {
 
     Payment updated = paymentRepository.save(payment);
     certificateRequestRepository.save(request);
+    evictCaches(request.getUser().getId(), request.getId());
 
     return updated;
   }
@@ -126,7 +152,9 @@ public class PaymentService {
     request.setUpdatedAt(LocalDateTime.now());
 
     certificateRequestRepository.save(request);
-    return paymentRepository.save(payment);
+    Payment savedPayment = paymentRepository.save(payment);
+    evictCaches(request.getUser().getId(), request.getId());
+    return savedPayment;
   }
 
   public Payment rejectPayment(Long paymentId) {
@@ -140,9 +168,12 @@ public class PaymentService {
     request.setUpdatedAt(LocalDateTime.now());
 
     certificateRequestRepository.save(request);
-    return paymentRepository.save(payment);
+    Payment savedPayment = paymentRepository.save(payment);
+    evictCaches(request.getUser().getId(), request.getId());
+    return savedPayment;
   }
 
+  @Cacheable(value = "paymentByCertRequest", key = "#certificateRequestId")
   public Payment getPaymentByCertificateRequest(Long certificateRequestId, Long userId) {
     CertificateRequest request =
         certificateRequestRepository.findById(certificateRequestId)
@@ -169,6 +200,7 @@ public class PaymentService {
 
     Payment updated = paymentRepository.save(payment);
     certificateRequestRepository.save(payment.getCertificateRequest());
+    evictCaches(userId, payment.getCertificateRequest().getId());
 
     return updated;
   }

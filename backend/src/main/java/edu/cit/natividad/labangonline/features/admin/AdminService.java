@@ -9,6 +9,9 @@ import edu.cit.natividad.labangonline.features.complaint.ComplaintRepository;
 import edu.cit.natividad.labangonline.features.user.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Caching;
 
 import java.util.Base64;
 import java.util.List;
@@ -35,10 +38,15 @@ public class AdminService {
         return userRepository.findByResidentConfirmedFalse();
     }
 
+    @Cacheable(value = "allUsers")
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
+    @Caching(evict = {
+        @CacheEvict(value = "allUsers", allEntries = true),
+        @CacheEvict(value = "users", key = "#userId")
+    })
     public User confirmResident(Long userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -54,6 +62,7 @@ public class AdminService {
             .collect(Collectors.toList());
     }
 
+    @Cacheable(value = "allCertificateRequests")
     public List<AdminCertificateRequestResponseDTO> getAllCertificateRequests() {
         return certificateRequestRepository.findAllByOrderByCreatedAtDesc()
             .stream()
@@ -61,6 +70,10 @@ public class AdminService {
             .collect(Collectors.toList());
     }
 
+    @Caching(evict = {
+        @CacheEvict(value = "allCertificateRequests", allEntries = true),
+        @CacheEvict(value = "userRequests", key = "#result.user.id")
+    })
     public AdminCertificateRequestResponseDTO updateCertificateStatus(Long requestId, CertificateRequest.RequestStatus status) {
         CertificateRequest request = certificateRequestRepository.findById(requestId)
                 .orElseThrow(() -> new RuntimeException("Request not found"));
@@ -115,10 +128,15 @@ public class AdminService {
     }
 
     // Complaint Management
+    @Cacheable(value = "allComplaints")
     public List<Complaint> getAllComplaints() {
         return complaintRepository.findAllByOrderByCreatedAtDesc();
     }
 
+    @Caching(evict = {
+        @CacheEvict(value = "allComplaints", allEntries = true),
+        @CacheEvict(value = "userComplaints", key = "#result.user.id")
+    })
     public Complaint updateComplaintStatus(Long complaintId, Complaint.ComplaintStatus status) {
         Complaint complaint = complaintRepository.findById(complaintId)
                 .orElseThrow(() -> new RuntimeException("Complaint not found"));

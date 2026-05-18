@@ -152,3 +152,49 @@ export const authAPI = {
     })
   }
 }
+
+// Client-Side Background Prefetching Utility
+export const prefetchUserData = async (userId, isAdmin = false) => {
+  if (!userId) return;
+  authAPI.setUserId(userId);
+
+  try {
+    const promises = [
+      announcementAPI.getAll().then(res => {
+        localStorage.setItem('cached_announcements', JSON.stringify(res.data));
+      }).catch(err => console.warn('Background prefetch announcements failed:', err)),
+      
+      certificateAPI.getUserRequests().then(res => {
+        localStorage.setItem('cached_user_requests', JSON.stringify(res.data));
+      }).catch(err => console.warn('Background prefetch requests failed:', err)),
+      
+      reportAPI.getUserReports().then(res => {
+        localStorage.setItem('cached_user_reports', JSON.stringify(res.data));
+      }).catch(err => console.warn('Background prefetch reports failed:', err)),
+      
+      authAPI.getProfile(userId).then(res => {
+        localStorage.setItem('cached_user_profile', JSON.stringify(res.data));
+      }).catch(err => console.warn('Background prefetch profile failed:', err))
+    ];
+
+    if (isAdmin) {
+      promises.push(
+        adminAPI.getAllUsers().then(res => {
+          localStorage.setItem('cached_admin_users', JSON.stringify(res.data));
+        }).catch(err => console.warn('Background prefetch admin users failed:', err)),
+        
+        adminAPI.getAllCertificates().then(res => {
+          localStorage.setItem('cached_admin_certificates', JSON.stringify(res.data));
+        }).catch(err => console.warn('Background prefetch admin certificates failed:', err)),
+        
+        adminAPI.getAllComplaints().then(res => {
+          localStorage.setItem('cached_admin_complaints', JSON.stringify(res.data));
+        }).catch(err => console.warn('Background prefetch admin complaints failed:', err))
+      );
+    }
+
+    await Promise.all(promises);
+  } catch (err) {
+    console.warn('Background prefetching encountered errors:', err);
+  }
+};

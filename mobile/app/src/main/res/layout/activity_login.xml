@@ -1,30 +1,86 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_primary"
+    android:orientation="vertical"
+    android:background="#10131a"
     tools:context=".auth.LoginActivity">
+
+    <!-- Pinned Header Component -->
+    <LinearLayout
+        android:id="@+id/authHeader"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:background="#10131a"
+        android:elevation="4dp">
+
+        <ImageView
+            android:id="@+id/btnLogoBack"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/logo"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LabangOnline"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#54e98a"
+            android:layout_marginStart="12dp" />
+    </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
             android:padding="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:layout_marginStart="4dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sign In"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:letterSpacing="-0.02" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Welcome to LabangOnline"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginTop="6dp" />
+            </LinearLayout>
 
             <!-- ── Login Card ── -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardBackgroundColor="@color/bg_card"
-                app:cardCornerRadius="20dp"
+                app:cardCornerRadius="16dp"
                 app:cardElevation="0dp"
                 app:strokeWidth="1dp"
                 app:strokeColor="#2d3748">
@@ -33,34 +89,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="32dp">
+                    android:padding="24dp">
 
-                    <!-- Header Section (Matching Web Header) -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:background="#1a2235"
-                        android:padding="20dp"
-                        android:layout_marginBottom="32dp"
-                        android:gravity="center_vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Sign In"
-                            android:textSize="24sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/text_primary" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Welcome back to LabangOnline"
-                            android:textSize="14sp"
-                            android:textColor="@color/text_secondary"
-                            android:layout_marginStart="12dp" />
-                    </LinearLayout>
 
                     <!-- ── Error Message Banner ── -->
                     <LinearLayout
@@ -127,7 +157,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="Enter your username"
-                                android:textColor="@color/text_primary"
+                                android:textColor="@android:color/white"
+                                android:textColorHint="@color/text_muted"
                                 android:padding="16dp"
                                 android:inputType="text"
                                 android:maxLines="1" />
@@ -172,7 +203,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="Enter your password"
-                                android:textColor="@color/text_primary"
+                                android:textColor="@android:color/white"
+                                android:textColorHint="@color/text_muted"
                                 android:padding="16dp"
                                 android:inputType="textPassword"
                                 android:maxLines="1" />
@@ -226,32 +258,21 @@
                     </LinearLayout>
 
                     <!-- Register Link -->
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/registerButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Don't have an account? "
-                            android:textColor="@color/text_secondary"
-                            android:textSize="14sp" />
-                        <TextView
-                            android:id="@+id/registerButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Register here"
-                            android:textColor="@color/labang_green"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:clickable="true"
-                            android:focusable="true" />
-                    </LinearLayout>
+                        android:text="Don't have an account? Register here"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="8dp" />
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

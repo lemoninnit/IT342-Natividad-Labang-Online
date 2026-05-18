@@ -4,6 +4,12 @@ plugins {
     id 'org.jetbrains.kotlin.plugin.parcelize'
 }
 
+// Load local.properties for secure API URL configuration
+Properties properties = new Properties()
+if (project.rootProject.file('local.properties').canRead()) {
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+}
+
 android {
     namespace "edu.cit.natividad.labangonline"
     compileSdk 34
@@ -15,6 +21,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        
+        // Expose API_URL dynamically (falls back to localhost emulator IP if not set)
+        buildConfigField "String", "API_URL", "\"${properties.getProperty('api.url', 'http://10.0.2.2:8080/api/')}\""
     }
 
     buildTypes {
@@ -32,6 +41,7 @@ android {
     }
     buildFeatures {
         viewBinding true
+        buildConfig true
     }
 }
 

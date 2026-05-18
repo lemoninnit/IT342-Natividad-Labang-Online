@@ -36,8 +36,8 @@
 
         <ImageView
             android:id="@+id/btnLogout"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:padding="8dp"
             android:src="@drawable/logout"
             app:tint="#54e98a"
@@ -215,26 +215,28 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Notify the Barangay about incidents nor complaints in your area"
-
+                        android:text="Notify the Barangay about incidents or complaints in your area"
                         android:textColor="#bbcbbb"
                         android:textSize="14sp"
                         android:layout_marginTop="4dp" />
                 </LinearLayout>
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnViewReports"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="VIEW MY REPORTS"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="REPORTS"
                     android:textColor="#54e98a"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     app:backgroundTint="@android:color/transparent"
                     app:cornerRadius="8dp"
-                    app:iconTint="#54e98a"
                     app:strokeColor="#54e98a"
                     app:strokeWidth="1dp" />
             </LinearLayout>
+
 
             <!-- Info Note -->
             <com.google.android.material.card.MaterialCardView
@@ -243,7 +245,7 @@
                 android:layout_marginBottom="24dp"
                 app:cardBackgroundColor="#1A2ecc71"
                 app:cardCornerRadius="12dp"
-                app:strokeColor="#3354e98a"
+                app:strokeColor="#1f2937"
                 app:strokeWidth="1dp"
                 app:cardElevation="0dp">
 
@@ -263,7 +265,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Note: Make sure your profile information is complete and accurate before requesting certificates. Processing time is typically 3-5 business days."
+                        android:text="Note: Please provide accurate and detailed information to help the barangay address the issue effectively. Processing time is typically 3-5 business days."
                         android:textColor="#bbcbbb"
                         android:textSize="14sp"
                         android:lineSpacingExtra="4dp" />
@@ -275,7 +277,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardBackgroundColor="#1d2026"
-                app:strokeColor="#3d4a3e"
+                app:strokeColor="#1f2937"
                 app:strokeWidth="1dp"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="0dp"
@@ -291,13 +293,12 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:padding="16dp"
-                        android:background="#32353c"
                         android:gravity="center_vertical">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="INCIDENT DETAILS"
-                            android:textColor="#54e98a"
+                            android:textColor="#bbcbbb"
                             android:textSize="12sp"
                             android:textStyle="bold"
                             android:layout_marginStart="8dp" />
@@ -317,12 +318,13 @@
                             android:textColor="#bbcbbb"
                             android:textSize="12sp"
                             android:layout_marginBottom="4dp" />
-                        
+
+                        <!-- Incident Type / Column Box -->
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                            app:boxStrokeColor="#54e98a"
+                            app:boxStrokeColor="#1f2937"
                             app:boxBackgroundColor="#191c22"
                             app:boxCornerRadiusTopStart="12dp"
                             app:boxCornerRadiusTopEnd="12dp"
@@ -337,7 +339,8 @@
                                 android:inputType="none"
                                 android:textColor="#e1e2eb"
                                 android:padding="16dp"
-                                android:text="Noise Complaint" />
+                                android:text="Noise Complaint"
+                                android:popupBackground="#191c22" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <!-- Date / Time Grid -->
@@ -347,13 +350,14 @@
                             android:orientation="horizontal"
                             android:baselineAligned="false"
                             android:layout_marginBottom="16dp">
-                            
+
                             <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:orientation="vertical"
                                 android:layout_marginEnd="8dp">
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -361,18 +365,18 @@
                                     android:textColor="#bbcbbb"
                                     android:textSize="12sp"
                                     android:layout_marginBottom="4dp" />
+
                                 <EditText
                                     android:id="@+id/etIncidentDate"
                                     android:layout_width="match_parent"
                                     android:layout_height="48dp"
-                                    android:background="@drawable/rounded_edittext"
-                                    android:textColor="#e1e2eb"
-                                    android:textColorHint="#869486"
-                                    android:hint="mm/dd/yyyy"
+                                    android:background="@drawable/bg_input_field"
+                                    android:textColor="#000000"         android:textColorHint="#757575"     android:hint="mm/dd/yyyy"
                                     android:paddingHorizontal="16dp"
-                                    android:inputType="date"
                                     android:focusable="false"
+                                    android:textSize="14sp"
                                     android:clickable="true"/>
+
                             </LinearLayout>
                             
                             <LinearLayout
@@ -392,12 +396,11 @@
                                     android:id="@+id/etIncidentTime"
                                     android:layout_width="match_parent"
                                     android:layout_height="48dp"
-                                    android:background="@drawable/rounded_edittext"
+                                    android:background="@drawable/bg_input_field"
                                     android:textColor="#e1e2eb"
                                     android:textColorHint="#869486"
                                     android:hint="--:-- --"
                                     android:paddingHorizontal="16dp"
-                                    android:inputType="time"
                                     android:focusable="false"
                                     android:clickable="true"/>
                             </LinearLayout>
@@ -415,9 +418,10 @@
                             android:id="@+id/etLocation"
                             android:layout_width="match_parent"
                             android:layout_height="48dp"
-                            android:background="@drawable/rounded_edittext"
+                            android:background="@drawable/bg_input_field"
                             android:textColor="#e1e2eb"
                             android:textColorHint="#869486"
+                            android:textSize="14sp"
                             android:hint="e.g. Purok 4, Near Labangon Market"
                             android:paddingHorizontal="16dp"
                             android:layout_marginBottom="16dp"/>
@@ -435,11 +439,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:minHeight="96dp"
-                            android:background="@drawable/rounded_edittext"
+                            android:background="@drawable/bg_input_field"
                             android:textColor="#e1e2eb"
                             android:textColorHint="#869486"
                             android:hint="Please describe what happened in detail..."
-                            android:padding="16dp"
+                            android:textSize="14sp"                            android:padding="16dp"
                             android:gravity="top|start"
                             android:inputType="textMultiLine"
                             android:layout_marginBottom="16dp"/>
@@ -456,10 +460,11 @@
                             android:id="@+id/etPersonsInvolved"
                             android:layout_width="match_parent"
                             android:layout_height="48dp"
-                            android:background="@drawable/rounded_edittext"
+                            android:background="@drawable/bg_input_field"
                             android:textColor="#e1e2eb"
                             android:textColorHint="#869486"
                             android:hint="Names or descriptions of persons involved"
+                            android:textSize="14sp"
                             android:paddingHorizontal="16dp"
                             android:layout_marginBottom="16dp"/>
 
@@ -476,14 +481,23 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:minHeight="72dp"
-                            android:background="@drawable/rounded_edittext"
+                            android:background="@drawable/bg_input_field"
                             android:textColor="#e1e2eb"
                             android:textColorHint="#869486"
                             android:hint="Any other relevant information..."
+                            android:textSize="14sp"
                             android:padding="16dp"
                             android:gravity="top|start"
                             android:inputType="textMultiLine"
                             android:layout_marginBottom="24dp"/>
+                            
+                        <ProgressBar
+                            android:id="@+id/loadingIndicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:visibility="gone"
+                            android:layout_marginBottom="16dp"/>
 
                         <!-- Action Buttons -->
                         <com.google.android.material.button.MaterialButton
@@ -497,17 +511,6 @@
                             app:cornerRadius="12dp"
                             android:layout_marginBottom="12dp" />
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnCancel"
-                            android:layout_width="match_parent"
-                            android:layout_height="56dp"
-                            android:text="Cancel"
-                            android:textColor="#bbcbbb"
-                            app:backgroundTint="@android:color/transparent"
-                            app:strokeColor="#3d4a3e"
-                            app:strokeWidth="1dp"
-                            app:cornerRadius="12dp" />
-                            
                     </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>

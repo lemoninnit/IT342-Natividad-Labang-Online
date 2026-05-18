@@ -5,6 +5,9 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Caching;
 
 import edu.cit.natividad.labangonline.features.certificate.CertificateRequestDTO;
 import edu.cit.natividad.labangonline.features.certificate.CertificateRequestResponseDTO;
@@ -27,6 +30,10 @@ public class CertificateRequestService {
     this.userRepository = userRepository;
   }
 
+  @Caching(evict = {
+      @CacheEvict(value = "userRequests", key = "#userId"),
+      @CacheEvict(value = "allCertificateRequests", allEntries = true)
+  })
   public CertificateRequestResponseDTO submitCertificateRequest(
       Long userId, CertificateRequestDTO dto) {
     User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
@@ -43,6 +50,7 @@ public class CertificateRequestService {
     return convertToResponseDTO(saved);
   }
 
+  @Cacheable(value = "userRequests", key = "#userId")
   public List<CertificateRequestResponseDTO> getUserRequests(Long userId) {
     return certificateRequestRepository
         .findByUserIdOrderByCreatedAtDesc(userId)
@@ -60,6 +68,10 @@ public class CertificateRequestService {
     return convertToResponseDTO(request);
   }
 
+  @Caching(evict = {
+      @CacheEvict(value = "userRequests", key = "#userId"),
+      @CacheEvict(value = "allCertificateRequests", allEntries = true)
+  })
   public CertificateRequestResponseDTO updateRequestStatus(
       Long requestId, String status, Long userId) {
     CertificateRequest request =

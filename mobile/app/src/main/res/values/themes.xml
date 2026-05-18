@@ -13,6 +13,21 @@
         <item name="android:statusBarColor">@color/bg_primary</item>
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@color/bg_primary</item>
+        <!-- Disable Activity window transition animations -->
+        <item name="android:windowAnimationStyle">@style/Animation.Activity.NoAnimation</item>
+        <!-- Default text and hint colors globally -->
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:textColorHint">@color/text_muted</item>
+    </style>
+
+    <style name="Animation.Activity.NoAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@null</item>
+        <item name="android:windowEnterAnimation">@null</item>
+        <item name="android:windowExitAnimation">@null</item>
     </style>
 
     <!-- MaterialButton styles -->
@@ -55,10 +70,10 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="boxBackgroundColor">@color/bg_input</item>
         <item name="boxBackgroundMode">outline</item>
-        <item name="boxCornerRadiusTopStart">10dp</item>
-        <item name="boxCornerRadiusTopEnd">10dp</item>
-        <item name="boxCornerRadiusBottomStart">10dp</item>
-        <item name="boxCornerRadiusBottomEnd">10dp</item>
+        <item name="boxCornerRadiusTopStart">8dp</item>
+        <item name="boxCornerRadiusTopEnd">8dp</item>
+        <item name="boxCornerRadiusBottomStart">8dp</item>
+        <item name="boxCornerRadiusBottomEnd">8dp</item>
         <item name="hintEnabled">false</item>
         <item name="boxStrokeColor">@color/border_subtle</item>
         <item name="boxStrokeWidth">1dp</item>
@@ -75,8 +90,12 @@
     </style>
 
     <style name="Theme.LabangOnline.DatePicker" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <item name="colorPrimary">@color/labang_green</item>
         <item name="colorAccent">@color/labang_green</item>
         <item name="android:windowBackground">@color/bg_card</item>
-        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorPrimary">#ffffff</item>
+        <item name="android:textColorSecondary">#94a3b8</item>
+        <item name="android:numbersBackgroundColor">#111827</item>
+        <item name="android:numbersTextColor">#ffffff</item>
     </style>
 </resources>

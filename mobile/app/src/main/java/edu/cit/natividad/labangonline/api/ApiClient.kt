@@ -5,12 +5,10 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import edu.cit.natividad.labangonline.BuildConfig
 
 object ApiClient {
-    // Change this to your server's IP address (e.g., "192.168.1.5")
-    // 192.168.1.6 allows physical device to connect over Wi-Fi
-    private const val SERVER_IP = "192.168.1.6" 
-    private const val BASE_URL = "http://$SERVER_IP:8080/api/"
+    private val BASE_URL = BuildConfig.API_URL
 
     private val httpClient = OkHttpClient.Builder()
         .connectTimeout(30, TimeUnit.SECONDS)
@@ -29,5 +27,25 @@ object ApiClient {
 
     fun getAuthService(): AuthApiService {
         return retrofit.create(AuthApiService::class.java)
+    }
+
+    fun getUserService(): UserApiService {
+        return retrofit.create(UserApiService::class.java)
+    }
+
+    fun getCertificateService(): CertificateApiService {
+        return retrofit.create(CertificateApiService::class.java)
+    }
+
+    fun getPaymentService(): PaymentApiService {
+        return retrofit.create(PaymentApiService::class.java)
+    }
+
+    fun getComplaintService(): ComplaintApiService {
+        return retrofit.create(ComplaintApiService::class.java)
+    }
+
+    fun getAnnouncementService(): AnnouncementApiService {
+        return retrofit.create(AnnouncementApiService::class.java)
     }
 }

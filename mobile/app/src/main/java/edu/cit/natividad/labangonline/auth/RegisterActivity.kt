@@ -32,8 +32,37 @@ class RegisterActivity : AppCompatActivity() {
         setupDatePicker()
         setupRealTimeValidation()
 
+        binding.btnLogoBack.setOnClickListener {
+            val intent = Intent(this@RegisterActivity, edu.cit.natividad.labangonline.LabangOnlineApplication::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            startActivity(intent)
+            overridePendingTransition(0, 0)
+            finish()
+        }
         binding.registerButton.setOnClickListener { handleRegistration() }
-        binding.backButton.setOnClickListener { finish() }
+
+        // Standardize bottom link with SpannableString to prevent ugly text wraps/clipping
+        val loginRedirectText = "Already have an account? Login here"
+        val spannable = android.text.SpannableString(loginRedirectText)
+        val greenColor = ContextCompat.getColor(this, R.color.labang_green)
+        val clickSpan = object : android.text.style.ClickableSpan() {
+            override fun onClick(widget: View) {
+                finish()
+            }
+            override fun updateDrawState(ds: android.text.TextPaint) {
+                super.updateDrawState(ds)
+                ds.color = greenColor
+                ds.isUnderlineText = false
+                ds.isFakeBoldText = true
+            }
+        }
+        val startIdx = loginRedirectText.indexOf("Login here")
+        if (startIdx != -1) {
+            spannable.setSpan(clickSpan, startIdx, loginRedirectText.length, android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        }
+        binding.backButton.text = spannable
+        binding.backButton.movementMethod = android.text.method.LinkMovementMethod.getInstance()
+        binding.backButton.highlightColor = android.graphics.Color.TRANSPARENT
     }
 
     private fun setupSpinners() {

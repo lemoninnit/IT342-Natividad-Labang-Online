@@ -1,11 +1,16 @@
 import { useState, useEffect } from 'react'
-import { adminAPI } from '../../lib/api'
+import { adminAPI, prefetchUserData } from '../../lib/api'
 import AdminLayout from './AdminLayout'
 import './AdminDashboard.css'
 
 export default function AdminDashboard() {
-  const [residents, setResidents] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [residents, setResidents] = useState(() => {
+    const cached = localStorage.getItem('cached_admin_users')
+    return cached ? JSON.parse(cached) : []
+  })
+  const [loading, setLoading] = useState(() => {
+    return !localStorage.getItem('cached_admin_users')
+  })
   const [selectedImage, setSelectedImage] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
 
@@ -22,17 +27,22 @@ export default function AdminDashboard() {
         window.location.href = '/dashboard'
         return
       }
+      // Warm up and refresh all admin caches silently in the background
+      prefetchUserData(session.userId, true)
     } catch (error) {
       console.error('Session parse error:', error)
       window.location.href = '/admin/login'
       return
     }
 
-    const fetchResidents = async () => {
-      setLoading(true)
+    const fetchResidents = async (showLoader = false) => {
+      if (showLoader || !localStorage.getItem('cached_admin_users')) {
+        setLoading(true)
+      }
       try {
         const res = await adminAPI.getAllUsers()
         setResidents(res.data)
+        localStorage.setItem('cached_admin_users', JSON.stringify(res.data))
       } catch (error) {
         console.error('Failed to fetch residents:', error)
       } finally {
@@ -40,7 +50,7 @@ export default function AdminDashboard() {
       }
     }
 
-    fetchResidents()
+    fetchResidents(false)
   }, [])
 
   const handleVerifyResident = async (id) => {
@@ -48,6 +58,7 @@ export default function AdminDashboard() {
       await adminAPI.confirmUser(id)
       const res = await adminAPI.getAllUsers()
       setResidents(res.data)
+      localStorage.setItem('cached_admin_users', JSON.stringify(res.data))
     } catch (error) {
       console.error('Failed to verify resident:', error)
       alert('Failed to verify resident')

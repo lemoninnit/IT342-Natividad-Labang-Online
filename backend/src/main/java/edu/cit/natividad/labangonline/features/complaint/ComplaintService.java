@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Caching;
 import edu.cit.natividad.labangonline.features.complaint.ComplaintResponseDTO;
 import edu.cit.natividad.labangonline.features.complaint.Complaint;
 import edu.cit.natividad.labangonline.features.user.User;
@@ -23,6 +26,10 @@ public class ComplaintService {
         this.userRepository = userRepository;
     }
 
+    @Caching(evict = {
+        @CacheEvict(value = "userComplaints", key = "#userId"),
+        @CacheEvict(value = "allComplaints", allEntries = true)
+    })
     public ComplaintResponseDTO submitComplaint(Long userId, Map<String, String> data) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -42,6 +49,7 @@ public class ComplaintService {
         return convertToResponseDTO(saved);
     }
 
+    @Cacheable(value = "userComplaints", key = "#userId")
     public List<ComplaintResponseDTO> getUserComplaints(Long userId) {
         return complaintRepository.findByUserIdOrderByCreatedAtDesc(userId)
                 .stream()
