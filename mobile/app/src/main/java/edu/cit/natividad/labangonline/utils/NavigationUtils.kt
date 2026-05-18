@@ -11,6 +11,8 @@ import edu.cit.natividad.labangonline.report.ReportActivity
 import edu.cit.natividad.labangonline.requests.RequestsActivity
 import edu.cit.natividad.labangonline.auth.LoginActivity
 
+import edu.cit.natividad.labangonline.api.UserManager
+
 fun Activity.setupBottomNavigation() {
     findViewById<View>(R.id.btnNavNews)?.setOnClickListener {
         if (this !is AnnouncementActivity) {
@@ -67,6 +69,7 @@ fun Activity.showLogoutDialog() {
         dialog.dismiss()
         val sharedPref = getSharedPreferences("labangonline_prefs", Context.MODE_PRIVATE)
         sharedPref.edit().clear().apply()
+        UserManager.clear(this)
         startActivity(Intent(this, LoginActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         })

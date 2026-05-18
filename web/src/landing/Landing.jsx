@@ -14,7 +14,7 @@ export default function Landing() {
             <div className="hero-badge">Welcome to LabangOnline</div>
             <h1 className="hero-title">Fast, Simple Barangay Services</h1>
             <p className="hero-subtitle">
-              Request certificates, file reports, and stay connected to Barangay Labangon—24/7, without the lines.
+              Request certificates, file reports, and stay connected to Barangay Labangon 24/7, without the lines.
             </p>
             <div className="hero-actions">
               <a href="/register" className="btn btn-primary">

@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import edu.cit.natividad.labangonline.api.ApiClient
+import edu.cit.natividad.labangonline.api.UserManager
+import edu.cit.natividad.labangonline.api.models.User
 import edu.cit.natividad.labangonline.auth.LoginActivity
 import edu.cit.natividad.labangonline.databinding.ActivityProfileBinding
 import edu.cit.natividad.labangonline.utils.setupBottomNavigation
@@ -37,7 +39,7 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         binding.btnLogout.setOnClickListener {
-            handleLogout()
+            showLogoutDialog()
         }
 
     }
@@ -80,78 +82,92 @@ class ProfileActivity : AppCompatActivity() {
             return
         }
 
+        // 1. Instant Cached Render
+        val cachedUser = UserManager.getCurrentUser(this)
+        if (cachedUser != null) {
+            populateFields(cachedUser)
+        }
+
+        // 2. Silent Background Sync
         lifecycleScope.launch {
             try {
                 val response = ApiClient.getUserService().getUserProfile(userId)
                 if (response.isSuccessful && response.body() != null) {
                     val user = response.body()!!
-                    
-                    val fullName = "${user.firstName} ${user.middleName ?: ""} ${user.lastName}".replace("  ", " ").trim()
-                    binding.userNameDisplay.text = fullName
-                    binding.tvFullName.text = fullName
-                    binding.tvUsername.text = user.username ?: "Not set"
-                    
-                    // Format DOB if present (backend format could be yyyy-MM-dd)
-                    if (!user.dob.isNullOrEmpty()) {
-                        try {
-                            val parser = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-                            val formatter = SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault())
-                            val date = parser.parse(user.dob)
-                            binding.tvDob.text = if (date != null) formatter.format(date) else user.dob
-                        } catch (e: Exception) {
-                            binding.tvDob.text = user.dob
-                        }
-                    } else {
-                        binding.tvDob.text = "Not provided"
-                    }
-                    
-                    binding.tvCivilStatus.text = user.civilStatus ?: "Not specified"
-                    
-                    val address = "${user.street}, ${user.purok}, ${user.barangay}, ${user.city}, ${user.province}, ${user.postalCode ?: ""}".trimEnd(',', ' ')
-                    binding.tvAddress.text = address
-                    
-                    binding.tvMobile.text = user.phoneNumber
-                    binding.tvEmail.text = user.email
- 
-                    // Images
-                    if (!user.profilePicture.isNullOrEmpty()) {
-                        try {
-                            val decodedString = Base64.decode(user.profilePicture, Base64.DEFAULT)
-                            val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
-                            binding.ivProfilePicture.setImageBitmap(decodedByte)
-                        } catch (e: Exception) {
-                            e.printStackTrace()
-                        }
-                    }
-                    
-                    // Resident ID
-                    if (!user.residentIdImage.isNullOrEmpty()) {
-                        try {
-                            val decodedString = Base64.decode(user.residentIdImage, Base64.DEFAULT)
-                            val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
-                            binding.ivResidentId.setImageBitmap(decodedByte)
-                            binding.ivResidentId.visibility = View.VISIBLE
-                            binding.layoutResidentIdPlaceholder.visibility = View.GONE
-                        } catch (e: Exception) {
-                            e.printStackTrace()
-                        }
-                    } else {
-                        binding.ivResidentId.visibility = View.GONE
-                        binding.layoutResidentIdPlaceholder.visibility = View.VISIBLE
-                    }
-                } else {
-                    Toast.makeText(this@ProfileActivity, "Failed to load profile", Toast.LENGTH_SHORT).show()
+                    // Update cache
+                    UserManager.setCurrentUser(user, this@ProfileActivity)
+                    // Populate fields silently
+                    populateFields(user)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-                Toast.makeText(this@ProfileActivity, "Network error", Toast.LENGTH_SHORT).show()
+                if (cachedUser == null) {
+                    Toast.makeText(this@ProfileActivity, "Network error", Toast.LENGTH_SHORT).show()
+                }
             }
+        }
+    }
+
+    private fun populateFields(user: User) {
+        val fullName = "${user.firstName} ${user.middleName ?: ""} ${user.lastName}".replace("  ", " ").trim()
+        binding.userNameDisplay.text = fullName
+        binding.tvFullName.text = fullName
+        binding.tvUsername.text = user.username ?: "Not set"
+        
+        // Format DOB if present (backend format could be yyyy-MM-dd)
+        if (!user.dob.isNullOrEmpty()) {
+            try {
+                val parser = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                val formatter = SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault())
+                val date = parser.parse(user.dob)
+                binding.tvDob.text = if (date != null) formatter.format(date) else user.dob
+            } catch (e: Exception) {
+                binding.tvDob.text = user.dob
+            }
+        } else {
+            binding.tvDob.text = "Not provided"
+        }
+        
+        binding.tvCivilStatus.text = user.civilStatus ?: "Not specified"
+        
+        val address = "${user.street}, ${user.purok}, ${user.barangay}, ${user.city}, ${user.province}, ${user.postalCode ?: ""}".trimEnd(',', ' ')
+        binding.tvAddress.text = address
+        
+        binding.tvMobile.text = user.phoneNumber
+        binding.tvEmail.text = user.email
+
+        // Images
+        if (!user.profilePicture.isNullOrEmpty()) {
+            try {
+                val decodedString = Base64.decode(user.profilePicture, Base64.DEFAULT)
+                val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+                binding.ivProfilePicture.setImageBitmap(decodedByte)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+        
+        // Resident ID
+        if (!user.residentIdImage.isNullOrEmpty()) {
+            try {
+                val decodedString = Base64.decode(user.residentIdImage, Base64.DEFAULT)
+                val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+                binding.ivResidentId.setImageBitmap(decodedByte)
+                binding.ivResidentId.visibility = View.VISIBLE
+                binding.layoutResidentIdPlaceholder.visibility = View.GONE
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        } else {
+            binding.ivResidentId.visibility = View.GONE
+            binding.layoutResidentIdPlaceholder.visibility = View.VISIBLE
         }
     }
 
     private fun handleLogout() {
         val sharedPref = getSharedPreferences("labangonline_prefs", Context.MODE_PRIVATE)
         sharedPref.edit().clear().apply()
+        UserManager.clear(this)
         
         startActivity(Intent(this, LoginActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

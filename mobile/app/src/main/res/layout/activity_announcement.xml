@@ -36,8 +36,8 @@
 
         <ImageView
             android:id="@+id/btnLogout"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:padding="8dp"
             android:src="@drawable/logout"
             app:tint="#54e98a"
@@ -393,15 +393,15 @@
                     android:paddingHorizontal="24dp">
                     
                     <com.google.android.material.card.MaterialCardView
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="76dp"
+                        android:layout_height="76dp"
                         app:cardCornerRadius="48dp"
                         app:cardBackgroundColor="#32353c"
                         app:cardElevation="0dp"
                         android:layout_marginBottom="16dp">
                         <ImageView
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
                             android:layout_gravity="center"
                             android:src="@drawable/news"
                             app:tint="#4ae183"

@@ -5,13 +5,10 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import edu.cit.natividad.labangonline.BuildConfig
 
 object ApiClient {
-    // Change this to your server's IP address (e.g., "192.168.1.5")
-    // 192.168.1.12 allows physical device to connect over Wi-Fi
-    // Or use "10.0.2.2" if you are using an Android Emulator
-    private const val SERVER_IP = "192.168.1.12" 
-    private const val BASE_URL = "http://$SERVER_IP:8080/api/"
+    private val BASE_URL = BuildConfig.API_URL
 
     private val httpClient = OkHttpClient.Builder()
         .connectTimeout(30, TimeUnit.SECONDS)

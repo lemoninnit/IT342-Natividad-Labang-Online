@@ -12,12 +12,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Index;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "certificate_requests")
+@Table(name = "certificate_requests", indexes = {
+    @Index(name = "idx_cert_req_user_id", columnList = "user_id"),
+    @Index(name = "idx_cert_req_status", columnList = "status"),
+    @Index(name = "idx_cert_req_created_at", columnList = "created_at DESC")
+})
 public class CertificateRequest {
 
   public enum CertificateType {

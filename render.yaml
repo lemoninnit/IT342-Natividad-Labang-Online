@@ -1,23 +1,21 @@
-# Render deployment configuration for LabangOnline
-# (Optional: render automatically detects this file when connecting GitHub repo.)
-
+# Render Deployment Blueprint for LabangOnline
 services:
   - type: web
     name: labangonline-backend
-    env: java
+    env: docker
     plan: free
     branch: main
-    buildCommand: ./backend/mvnw -f backend/pom.xml clean package
-    startCommand: java -jar backend/target/labangonline-1.0.0.jar
+    dockerContext: backend
+    dockerfilePath: Dockerfile
     envVars:
+      - key: DB_URL
+        sync: false # Input this in Render (e.g. jdbc:postgresql://aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres?sslmode=require)
+      - key: DB_USERNAME
+        sync: false # Input this in Render (e.g. postgres.ashaantifmdzgtyeoibh)
+      - key: DB_PASSWORD
+        sync: false # Input this in Render (your database password)
       - key: FRONTEND_URL
-        value: https://<YOUR_FRONTEND_SERVICE>.onrender.com
-      - key: DATABASE_URL
-        value: jdbc:postgresql://ep-orange-recipe-a15ake7l-pooler.ap-southeast-1.aws.neon.tech:5432/neondb?sslmode=require&channel_binding=require
-      - key: DATABASE_USERNAME
-        value: neondb_owner
-      - key: DATABASE_PASSWORD
-        value: npg_Q73ynlxzHkRT
+        sync: false # Input this in Render (e.g. https://labangonline-web.onrender.com)
 
   - type: static
     name: labangonline-web
@@ -27,9 +25,5 @@ services:
     buildCommand: cd web && npm install && npm run build
     publishPath: web/dist
     envVars:
-      - key: VITE_SUPABASE_URL
-        value: https://sncglvftcsndaayvmkbw.supabase.co
-      - key: VITE_SUPABASE_ANON_KEY
-        value: eeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNuY2dsdmZ0Y3NuZGFheXZta2J3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE1NDk0OTMsImV4cCI6MjA4NzEyNTQ5M30.SYh1A0lbbnWnOwZSyBXcOq7cRTXivfH-g3lWDYv9GiA
       - key: VITE_API_URL
-        value: https://<YOUR_BACKEND_SERVICE>.onrender.com
+        value: https://labangonline-backend.onrender.com/api/

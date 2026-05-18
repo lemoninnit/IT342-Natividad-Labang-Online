@@ -1,31 +1,93 @@
+/* ══════════════════════════════════════════════
+   PREMIUM REGISTER SUCCESS PAGE STYLES
+   Harmonized with Landing & Login Design System
+   ══════════════════════════════════════════════ */
+
+:root {
+  --bg-dark: #0b0f19;
+  --bg-card: #111827;
+  --accent: #10b981;
+  --accent-hover: #059669;
+  --text-light: #f3f4f6;
+  --text-muted: #9ca3af;
+  --border: rgba(16, 185, 129, 0.2);
+  --shadow: rgba(0, 0, 0, 0.4);
+  --glow: rgba(16, 185, 129, 0.25);
+}
+
+/* ──────── PAGE WRAPPER ──────── */
 .success-page {
+  position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(160deg, #0b1020 0%, #0f172a 100%);
+  background: var(--bg-dark);
   padding: 40px 20px;
+  overflow: hidden;
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* Floating Ambient Glow Background (parities with Landing Page Hero Glow) */
+.success-page::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+/* ──────── GLASSMORPHIC CARD ──────── */
 .success-card {
-  background: #1a2235;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.85) 100%);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 16px;
   max-width: 560px;
   width: 100%;
   padding: 48px 40px;
   text-align: center;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.5);
-  animation: slideUpFade 0.5s ease-out both;
+  box-shadow: 0 24px 60px var(--shadow), 0 0 40px rgba(16, 185, 129, 0.03);
+  z-index: 1;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.success-card:hover {
+  border-color: rgba(16, 185, 129, 0.45);
+  box-shadow: 0 32px 72px rgba(0, 0, 0, 0.48), 0 0 50px rgba(16, 185, 129, 0.1);
+}
+
+/* Glowing Top Accent Strip */
+.success-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent) 0%, #059669 100%);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
 
 @keyframes slideUpFade {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .success-icon-container {
-  margin-bottom: 24px;
+  margin-bottom: 28px;
   display: flex;
   justify-content: center;
 }
@@ -34,12 +96,13 @@
   width: 80px;
   height: 80px;
   background: rgba(16, 185, 129, 0.1);
-  border: 2px solid #10b981;
+  border: 2px solid var(--accent);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: popScale 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s both;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);
+  animation: popScale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
 }
 
 @keyframes popScale {
@@ -48,48 +111,48 @@
 }
 
 .success-check {
-  color: #10b981;
+  color: var(--accent);
   font-size: 40px;
   font-weight: bold;
 }
 
 .success-title {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 800;
-  color: #ffffff;
+  color: var(--text-light);
   margin-bottom: 12px;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.75px;
 }
 
 .success-message {
-  font-size: 16px;
-  color: #94a3b8;
+  font-size: 15.5px;
+  color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: 32px;
 }
 
 .next-steps-container {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(15, 23, 42, 0.45);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 12px;
   padding: 24px;
   text-align: left;
-  margin-bottom: 32px;
+  margin-bottom: 36px;
 }
 
 .next-steps-title {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
-  color: #10b981;
+  color: var(--accent);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   margin-bottom: 20px;
 }
 
 .step-item {
   display: flex;
   gap: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .step-item:last-child {
@@ -100,20 +163,21 @@
   flex-shrink: 0;
   width: 24px;
   height: 24px;
-  background: #10b981;
-  color: #000;
+  background: linear-gradient(135deg, var(--accent) 0%, #059669 100%);
+  color: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 12px;
   font-weight: 800;
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
 }
 
 .step-item p {
   font-size: 14px;
   color: #cbd5e1;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .step-item p strong {
@@ -124,29 +188,31 @@
 .success-actions {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .btn-primary-success {
-  background: #10b981;
-  color: #000;
+  background: linear-gradient(135deg, var(--accent) 0%, #059669 100%);
+  color: #fff;
   padding: 14px 24px;
   border-radius: 10px;
   font-size: 15px;
   font-weight: 700;
   text-decoration: none;
-  transition: all 0.2s;
+  box-shadow: 0 12px 28px var(--glow);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: block;
 }
 
 .btn-primary-success:hover {
-  background: #059669;
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, var(--accent-hover) 0%, #047857 100%);
+  box-shadow: 0 18px 40px rgba(16, 185, 129, 0.38);
+  transform: translateY(-3px);
 }
 
 .btn-secondary-success {
   background: transparent;
-  color: #94a3b8;
+  color: var(--text-muted);
   padding: 12px 24px;
   border-radius: 10px;
   font-size: 14px;
@@ -165,7 +231,7 @@
 
 @media (max-width: 480px) {
   .success-card {
-    padding: 32px 24px;
+    padding: 32px 20px;
   }
   .success-title {
     font-size: 24px;

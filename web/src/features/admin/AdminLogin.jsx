@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Layout from "../../shared/Layout";
 import "../auth/Login.css";
+import { prefetchUserData } from "../../lib/api";
 
 export default function AdminLogin() {
   const [form, setForm] = useState({ username: "", password: "" });
@@ -97,6 +98,13 @@ export default function AdminLogin() {
         loginTime: new Date().toISOString(),
       };
       sessionStorage.setItem("labangonline_session", JSON.stringify(sessionData));
+
+      // Trigger background pre-fetching for admin data
+      try {
+        await prefetchUserData(user.id, true);
+      } catch (err) {
+        console.warn("Background prefetch failed:", err);
+      }
 
       // Redirect to admin dashboard
       window.location.href = "/admin";

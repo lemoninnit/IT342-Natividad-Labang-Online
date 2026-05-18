@@ -7,7 +7,11 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "complaints")
+@Table(name = "complaints", indexes = {
+    @Index(name = "idx_complaints_user_id", columnList = "user_id"),
+    @Index(name = "idx_complaints_status", columnList = "status"),
+    @Index(name = "idx_complaints_created_at", columnList = "created_at DESC")
+})
 public class Complaint {
 
     public enum ComplaintStatus {

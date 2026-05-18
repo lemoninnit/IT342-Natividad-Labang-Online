@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import edu.cit.natividad.labangonline.R
 import edu.cit.natividad.labangonline.api.ApiClient
+import edu.cit.natividad.labangonline.api.UserManager
 import edu.cit.natividad.labangonline.api.models.User
 import edu.cit.natividad.labangonline.databinding.ActivityEditProfileBinding
 import kotlinx.coroutines.launch
@@ -98,20 +99,32 @@ class EditProfileActivity : AppCompatActivity() {
 
         if (userId == -1L) return
 
-        binding.loadingIndicator.visibility = View.VISIBLE
-        binding.btnSaveProfile.isEnabled = false
+        // 1. Instant Cache Render
+        val cachedUser = UserManager.getCurrentUser(this)
+        if (cachedUser != null) {
+            currentUser = cachedUser
+            populateFields()
+            binding.loadingIndicator.visibility = View.GONE
+            binding.btnSaveProfile.isEnabled = true
+        } else {
+            binding.loadingIndicator.visibility = View.VISIBLE
+            binding.btnSaveProfile.isEnabled = false
+        }
 
+        // 2. Background Synchronization
         lifecycleScope.launch {
             try {
                 val response = ApiClient.getUserService().getUserProfile(userId)
                 if (response.isSuccessful && response.body() != null) {
-                    currentUser = response.body()
+                    val user = response.body()!!
+                    currentUser = user
+                    UserManager.setCurrentUser(user, this@EditProfileActivity)
                     populateFields()
-                } else {
-                    Toast.makeText(this@EditProfileActivity, "Failed to load profile", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
-                Toast.makeText(this@EditProfileActivity, "Network error", Toast.LENGTH_SHORT).show()
+                if (cachedUser == null) {
+                    Toast.makeText(this@EditProfileActivity, "Network error", Toast.LENGTH_SHORT).show()
+                }
             } finally {
                 binding.loadingIndicator.visibility = View.GONE
                 binding.btnSaveProfile.isEnabled = true
@@ -194,13 +207,17 @@ class EditProfileActivity : AppCompatActivity() {
         lifecycleScope.launch {
             try {
                 val response = ApiClient.getUserService().updateUserProfile(updatedUser.id, updatedUser)
-                if (response.isSuccessful) {
+                if (response.isSuccessful && response.body() != null) {
+                    val savedUser = response.body()!!
+                    // Update cache instantly
+                    UserManager.setCurrentUser(savedUser, this@EditProfileActivity)
+                    
                     // Update full name in SharedPreferences if it changed
-                    val fullName = "${updatedUser.firstName} ${updatedUser.middleName ?: ""} ${updatedUser.lastName}".replace("  ", " ").trim()
+                    val fullName = "${savedUser.firstName} ${savedUser.middleName ?: ""} ${savedUser.lastName}".replace("  ", " ").trim()
                     getSharedPreferences("labangonline_prefs", Context.MODE_PRIVATE)
                         .edit()
                         .putString("full_name", fullName)
-                        .putString("username", updatedUser.username)
+                        .putString("username", savedUser.username)
                         .apply()
                         
                     Toast.makeText(this@EditProfileActivity, "Profile updated successfully", Toast.LENGTH_SHORT).show()

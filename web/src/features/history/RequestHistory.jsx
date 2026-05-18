@@ -3,21 +3,29 @@ import { certificateAPI } from '../../lib/api'
 import './RequestHistory.css'
 
 export default function RequestHistory({ refreshTrigger, onSelectRequest }) {
-  const [requests, setRequests] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [requests, setRequests] = useState(() => {
+    const cached = localStorage.getItem('cached_user_requests');
+    return cached ? JSON.parse(cached) : [];
+  });
+  const [loading, setLoading] = useState(() => {
+    return !localStorage.getItem('cached_user_requests');
+  });
   const [error, setError] = useState('')
   const [expandedId, setExpandedId] = useState(null)
 
   useEffect(() => {
-    loadRequests()
+    loadRequests(false)
   }, [refreshTrigger])
 
-  const loadRequests = async () => {
+  const loadRequests = async (showLoader = false) => {
     try {
-      setLoading(true)
+      if (showLoader || !localStorage.getItem('cached_user_requests')) {
+        setLoading(true)
+      }
       setError('')
       const response = await certificateAPI.getUserRequests()
       setRequests(response.data)
+      localStorage.setItem('cached_user_requests', JSON.stringify(response.data))
     } catch (err) {
       setError('Failed to load certificate requests')
       console.error(err)

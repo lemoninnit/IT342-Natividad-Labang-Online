@@ -4,25 +4,33 @@ import AdminLayout from './AdminLayout'
 import './AdminDashboard.css'
 
 export default function AdminReports() {
-  const [complaints, setComplaints] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [complaints, setComplaints] = useState(() => {
+    const cached = localStorage.getItem('cached_admin_complaints')
+    return cached ? JSON.parse(cached) : []
+  })
+  const [loading, setLoading] = useState(() => {
+    return !localStorage.getItem('cached_admin_complaints')
+  })
   const [selectedReport, setSelectedReport] = useState(null)
   const [statusFilter, setStatusFilter] = useState('ALL')
   const [searchQuery, setSearchQuery] = useState('')
 
   useEffect(() => {
-    const fetchComplaints = async () => {
-      setLoading(true)
+    const fetchComplaints = async (showLoader = false) => {
+      if (showLoader || !localStorage.getItem('cached_admin_complaints')) {
+        setLoading(true)
+      }
       try {
         const res = await adminAPI.getAllComplaints()
         setComplaints(res.data)
+        localStorage.setItem('cached_admin_complaints', JSON.stringify(res.data))
       } catch (error) {
         console.error('Failed to fetch reports:', error)
       } finally {
         setLoading(false)
       }
     }
-    fetchComplaints()
+    fetchComplaints(false)
   }, [])
 
   const handleUpdateComplaintStatus = async (id, status) => {
@@ -30,6 +38,7 @@ export default function AdminReports() {
       await adminAPI.updateComplaintStatus(id, status)
       const res = await adminAPI.getAllComplaints()
       setComplaints(res.data)
+      localStorage.setItem('cached_admin_complaints', JSON.stringify(res.data))
     } catch (error) {
       console.error('Failed to update complaint status:', error)
       alert('Failed to update status')

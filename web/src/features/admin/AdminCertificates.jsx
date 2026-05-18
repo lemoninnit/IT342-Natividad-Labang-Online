@@ -4,26 +4,34 @@ import AdminLayout from './AdminLayout'
 import './AdminDashboard.css'
 
 export default function AdminCertificates() {
-  const [certificates, setCertificates] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [certificates, setCertificates] = useState(() => {
+    const cached = localStorage.getItem('cached_admin_certificates')
+    return cached ? JSON.parse(cached) : []
+  })
+  const [loading, setLoading] = useState(() => {
+    return !localStorage.getItem('cached_admin_certificates')
+  })
   const [selectedRequest, setSelectedRequest] = useState(null)
   const [selectedImage, setSelectedImage] = useState(null)
   const [typeFilter, setTypeFilter] = useState('ALL')
   const [searchQuery, setSearchQuery] = useState('')
 
   useEffect(() => {
-    const fetchCertificates = async () => {
-      setLoading(true)
+    const fetchCertificates = async (showLoader = false) => {
+      if (showLoader || !localStorage.getItem('cached_admin_certificates')) {
+        setLoading(true)
+      }
       try {
         const res = await adminAPI.getAllCertificates()
         setCertificates(res.data)
+        localStorage.setItem('cached_admin_certificates', JSON.stringify(res.data))
       } catch (error) {
         console.error('Failed to fetch certificates:', error)
       } finally {
         setLoading(false)
       }
     }
-    fetchCertificates()
+    fetchCertificates(false)
   }, [])
 
   const handleUpdateCertStatus = async (id, status) => {
@@ -31,6 +39,7 @@ export default function AdminCertificates() {
       await adminAPI.updateCertificateStatus(id, status)
       const res = await adminAPI.getAllCertificates()
       setCertificates(res.data)
+      localStorage.setItem('cached_admin_certificates', JSON.stringify(res.data))
     } catch (error) {
       console.error('Failed to update certificate status:', error)
       alert('Failed to update status')

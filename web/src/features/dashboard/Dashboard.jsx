@@ -4,7 +4,7 @@ import CertificateRequestPage from "./CertificateRequestPage";
 import FileReportPage from "./FileReportPage";
 import EditProfile from "./EditProfile";
 import Announcements from "../announcement/Announcements";
-import { authAPI, announcementAPI } from "../../lib/api";
+import { authAPI, announcementAPI, prefetchUserData } from "../../lib/api";
 
 // Dashboard Component
 export default function Dashboard() {
@@ -28,6 +28,8 @@ export default function Dashboard() {
         setSession(res.data);
         localStorage.setItem('userId', res.data.id);
         setLoading(false);
+        // Prefetch requests, reports, announcements in background
+        prefetchUserData(res.data.id, res.data.role === 'ADMIN');
       })
       .catch(err => {
         console.error("Failed to fetch user data:", err);

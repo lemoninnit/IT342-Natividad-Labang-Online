@@ -11,6 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 import edu.cit.natividad.labangonline.R
 import edu.cit.natividad.labangonline.api.ApiClient
 import edu.cit.natividad.labangonline.api.models.LoginRequest
+import edu.cit.natividad.labangonline.api.UserManager
 import edu.cit.natividad.labangonline.dashboard.ProfileActivity
 import edu.cit.natividad.labangonline.databinding.ActivityLoginBinding
 import kotlinx.coroutines.launch
@@ -102,6 +103,16 @@ class LoginActivity : AppCompatActivity() {
                     // Store JWT Token and User Data securely
                     val fullName = "${user.firstName} ${user.lastName}".trim()
                     saveSession(loginResponse.token, user.id, user.username, user.role, fullName)
+
+                    // Preload the full profile in the background before launching the profile screen
+                    try {
+                        val profileResponse = ApiClient.getUserService().getUserProfile(user.id)
+                        if (profileResponse.isSuccessful && profileResponse.body() != null) {
+                            UserManager.setCurrentUser(profileResponse.body()!!, this@LoginActivity)
+                        }
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
 
                     Snackbar.make(binding.root, "Login successful", Snackbar.LENGTH_SHORT).show()
                     

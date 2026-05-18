@@ -4,6 +4,8 @@ import edu.cit.natividad.labangonline.features.announcement.Announcement;
 import edu.cit.natividad.labangonline.features.announcement.AnnouncementRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.CacheEvict;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,16 +20,19 @@ public class AnnouncementService {
         this.announcementRepository = announcementRepository;
     }
 
+    @Cacheable(value = "announcements")
     public List<Announcement> getAllAnnouncements() {
         return announcementRepository.findAllByOrderByCreatedAtDesc();
     }
 
+    @CacheEvict(value = "announcements", allEntries = true)
     public Announcement createAnnouncement(Announcement announcement) {
         announcement.setCreatedAt(LocalDateTime.now());
         announcement.setUpdatedAt(LocalDateTime.now());
         return announcementRepository.save(announcement);
     }
 
+    @CacheEvict(value = "announcements", allEntries = true)
     public Announcement updateAnnouncement(Long id, Announcement announcementDetails) {
         Announcement announcement = announcementRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Announcement not found"));
@@ -44,6 +49,7 @@ public class AnnouncementService {
         return announcementRepository.save(announcement);
     }
 
+    @CacheEvict(value = "announcements", allEntries = true)
     public void deleteAnnouncement(Long id) {
         announcementRepository.deleteById(id);
     }
