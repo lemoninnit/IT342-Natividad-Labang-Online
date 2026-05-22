@@ -3,7 +3,7 @@ import { paymentAPI, certificateAPI } from '../../lib/api'
 import './GCashPayment.css'
 
 export default function GCashPayment({ requestId, price, priceVal, onPaymentComplete, onCancel }) {
-  const [paymentState, setPaymentState] = useState('loading') // loading, qr, verification, success, error
+  const [paymentState, setPaymentState] = useState('qr') // loading, qr, verification, success, error
   const [payment, setPayment] = useState(null)
   const [referenceNumber, setReferenceNumber] = useState('')
   const [proofImage, setProofImage] = useState(null)
@@ -63,6 +63,11 @@ export default function GCashPayment({ requestId, price, priceVal, onPaymentComp
       return
     }
 
+    if (!payment) {
+      setError('Payment is still initializing. Please wait a moment.')
+      return
+    }
+
     try {
       setLoading(true)
       setError('')
@@ -86,12 +91,6 @@ export default function GCashPayment({ requestId, price, priceVal, onPaymentComp
   return (
     <div className="gcash-payment-container">
       <div className="payment-card-redesign">
-        {paymentState === 'loading' && (
-          <div className="payment-state">
-            <div className="loader"></div>
-            <p>Initializing GCash Payment...</p>
-          </div>
-        )}
 
         {paymentState === 'qr' && (
           <div className="payment-layout-split">
@@ -161,9 +160,9 @@ export default function GCashPayment({ requestId, price, priceVal, onPaymentComp
                 <button 
                   className="btn-verify-themed" 
                   onClick={handleVerifyPayment}
-                  disabled={loading}
+                  disabled={loading || !payment}
                 >
-                  {loading ? 'Submitting...' : 'Submit Payment'}
+                  {loading ? 'Submitting...' : (!payment ? 'Initializing...' : 'Submit Payment')}
                 </button>
               </div>
             </div>

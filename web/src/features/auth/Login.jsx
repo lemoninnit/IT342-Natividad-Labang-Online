@@ -93,12 +93,10 @@ export default function Login() {
       };
       sessionStorage.setItem("labangonline_session", JSON.stringify(sessionData));
 
-      // Trigger background pre-fetching for user/admin data
-      try {
-        await prefetchUserData(user.id, user.role.toUpperCase() === "ADMIN");
-      } catch (err) {
+      // Trigger background pre-fetching for user/admin data asynchronously
+      prefetchUserData(user.id, user.role.toUpperCase() === "ADMIN").catch(err => {
         console.warn("Background prefetch failed:", err);
-      }
+      });
 
       // Redirect based on role
       if (user.role.toUpperCase() === "ADMIN") {

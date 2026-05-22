@@ -23,7 +23,7 @@ export default function AdminReports() {
       try {
         const res = await adminAPI.getAllComplaints()
         setComplaints(res.data)
-        localStorage.setItem('cached_admin_complaints', JSON.stringify(res.data))
+        try { localStorage.setItem('cached_admin_complaints', JSON.stringify(res.data)) } catch (e) { console.warn('Storage quota exceeded') }
       } catch (error) {
         console.error('Failed to fetch reports:', error)
       } finally {
@@ -34,14 +34,20 @@ export default function AdminReports() {
   }, [])
 
   const handleUpdateComplaintStatus = async (id, status) => {
+    setComplaints(prev => {
+      const updated = prev.map(report => report.id === id ? { ...report, status } : report)
+      try { localStorage.setItem('cached_admin_complaints', JSON.stringify(updated)) } catch (e) { console.warn('Storage quota exceeded') }
+      return updated
+    })
+
     try {
       await adminAPI.updateComplaintStatus(id, status)
-      const res = await adminAPI.getAllComplaints()
-      setComplaints(res.data)
-      localStorage.setItem('cached_admin_complaints', JSON.stringify(res.data))
+      adminAPI.getAllComplaints().then(res => {
+        setComplaints(res.data)
+        try { localStorage.setItem('cached_admin_complaints', JSON.stringify(res.data)) } catch (e) { console.warn('Storage quota exceeded') }
+      }).catch(err => console.error('Background sync failed:', err))
     } catch (error) {
       console.error('Failed to update complaint status:', error)
-      alert('Failed to update status')
     }
   }
 

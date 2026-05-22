@@ -9,11 +9,11 @@ services:
     dockerfilePath: Dockerfile
     envVars:
       - key: DB_URL
-        sync: false # Input this in Render (e.g. jdbc:postgresql://aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres?sslmode=require)
+        sync: jdbc:postgresql://aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres?sslmode=require
       - key: DB_USERNAME
-        sync: false # Input this in Render (e.g. postgres.ashaantifmdzgtyeoibh)
+        sync: postgres.ashaantifmdzgtyeoibh
       - key: DB_PASSWORD
-        sync: false # Input this in Render (your database password)
+        sync: Lenonlee@7312005
       - key: FRONTEND_URL
         sync: false # Input this in Render (e.g. https://labangonline-web.onrender.com)
 
