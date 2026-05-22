@@ -77,26 +77,14 @@ export default function CertificateRequestPage() {
     setHistoryRefresh(prev => prev + 1)
   }
 
-  const handleSelectPaymentMethod = async (requestId) => {
-    try {
-      // Fetch request details to get the certificate type and price
-      const response = await certificateAPI.getRequest(requestId)
-      const requestData = response.data
-      
-      // Find the corresponding certificate option to get its price and icon
-      const certOption = certificateOptions.find(c => c.id === requestData.certificateType)
-      if (certOption) {
-        setSelectedCert(certOption)
-      }
-      
-      setSelectedRequestId(requestId)
-      setCurrentStep('payment-method')
-    } catch (error) {
-      console.error('Failed to fetch request details:', error)
-      // Fallback if fetch fails
-      setSelectedRequestId(requestId)
-      setCurrentStep('payment-method')
+  const handleSelectPaymentMethod = (request) => {
+    const certOption = certificateOptions.find(c => c.id === request.certificateType)
+    if (certOption) {
+      setSelectedCert(certOption)
     }
+    
+    setSelectedRequestId(request.id)
+    setCurrentStep('payment-method')
   }
 
   const handleMethodSelected = (method) => {

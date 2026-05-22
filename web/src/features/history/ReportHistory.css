@@ -141,6 +141,8 @@
 .report-detail-item {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
   gap: 6px;
 }
 
@@ -151,12 +153,19 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 0;
+  text-align: left;
+  width: 100%;
 }
 
 .report-detail-item span {
   color: var(--text-light);
   font-size: 14px;
   font-weight: 500;
+  word-break: break-word;
+  text-align: left;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .report-detail-section {

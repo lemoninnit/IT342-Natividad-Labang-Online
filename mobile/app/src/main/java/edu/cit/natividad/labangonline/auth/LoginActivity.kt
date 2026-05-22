@@ -104,14 +104,16 @@ class LoginActivity : AppCompatActivity() {
                     val fullName = "${user.firstName} ${user.lastName}".trim()
                     saveSession(loginResponse.token, user.id, user.username, user.role, fullName)
 
-                    // Preload the full profile in the background before launching the profile screen
-                    try {
-                        val profileResponse = ApiClient.getUserService().getUserProfile(user.id)
-                        if (profileResponse.isSuccessful && profileResponse.body() != null) {
-                            UserManager.setCurrentUser(profileResponse.body()!!, this@LoginActivity)
+                    // Preload the full profile asynchronously so it doesn't slow down the login process
+                    kotlinx.coroutines.GlobalScope.launch(kotlinx.coroutines.Dispatchers.IO) {
+                        try {
+                            val profileResponse = ApiClient.getUserService().getUserProfile(user.id)
+                            if (profileResponse.isSuccessful && profileResponse.body() != null) {
+                                UserManager.setCurrentUser(profileResponse.body()!!, applicationContext)
+                            }
+                        } catch (e: Exception) {
+                            e.printStackTrace()
                         }
-                    } catch (e: Exception) {
-                        e.printStackTrace()
                     }
 
                     Snackbar.make(binding.root, "Login successful", Snackbar.LENGTH_SHORT).show()

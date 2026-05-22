@@ -1,0 +1,202 @@
+[
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\drawable_request.png.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\request.png"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\drawable_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\drawable_ic_calendar.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\ic_calendar.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\drawable_spinner_border.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\spinner_border.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\layout_activity_gcash_payment.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\layout\\activity_gcash_payment.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\drawable_report.png.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\report.png"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\drawable_rounded_edittext.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\rounded_edittext.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\layout_activity_edit_profile.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\layout\\activity_edit_profile.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\layout_activity_otc_payment.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\layout\\activity_otc_payment.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\layout_activity_records.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\layout\\activity_records.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.labangonline.app-debug-37:/layout_activity_profile.xml.flat",
+        "source": "edu.cit.natividad.labangonline.app-main-39:/layout/activity_profile.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\layout_item_report.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\layout\\item_report.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\layout_activity_announcement.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\layout\\activity_announcement.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\layout_activity_submit_report.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\layout\\activity_submit_report.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\layout_activity_requests.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\layout\\activity_requests.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\layout_item_record.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\layout\\item_record.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\drawable_news.png.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\news.png"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\drawable_check.png.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\check.png"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\layout_dialog_logout.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\layout\\dialog_logout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\drawable_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\ic_launcher.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.labangonline.app-debug-37:/layout_activity_announcement.xml.flat",
+        "source": "edu.cit.natividad.labangonline.app-main-39:/layout/activity_announcement.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\drawable_logout.png.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\logout.png"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\drawable_resident.png.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\resident.png"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\drawable_bg_input_field.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\bg_input_field.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.labangonline.app-debug-37:/layout_activity_requests.xml.flat",
+        "source": "edu.cit.natividad.labangonline.app-main-39:/layout/activity_requests.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.labangonline.app-debug-37:/layout_activity_report.xml.flat",
+        "source": "edu.cit.natividad.labangonline.app-main-39:/layout/activity_report.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\drawable_error_bg.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\error_bg.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.labangonline.app-debug-37:/layout_dialog_logout.xml.flat",
+        "source": "edu.cit.natividad.labangonline.app-main-39:/layout/dialog_logout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\layout_activity_profile.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\layout\\activity_profile.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\layout_activity_report.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\layout\\activity_report.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\layout_activity_request_form.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\layout\\activity_request_form.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\layout_activity_dashboard.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\layout\\activity_dashboard.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\layout_activity_select_payment_mode.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\layout\\activity_select_payment_mode.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\drawable_gcash.png.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\gcash.png"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\layout_activity_register.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\layout\\activity_register.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\drawable_spinner_bg.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\spinner_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\drawable_gcash_qr.jpg.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\gcash_qr.jpg"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\drawable_circle_green_bg.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\circle_green_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\drawable_notice_bg.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\notice_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\layout_activity_login.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\drawable_logo.png.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\logo.png"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\drawable_badge_bg.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\badge_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\drawable_profile.png.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\profile.png"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\drawable_circle_dark_bg.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\circle_dark_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\layout_activity_report_records.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\layout\\activity_report_records.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\drawable_pfp.png.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\drawable\\pfp.png"
+    },
+    {
+        "merged": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-debug-37:\\layout_item_announcement.xml.flat",
+        "source": "C:\\Users\\Moka\\.gradle\\daemon\\8.9\\edu.cit.natividad.labangonline.app-main-39:\\layout\\item_announcement.xml"
+    }
+]

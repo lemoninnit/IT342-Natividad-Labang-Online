@@ -24,7 +24,7 @@ export default function AdminCertificates() {
       try {
         const res = await adminAPI.getAllCertificates()
         setCertificates(res.data)
-        localStorage.setItem('cached_admin_certificates', JSON.stringify(res.data))
+        try { localStorage.setItem('cached_admin_certificates', JSON.stringify(res.data)) } catch (e) { console.warn('Storage quota exceeded') }
       } catch (error) {
         console.error('Failed to fetch certificates:', error)
       } finally {
@@ -35,14 +35,20 @@ export default function AdminCertificates() {
   }, [])
 
   const handleUpdateCertStatus = async (id, status) => {
+    setCertificates(prev => {
+      const updated = prev.map(cert => cert.id === id ? { ...cert, status } : cert)
+      try { localStorage.setItem('cached_admin_certificates', JSON.stringify(updated)) } catch (e) { console.warn('Storage quota exceeded') }
+      return updated
+    })
+
     try {
       await adminAPI.updateCertificateStatus(id, status)
-      const res = await adminAPI.getAllCertificates()
-      setCertificates(res.data)
-      localStorage.setItem('cached_admin_certificates', JSON.stringify(res.data))
+      adminAPI.getAllCertificates().then(res => {
+        setCertificates(res.data)
+        try { localStorage.setItem('cached_admin_certificates', JSON.stringify(res.data)) } catch (e) { console.warn('Storage quota exceeded') }
+      }).catch(err => console.error('Background sync failed:', err))
     } catch (error) {
       console.error('Failed to update certificate status:', error)
-      alert('Failed to update status')
     }
   }
 

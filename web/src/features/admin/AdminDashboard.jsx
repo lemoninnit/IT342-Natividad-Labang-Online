@@ -42,7 +42,7 @@ export default function AdminDashboard() {
       try {
         const res = await adminAPI.getAllUsers()
         setResidents(res.data)
-        localStorage.setItem('cached_admin_users', JSON.stringify(res.data))
+        try { localStorage.setItem('cached_admin_users', JSON.stringify(res.data)) } catch (e) { console.warn('Storage quota exceeded') }
       } catch (error) {
         console.error('Failed to fetch residents:', error)
       } finally {

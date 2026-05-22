@@ -166,7 +166,7 @@ export default function RequestHistory({ refreshTrigger, onSelectRequest }) {
                       {(request.status === 'PENDING' || request.status === 'FAILED_PAYMENT_VERIFICATION') && !request.payment && (
                         <button
                           className="btn btn-primary btn-sm"
-                          onClick={() => onSelectRequest(request.id)}
+                          onClick={() => onSelectRequest(request)}
                         >
                           Proceed to Payment
                         </button>
@@ -174,7 +174,7 @@ export default function RequestHistory({ refreshTrigger, onSelectRequest }) {
                       {request.status === 'PENDING' && request.payment && request.payment.status === 'PENDING' && (
                         <button
                           className="btn btn-primary btn-sm"
-                          onClick={() => onSelectRequest(request.id)}
+                          onClick={() => onSelectRequest(request)}
                         >
                           Complete Payment
                         </button>

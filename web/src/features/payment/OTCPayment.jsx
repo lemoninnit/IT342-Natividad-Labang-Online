@@ -3,7 +3,7 @@ import { paymentAPI, certificateAPI } from '../../lib/api'
 import './OTCPayment.css'
 
 export default function OTCPayment({ requestId, price, priceVal, onPaymentComplete, onCancel }) {
-  const [paymentState, setPaymentState] = useState('loading') // loading, pending, verification, success, error
+  const [paymentState, setPaymentState] = useState('pending') // loading, pending, verification, success, error
   const [payment, setPayment] = useState(null)
   const [referenceNumber, setReferenceNumber] = useState('')
   const [error, setError] = useState('')
@@ -15,10 +15,8 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
 
   const initializeOTCPayment = async () => {
     try {
-      setPaymentState('loading')
       const response = await paymentAPI.initiate(requestId, priceVal || 500, 'OVER_THE_COUNTER')
       setPayment(response.data)
-      setPaymentState('pending')
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to initialize OTC payment')
       setPaymentState('error')
@@ -33,6 +31,11 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
     const refRegex = /^[0-9]{13}$/
     if (!referenceNumber || !refRegex.test(referenceNumber)) {
       setError('Please enter a valid 13-digit reference number from your receipt.')
+      return
+    }
+
+    if (!payment) {
+      setError('Payment is still initializing. Please wait a moment.')
       return
     }
 
@@ -112,14 +115,7 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
   return (
     <div className="otc-payment-container">
       <div className="payment-card-redesign">
-        {paymentState === 'loading' && (
-          <div className="payment-state">
-            <div className="loader"></div>
-            <p>Preparing pay-on-the-counter payment...</p>
-          </div>
-        )}
-
-        {paymentState === 'pending' && payment && (
+        {paymentState === 'pending' && (
           <div className="payment-layout-split-otc">
             <div className="payment-left-instructions">
               <h2 className="payment-title-themed">Payment Instructions</h2>
@@ -129,7 +125,7 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
                 <div className="payment-details-themed">
                   <div className="detail-row-themed">
                     <span className="detail-label-themed">Payment Reference:</span>
-                    <span className="detail-value-themed">{payment.referenceNumber}</span>
+                    <span className="detail-value-themed">{payment?.referenceNumber || 'Generating...'}</span>
                   </div>
                   <div className="detail-row-themed">
                     <span className="detail-label-themed">Amount to Pay:</span>
@@ -145,8 +141,9 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
                   <button 
                     className="btn-print-receipt"
                     onClick={handlePrintReceipt}
+                    disabled={!payment}
                   >
-                    Print Receipt
+                    {payment ? 'Print Receipt' : 'Loading...'}
                   </button>
                 </div>
 
@@ -154,7 +151,7 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
                   <h4>Steps to Complete Payment:</h4>
                   <ul>
                     <li>Proceed to Barangay Labangon Office</li>
-                    <li>Provide your reference number: <strong>{payment.referenceNumber}</strong></li>
+                    <li>Provide your reference number: <strong>{payment?.referenceNumber || 'Generating...'}</strong></li>
                     <li>Pay the amount of <strong>{price || '₱500.00'}</strong> to the staff</li>
                     <li>Receive your payment receipt</li>
                     <li>Enter the transaction ID below to verify</li>
@@ -194,9 +191,9 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
                 <button 
                   className="btn-verify-themed" 
                   onClick={handleVerifyPayment}
-                  disabled={loading}
+                  disabled={loading || !payment}
                 >
-                  {loading ? 'Verifying...' : 'Confirm Payment'}
+                  {loading ? 'Verifying...' : (!payment ? 'Initializing...' : 'Confirm Payment')}
                 </button>
               </div>
             </div>
