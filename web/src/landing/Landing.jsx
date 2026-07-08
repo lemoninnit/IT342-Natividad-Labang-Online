@@ -151,8 +151,8 @@ export default function Landing() {
             <span className="download-badge">Android Application</span>
             <h2>Take Barangay Services on the Go</h2>
             <p>Download our official Android app to request certificates and file reports directly from your mobile phone.</p>
-            <a href="/serviline.apk" download="ServiLine.apk" className="btn btn-primary">
-              <span className="btn-icon">📥</span> Download APK
+            <a href="/serviline.apk" download="ServiLine.apk" className="btn btn-primary" target="_blank" rel="noopener noreferrer">
+              <img src="/logo.png" alt="Logo" className="btn-icon" style={{width: '20px', height: '20px', marginRight: '8px'}} /> Download APK
             </a>
           </div>
         </section>
