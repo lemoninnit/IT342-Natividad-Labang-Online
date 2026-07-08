@@ -16,13 +16,13 @@ services:
       - key: FRONTEND_URL
         sync: false # Input this in Render (e.g. https://serviline-web.onrender.com)
 
-  - type: static_site
+  - type: web
     name: serviline-web
-    env: node
+    env: static
     plan: free
     branch: main
     buildCommand: cd web && npm install && npm run build
-    publishPath: web/dist
+    staticPublishPath: web/dist
     envVars:
       - key: VITE_API_URL
         value: https://serviline.onrender.com/api/
