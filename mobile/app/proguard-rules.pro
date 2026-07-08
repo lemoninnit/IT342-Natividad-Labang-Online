@@ -20,8 +20,8 @@
 #-renamesourcefileattribute SourceFile
 
 # Keep model classes for Retrofit/GSON
--keep class edu.cit.natividad.labangonline.models.** { *; }
--keep class edu.cit.natividad.labangonline.api.** { *; }
+-keep class edu.cit.natividad.serviline.models.** { *; }
+-keep class edu.cit.natividad.serviline.api.** { *; }
 
 # Retrofit
 -keepattributes Signature, InnerClasses, EnclosingMethod
