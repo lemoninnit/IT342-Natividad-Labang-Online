@@ -6,7 +6,7 @@ services:
     plan: free
     branch: main
     dockerContext: backend
-    dockerfilePath: Dockerfile
+    dockerfilePath: backend/Dockerfile
     envVars:
       - key: DB_URL
         sync: jdbc:postgresql://ep-damp-leaf-aojinylb.c-2.ap-southeast-1.aws.neon.tech/neondb?sslmode=require
