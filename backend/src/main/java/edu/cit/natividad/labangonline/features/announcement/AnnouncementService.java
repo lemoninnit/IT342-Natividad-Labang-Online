@@ -1,7 +1,7 @@
-package edu.cit.natividad.labangonline.features.announcement;
+package edu.cit.natividad.serviline.features.announcement;
 
-import edu.cit.natividad.labangonline.features.announcement.Announcement;
-import edu.cit.natividad.labangonline.features.announcement.AnnouncementRepository;
+import edu.cit.natividad.serviline.features.announcement.Announcement;
+import edu.cit.natividad.serviline.features.announcement.AnnouncementRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.cache.annotation.Cacheable;

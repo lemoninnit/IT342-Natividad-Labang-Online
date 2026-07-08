@@ -59,7 +59,7 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
     const content = `
       <html>
         <head>
-          <title>Payment Receipt - LabangOnline</title>
+          <title>Payment Receipt - ServiLine</title>
           <style>
             body { font-family: Arial, sans-serif; padding: 40px; color: #333; }
             .receipt-card { border: 2px solid #333; padding: 30px; max-width: 600px; margin: 0 auto; }
@@ -99,7 +99,7 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
 
             <div class="footer">
               <p>Please present this receipt at the Barangay Labangon Office to complete your payment.</p>
-              <p>Thank you for using LabangOnline!</p>
+              <p>Thank you for using ServiLine!</p>
             </div>
           </div>
           <script>

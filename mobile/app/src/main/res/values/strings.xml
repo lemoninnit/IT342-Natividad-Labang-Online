@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Labang Online</string>
+    <string name="app_name">ServiLine</string>
     <string name="app_description">Barangay Labangon Community Service Hub</string>
-    <string name="app_logo_description">Labang Online logo</string>
+    <string name="app_logo_description">ServiLine logo</string>
     
     <!-- Login Activity -->
     <string name="login_title">Login to Your Account</string>
@@ -12,10 +12,10 @@
     <!-- Register Activity -->
     <string name="register_title">Create New Account</string>
     <string name="register_button">Create Account</string>
-    <string name="register_subtitle">Join Labang Online Community</string>
+    <string name="register_subtitle">Join ServiLine Community</string>
     
     <!-- Dashboard -->
-    <string name="welcome_message">Welcome to Labang Online!</string>
+    <string name="welcome_message">Welcome to ServiLine!</string>
     <string name="logout_button">Logout</string>
     
     <!-- Error Messages -->

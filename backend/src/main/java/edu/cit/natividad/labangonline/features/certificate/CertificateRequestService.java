@@ -1,4 +1,4 @@
-package edu.cit.natividad.labangonline.features.certificate;
+package edu.cit.natividad.serviline.features.certificate;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,12 +9,12 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Caching;
 
-import edu.cit.natividad.labangonline.features.certificate.CertificateRequestDTO;
-import edu.cit.natividad.labangonline.features.certificate.CertificateRequestResponseDTO;
-import edu.cit.natividad.labangonline.features.certificate.CertificateRequest;
-import edu.cit.natividad.labangonline.features.user.User;
-import edu.cit.natividad.labangonline.features.certificate.CertificateRequestRepository;
-import edu.cit.natividad.labangonline.features.user.UserRepository;
+import edu.cit.natividad.serviline.features.certificate.CertificateRequestDTO;
+import edu.cit.natividad.serviline.features.certificate.CertificateRequestResponseDTO;
+import edu.cit.natividad.serviline.features.certificate.CertificateRequest;
+import edu.cit.natividad.serviline.features.user.User;
+import edu.cit.natividad.serviline.features.certificate.CertificateRequestRepository;
+import edu.cit.natividad.serviline.features.user.UserRepository;
 
 @Service
 @Transactional

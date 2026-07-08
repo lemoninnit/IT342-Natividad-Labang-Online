@@ -1,5 +1,5 @@
-package edu.cit.natividad.labangonline.features.payment;
-import edu.cit.natividad.labangonline.features.certificate.CertificateRequest;
+package edu.cit.natividad.serviline.features.payment;
+import edu.cit.natividad.serviline.features.certificate.CertificateRequest;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

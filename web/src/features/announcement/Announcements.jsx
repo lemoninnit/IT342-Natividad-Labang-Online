@@ -28,7 +28,7 @@ export default function Announcements() {
   })
 
   useEffect(() => {
-    const sessionData = sessionStorage.getItem("labangonline_session")
+    const sessionData = sessionStorage.getItem("serviline_session")
     const path = window.location.pathname
     const is_admin_path = path.startsWith('/admin')
 
@@ -91,7 +91,7 @@ export default function Announcements() {
   }
 
   const resetForm = () => {
-    const sessionData = sessionStorage.getItem("labangonline_session")
+    const sessionData = sessionStorage.getItem("serviline_session")
     let postedBy = ''
     if (sessionData) {
       const session = JSON.parse(sessionData)

@@ -1,12 +1,12 @@
-package edu.cit.natividad.labangonline.features.complaint;
+package edu.cit.natividad.serviline.features.complaint;
 
 import java.util.List;
 import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import edu.cit.natividad.labangonline.features.complaint.ComplaintResponseDTO;
-import edu.cit.natividad.labangonline.features.complaint.ComplaintService;
+import edu.cit.natividad.serviline.features.complaint.ComplaintResponseDTO;
+import edu.cit.natividad.serviline.features.complaint.ComplaintService;
 
 @RestController
 @RequestMapping("/api/complaints")

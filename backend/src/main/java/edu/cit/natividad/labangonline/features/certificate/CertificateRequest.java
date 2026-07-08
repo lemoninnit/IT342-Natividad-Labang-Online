@@ -1,6 +1,6 @@
-package edu.cit.natividad.labangonline.features.certificate;
-import edu.cit.natividad.labangonline.features.user.User;
-import edu.cit.natividad.labangonline.features.payment.Payment;
+package edu.cit.natividad.serviline.features.certificate;
+import edu.cit.natividad.serviline.features.user.User;
+import edu.cit.natividad.serviline.features.payment.Payment;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

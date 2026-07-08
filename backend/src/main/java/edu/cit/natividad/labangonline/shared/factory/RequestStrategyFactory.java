@@ -1,6 +1,6 @@
-package edu.cit.natividad.labangonline.shared.factory;
+package edu.cit.natividad.serviline.shared.factory;
 
-import edu.cit.natividad.labangonline.shared.strategy.RequestProcessingStrategy;
+import edu.cit.natividad.serviline.shared.strategy.RequestProcessingStrategy;
 import org.springframework.stereotype.Service;
 import java.util.List;
 

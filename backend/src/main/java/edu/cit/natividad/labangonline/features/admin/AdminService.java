@@ -1,12 +1,12 @@
-package edu.cit.natividad.labangonline.features.admin;
+package edu.cit.natividad.serviline.features.admin;
 
-import edu.cit.natividad.labangonline.features.certificate.AdminCertificateRequestResponseDTO;
-import edu.cit.natividad.labangonline.features.certificate.CertificateRequest;
-import edu.cit.natividad.labangonline.features.complaint.Complaint;
-import edu.cit.natividad.labangonline.features.user.User;
-import edu.cit.natividad.labangonline.features.certificate.CertificateRequestRepository;
-import edu.cit.natividad.labangonline.features.complaint.ComplaintRepository;
-import edu.cit.natividad.labangonline.features.user.UserRepository;
+import edu.cit.natividad.serviline.features.certificate.AdminCertificateRequestResponseDTO;
+import edu.cit.natividad.serviline.features.certificate.CertificateRequest;
+import edu.cit.natividad.serviline.features.complaint.Complaint;
+import edu.cit.natividad.serviline.features.user.User;
+import edu.cit.natividad.serviline.features.certificate.CertificateRequestRepository;
+import edu.cit.natividad.serviline.features.complaint.ComplaintRepository;
+import edu.cit.natividad.serviline.features.user.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.cache.annotation.Cacheable;

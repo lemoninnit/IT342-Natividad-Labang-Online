@@ -91,7 +91,7 @@ export default function Login() {
         role: user.role,
         loginTime: new Date().toISOString(),
       };
-      sessionStorage.setItem("labangonline_session", JSON.stringify(sessionData));
+      sessionStorage.setItem("serviline_session", JSON.stringify(sessionData));
 
       // Trigger background pre-fetching for user/admin data asynchronously
       prefetchUserData(user.id, user.role.toUpperCase() === "ADMIN").catch(err => {
@@ -119,7 +119,7 @@ export default function Login() {
         <div className="login-card">
           <div className="card-header">
             <h1 className="card-title">Sign In</h1>
-            <p className="card-subtitle">Welcome back to LabangOnline</p>
+            <p className="card-subtitle">Welcome back to ServiLine</p>
           </div>
 
           {/* 4.5 Error banner */}

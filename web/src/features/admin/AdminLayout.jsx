@@ -13,7 +13,7 @@ export default function AdminLayout({ activeSection, title, subtitle, showHeader
       <aside className="admin-sidebar">
         <div className="sidebar-header">
           <div className="sidebar-logo">
-            LabangOnline <span className="admin-tag">Admin</span>
+            ServiLine <span className="admin-tag">Admin</span>
           </div>
         </div>
         <nav className="sidebar-nav">

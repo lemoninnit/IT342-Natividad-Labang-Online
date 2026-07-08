@@ -11,11 +11,11 @@ if (project.rootProject.file('local.properties').canRead()) {
 }
 
 android {
-    namespace "edu.cit.natividad.labangonline"
+    namespace "edu.cit.natividad.serviline"
     compileSdk 34
 
     defaultConfig {
-        applicationId "edu.cit.natividad.labangonline"
+        applicationId "edu.cit.natividad.serviline"
         minSdk 24
         targetSdk 34
         versionCode 1

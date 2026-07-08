@@ -1,4 +1,4 @@
-package edu.cit.natividad.labangonline.shared.config;
+package edu.cit.natividad.serviline.shared.config;
 
 import java.util.List;
 

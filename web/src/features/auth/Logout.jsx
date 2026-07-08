@@ -4,7 +4,7 @@ import "./Logout.css";
 
 export default function Logout() {
   const redirectToLogin = () => {
-    sessionStorage.removeItem("labangonline_session");
+    sessionStorage.removeItem("serviline_session");
     window.location.href = "/login";
   };
 
@@ -30,7 +30,7 @@ export default function Logout() {
       <div className="logout-modal">
         <div className="logout-icon">🚪</div>
         <h2>Are you sure you want to logout?</h2>
-        <p>You will be signed out of your LabangOnline account. Your data is safe and secure.</p>
+        <p>You will be signed out of your ServiLine account. Your data is safe and secure.</p>
 
         <div className="logout-actions">
           <button className="btn-cancel" onClick={redirectToDashboard}>

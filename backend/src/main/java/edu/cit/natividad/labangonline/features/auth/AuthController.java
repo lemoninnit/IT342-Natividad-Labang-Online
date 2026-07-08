@@ -1,4 +1,4 @@
-package edu.cit.natividad.labangonline.features.auth;
+package edu.cit.natividad.serviline.features.auth;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.cit.natividad.labangonline.features.auth.LoginRequest;
-import edu.cit.natividad.labangonline.features.auth.LoginResponse;
-import edu.cit.natividad.labangonline.features.auth.RegisterRequest;
-import edu.cit.natividad.labangonline.features.auth.RegisterResponse;
-import edu.cit.natividad.labangonline.features.user.UserRepository;
-import edu.cit.natividad.labangonline.features.auth.AuthService;
+import edu.cit.natividad.serviline.features.auth.LoginRequest;
+import edu.cit.natividad.serviline.features.auth.LoginResponse;
+import edu.cit.natividad.serviline.features.auth.RegisterRequest;
+import edu.cit.natividad.serviline.features.auth.RegisterResponse;
+import edu.cit.natividad.serviline.features.user.UserRepository;
+import edu.cit.natividad.serviline.features.auth.AuthService;
 
 import jakarta.validation.Valid;
 

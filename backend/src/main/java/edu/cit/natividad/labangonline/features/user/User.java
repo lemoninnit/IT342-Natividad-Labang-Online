@@ -1,4 +1,4 @@
-package edu.cit.natividad.labangonline.features.user;
+package edu.cit.natividad.serviline.features.user;
 
 import java.time.LocalDate;
 

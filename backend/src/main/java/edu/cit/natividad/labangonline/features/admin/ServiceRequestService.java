@@ -1,9 +1,9 @@
-package edu.cit.natividad.labangonline.features.admin;
+package edu.cit.natividad.serviline.features.admin;
 
-import edu.cit.natividad.labangonline.shared.dto.RequestDTO;
-import edu.cit.natividad.labangonline.shared.dto.ResponseDTO;
-import edu.cit.natividad.labangonline.shared.factory.RequestStrategyFactory;
-import edu.cit.natividad.labangonline.shared.strategy.RequestProcessingStrategy;
+import edu.cit.natividad.serviline.shared.dto.RequestDTO;
+import edu.cit.natividad.serviline.shared.dto.ResponseDTO;
+import edu.cit.natividad.serviline.shared.factory.RequestStrategyFactory;
+import edu.cit.natividad.serviline.shared.strategy.RequestProcessingStrategy;
 import org.springframework.stereotype.Service;
 
 @Service

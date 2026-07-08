@@ -13,9 +13,9 @@
   </parent>
 
   <groupId>edu.cit.natividad</groupId>
-  <artifactId>labangonline</artifactId>
+  <artifactId>serviline</artifactId>
   <version>1.0.0</version>
-  <name>LabangOnline Backend</name>
+  <name>ServiLine Backend</name>
   <description>Barangay Labangon Online Services Backend API</description>
 
   <properties>

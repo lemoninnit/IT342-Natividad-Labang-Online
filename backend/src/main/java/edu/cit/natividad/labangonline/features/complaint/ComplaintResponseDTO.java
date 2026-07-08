@@ -1,4 +1,4 @@
-package edu.cit.natividad.labangonline.features.complaint;
+package edu.cit.natividad.serviline.features.complaint;
 
 import java.time.LocalDateTime;
 

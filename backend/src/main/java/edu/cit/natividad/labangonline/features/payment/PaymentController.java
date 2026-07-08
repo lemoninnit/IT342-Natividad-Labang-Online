@@ -1,4 +1,4 @@
-package edu.cit.natividad.labangonline.features.payment;
+package edu.cit.natividad.serviline.features.payment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.cit.natividad.labangonline.features.payment.PaymentDTO;
-import edu.cit.natividad.labangonline.features.payment.PaymentVerificationDTO;
-import edu.cit.natividad.labangonline.features.payment.Payment;
-import edu.cit.natividad.labangonline.features.payment.PaymentService;
+import edu.cit.natividad.serviline.features.payment.PaymentDTO;
+import edu.cit.natividad.serviline.features.payment.PaymentVerificationDTO;
+import edu.cit.natividad.serviline.features.payment.Payment;
+import edu.cit.natividad.serviline.features.payment.PaymentService;
 import jakarta.validation.Valid;
 
 @RestController

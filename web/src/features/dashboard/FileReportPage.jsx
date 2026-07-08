@@ -34,7 +34,7 @@ export default function FileReportPage() {
   }
 
   useEffect(() => {
-    const sessionData = sessionStorage.getItem("labangonline_session");
+    const sessionData = sessionStorage.getItem("serviline_session");
     if (sessionData) {
       setSession(JSON.parse(sessionData));
     }

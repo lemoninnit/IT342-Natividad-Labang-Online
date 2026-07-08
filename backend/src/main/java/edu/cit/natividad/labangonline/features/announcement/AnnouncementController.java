@@ -1,7 +1,7 @@
-package edu.cit.natividad.labangonline.features.announcement;
+package edu.cit.natividad.serviline.features.announcement;
 
-import edu.cit.natividad.labangonline.features.announcement.Announcement;
-import edu.cit.natividad.labangonline.features.announcement.AnnouncementService;
+import edu.cit.natividad.serviline.features.announcement.Announcement;
+import edu.cit.natividad.serviline.features.announcement.AnnouncementService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

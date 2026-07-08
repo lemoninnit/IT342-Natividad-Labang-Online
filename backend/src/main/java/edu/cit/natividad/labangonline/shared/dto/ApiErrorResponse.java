@@ -1,4 +1,4 @@
-package edu.cit.natividad.labangonline.shared.dto;
+package edu.cit.natividad.serviline.shared.dto;
 
 import java.util.Map;
 

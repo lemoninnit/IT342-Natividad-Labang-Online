@@ -1,10 +1,10 @@
-package edu.cit.natividad.labangonline;
+package edu.cit.natividad.serviline;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class LabangOnlineApplicationTests {
+class ServiLineApplicationTests {
 
 	@Test
 	void contextLoads() {

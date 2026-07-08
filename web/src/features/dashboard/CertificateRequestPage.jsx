@@ -60,7 +60,7 @@ export default function CertificateRequestPage() {
   const [selectedCert, setSelectedCert] = useState(null)
 
   useEffect(() => {
-    const sessionData = sessionStorage.getItem("labangonline_session");
+    const sessionData = sessionStorage.getItem("serviline_session");
     if (sessionData) {
       setSession(JSON.parse(sessionData));
     }

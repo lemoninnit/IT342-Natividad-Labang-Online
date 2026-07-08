@@ -1,11 +1,11 @@
-package edu.cit.natividad.labangonline.features.payment;
+package edu.cit.natividad.serviline.features.payment;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import edu.cit.natividad.labangonline.features.payment.Payment;
+import edu.cit.natividad.serviline.features.payment.Payment;
 
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment, Long> {

@@ -15,7 +15,7 @@ export default function AdminDashboard() {
   const [searchQuery, setSearchQuery] = useState('')
 
   useEffect(() => {
-    const sessionData = sessionStorage.getItem('labangonline_session')
+    const sessionData = sessionStorage.getItem('serviline_session')
     if (!sessionData) {
       window.location.href = '/admin/login'
       return

@@ -1,4 +1,4 @@
-package edu.cit.natividad.labangonline.shared.dto;
+package edu.cit.natividad.serviline.shared.dto;
 
 public class RequestDTO {
     private String serviceType; // e.g., "CERTIFICATE", "COMPLAINT"

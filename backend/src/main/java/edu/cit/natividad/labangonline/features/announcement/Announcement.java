@@ -1,4 +1,4 @@
-package edu.cit.natividad.labangonline.features.announcement;
+package edu.cit.natividad.serviline.features.announcement;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

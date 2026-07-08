@@ -1,4 +1,4 @@
-package edu.cit.natividad.labangonline.features.payment;
+package edu.cit.natividad.serviline.features.payment;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

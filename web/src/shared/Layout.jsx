@@ -11,8 +11,8 @@ export default function Layout({ children }) {
       <header className="layout-header">
         <div className="header-content">
           <div className="logo-section" onClick={goToHome}>
-            <img src={logo} alt="LabangOnline Logo" className="logo-icon" />
-            <span className="logo-text">LabangOnline</span>
+            <img src={logo} alt="ServiLine Logo" className="logo-icon" />
+            <span className="logo-text">ServiLine</span>
           </div>
         </div>
       </header>
@@ -22,7 +22,7 @@ export default function Layout({ children }) {
       </main>
 
       <footer className="layout-footer">
-        <p>© 2025 Barangay Labangon · LabangOnline</p>
+        <p>© 2025 Barangay Labangon · ServiLine</p>
       </footer>
     </div>
   );

@@ -1,4 +1,4 @@
-package edu.cit.natividad.labangonline.features.auth;
+package edu.cit.natividad.serviline.features.auth;
 
 import java.util.Optional;
 
@@ -6,10 +6,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.cit.natividad.labangonline.features.auth.LoginRequest;
-import edu.cit.natividad.labangonline.features.auth.RegisterRequest;
-import edu.cit.natividad.labangonline.features.user.User;
-import edu.cit.natividad.labangonline.features.user.UserRepository;
+import edu.cit.natividad.serviline.features.auth.LoginRequest;
+import edu.cit.natividad.serviline.features.auth.RegisterRequest;
+import edu.cit.natividad.serviline.features.user.User;
+import edu.cit.natividad.serviline.features.user.UserRepository;
 
 
 @Service

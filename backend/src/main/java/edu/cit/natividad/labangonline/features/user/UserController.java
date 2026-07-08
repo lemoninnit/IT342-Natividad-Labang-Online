@@ -1,9 +1,9 @@
-package edu.cit.natividad.labangonline.features.user;
+package edu.cit.natividad.serviline.features.user;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import edu.cit.natividad.labangonline.features.user.User;
-import edu.cit.natividad.labangonline.features.user.UserService;
+import edu.cit.natividad.serviline.features.user.User;
+import edu.cit.natividad.serviline.features.user.UserService;
 
 @RestController
 @RequestMapping("/api/users")

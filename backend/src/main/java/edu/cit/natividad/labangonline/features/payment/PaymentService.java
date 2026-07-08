@@ -1,4 +1,4 @@
-package edu.cit.natividad.labangonline.features.payment;
+package edu.cit.natividad.serviline.features.payment;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -11,12 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.Cacheable;
 
-import edu.cit.natividad.labangonline.features.payment.PaymentDTO;
-import edu.cit.natividad.labangonline.features.payment.PaymentVerificationDTO;
-import edu.cit.natividad.labangonline.features.certificate.CertificateRequest;
-import edu.cit.natividad.labangonline.features.payment.Payment;
-import edu.cit.natividad.labangonline.features.certificate.CertificateRequestRepository;
-import edu.cit.natividad.labangonline.features.payment.PaymentRepository;
+import edu.cit.natividad.serviline.features.payment.PaymentDTO;
+import edu.cit.natividad.serviline.features.payment.PaymentVerificationDTO;
+import edu.cit.natividad.serviline.features.certificate.CertificateRequest;
+import edu.cit.natividad.serviline.features.payment.Payment;
+import edu.cit.natividad.serviline.features.certificate.CertificateRequestRepository;
+import edu.cit.natividad.serviline.features.payment.PaymentRepository;
 
 @Service
 @Transactional

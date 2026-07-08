@@ -11,7 +11,7 @@ export default function Landing() {
         {/* Hero Section */}
         <section className="hero">
           <div className="hero-content">
-            <div className="hero-badge">Welcome to LabangOnline</div>
+            <div className="hero-badge">Welcome to ServiLine</div>
             <h1 className="hero-title">Fast, Simple Barangay Services</h1>
             <p className="hero-subtitle">
               Request certificates, file reports, and stay connected to Barangay Labangon 24/7, without the lines.
@@ -122,7 +122,7 @@ export default function Landing() {
 
         {/* About Section */}
         <section className="about">
-          <h2>Why LabangOnline?</h2>
+          <h2>Why ServiLine?</h2>
           <div className="about-grid">
             <div className="about-item">
               <div className="about-number">1</div>
@@ -141,7 +141,7 @@ export default function Landing() {
             </div>
           </div>
           <p className="about-description">
-            LabangOnline is the official digitized service portal of Barangay Labangon, transforming how residents access barangay services.
+            ServiLine is the official digitized service portal of Barangay Labangon, transforming how residents access barangay services.
           </p>
         </section>
 
@@ -151,7 +151,7 @@ export default function Landing() {
             <span className="download-badge">Android Application</span>
             <h2>Take Barangay Services on the Go</h2>
             <p>Download our official Android app to request certificates and file reports directly from your mobile phone.</p>
-            <a href="/labangonline.apk" download="LabangOnline.apk" className="btn btn-primary">
+            <a href="/serviline.apk" download="ServiLine.apk" className="btn btn-primary">
               <span className="btn-icon">📥</span> Download APK
             </a>
           </div>

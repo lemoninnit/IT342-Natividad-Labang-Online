@@ -17,5 +17,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Labang Online"
+rootProject.name = "ServiLine"
 include ':app'

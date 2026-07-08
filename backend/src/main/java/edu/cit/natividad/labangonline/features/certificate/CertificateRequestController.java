@@ -1,4 +1,4 @@
-package edu.cit.natividad.labangonline.features.certificate;
+package edu.cit.natividad.serviline.features.certificate;
 
 import java.util.List;
 
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.cit.natividad.labangonline.features.certificate.CertificateRequestDTO;
-import edu.cit.natividad.labangonline.features.certificate.CertificateRequestResponseDTO;
-import edu.cit.natividad.labangonline.features.certificate.CertificateRequestService;
+import edu.cit.natividad.serviline.features.certificate.CertificateRequestDTO;
+import edu.cit.natividad.serviline.features.certificate.CertificateRequestResponseDTO;
+import edu.cit.natividad.serviline.features.certificate.CertificateRequestService;
 import jakarta.validation.Valid;
 
 @RestController

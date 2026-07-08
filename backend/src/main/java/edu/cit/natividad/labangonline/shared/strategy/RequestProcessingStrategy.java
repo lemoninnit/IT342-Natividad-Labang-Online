@@ -1,7 +1,7 @@
-package edu.cit.natividad.labangonline.shared.strategy;
+package edu.cit.natividad.serviline.shared.strategy;
 
-import edu.cit.natividad.labangonline.shared.dto.RequestDTO;
-import edu.cit.natividad.labangonline.shared.dto.ResponseDTO;
+import edu.cit.natividad.serviline.shared.dto.RequestDTO;
+import edu.cit.natividad.serviline.shared.dto.ResponseDTO;
 
 public interface RequestProcessingStrategy {
     boolean supports(String serviceType);

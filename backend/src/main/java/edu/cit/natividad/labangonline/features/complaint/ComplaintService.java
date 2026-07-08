@@ -1,4 +1,4 @@
-package edu.cit.natividad.labangonline.features.complaint;
+package edu.cit.natividad.serviline.features.complaint;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,11 +7,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Caching;
-import edu.cit.natividad.labangonline.features.complaint.ComplaintResponseDTO;
-import edu.cit.natividad.labangonline.features.complaint.Complaint;
-import edu.cit.natividad.labangonline.features.user.User;
-import edu.cit.natividad.labangonline.features.complaint.ComplaintRepository;
-import edu.cit.natividad.labangonline.features.user.UserRepository;
+import edu.cit.natividad.serviline.features.complaint.ComplaintResponseDTO;
+import edu.cit.natividad.serviline.features.complaint.Complaint;
+import edu.cit.natividad.serviline.features.user.User;
+import edu.cit.natividad.serviline.features.complaint.ComplaintRepository;
+import edu.cit.natividad.serviline.features.user.UserRepository;
 import java.util.Map;
 
 @Service

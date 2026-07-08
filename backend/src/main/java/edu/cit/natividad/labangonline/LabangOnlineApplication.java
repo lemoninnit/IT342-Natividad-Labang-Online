@@ -1,13 +1,13 @@
-package edu.cit.natividad.labangonline;
+package edu.cit.natividad.serviline;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LabangOnlineApplication {
+public class ServiLineApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LabangOnlineApplication.class, args);
+		SpringApplication.run(ServiLineApplication.class, args);
 	}
 
 }

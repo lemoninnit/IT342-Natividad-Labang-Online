@@ -1,10 +1,10 @@
-package edu.cit.natividad.labangonline.features.admin;
+package edu.cit.natividad.serviline.features.admin;
 
-import edu.cit.natividad.labangonline.features.certificate.AdminCertificateRequestResponseDTO;
-import edu.cit.natividad.labangonline.features.certificate.CertificateRequest;
-import edu.cit.natividad.labangonline.features.complaint.Complaint;
-import edu.cit.natividad.labangonline.features.user.User;
-import edu.cit.natividad.labangonline.features.admin.AdminService;
+import edu.cit.natividad.serviline.features.certificate.AdminCertificateRequestResponseDTO;
+import edu.cit.natividad.serviline.features.certificate.CertificateRequest;
+import edu.cit.natividad.serviline.features.complaint.Complaint;
+import edu.cit.natividad.serviline.features.user.User;
+import edu.cit.natividad.serviline.features.admin.AdminService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

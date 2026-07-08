@@ -1,4 +1,4 @@
-package edu.cit.natividad.labangonline.shared.config;
+package edu.cit.natividad.serviline.shared.config;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import edu.cit.natividad.labangonline.shared.dto.ApiErrorResponse;
+import edu.cit.natividad.serviline.shared.dto.ApiErrorResponse;
 
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {

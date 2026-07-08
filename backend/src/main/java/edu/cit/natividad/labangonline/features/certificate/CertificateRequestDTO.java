@@ -1,4 +1,4 @@
-package edu.cit.natividad.labangonline.features.certificate;
+package edu.cit.natividad.serviline.features.certificate;
 
 import java.io.Serializable;
 

@@ -1,11 +1,11 @@
-package edu.cit.natividad.labangonline.features.user;
+package edu.cit.natividad.serviline.features.user;
 
 import org.springframework.stereotype.Service;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Caching;
-import edu.cit.natividad.labangonline.features.user.User;
-import edu.cit.natividad.labangonline.features.user.UserRepository;
+import edu.cit.natividad.serviline.features.user.User;
+import edu.cit.natividad.serviline.features.user.UserRepository;
 import java.util.Optional;
 
 @Service

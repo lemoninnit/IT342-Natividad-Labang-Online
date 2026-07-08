@@ -6,9 +6,9 @@
 
     <application>
         <activity
-            android:name=".LabangOnlineApplication"
+            android:name=".ServiLineApplication"
             android:exported="true"
-            android:theme="@style/Theme.LabangOnline">
+            android:theme="@style/Theme.ServiLine">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -18,17 +18,17 @@
         <activity
             android:name=".auth.LoginActivity"
             android:exported="true"
-            android:theme="@style/Theme.LabangOnline" />
+            android:theme="@style/Theme.ServiLine" />
 
         <activity
             android:name=".auth.RegisterActivity"
             android:exported="true"
-            android:theme="@style/Theme.LabangOnline" />
+            android:theme="@style/Theme.ServiLine" />
 
         <activity
             android:name=".dashboard.DashboardActivity"
             android:exported="true"
-            android:theme="@style/Theme.LabangOnline" />
+            android:theme="@style/Theme.ServiLine" />
     </application>
 
 </manifest>

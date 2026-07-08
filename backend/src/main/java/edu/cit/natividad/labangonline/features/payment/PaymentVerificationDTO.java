@@ -1,4 +1,4 @@
-package edu.cit.natividad.labangonline.features.payment;
+package edu.cit.natividad.serviline.features.payment;
 
 import java.io.Serializable;
 

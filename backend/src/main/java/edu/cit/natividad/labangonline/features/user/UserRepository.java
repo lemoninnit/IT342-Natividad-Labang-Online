@@ -1,10 +1,10 @@
-package edu.cit.natividad.labangonline.features.user;
+package edu.cit.natividad.serviline.features.user;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import edu.cit.natividad.labangonline.features.user.User;
+import edu.cit.natividad.serviline.features.user.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 

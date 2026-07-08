@@ -16,7 +16,7 @@ export default function Dashboard() {
   const [announcementCount, setAnnouncementCount] = useState(0);
 
   const fetchUserData = () => {
-    const sessionData = sessionStorage.getItem("labangonline_session");
+    const sessionData = sessionStorage.getItem("serviline_session");
     if (!sessionData) {
       window.location.href = "/login";
       return;
@@ -86,7 +86,7 @@ export default function Dashboard() {
         <div className="sidebar-header">
           <div className="sidebar-logo">
             <img src="/src/assets/logo.png" alt="Logo" className="logo-img" />
-            <span>LabangOnline</span>
+            <span>ServiLine</span>
           </div>
         </div>
 

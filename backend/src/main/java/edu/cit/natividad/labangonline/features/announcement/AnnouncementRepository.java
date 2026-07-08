@@ -1,6 +1,6 @@
-package edu.cit.natividad.labangonline.features.announcement;
+package edu.cit.natividad.serviline.features.announcement;
 
-import edu.cit.natividad.labangonline.features.announcement.Announcement;
+import edu.cit.natividad.serviline.features.announcement.Announcement;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

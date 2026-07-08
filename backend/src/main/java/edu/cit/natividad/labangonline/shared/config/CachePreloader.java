@@ -1,12 +1,12 @@
-package edu.cit.natividad.labangonline.shared.config;
+package edu.cit.natividad.serviline.shared.config;
 
-import edu.cit.natividad.labangonline.features.admin.AdminService;
-import edu.cit.natividad.labangonline.features.announcement.AnnouncementService;
-import edu.cit.natividad.labangonline.features.certificate.CertificateRequestService;
-import edu.cit.natividad.labangonline.features.complaint.ComplaintService;
-import edu.cit.natividad.labangonline.features.user.User;
-import edu.cit.natividad.labangonline.features.user.UserRepository;
-import edu.cit.natividad.labangonline.features.user.UserService;
+import edu.cit.natividad.serviline.features.admin.AdminService;
+import edu.cit.natividad.serviline.features.announcement.AnnouncementService;
+import edu.cit.natividad.serviline.features.certificate.CertificateRequestService;
+import edu.cit.natividad.serviline.features.complaint.ComplaintService;
+import edu.cit.natividad.serviline.features.user.User;
+import edu.cit.natividad.serviline.features.user.UserRepository;
+import edu.cit.natividad.serviline.features.user.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

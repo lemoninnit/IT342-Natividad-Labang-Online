@@ -97,7 +97,7 @@ export default function AdminLogin() {
         role: user.role.toUpperCase(),
         loginTime: new Date().toISOString(),
       };
-      sessionStorage.setItem("labangonline_session", JSON.stringify(sessionData));
+      sessionStorage.setItem("serviline_session", JSON.stringify(sessionData));
 
       // Trigger background pre-fetching for admin data
       try {

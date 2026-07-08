@@ -1,5 +1,5 @@
-package edu.cit.natividad.labangonline.features.complaint;
-import edu.cit.natividad.labangonline.features.user.User;
+package edu.cit.natividad.serviline.features.complaint;
+import edu.cit.natividad.serviline.features.user.User;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

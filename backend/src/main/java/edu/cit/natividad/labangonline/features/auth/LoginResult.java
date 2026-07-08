@@ -1,6 +1,6 @@
-package edu.cit.natividad.labangonline.features.auth;
+package edu.cit.natividad.serviline.features.auth;
 
-import edu.cit.natividad.labangonline.features.user.User;
+import edu.cit.natividad.serviline.features.user.User;
 
 public class LoginResult {
 
