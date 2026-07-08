@@ -144,6 +144,18 @@ export default function Landing() {
             LabangOnline is the official digitized service portal of Barangay Labangon, transforming how residents access barangay services.
           </p>
         </section>
+
+        {/* Mobile Download Section */}
+        <section className="mobile-download">
+          <div className="download-card">
+            <span className="download-badge">Android Application</span>
+            <h2>Take Barangay Services on the Go</h2>
+            <p>Download our official Android app to request certificates and file reports directly from your mobile phone.</p>
+            <a href="/labangonline.apk" download="LabangOnline.apk" className="btn btn-primary">
+              <span className="btn-icon">📥</span> Download APK
+            </a>
+          </div>
+        </section>
       </div>
     </Layout>
   );
