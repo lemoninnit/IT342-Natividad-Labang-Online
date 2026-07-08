@@ -1,5 +1,7 @@
 import { useState, useCallback } from "react";
 import { authAPI } from "../../lib/api";
+import pfpImg from "../../assets/pfp.png";
+import residentImg from "../../assets/resident.png";
 import "./EditProfile.css";
 
 export default function EditProfile({ user, onUpdate, onCancel }) {
@@ -74,11 +76,11 @@ export default function EditProfile({ user, onUpdate, onCancel }) {
     if (type === 'pfp') {
       if (previews.pfp) return previews.pfp;
       if (formData.profilePicture) return `data:image/jpeg;base64,${formData.profilePicture}`;
-      return "/src/assets/pfp.png";
+      return pfpImg;
     } else {
       if (previews.idImage) return previews.idImage;
       if (formData.residentIdImage) return `data:image/jpeg;base64,${formData.residentIdImage}`;
-      return "/src/assets/resident.png";
+      return residentImg;
     }
   };
 

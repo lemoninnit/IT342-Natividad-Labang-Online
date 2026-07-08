@@ -5,6 +5,9 @@ import FileReportPage from "./FileReportPage";
 import EditProfile from "./EditProfile";
 import Announcements from "../announcement/Announcements";
 import { authAPI, announcementAPI, prefetchUserData } from "../../lib/api";
+import logoImg from "../../assets/logo.png";
+import pfpImg from "../../assets/pfp.png";
+import residentImg from "../../assets/resident.png";
 
 // Dashboard Component
 export default function Dashboard() {
@@ -85,7 +88,7 @@ export default function Dashboard() {
       <aside className={`dashboard-sidebar ${sidebarOpen ? "open" : ""}`}>
         <div className="sidebar-header">
           <div className="sidebar-logo">
-            <img src="/src/assets/logo.png" alt="Logo" className="logo-img" />
+            <img src={logoImg} alt="Logo" className="logo-img" />
             <span>ServiLine</span>
           </div>
         </div>
@@ -156,7 +159,7 @@ export default function Dashboard() {
           <div className="topbar-right">
             <div className="topbar-user">
               <div className="user-avatar-circle">
-                <img src={getImageUrl(session.profilePicture) || "/src/assets/pfp.png"} alt="User Profile" className="avatar-img" />
+                <img src={getImageUrl(session.profilePicture) || pfpImg} alt="User Profile" className="avatar-img" />
               </div>
               <span className="user-full-name">
                 {session.firstName} {session.lastName}
@@ -174,7 +177,7 @@ export default function Dashboard() {
               <div className="info-header-card">
                 <div className="info-header-left">
                   <div className="info-avatar-large">
-                    <img src={getImageUrl(session.profilePicture) || "/src/assets/pfp.png"} alt="User Profile" className="avatar-img-large" />
+                    <img src={getImageUrl(session.profilePicture) || pfpImg} alt="User Profile" className="avatar-img-large" />
                   </div>
                   <div className="info-header-text">
                     <h2>{session.firstName} {session.lastName}</h2>
@@ -263,7 +266,7 @@ export default function Dashboard() {
                       <img src={getImageUrl(session.residentIdImage)} alt="Resident ID" className="id-image-preview" />
                     ) : (
                       <div className="id-placeholder">
-                        <img src="/src/assets/resident.png" alt="Default Resident ID" className="id-img-default" />
+                        <img src={residentImg} alt="Default Resident ID" className="id-img-default" />
                         <p>No Resident ID uploaded yet</p>
                       </div>
                     )}

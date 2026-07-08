@@ -15,7 +15,10 @@ export default function FileReportPage() {
     return !localStorage.getItem('cached_user_reports');
   });
   const [error, setError] = useState('')
-  const [session, setSession] = useState(null)
+  const [session, setSession] = useState(() => {
+    const sessionData = sessionStorage.getItem("serviline_session");
+    return sessionData ? JSON.parse(sessionData) : null;
+  });
 
   const loadReports = async (showLoader = false) => {
     if (showLoader || !localStorage.getItem('cached_user_reports')) {
@@ -34,11 +37,6 @@ export default function FileReportPage() {
   }
 
   useEffect(() => {
-    const sessionData = sessionStorage.getItem("serviline_session");
-    if (sessionData) {
-      setSession(JSON.parse(sessionData));
-    }
-    
     loadReports(false)
   }, []);
 
@@ -87,14 +85,7 @@ export default function FileReportPage() {
         </div>
       ) : (
         <div className="report-content">
-          {loading ? (
-            <div className="loading-state">
-              <div className="loader"></div>
-              <p>Loading your reports...</p>
-            </div>
-          ) : (
-            <ReportHistory reports={reports} onRefresh={loadReports} />
-          )}
+          <ReportHistory reports={reports} onRefresh={loadReports} />
         </div>
       )}
     </div>

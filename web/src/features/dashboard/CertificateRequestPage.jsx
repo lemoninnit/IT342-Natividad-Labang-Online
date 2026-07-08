@@ -55,16 +55,12 @@ export default function CertificateRequestPage() {
   const [currentStep, setCurrentStep] = useState('selection') // selection, view, request-form, payment-method, gcash-payment, otc-payment
   const [selectedRequestId, setSelectedRequestId] = useState(null)
   const [historyRefresh, setHistoryRefresh] = useState(0)
-  const [session, setSession] = useState(null)
+  const [session, setSession] = useState(() => {
+    const sessionData = sessionStorage.getItem("serviline_session");
+    return sessionData ? JSON.parse(sessionData) : null;
+  });
 
   const [selectedCert, setSelectedCert] = useState(null)
-
-  useEffect(() => {
-    const sessionData = sessionStorage.getItem("serviline_session");
-    if (sessionData) {
-      setSession(JSON.parse(sessionData));
-    }
-  }, []);
 
   const handleCertSelect = (cert) => {
     setSelectedCert(cert)

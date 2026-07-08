@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { paymentAPI, certificateAPI } from '../../lib/api'
+import gcashQrImg from '../../assets/gcash_qr.jpg'
 import './GCashPayment.css'
 
 export default function GCashPayment({ requestId, price, priceVal, onPaymentComplete, onCancel }) {
@@ -96,7 +97,7 @@ export default function GCashPayment({ requestId, price, priceVal, onPaymentComp
           <div className="payment-layout-split">
             <div className="payment-left-qr">
               <div className="qr-wrapper">
-                <img src="/src/assets/gcash_qr.jpg" alt="GCash QR Code" className="qr-image-branded" />
+                <img src={gcashQrImg} alt="GCash QR Code" className="qr-image-branded" />
               </div>
               <p className="qr-instruction">Scan this QR using your GCash App</p>
             </div>

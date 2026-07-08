@@ -381,12 +381,7 @@ export default function Announcements() {
       </div>
 
       <div className="announcements-list">
-        {loading ? (
-          <div className="loading-state">
-            <div className="loader"></div>
-            <p>Fetching announcements...</p>
-          </div>
-        ) : filteredAnnouncements.length === 0 ? (
+        {filteredAnnouncements.length === 0 ? (
           <div className="empty-state">
             <div className="empty-icon">📢</div>
             <p>No announcements found.</p>
