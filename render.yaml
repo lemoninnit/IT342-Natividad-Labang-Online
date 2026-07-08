@@ -16,7 +16,7 @@ services:
       - key: FRONTEND_URL
         sync: false # Input this in Render (e.g. https://serviline-web.onrender.com)
 
-  - type: static
+  - type: static_site
     name: serviline-web
     env: node
     plan: free
