@@ -25,4 +25,4 @@ services:
     publishPath: web/dist
     envVars:
       - key: VITE_API_URL
-        value: https://labangonline-backend.onrender.com/api/
+        value: https://serviline.onrender.com/api/
