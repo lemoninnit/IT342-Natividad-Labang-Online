@@ -7,7 +7,7 @@ WORKDIR /app
 # Copy Maven wrapper files and pom.xml first to cache dependencies
 COPY backend/.mvn/ .mvn
 COPY backend/mvnw backend/pom.xml ./
-RUN ./mvnw dependency:go-offline -B
+RUN chmod +x ./mvnw && ./mvnw dependency:go-offline -B
 
 # Copy the actual application source code
 COPY backend/src ./src
