@@ -3,7 +3,6 @@ services:
   - type: web
     name: serviline-backend
     env: docker
-    plan: free
     branch: main
     dockerfilePath: backend/Dockerfile
     envVars:
@@ -19,7 +18,6 @@ services:
   - type: web
     name: serviline-web
     env: static
-    plan: free
     branch: main
     buildCommand: cd web && npm install && npm run build
     staticPublishPath: web/dist
