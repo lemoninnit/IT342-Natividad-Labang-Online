@@ -5,7 +5,6 @@ services:
     env: docker
     plan: free
     branch: main
-    dockerContext: backend
     dockerfilePath: backend/Dockerfile
     envVars:
       - key: DB_URL

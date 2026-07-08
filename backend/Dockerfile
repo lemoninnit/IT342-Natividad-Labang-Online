@@ -5,12 +5,12 @@ FROM eclipse-temurin:21-jdk-jammy AS builder
 WORKDIR /app
 
 # Copy Maven wrapper files and pom.xml first to cache dependencies
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
+COPY backend/.mvn/ .mvn
+COPY backend/mvnw backend/pom.xml ./
 RUN ./mvnw dependency:go-offline -B
 
 # Copy the actual application source code
-COPY src ./src
+COPY backend/src ./src
 
 # Build the application, skipping unit tests to speed up deploy
 RUN ./mvnw clean package -DskipTests -B
