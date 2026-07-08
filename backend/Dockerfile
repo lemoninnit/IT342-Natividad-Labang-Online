@@ -5,9 +5,9 @@ FROM eclipse-temurin:21-jdk-jammy AS builder
 WORKDIR /app
 
 # Copy Maven wrapper files and pom.xml first to cache dependencies
-COPY backend/.mvn/ .mvn
+COPY backend/.mvn/ .mvn/
 COPY backend/mvnw backend/pom.xml ./
-RUN chmod +x ./mvnw && ./mvnw dependency:go-offline -B
+RUN sed -i 's/\r$//' ./mvnw ./.mvn/wrapper/maven-wrapper.properties && chmod +x ./mvnw && ./mvnw dependency:go-offline -B
 
 # Copy the actual application source code
 COPY backend/src ./src
