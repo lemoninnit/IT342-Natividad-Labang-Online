@@ -10,12 +10,19 @@ const navItems = [
 export default function AdminLayout({ activeSection, title, subtitle, showHeader = true, children }) {
   return (
     <div className="admin-dashboard-wrapper">
-      <aside className="admin-sidebar">
-        <div className="sidebar-header">
+      <div className="admin-topbar">
+        <div className="admin-topbar-left">
           <div className="sidebar-logo">
+            <img src="/logo.png" alt="Logo" style={{width: '32px', height: '32px', marginRight: '12px'}} />
             ServiLine <span className="admin-tag">Admin</span>
           </div>
         </div>
+        <div className="admin-topbar-right">
+          <button className="btn-logout-red" onClick={() => window.location.href = '/logout'}>LOGOUT</button>
+        </div>
+      </div>
+
+      <aside className="admin-sidebar">
         <nav className="sidebar-nav">
           {navItems.map(item => (
             <button
@@ -26,11 +33,6 @@ export default function AdminLayout({ activeSection, title, subtitle, showHeader
               {item.icon} {item.label}
             </button>
           ))}
-          <div style={{ marginTop: 'auto', padding: '16px' }}>
-            <button className="nav-item" onClick={() => window.location.href = '/logout'}>
-              🚪 Logout
-            </button>
-          </div>
         </nav>
       </aside>
 

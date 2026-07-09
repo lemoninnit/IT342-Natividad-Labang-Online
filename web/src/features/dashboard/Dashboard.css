@@ -37,7 +37,8 @@ body {
   display: flex;
   flex-direction: column;
   position: fixed;
-  height: 100vh;
+  top: 64px;
+  height: calc(100vh - 64px);
   z-index: 100;
 }
 
@@ -140,10 +141,15 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  padding-top: 64px;
 }
 
 /* ── TOPBAR ── */
 .dashboard-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 64px;
   background: var(--topbar-bg);
   border-bottom: 1px solid var(--border);
@@ -151,6 +157,16 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0 32px;
+  z-index: 200;
+}
+
+.topbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--text-light);
 }
 
 .btn-toggle {

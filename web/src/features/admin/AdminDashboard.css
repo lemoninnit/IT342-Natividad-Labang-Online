@@ -5,6 +5,22 @@
   color: #ffffff;
 }
 
+/* Topbar */
+.admin-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: #111827;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  z-index: 200;
+}
+
 /* Sidebar */
 .admin-sidebar {
   width: 280px;
@@ -13,13 +29,9 @@
   display: flex;
   flex-direction: column;
   position: fixed;
-  height: 100vh;
+  top: 64px;
+  height: calc(100vh - 64px);
   z-index: 100;
-}
-
-.sidebar-header {
-  padding: 32px 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .sidebar-logo {
@@ -100,11 +112,27 @@
   background: rgba(239, 68, 68, 0.1);
 }
 
+.btn-logout-red {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-logout-red:hover {
+  background: #dc2626;
+}
+
 /* Main Content */
 .admin-main {
   flex: 1;
   margin-left: 280px;
-  padding: 48px 64px;
+  padding: 112px 64px 48px 64px;
   max-width: 1600px;
 }
 

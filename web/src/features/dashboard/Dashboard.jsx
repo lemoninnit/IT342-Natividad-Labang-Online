@@ -86,12 +86,7 @@ export default function Dashboard() {
     <div className="dashboard-wrapper">
       {/* Sidebar */}
       <aside className={`dashboard-sidebar ${sidebarOpen ? "open" : ""}`}>
-        <div className="sidebar-header">
-          <div className="sidebar-logo">
-            <img src={logoImg} alt="Logo" className="logo-img" />
-            <span>ServiLine</span>
-          </div>
-        </div>
+        {/* Sidebar Header removed, moved to Topbar */}
 
         <nav className="sidebar-nav">
           <button
@@ -155,6 +150,10 @@ export default function Dashboard() {
         {/* Top Navigation Bar */}
         <div className="dashboard-topbar">
           <div className="topbar-left">
+            <div className="topbar-logo">
+              <img src={logoImg} alt="Logo" className="logo-img" />
+              <span>ServiLine</span>
+            </div>
           </div>
           <div className="topbar-right">
             <div className="topbar-user">
