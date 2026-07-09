@@ -437,3 +437,98 @@
   border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
+@media (max-width: 768px) {
+  .edit-modal-body {
+    padding: 20px 12px;
+    width: 95vw;
+  }
+
+  .edit-header-modal {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+  }
+
+  .edit-header-modal h1 {
+    font-size: 24px;
+  }
+
+  .edit-header-modal p {
+    font-size: 14px;
+  }
+
+  .form-grid-modal {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .full-width {
+    grid-column: span 1;
+  }
+
+  .edit-section-modal {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .pfp-edit-row, .id-edit-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .pfp-preview-large {
+    width: 100px;
+    height: 100px;
+  }
+
+  .id-preview-box-modal {
+    width: 100%;
+    max-width: 280px;
+    height: 180px;
+  }
+
+  .address-grid-modal {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .form-footer-modal {
+    margin-top: 32px;
+    padding-top: 20px;
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+
+  .btn-cancel-modal, .btn-save-modal {
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+  }
+
+  /* Review / Confirmation Grid */
+  .review-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .confirm-modal-content {
+    padding: 24px 16px;
+  }
+
+  .confirm-header h2 {
+    font-size: 22px;
+  }
+
+  .confirm-actions {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+
+  .btn-confirm-final, .btn-back-edit {
+    width: 100%;
+    padding: 12px;
+  }
+}
+
+

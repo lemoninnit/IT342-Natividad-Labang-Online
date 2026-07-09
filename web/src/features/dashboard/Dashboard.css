@@ -485,3 +485,111 @@ body {
   0%, 100% { opacity: 0.6; }
   50% { opacity: 1; }
 }
+
+/* ── MOBILE RESPONSIVENESS ── */
+.sidebar-toggle-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--text-light);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+  margin-right: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 90;
+}
+
+@media (max-width: 1024px) {
+  .info-header-card {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar-toggle-btn {
+    display: flex;
+  }
+
+  .dashboard-sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    height: calc(100vh - 64px);
+    z-index: 100;
+  }
+
+  .dashboard-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .dashboard-main {
+    margin-left: 0 !important;
+  }
+
+  .dashboard-topbar {
+    padding: 0 16px;
+  }
+
+  .dashboard-content {
+    padding: 16px;
+  }
+
+  /* Personal Info Page Responsiveness */
+  .info-header-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .info-header-left {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .info-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .info-row .label {
+    font-size: 12px;
+  }
+
+  .info-row .value {
+    font-size: 14px;
+    word-break: break-word;
+  }
+
+  .resident-id-card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-full-name {
+    display: none;
+  }
+
+  .topbar-right {
+    gap: 12px;
+  }
+
+  .btn-logout-red {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+}
+

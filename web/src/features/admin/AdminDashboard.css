@@ -523,7 +523,7 @@
   z-index: 10;
 }
 
-..btn-close-modal:hover {
+.btn-close-modal:hover {
   background: rgba(16, 185, 129, 0.2);
   border-color: rgba(16, 185, 129, 0.6);
   transform: scale(1.1);

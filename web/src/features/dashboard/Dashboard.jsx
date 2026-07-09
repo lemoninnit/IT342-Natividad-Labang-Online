@@ -150,6 +150,13 @@ export default function Dashboard() {
         {/* Top Navigation Bar */}
         <div className="dashboard-topbar">
           <div className="topbar-left">
+            <button 
+              className="sidebar-toggle-btn" 
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              aria-label="Toggle Navigation Sidebar"
+            >
+              ☰
+            </button>
             <div className="topbar-logo">
               <img src={logoImg} alt="Logo" className="logo-img" />
               <span>ServiLine</span>
