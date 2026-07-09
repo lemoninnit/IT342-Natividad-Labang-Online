@@ -1,0 +1,218 @@
+[
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/layout_activity_announcement.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/layout/activity_announcement.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/drawable_notice_bg.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/drawable/notice_bg.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/drawable_logout.png.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/drawable/logout.png"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/drawable_resident.png.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/drawable/resident.png"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/layout_activity_otc_payment.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/layout/activity_otc_payment.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/layout_item_report.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/layout/item_report.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/drawable_ic_launcher_round.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/drawable/ic_launcher_round.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/layout_activity_edit_profile.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/layout/activity_edit_profile.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/layout_activity_register.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/layout/activity_register.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/layout_activity_report.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/layout/activity_report.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/xml_data_extraction_rules.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/layout_item_record.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/layout/item_record.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/drawable_circle_green_bg.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/drawable/circle_green_bg.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/drawable_bg_input_field.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/drawable/bg_input_field.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/drawable_gcash.png.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/drawable/gcash.png"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/layout_activity_profile.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/layout/activity_profile.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/drawable_report.png.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/drawable/report.png"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/drawable_logo_labangonline.png.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/drawable/logo_labangonline.png"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/drawable_check.png.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/drawable/check.png"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/drawable_error_bg.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/drawable/error_bg.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/layout_item_announcement.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/layout/item_announcement.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/layout_activity_login.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/layout/activity_login.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/drawable_news.png.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/drawable/news.png"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/drawable_ic_launcher.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/drawable/ic_launcher.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/layout_dialog_logout.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/layout/dialog_logout.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/layout_activity_gcash_payment.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/layout/activity_gcash_payment.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/layout_activity_request_form.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/layout/activity_request_form.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/drawable_spinner_border.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/drawable/spinner_border.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/layout_activity_records.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/layout/activity_records.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/drawable_pfp.png.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/drawable/pfp.png"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/drawable_rounded_edittext.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/drawable/rounded_edittext.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/xml_backup_rules.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/drawable_profile.png.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/drawable/profile.png"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/layout_activity_main.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/layout/activity_main.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/layout_activity_requests.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/layout/activity_requests.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/drawable_logo.png.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/drawable/logo.png"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/layout_activity_report_records.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/layout/activity_report_records.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/drawable_request.png.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/drawable/request.png"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/drawable_badge_bg.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/drawable/badge_bg.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/drawable_ic_calendar.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/drawable/ic_calendar.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/layout_activity_select_payment_mode.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/layout/activity_select_payment_mode.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/drawable_spinner_bg.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/drawable/spinner_bg.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/drawable_circle_dark_bg.xml.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/drawable/circle_dark_bg.xml"
+    },
+    {
+        "merged": "edu.cit.natividad.serviline.app-debug-37:/drawable_gcash_qr.jpg.flat",
+        "source": "edu.cit.natividad.serviline.app-main-39:/drawable/gcash_qr.jpg"
+    }
+]

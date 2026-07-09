@@ -44,7 +44,10 @@ public class PaymentController {
       response.put("status", payment.getStatus().toString());
       return ResponseEntity.status(HttpStatus.CREATED).body(response);
     } catch (Exception e) {
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+      e.printStackTrace();
+      Map<String, Object> errorResponse = new HashMap<>();
+      errorResponse.put("error", e.getMessage());
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
   }
 

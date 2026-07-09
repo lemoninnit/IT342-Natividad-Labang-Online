@@ -321,6 +321,10 @@
 .error-state-themed {
   padding: 64px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .success-icon-themed {

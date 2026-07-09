@@ -117,10 +117,6 @@ export default function RequestHistory({ refreshTrigger, onSelectRequest }) {
                           <span className="detail-value">{request.id}</span>
                         </div>
                         <div className="detail-item">
-                          <span className="detail-label">Status:</span>
-                          <span className="detail-value">{getStatusBadge(request.status)}</span>
-                        </div>
-                        <div className="detail-item">
                           <span className="detail-label">Submitted:</span>
                           <span className="detail-value">{formatDate(request.createdAt)}</span>
                         </div>
@@ -153,10 +149,6 @@ export default function RequestHistory({ refreshTrigger, onSelectRequest }) {
                           <div className="detail-item">
                             <span className="detail-label">Reference:</span>
                             <span className="detail-value">{request.payment.referenceNumber}</span>
-                          </div>
-                          <div className="detail-item">
-                            <span className="detail-label">Payment Status:</span>
-                            <span className="detail-value">{getStatusBadge(request.payment.status)}</span>
                           </div>
                         </div>
                       </div>

@@ -24,7 +24,9 @@ export default function GCashPayment({ requestId, price, priceVal, onPaymentComp
       setPayment(response.data)
       setPaymentState('qr')
     } catch (err) {
-      setError('Failed to initialize GCash payment')
+      console.error('GCash Payment initiation failed:', err)
+      const errorMsg = err.response?.data?.error || err.response?.data?.message || err.message || 'Failed to initialize GCash payment';
+      setError(errorMsg)
       setPaymentState('error')
     } finally {
       setLoading(false)
@@ -182,7 +184,7 @@ export default function GCashPayment({ requestId, price, priceVal, onPaymentComp
         )}
 
         {paymentState === 'error' && (
-          <div className="payment-state error-state">
+          <div className="payment-state error-state-themed">
             <div className="error-icon-themed">✕</div>
             <h2>Something went wrong</h2>
             <p>{error || 'An error occurred during payment initialization.'}</p>

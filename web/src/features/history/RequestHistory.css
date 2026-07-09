@@ -413,3 +413,25 @@
   font-weight: 800;
   color: #ef4444;
 }
+
+@media (max-width: 768px) {
+  .request-history-container {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .request-details {
+    padding: 16px;
+  }
+
+  .detail-grid,
+  .payment-info .detail-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+
+  .payment-info {
+    padding: 16px;
+  }
+}
+

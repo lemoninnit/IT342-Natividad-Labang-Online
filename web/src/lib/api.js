@@ -3,7 +3,18 @@ import axios from 'axios'
 const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:8080') + '/api'
 
 const getHeaders = () => {
-  const userId = localStorage.getItem('userId')
+  let userId = localStorage.getItem('userId')
+  if (!userId) {
+    const sessionStr = sessionStorage.getItem('serviline_session')
+    if (sessionStr) {
+      try {
+        const session = JSON.parse(sessionStr)
+        userId = session.userId
+      } catch (e) {
+        console.warn('Failed to parse serviline_session in getHeaders:', e)
+      }
+    }
+  }
   return {
     'Content-Type': 'application/json',
     'X-User-Id': userId || ''
