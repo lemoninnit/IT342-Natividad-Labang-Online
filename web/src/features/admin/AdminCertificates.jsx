@@ -86,7 +86,16 @@ export default function AdminCertificates() {
         <div className="data-card">
           <div className="card-header">
             <h2 className="card-title">Certificate Requests</h2>
-            <div className="card-actions">
+            <div className="card-actions" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+              <button className="btn-action btn-info" onClick={() => {
+                setLoading(true);
+                adminAPI.getAllCertificates().then(res => {
+                  setCertificates(res.data);
+                  try { localStorage.setItem('cached_admin_certificates', JSON.stringify(res.data)); } catch (e) {}
+                }).catch(err => console.error(err)).finally(() => setLoading(false));
+              }} title="Refresh Data">
+                🔄 Refresh
+              </button>
               <div className="search-box" style={{ width: '250px' }}>
                 <input 
                   type="text" 

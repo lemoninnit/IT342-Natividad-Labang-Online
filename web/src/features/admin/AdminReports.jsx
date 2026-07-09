@@ -67,7 +67,16 @@ export default function AdminReports() {
         <div className="data-card">
           <div className="card-header">
             <h2 className="card-title">Incident Reports</h2>
-            <div className="card-actions">
+            <div className="card-actions" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+              <button className="btn-action btn-info" onClick={() => {
+                setLoading(true);
+                adminAPI.getAllComplaints().then(res => {
+                  setComplaints(res.data);
+                  try { localStorage.setItem('cached_admin_complaints', JSON.stringify(res.data)); } catch (e) {}
+                }).catch(err => console.error(err)).finally(() => setLoading(false));
+              }} title="Refresh Data">
+                🔄 Refresh
+              </button>
               <div className="search-box" style={{ width: '250px' }}>
                 <input 
                   type="text" 

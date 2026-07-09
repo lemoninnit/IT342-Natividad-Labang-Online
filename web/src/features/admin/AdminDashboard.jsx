@@ -90,7 +90,10 @@ export default function AdminDashboard() {
         <div className="data-card">
           <div className="card-header">
             <h2 className="card-title">Resident Management</h2>
-            <div className="card-actions">
+            <div className="card-actions" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+              <button className="btn-action btn-info" onClick={() => fetchResidents(true)} title="Refresh Data">
+                🔄 Refresh
+              </button>
               <div className="search-box" style={{ width: '250px' }}>
                 <input 
                   type="text" 
