@@ -90,10 +90,7 @@ export default function AdminDashboard() {
         <div className="data-card">
           <div className="card-header">
             <h2 className="card-title">Resident Management</h2>
-            <div className="card-actions" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-              <button className="btn-action btn-info" onClick={() => fetchResidents(true)} title="Refresh Data">
-                🔄 Refresh
-              </button>
+            <div className="card-actions" style={{display: 'flex', gap: '16px', alignItems: 'center'}}>
               <div className="search-box" style={{ width: '250px' }}>
                 <input 
                   type="text" 
@@ -110,6 +107,14 @@ export default function AdminDashboard() {
                   }}
                 />
               </div>
+              <button className="btn-action" style={{background: 'rgba(255,255,255,0.1)', color: 'white', padding: '8px 16px'}} onClick={() => {
+                setLoading(true)
+                adminAPI.getAllUsers().then(res => {
+                  setResidents(res.data)
+                  localStorage.setItem('cached_admin_users', JSON.stringify(res.data))
+                  setLoading(false)
+                }).catch(() => setLoading(false))
+              }} title="Refresh">↻ Refresh</button>
             </div>
           </div>
 
