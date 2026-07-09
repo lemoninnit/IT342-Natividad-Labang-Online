@@ -187,12 +187,7 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      {loading && (
-        <div className="loading-state">
-          <div className="loader-themed"></div>
-          <div className="loading-text">Loading Data...</div>
-        </div>
-      )}
+
 
       {selectedImage && (
         <div className="id-preview-modal" onClick={() => setSelectedImage(null)}>
