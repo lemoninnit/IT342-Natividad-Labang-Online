@@ -1,6 +1,8 @@
 .announcements-container {
   width: 100%;
-  padding: 0;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
   min-height: calc(100vh - 140px);
 }
 
@@ -13,7 +15,7 @@
   padding: 32px;
   background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: 24px;
 }
 
 /* Admin Specific Adjustments for Consistency */
@@ -49,7 +51,7 @@
   display: flex;
   gap: 16px;
   align-items: center;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 
 .btn-create-announce {

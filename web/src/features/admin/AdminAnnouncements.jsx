@@ -200,12 +200,7 @@ export default function AdminAnnouncements() {
         </div>
       </div>
       
-      {loading && (
-        <div className="loading-state">
-          <div className="loader-themed"></div>
-          <div className="loading-text">Loading Data...</div>
-        </div>
-      )}
+
     </AdminLayout>
   )
 }

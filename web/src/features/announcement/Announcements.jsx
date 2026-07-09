@@ -212,9 +212,6 @@ export default function Announcements() {
         </div>
         
         <div className="header-actions">
-          <button className="btn-action btn-info" onClick={() => fetchAnnouncements()} title="Refresh Data" style={{ height: '44px', padding: '0 16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            🔄 Refresh
-          </button>
           <div className="search-box">
             <span className="search-icon">🔍</span>
             <input 
