@@ -875,10 +875,13 @@
 /* Responsive */
 @media (max-width: 1200px) {
   .admin-sidebar { width: 80px; }
-  .sidebar-logo span, .nav-item span, .admin-tag, .btn-logout span { display: none; }
+  .admin-sidebar .sidebar-logo span, 
+  .admin-sidebar .nav-item span, 
+  .admin-sidebar .admin-tag, 
+  .admin-sidebar .btn-logout span { display: none; }
   .admin-main { margin-left: 80px; padding: 32px; }
-  .nav-item { justify-content: center; padding: 16px; }
-  .sidebar-header { padding: 24px 0; display: flex; justify-content: center; }
+  .admin-sidebar .nav-item { justify-content: center; padding: 16px; }
+  .admin-sidebar .sidebar-header { padding: 24px 0; display: flex; justify-content: center; }
 }
 
 @media (max-width: 768px) {
