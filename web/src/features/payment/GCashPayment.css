@@ -4,11 +4,13 @@
 
 .payment-card-redesign {
   background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border);
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  max-width: 900px;
+  max-width: 850px;
   width: 95%;
   margin: auto;
 }
@@ -20,20 +22,20 @@
 }
 
 .payment-left-qr {
-  background: rgba(255, 255, 255, 0.01);
+  background: rgba(4, 30, 20, 0.2);
   padding: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-right: 1px solid var(--border);
+  border-right: 1px solid rgba(16, 185, 129, 0.2);
 }
 
 .qr-wrapper {
   background: #ffffff;
   padding: 16px;
   border-radius: 12px;
-  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.25);
   margin-bottom: 20px;
 }
 
@@ -79,8 +81,8 @@
 }
 
 .payment-info-box-themed {
-  background: rgba(16, 185, 129, 0.05);
-  border: 1px solid rgba(16, 185, 129, 0.1);
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
   border-radius: 12px;
   padding: 16px;
   margin-bottom: 24px;
@@ -114,8 +116,8 @@
 }
 
 .input-group-themed input {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(16, 185, 129, 0.25);
   border-radius: 10px;
   padding: 12px 14px;
   color: var(--text-light);
@@ -127,7 +129,8 @@
 
 .input-group-themed input:focus {
   border-color: var(--accent);
-  background: rgba(16, 185, 129, 0.05);
+  background: rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
 }
 
 .payment-actions-themed {
@@ -137,8 +140,8 @@
 }
 
 .btn-cancel-themed, .btn-submit-payment {
-  padding: 12px;
-  border-radius: 8px;
+  padding: 14px;
+  border-radius: 100px;
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
@@ -148,24 +151,26 @@
 
 .btn-cancel-themed {
   background: transparent;
-  color: var(--text-muted);
-  border: 1px solid var(--border);
+  color: var(--text-light);
+  border: 1px solid rgba(16, 185, 129, 0.35);
 }
 
 .btn-cancel-themed:hover {
+  border-color: #ffffff;
   background: rgba(255, 255, 255, 0.05);
-  color: var(--text-light);
 }
 
 .btn-submit-payment {
   background: var(--accent);
-  color: #000;
+  color: #040806;
   border: none;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
 }
 
 .btn-submit-payment:hover:not(:disabled) {
   background: var(--accent-hover);
   transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
 }
 
 .file-upload-wrapper {
@@ -186,8 +191,8 @@
 .file-upload-label {
   display: block;
   padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(16, 185, 129, 0.25);
   border-radius: 10px;
   color: var(--text-muted);
   font-size: 14px;
@@ -199,15 +204,15 @@
 }
 
 .file-upload-wrapper:hover .file-upload-label {
-  border-color: rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(16, 185, 129, 0.45);
+  background: rgba(16, 185, 129, 0.05);
 }
 
 .image-preview-container {
   margin-top: 12px;
   border-radius: 8px;
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(16, 185, 129, 0.2);
   max-width: 200px;
 }
 
@@ -239,7 +244,7 @@
   justify-content: center;
   font-size: 40px;
   margin-bottom: 24px;
-  border: 2px solid rgba(16, 185, 129, 0.2);
+  border: 2px solid rgba(16, 185, 129, 0.25);
 }
 
 .success-state h2 {
@@ -259,10 +264,10 @@
 
 .btn-done-themed {
   background: var(--accent);
-  color: #000;
+  color: #040806;
   border: none;
   padding: 14px 32px;
-  border-radius: 12px;
+  border-radius: 100px;
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
@@ -271,49 +276,35 @@
 
 .btn-done-themed:hover {
   background: var(--accent-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
-}
-
-.payment-actions-themed {
-  display: flex;
-  gap: 16px;
-  margin-top: auto;
-}
-
-.btn-cancel-themed {
-  flex: 1;
-  background: transparent;
-  color: #94a3b8;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.25);
 }
 
 .btn-verify-themed {
   flex: 2;
   background: #10b981;
-  color: #000000;
+  color: #040806;
   border: none;
-  padding: 12px;
-  border-radius: 8px;
+  padding: 14px;
+  border-radius: 100px;
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
 }
 
 .btn-verify-themed:hover:not(:disabled) {
-  background: #059669;
+  background: #34d399;
   transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
 }
 
 .btn-verify-themed:disabled {
-  opacity: 0.5;
+  background: rgba(16, 185, 129, 0.15);
+  color: rgba(255, 255, 255, 0.3);
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 /* Status States */
@@ -357,12 +348,21 @@
 .btn-retry-themed {
   margin-top: 32px;
   background: #10b981;
-  color: #000;
+  color: #040806;
   border: none;
   padding: 12px 32px;
-  border-radius: 8px;
+  border-radius: 100px;
   font-weight: 700;
   cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.btn-finish-themed:hover,
+.btn-retry-themed:hover {
+  background: #34d399;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
 }
 
 @media (max-width: 768px) {
@@ -371,132 +371,6 @@
   }
   .payment-left-qr {
     border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(16, 185, 129, 0.15);
   }
-}
-
-.qr-code-placeholder {
-  background-color: #f8f9fa;
-  border: 2px dashed #ddd;
-  border-radius: 8px;
-  padding: 30px;
-  text-align: center;
-  margin: 15px 0;
-}
-
-.qr-placeholder {
-  font-size: 48px;
-  color: #999;
-}
-
-.payment-amount {
-  background-color: #e7f3ff;
-  border-left: 4px solid #007bff;
-  padding: 15px;
-  border-radius: 6px;
-  margin: 15px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.amount-label {
-  color: #666;
-  font-weight: 600;
-  font-size: 14px;
-}
-
-.amount-value {
-  color: #007bff;
-  font-weight: bold;
-  font-size: 18px;
-}
-
-.reference-input {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 14px;
-  margin-bottom: 15px;
-  transition: border-color 0.3s;
-}
-
-.reference-input:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 14px;
-}
-
-.payment-actions {
-  display: flex;
-  gap: 12px;
-  justify-content: flex-end;
-  margin-top: 25px;
-}
-
-.btn {
-  padding: 12px 24px;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.btn-primary {
-  background-color: #007bff;
-  color: white;
-}
-
-.btn-primary:hover:not(:disabled) {
-  background-color: #0056b3;
-}
-
-.btn-primary:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-}
-
-.btn-secondary {
-  background-color: #6c757d;
-  color: white;
-}
-
-.btn-secondary:hover {
-  background-color: #5a6268;
-}
-
-.payment-state.success {
-  text-align: center;
-}
-
-.success-icon {
-  font-size: 64px;
-  color: #28a745;
-  margin-bottom: 20px;
-}
-
-.payment-state.success h2 {
-  color: #28a745;
-  margin-bottom: 15px;
-}
-
-.payment-state.success p {
-  color: #666;
-  font-size: 14px;
-  margin-bottom: 10px;
 }

@@ -4,15 +4,18 @@ import { CircuitBackground } from "@/components/ui/circuit-background";
 
 export default function Layout({ children }) {
   const goToHome = () => {
-    window.location.pathname !== "/" && (window.location.href = "/");
+    if (window.location.pathname !== "/") {
+      window.history.pushState(null, '', '/');
+      window.dispatchEvent(new Event('pushstate'));
+    }
   };
 
   return (
     <CircuitBackground className="layout-wrapper" opacity={0.08} animated={true}>
       <header className="landing-nav">
         <div className="nav-logo" onClick={goToHome} style={{ cursor: "pointer" }}>
-          <img src={logo} alt="ServiLine Logo" className="nav-logo-icon" />
-          <span>ServiLine</span>
+          <img src={logo} alt="ServiLine" className="nav-logo-icon" />
+          <span className="nav-logo-text">ServiLine</span>
         </div>
 
         <div className="nav-links-pill">
@@ -23,7 +26,7 @@ export default function Layout({ children }) {
         </div>
       </header>
 
-      <main className="layout-main">
+      <main className="landing-main layout-main">
         {children}
       </main>
 

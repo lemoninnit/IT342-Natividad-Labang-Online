@@ -2,6 +2,8 @@
   width: 100%;
   padding: 32px;
   background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-radius: 24px;
   border: 1px solid var(--border);
   box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.5);
@@ -13,7 +15,7 @@
   align-items: center;
   margin-bottom: 24px;
   padding-bottom: 16px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.2);
 }
 
 .report-history-title {
@@ -28,9 +30,9 @@
 .btn-refresh-reports {
   background: transparent;
   color: var(--accent);
-  border: 1px solid var(--accent);
-  padding: 6px 16px;
-  border-radius: 6px;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  padding: 8px 20px;
+  border-radius: 100px;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -39,6 +41,7 @@
 
 .btn-refresh-reports:hover {
   background: rgba(16, 185, 129, 0.1);
+  border-color: var(--accent);
 }
 
 .reports-list {
@@ -48,26 +51,26 @@
 }
 
 .report-item {
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  border-radius: 16px;
   margin-bottom: 16px;
   overflow: hidden;
-  transition: all 0.2s ease;
-  background: rgba(255, 255, 255, 0.02);
+  transition: all 0.25s ease;
+  background: rgba(4, 30, 20, 0.2);
 }
 
 .report-item:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  border-color: rgba(16, 185, 129, 0.2);
-  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  border-color: rgba(16, 185, 129, 0.4);
+  background: rgba(4, 30, 20, 0.35);
 }
 
 .report-item-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.02);
+  padding: 20px 24px;
+  background-color: rgba(4, 30, 20, 0.1);
   cursor: pointer;
   transition: background-color 0.2s;
 }
@@ -99,8 +102,8 @@
 
 .report-status-badge {
   display: inline-block;
-  padding: 4px 12px;
-  border-radius: 20px;
+  padding: 6px 14px;
+  border-radius: 100px;
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
@@ -116,7 +119,7 @@
 .status-reviewed {
   background: rgba(16, 185, 129, 0.1);
   color: var(--accent);
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(16, 185, 129, 0.25);
 }
 
 .status-rejected {
@@ -127,8 +130,8 @@
 
 .report-item-details {
   padding: 32px;
-  background: rgba(255, 255, 255, 0.01);
-  border-top: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.15);
+  border-top: 1px solid rgba(16, 185, 129, 0.15);
 }
 
 .report-detail-grid {
@@ -187,14 +190,14 @@
 }
 
 .report-detail-text {
-  color: var(--text-light);
+  color: #cbd5e1;
   font-size: 14px;
   line-height: 1.6;
-  background-color: rgba(255, 255, 255, 0.03);
+  background-color: rgba(0, 0, 0, 0.25);
   padding: 16px;
   border-radius: 12px;
   margin: 0;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
 .empty-reports {
@@ -215,13 +218,13 @@
   gap: 16px;
   margin-top: 32px;
   padding-top: 32px;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid rgba(16, 185, 129, 0.2);
 }
 
 .summary-card {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  background: rgba(4, 30, 20, 0.4);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 16px;
   padding: 20px;
   text-align: center;
   display: flex;
@@ -245,7 +248,7 @@
 .loader {
   width: 36px;
   height: 36px;
-  border: 3px solid rgba(255, 255, 255, 0.1);
+  border: 3px solid rgba(16, 185, 129, 0.15);
   border-top: 3px solid var(--accent);
   border-radius: 50%;
   margin: 0 auto 16px;

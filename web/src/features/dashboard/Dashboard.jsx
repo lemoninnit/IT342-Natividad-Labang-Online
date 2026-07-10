@@ -8,6 +8,7 @@ import { authAPI, announcementAPI, prefetchUserData } from "../../lib/api";
 import logoImg from "../../assets/logo.png";
 import pfpImg from "../../assets/pfp.png";
 import residentImg from "../../assets/resident.png";
+import { CircuitBackground } from "../../components/ui/circuit-background";
 
 // Dashboard Component
 export default function Dashboard() {
@@ -83,7 +84,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="dashboard-wrapper">
+    <CircuitBackground className="dashboard-wrapper" opacity={0.08} animated={true}>
       {/* Sidebar */}
       <aside className={`dashboard-sidebar ${sidebarOpen ? "open" : ""}`}>
         {/* Sidebar Header removed, moved to Topbar */}
@@ -210,7 +211,7 @@ export default function Dashboard() {
               {/* Information Grid */}
               <div className="info-details-grid">
                 <section className="info-section">
-                  <h3 className="section-title">USER INFORMATION</h3>
+                  <h3 className="dashboard-section-title">INFORMATION</h3>
                   <div className="info-table">
                     <div className="info-row">
                       <span className="label">Full Name:</span>
@@ -252,7 +253,7 @@ export default function Dashboard() {
                 </section>
 
                 <section className="info-section">
-                  <h3 className="section-title">CONTACT INFORMATION</h3>
+                  <h3 className="dashboard-section-title">CONTACT INFO</h3>
                   <div className="info-table">
                     <div className="info-row">
                       <span className="label">Mobile:</span>
@@ -266,7 +267,7 @@ export default function Dashboard() {
                 </section>
 
                 <section className="info-section">
-                  <h3 className="section-title">RESIDENT ID</h3>
+                  <h3 className="dashboard-section-title">RESIDENT ID</h3>
                   <div className="resident-id-card">
                     {session.residentIdImage ? (
                       <img src={getImageUrl(session.residentIdImage)} alt="Resident ID" className="id-image-preview" />
@@ -300,6 +301,6 @@ export default function Dashboard() {
       {sidebarOpen && (
         <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />
       )}
-    </div>
+    </CircuitBackground>
   );
 }

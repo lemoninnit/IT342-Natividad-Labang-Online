@@ -18,13 +18,14 @@
 /* ──────── PAGE WRAPPER ──────── */
 .success-page {
   position: relative;
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background: transparent !important;
-  padding: 40px 20px;
-  overflow: hidden;
+  padding: 20px 20px;
+  overflow: visible !important;
+  margin: auto;
+  width: 100%;
   animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
