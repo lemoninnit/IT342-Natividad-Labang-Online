@@ -26,7 +26,7 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
   const handleVerifyPayment = async (e) => {
     if (e) e.preventDefault()
     setError('')
-    
+
     // Validate 13-digit reference number
     const refRegex = /^[0-9]{13}$/
     if (!referenceNumber || !refRegex.test(referenceNumber)) {
@@ -44,7 +44,7 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
     try {
       // Call verification API with the 13-digit reference number provided
       await paymentAPI.verify(payment.paymentId, referenceNumber)
-      
+
       // Verification succeeded, backend updated status to PROCESSING
       setPaymentState('success')
     } catch (err) {
@@ -98,7 +98,7 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
             </div>
 
             <div class="footer">
-              <p>Please present this receipt at the Barangay Labangon Office to complete your payment.</p>
+              <p>Please present this receipt at the Barangay Office to complete your payment.</p>
               <p>Thank you for using ServiLine!</p>
             </div>
           </div>
@@ -138,7 +138,7 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
                 </div>
 
                 <div className="payment-actions-otc">
-                  <button 
+                  <button
                     className="btn-print-receipt"
                     onClick={handlePrintReceipt}
                     disabled={!payment}
@@ -150,7 +150,7 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
                 <div className="payment-steps-themed">
                   <h4>Steps to Complete Payment:</h4>
                   <ul>
-                    <li>Proceed to Barangay Labangon Office</li>
+                    <li>Proceed to Barangay Office</li>
                     <li>Provide your reference number: <strong>{payment?.referenceNumber || 'Generating...'}</strong></li>
                     <li>Pay the amount of <strong>{price || '₱500.00'}</strong> to the staff</li>
                     <li>Receive your payment receipt</li>
@@ -173,9 +173,9 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
 
               <div className="input-group-themed">
                 <label>Reference Number / Transaction ID</label>
-                <input 
-                  type="text" 
-                  placeholder="Enter Transaction ID from receipt" 
+                <input
+                  type="text"
+                  placeholder="Enter Transaction ID from receipt"
                   value={referenceNumber}
                   onChange={(e) => {
                     setReferenceNumber(e.target.value)
@@ -188,8 +188,8 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
 
               <div className="payment-actions-themed">
                 <button className="btn-cancel-themed" onClick={onCancel}>Cancel</button>
-                <button 
-                  className="btn-verify-themed" 
+                <button
+                  className="btn-verify-themed"
                   onClick={handleVerifyPayment}
                   disabled={loading || !payment}
                 >

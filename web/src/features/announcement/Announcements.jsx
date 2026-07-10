@@ -10,7 +10,7 @@ export default function Announcements() {
   const [selectedAnnouncement, setSelectedAnnouncement] = useState(null)
   const [showModal, setShowModal] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
-  
+
   // Admin state
   const [isAdmin, setIsAdmin] = useState(false)
   const [showForm, setShowForm] = useState(false)
@@ -60,8 +60,8 @@ export default function Announcements() {
     // Search filter
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase()
-      result = result.filter(a => 
-        a.title.toLowerCase().includes(query) || 
+      result = result.filter(a =>
+        a.title.toLowerCase().includes(query) ||
         a.content.toLowerCase().includes(query) ||
         a.postedBy?.toLowerCase().includes(query)
       )
@@ -180,19 +180,19 @@ export default function Announcements() {
   const formatDate = (dateStr) => {
     if (!dateStr) return 'N/A'
     const date = new Date(dateStr)
-    return date.toLocaleDateString('en-US', { 
-      month: 'long', 
-      day: 'numeric', 
-      year: 'numeric' 
+    return date.toLocaleDateString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric'
     })
   }
 
   const formatTime = (dateStr) => {
     if (!dateStr) return 'N/A'
     const date = new Date(dateStr)
-    return date.toLocaleTimeString('en-US', { 
-      hour: '2-digit', 
-      minute: '2-digit' 
+    return date.toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit'
     })
   }
 
@@ -208,15 +208,15 @@ export default function Announcements() {
       <div className="announcements-header">
         <div className="header-main">
           <h1>Barangay Announcements</h1>
-          <p>Stay updated with the latest news and events from Barangay Labangon</p>
+          <p>Stay updated with the latest news and events from Barangay</p>
         </div>
-        
+
         <div className="header-actions">
           <div className="search-box">
             <span className="search-icon">🔍</span>
-            <input 
-              type="text" 
-              placeholder="Search announcements..." 
+            <input
+              type="text"
+              placeholder="Search announcements..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -242,10 +242,10 @@ export default function Announcements() {
                 <div className="form-grid">
                   <div className="form-group full-width">
                     <label>Announcement Title</label>
-                    <input 
+                    <input
                       name="title"
-                      type="text" 
-                      value={formData.title} 
+                      type="text"
+                      value={formData.title}
                       onChange={handleInputChange}
                       placeholder="e.g., Upcoming Community Cleanup Drive"
                       required
@@ -274,20 +274,20 @@ export default function Announcements() {
 
                   <div className="form-group">
                     <label>Expiration Date (Optional)</label>
-                    <input 
+                    <input
                       name="expiresAt"
-                      type="datetime-local" 
-                      value={formData.expiresAt} 
+                      type="datetime-local"
+                      value={formData.expiresAt}
                       onChange={handleInputChange}
                     />
                   </div>
 
                   <div className="form-group">
                     <label>Posted By</label>
-                    <input 
+                    <input
                       name="postedBy"
-                      type="text" 
-                      value={formData.postedBy} 
+                      type="text"
+                      value={formData.postedBy}
                       onChange={handleInputChange}
                       placeholder="Name of poster"
                       required
@@ -296,9 +296,9 @@ export default function Announcements() {
 
                   <div className="form-group full-width">
                     <label>Detailed Content</label>
-                    <textarea 
+                    <textarea
                       name="content"
-                      value={formData.content} 
+                      value={formData.content}
                       onChange={handleInputChange}
                       placeholder="Enter detailed announcement information here..."
                       rows="6"
@@ -308,10 +308,10 @@ export default function Announcements() {
 
                   <div className="form-group checkbox-group">
                     <label className="checkbox-label">
-                      <input 
+                      <input
                         name="published"
-                        type="checkbox" 
-                        checked={formData.published} 
+                        type="checkbox"
+                        checked={formData.published}
                         onChange={handleInputChange}
                       />
                       <span>Publish immediately</span>
@@ -370,8 +370,8 @@ export default function Announcements() {
 
       <div className="announcement-filters">
         {filters.map(f => (
-          <button 
-            key={f} 
+          <button
+            key={f}
             className={`filter-btn ${filter === f ? 'active' : ''}`}
             onClick={() => setFilter(f)}
           >
@@ -397,9 +397,9 @@ export default function Announcements() {
                   {getPriorityBadge(announcement.priority)}
                 </div>
               </div>
-              
+
               <h2>{announcement.title}</h2>
-              
+
               <div className="announcement-meta">
                 <div className="meta-item">
                   <span>📅</span> {formatDate(announcement.createdAt)}
@@ -411,11 +411,11 @@ export default function Announcements() {
                   <span>👤</span> {announcement.postedBy || 'Admin'}
                 </div>
               </div>
-              
+
               <div className="announcement-preview">
                 {announcement.content}
               </div>
-              
+
               <div className="announcement-footer">
                 <div className="footer-left">
                   {announcement.expiresAt && (
@@ -456,15 +456,15 @@ export default function Announcements() {
                 </div>
                 {getPriorityBadge(selectedAnnouncement.priority)}
               </div>
-              
+
               <h1>{selectedAnnouncement.title}</h1>
-              
+
               <div className="announcement-meta modal-meta">
                 <div className="meta-item"><span>📅</span> {formatDate(selectedAnnouncement.createdAt)}</div>
                 <div className="meta-item"><span>⏰</span> {formatTime(selectedAnnouncement.createdAt)}</div>
                 <div className="meta-item"><span>👤</span> Posted by: {selectedAnnouncement.postedBy || 'Administrator'}</div>
               </div>
-              
+
               <div className="modal-full-content">
                 {selectedAnnouncement.content}
               </div>

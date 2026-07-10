@@ -1,162 +1,463 @@
-import { useState } from "react";
-import Layout from "../shared/Layout";
+import { useState, useEffect, useRef } from "react";
 import "./Landing.css";
+import logo from "../assets/logo.png";
+import { CircuitBackground } from "@/components/ui/circuit-background";
+import { BorderGlow } from "@/components/ui/border-glow";
 
-export default function Landing() {
-  const [hoveredCard, setHoveredCard] = useState(null);
+// Reusable CountUp Animation Component using IntersectionObserver
+function CountUp({ end, duration = 1200, suffix = "", prefix = "", format = false }) {
+  const [count, setCount] = useState(0);
+  const elementRef = useRef(null);
+  const [hasStarted, setHasStarted] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasStarted(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!hasStarted) return;
+    let startTimestamp = null;
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const current = Math.floor(progress * end);
+      setCount(current);
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }, [hasStarted, end, duration]);
+
+  const formatNumber = (num) => {
+    if (format) {
+      return num.toLocaleString();
+    }
+    return num;
+  };
 
   return (
-    <Layout>
-      <div className="landing-page">
-        {/* Hero Section */}
-        <section className="hero">
-          <div className="hero-content">
-            <div className="hero-badge">Welcome to ServiLine</div>
-            <h1 className="hero-title">Fast, Simple Barangay Services</h1>
-            <p className="hero-subtitle">
-              Request certificates, file reports, and stay connected to Barangay Labangon 24/7, without the lines.
-            </p>
-            <div className="hero-actions">
-              <a href="/register" className="btn btn-primary">
-                <span className="btn-icon">→</span> Get Started
-              </a>
-              <a href="/login" className="btn btn-secondary">
-                Sign In
-              </a>
-            </div>
-          </div>
-          <div className="hero-decoration">
-            <div className="decoration-circle circle-1"></div>
-            <div className="decoration-circle circle-2"></div>
-          </div>
-        </section>
+    <span ref={elementRef}>
+      {prefix}
+      {formatNumber(count)}
+      {suffix}
+    </span>
+  );
+}
 
-        {/* Stats/Features Section */}
-        <section className="features">
-          <div className="features-container">
-            <div className="feature-card">
-              <div className="feature-emoji">⚡</div>
-              <div className="feature-label">5–10 mins</div>
-              <p className="feature-text">Average processing time</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-emoji">🔒</div>
-              <div className="feature-label">Secure</div>
-              <p className="feature-text">Encrypted & verified</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-emoji">📱</div>
-              <div className="feature-label">Mobile Ready</div>
-              <p className="feature-text">Works on all devices</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-emoji">🏘️</div>
-              <div className="feature-label">Local First</div>
-              <p className="feature-text">Barangay Labangon</p>
-            </div>
-          </div>
-        </section>
+// Reusable Scroll Intersection Observer Wrapper Component
+function ScrollAnimateSection({ children, className = "", id, tagName = "section" }) {
+  const [inView, setInView] = useState(false);
+  const ref = useRef(null);
 
-        {/* Quick Actions Section */}
-        <section className="quick-actions">
-          <div className="quick-actions-header">
-            <h2>Quick Actions</h2>
-            <p>Everything you need in one place</p>
-          </div>
-          <div className="actions-grid">
-            <div
-              className="action-card"
-              onMouseEnter={() => setHoveredCard(0)}
-              onMouseLeave={() => setHoveredCard(null)}
-            >
-              <div className="action-icon">📄</div>
-              <h3>Request a Certificate</h3>
-              <p className="action-description">Fast-track certificate requests for your barangay needs.</p>
-              <ul className="action-items">
-                <li>Barangay Clearance</li>
-                <li>Residency Certificate</li>
-                <li>Indigency Certificate</li>
-                <li>Good Moral Character</li>
-                <li>Business Clearance</li>
-              </ul>
-              <a href="/login" className="action-btn">Get Started</a>
-            </div>
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+        }
+      },
+      { threshold: 0.05 }
+    );
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+    return () => observer.disconnect();
+  }, []);
 
-            <div
-              className="action-card"
-              onMouseEnter={() => setHoveredCard(1)}
-              onMouseLeave={() => setHoveredCard(null)}
-            >
-              <div className="action-icon">📋</div>
-              <h3>File a Report</h3>
-              <p className="action-description">Report concerns and incidents securely to the barangay.</p>
-              <ul className="action-items">
-                <li>Incident Reports</li>
-                <li>Public Safety Issues</li>
-                <li>Environmental Concerns</li>
-                <li>Community Problems</li>
-              </ul>
-              <p className="action-note">✓ Reviewed within 24 hours</p>
-              <a href="/login" className="action-btn">Submit Report</a>
-            </div>
+  const Tag = tagName;
 
-            <div
-              className="action-card"
-              onMouseEnter={() => setHoveredCard(2)}
-              onMouseLeave={() => setHoveredCard(null)}
-            >
-              <div className="action-icon">📢</div>
-              <h3>View Announcements</h3>
-              <p className="action-description">Stay connected with barangay news and updates.</p>
-              <ul className="action-items">
-                <li>Official Announcements</li>
-                <li>Community Events</li>
-                <li>Health & Safety Alerts</li>
-                <li>Emergency Notices</li>
-              </ul>
-              <p className="action-note">✓ Real-time notifications</p>
-              <a href="/login" className="action-btn">View Updates</a>
-            </div>
-          </div>
-        </section>
+  return (
+    <Tag 
+      id={id} 
+      ref={ref} 
+      className={`${className} ${inView ? 'in-view' : ''}`}
+    >
+      {children}
+    </Tag>
+  );
+}
 
-        {/* About Section */}
-        <section className="about">
-          <h2>Why ServiLine?</h2>
-          <div className="about-grid">
-            <div className="about-item">
-              <div className="about-number">1</div>
-              <h4>Fast & Easy</h4>
-              <p>Submit requests online and receive updates in real-time.</p>
-            </div>
-            <div className="about-item">
-              <div className="about-number">2</div>
-              <h4>Secure & Safe</h4>
-              <p>Your data is encrypted and protected with the latest security standards.</p>
-            </div>
-            <div className="about-item">
-              <div className="about-number">3</div>
-              <h4>Always Available</h4>
-              <p>Access services 24/7 from the comfort of your home or office.</p>
-            </div>
+export default function Landing() {
+  const [scrolled, setScrolled] = useState(false);
+  const [heroActive, setHeroActive] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    
+    // Animate Hero Section on mount
+    const timer = setTimeout(() => setHeroActive(true), 100);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(timer);
+    };
+  }, []);
+
+  return (
+    <CircuitBackground className="landing-wrapper" opacity={0.08} animated={true}>
+      <header className={`landing-nav ${scrolled ? "scrolled" : ""}`}>
+        <div className="nav-logo">
+          <img src={logo} alt="ServiLine" className="nav-logo-icon" />
+          <span className="nav-logo-text">ServiLine</span>
+        </div>
+
+        <div className="nav-links-pill">
+          <a href="#services">Services</a>
+          <a href="#why-us">Why Us</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div className="nav-actions">
+          <a href="/login" className="nav-login">Sign In</a>
+          <a href="/register" className="btn-primary btn-sm">Get Started →</a>
+        </div>
+      </header>
+
+      <main className="landing-main">
+        {/* HERO */}
+        <section className={`hero-section ${heroActive ? "in-view" : ""}`}>
+          <div className="hero-badge">
+            <span className="badge-icon">⬡</span> Welcome to ServiLine
           </div>
-          <p className="about-description">
-            ServiLine is the official digitized service portal of Barangay Labangon, transforming how residents access barangay services.
+          <h1 className="hero-heading">
+            Barangay services,<br />
+            <span className="hero-italic">designed for the</span><br />
+            <span className="hero-italic">digital age.</span>
+          </h1>
+          <p className="hero-subtext">
+            Request certificates, file reports, and stay connected to Barangay<br />
+            <span className="text-emerald">24/7, without the lines.</span>
           </p>
-        </section>
 
-        {/* Mobile Download Section */}
-        <section className="mobile-download">
-          <div className="download-card">
-            <span className="download-badge">Android Application</span>
-            <h2>Take Barangay Services on the Go</h2>
-            <p>Download our official Android app to request certificates and file reports directly from your mobile phone.</p>
-            <a href="/serviline.apk" download="ServiLine.apk" className="btn btn-primary" target="_blank" rel="noopener noreferrer">
-              <img src="/logo.png" alt="Logo" className="btn-icon" style={{width: '20px', height: '20px', marginRight: '8px'}} /> Download APK
-            </a>
+          <div className="hero-btn-group">
+            <a href="/register" className="btn-primary">Get Started →</a>
+            <a href="#services" className="btn-secondary">Explore Services</a>
+          </div>
+
+          <div className="hero-trusted">
+            <div className="avatar-group">
+              <div className="avatar"></div>
+              <div className="avatar"></div>
+              <div className="avatar"></div>
+              <div className="avatar"></div>
+            </div>
+            <span className="trusted-text">Trusted by <strong>4,200+</strong> residents</span>
+          </div>
+
+          <div className="stats-grid">
+            <BorderGlow className="stat-card" borderRadius={12}>
+              <div className="stat-icon-box">
+                <svg className="landing-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
+              </div>
+              <div className="stat-content">
+                <div className="stat-title">
+                  <CountUp end={5} />—<CountUp end={10} /> mins
+                </div>
+                <div className="stat-desc">Avg. processing time</div>
+              </div>
+            </BorderGlow>
+
+            <BorderGlow className="stat-card" borderRadius={12}>
+              <div className="stat-icon-box">
+                <svg className="landing-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  <path d="m9 11 2 2 4-4" />
+                </svg>
+              </div>
+              <div className="stat-content">
+                <div className="stat-title">Secure</div>
+                <div className="stat-desc">Encrypted & verified</div>
+              </div>
+            </BorderGlow>
+
+            <BorderGlow className="stat-card" borderRadius={12}>
+              <div className="stat-icon-box">
+                <svg className="landing-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
+                  <line x1="12" x2="12.01" y1="18" y2="18" />
+                </svg>
+              </div>
+              <div className="stat-content">
+                <div className="stat-title">Mobile-ready</div>
+                <div className="stat-desc">Works on any device</div>
+              </div>
+            </BorderGlow>
+
+            <BorderGlow className="stat-card" borderRadius={12}>
+              <div className="stat-icon-box">
+                <svg className="landing-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                  <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+              </div>
+              <div className="stat-content">
+                <div className="stat-title">Local-first</div>
+                <div className="stat-desc">Built for Labangon</div>
+              </div>
+            </BorderGlow>
           </div>
         </section>
-      </div>
-    </Layout>
+
+        {/* SERVICES */}
+        <ScrollAnimateSection id="services" className="services-section">
+          <div className="section-label">SERVICES</div>
+          <h2 className="section-title">Everything residents need, in<br />one calm place.</h2>
+          <p className="section-desc">
+            Three core flows — certificates, reports, and announcements — engineered to remove friction<br />from local governance.
+          </p>
+
+          <div className="services-grid">
+            {/* Certs */}
+            <BorderGlow className="service-card" borderRadius={16}>
+              <div className="service-card-header">
+                <div className="service-icon">
+                  <svg className="landing-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" x2="8" y1="13" y2="13" />
+                    <line x1="16" x2="8" y1="17" y2="17" />
+                    <line x1="10" x2="8" y1="9" y2="9" />
+                  </svg>
+                </div>
+                <div className="service-badge">CERTIFICATES</div>
+              </div>
+              <h3 className="service-name">Request a Certificate</h3>
+              <p className="service-text">Submit, pay, and track barangay-issued documents from anywhere.</p>
+              <ul className="service-list">
+                <li><span className="check">✓</span> Barangay Clearance</li>
+                <li><span className="check">✓</span> Residency Certificate</li>
+                <li><span className="check">✓</span> Indigency Certificate</li>
+                <li><span className="check">✓</span> Good Moral Character</li>
+                <li><span className="check">✓</span> Business Clearance</li>
+              </ul>
+              <a href="/login" className="service-link">Request now →</a>
+            </BorderGlow>
+
+            {/* Reports */}
+            <BorderGlow className="service-card" borderRadius={16}>
+              <div className="service-card-header">
+                <div className="service-icon">
+                  <svg className="landing-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <path d="m9 15 2 2 4-4" />
+                  </svg>
+                </div>
+                <div className="service-badge">REPORTS</div>
+              </div>
+              <h3 className="service-name">File a Report</h3>
+              <p className="service-text">Raise incidents, safety issues, and community concerns securely.</p>
+              <ul className="service-list">
+                <li><span className="check">✓</span> Incident Reports</li>
+                <li><span className="check">✓</span> Public Safety Issues</li>
+                <li><span className="check">✓</span> Environmental Concerns</li>
+                <li><span className="check">✓</span> Community Problems</li>
+              </ul>
+              <div className="service-tag">Reviewed within 24 hours</div>
+              <a href="/login" className="service-link">Submit a report →</a>
+            </BorderGlow>
+
+            {/* Announcements */}
+            <BorderGlow className="service-card" borderRadius={16}>
+              <div className="service-card-header">
+                <div className="service-icon">
+                  <svg className="landing-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="m3 11 18-5v12L3 13v-2z" />
+                    <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" />
+                  </svg>
+                </div>
+                <div className="service-badge">ANNOUNCEMENTS</div>
+              </div>
+              <h3 className="service-name">Stay in the Loop</h3>
+              <p className="service-text">Real-time announcements, events, and emergency notices.</p>
+              <ul className="service-list">
+                <li><span className="check">✓</span> Official Announcements</li>
+                <li><span className="check">✓</span> Community Events</li>
+                <li><span className="check">✓</span> Health & Safety Alerts</li>
+                <li><span className="check">✓</span> Emergency Notices</li>
+              </ul>
+              <div className="service-tag">Push & email alerts</div>
+              <a href="/login" className="service-link">View updates →</a>
+            </BorderGlow>
+          </div>
+        </ScrollAnimateSection>
+
+        {/* HOW IT WORKS */}
+        <ScrollAnimateSection id="how-it-works" className="how-it-works-section">
+          <div className="section-label">HOW IT WORKS</div>
+          <h2 className="section-title">From submission to release in<br />four steps.</h2>
+          <p className="section-desc">A workflow tested with barangay staff, designed for residents of every age.</p>
+
+          <div className="steps-grid">
+            <BorderGlow className="step-card" borderRadius={12}>
+              <div className="step-num">01</div>
+              <h4>Create your account</h4>
+              <p>Sign up once with your name, address, and a valid email.</p>
+            </BorderGlow>
+            <BorderGlow className="step-card" borderRadius={12}>
+              <div className="step-num">02</div>
+              <h4>Submit a request</h4>
+              <p>Pick a service, fill the short form, and attach any documents.</p>
+            </BorderGlow>
+            <BorderGlow className="step-card" borderRadius={12}>
+              <div className="step-num">03</div>
+              <h4>Track in real-time</h4>
+              <p>Watch status updates from submission to release — no calls needed.</p>
+            </BorderGlow>
+            <BorderGlow className="step-card" borderRadius={12}>
+              <div className="step-num">04</div>
+              <h4>Pick up or download</h4>
+              <p>Claim your document at the hall or receive it digitally.</p>
+            </BorderGlow>
+          </div>
+        </ScrollAnimateSection>
+
+        {/* WHY US */}
+        <ScrollAnimateSection id="why-us" className="why-us-section">
+          <div className="why-us-content">
+            <div className="why-us-text">
+              <div className="section-label">WHY SERVILINE</div>
+              <h2 className="why-title">Built for residents.<br />Trusted by the barangay.</h2>
+              <p className="why-desc">We replaced clipboards and long queues with a secure, audited workflow. Every request is logged, signed, and traceable — from your kitchen table to the barangay captain's desk.</p>
+              <ul className="why-list">
+                <li><span className="check">✓</span> End-to-end encrypted record storage</li>
+                <li><span className="check">✓</span> Verified by the Office of Barangay</li>
+                <li><span className="check">✓</span> Built-in audit trail for every request</li>
+                <li><span className="check">✓</span> Accessible UI — large text, Tagalog & English</li>
+              </ul>
+            </div>
+            <BorderGlow className="why-us-stats" borderRadius={16}>
+              <div className="stats-row">
+                <div className="stat-col">
+                  <div className="stat-val">
+                    <CountUp end={4287} format={true} />
+                  </div>
+                  <div className="stat-lbl">Active residents</div>
+                </div>
+                <div className="stat-col">
+                  <div className="stat-val">
+                    <CountUp end={12940} format={true} />
+                  </div>
+                  <div className="stat-lbl">Requests served</div>
+                </div>
+              </div>
+              <div className="progress-bar">
+                <div className="progress-fill">92% satisfaction</div>
+              </div>
+              <ul className="stat-breakdown">
+                <li>
+                  <span className="dot dot-cert"></span> Certificates - <CountUp end={6210} format={true} />
+                </li>
+                <li>
+                  <span className="dot dot-rep"></span> Reports - <CountUp end={4108} format={true} />
+                </li>
+                <li>
+                  <span className="dot dot-ann"></span> Announcements - <CountUp end={2622} format={true} />
+                </li>
+              </ul>
+            </BorderGlow>
+          </div>
+          {/* Testimonial preview */}
+          <div className="testimonial-grid">
+            <BorderGlow className="test-card" borderRadius={12}>
+              <p>"A game-changer for working residents."</p>
+              <div className="test-user">
+                <div className="test-av av-1"></div>
+                <div className="test-info">
+                  <div className="test-name">Marites D.</div>
+                  <div className="test-role">Resident</div>
+                </div>
+              </div>
+            </BorderGlow>
+            <BorderGlow className="test-card" borderRadius={12}>
+              <p>"Got my clearance in two minutes."</p>
+              <div className="test-user">
+                <div className="test-av av-2"></div>
+                <div className="test-info">
+                  <div className="test-name">Junmar P.</div>
+                  <div className="test-role">Small business owner</div>
+                </div>
+              </div>
+            </BorderGlow>
+            <BorderGlow className="test-card" borderRadius={12}>
+              <p>"Simple, clear, and accessible."</p>
+              <div className="test-user">
+                <div className="test-av av-3"></div>
+                <div className="test-info">
+                  <div className="test-name">Hon. Rosalie M.</div>
+                  <div className="test-role">Barangay Kagawad</div>
+                </div>
+              </div>
+            </BorderGlow>
+          </div>
+        </ScrollAnimateSection>
+
+        {/* MOBILE APK DOWNLOAD CTA */}
+        <ScrollAnimateSection className="cta-section">
+          <BorderGlow className="cta-glass" borderRadius={24}>
+            <div className="download-badge">Android Application</div>
+            <h2 className="cta-title">Take Barangay Services on the Go</h2>
+            <p className="cta-desc">Download our official Android app to request certificates and file reports directly from your mobile phone.</p>
+            <div className="cta-actions">
+              <a href="/serviline.apk" download="ServiLine.apk" className="btn-primary" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem' }}>
+                <img src={logo} alt="Logo" style={{ width: '24px', height: '24px', borderRadius: '50%' }} /> Download APK
+              </a>
+            </div>
+          </BorderGlow>
+        </ScrollAnimateSection>
+      </main>
+
+      <ScrollAnimateSection tagName="footer" id="contact" className="landing-footer">
+        <div className="footer-cols">
+          <div className="footer-brand">
+            <div className="footer-logo">
+              <img src={logo} alt="ServiLine" className="nav-logo-icon" />
+              <span>ServiLine</span>
+            </div>
+            <p className="footer-desc">The official digital service portal of Barangay — making local governance simple, fast, and accessible.</p>
+          </div>
+          <div className="footer-col">
+            <h4>SERVICES</h4>
+            <a href="#">Certificates</a>
+            <a href="#">File a Report</a>
+            <a href="#">Announcements</a>
+          </div>
+          <div className="footer-col">
+            <h4>OFFICE</h4>
+            <p>Barangay Hall<br />City, Philippines<br />Mon-Fri · 8am-5pm</p>
+          </div>
+          <div className="footer-col">
+            <h4>CONNECT</h4>
+            <p>hello@serviline.ph<br />+63 (32) 000-0000</p>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <span>© 2026 Barangay · ServiLine</span>
+          <span>Built for the residents</span>
+        </div>
+      </ScrollAnimateSection>
+    </CircuitBackground>
   );
 }

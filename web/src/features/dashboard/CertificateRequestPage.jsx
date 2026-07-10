@@ -20,7 +20,7 @@ const certificateOptions = [
   {
     id: 'RESIDENCY_CERTIFICATE',
     title: 'Certificate of Residency',
-    description: 'Proof of residence in Barangay Labangon for government transactions and applications.',
+    description: 'Proof of residence in Barangay for government transactions and applications.',
     price: '₱30.00',
     priceVal: 30,
     icon: '🏠'
@@ -44,7 +44,7 @@ const certificateOptions = [
   {
     id: 'BUSINESS_PERMIT',
     title: 'Business Clearance',
-    description: 'Required for starting or renewing a business within Barangay Labangon.',
+    description: 'Required for starting or renewing a business within Barangay.',
     price: '₱100.00',
     priceVal: 100,
     icon: '🏢'
@@ -78,7 +78,7 @@ export default function CertificateRequestPage() {
     if (certOption) {
       setSelectedCert(certOption)
     }
-    
+
     setSelectedRequestId(request.id)
     setCurrentStep('payment-method')
   }
@@ -109,7 +109,7 @@ export default function CertificateRequestPage() {
         <h1>Request Certificate</h1>
         <p>Select the type of certificate you need and we'll guide you through the process</p>
       </div>
-      <button 
+      <button
         className="btn-view-records"
         onClick={() => setCurrentStep(currentStep === 'view' ? 'selection' : 'view')}
       >
@@ -134,8 +134,8 @@ export default function CertificateRequestPage() {
             }}>
               <span className="back-icon">←</span> Back
             </button>
-            <CertificateRequestForm 
-              onSuccess={handleRequestSubmitted} 
+            <CertificateRequestForm
+              onSuccess={handleRequestSubmitted}
               onCancel={() => {
                 setCurrentStep('selection')
                 setSelectedCert(null)
@@ -203,7 +203,7 @@ export default function CertificateRequestPage() {
       <div className="document-request-page">
         {renderHeader()}
         <div className="document-content">
-          <RequestHistory 
+          <RequestHistory
             refreshTrigger={historyRefresh}
             onSelectRequest={handleSelectPaymentMethod}
           />
@@ -215,7 +215,7 @@ export default function CertificateRequestPage() {
   return (
     <div className="document-request-page">
       {renderHeader()}
-      
+
       <div className="document-content">
         <div className="important-notice">
           <span className="info-icon">ℹ️</span>
@@ -240,7 +240,7 @@ export default function CertificateRequestPage() {
           <h3 className="req-title">General Requirements</h3>
           <ul className="req-list">
             <li><span className="check">✓</span> Valid government-issued ID</li>
-            <li><span className="check">✓</span> Proof of residency in Barangay Labangon</li>
+            <li><span className="check">✓</span> Proof of residency in Barangay</li>
             <li><span className="check">✓</span> Completed and verified user profile</li>
             <li><span className="check">✓</span> Payment for processing fees (if applicable)</li>
             <li><span className="check">✓</span> Additional documents may be required depending on certificate type</li>

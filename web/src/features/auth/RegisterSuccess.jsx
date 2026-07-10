@@ -1,20 +1,21 @@
 import Layout from "../../shared/Layout";
 import "./RegisterSuccess.css";
+import BorderGlow from "@/components/ui/border-glow";
 
 export default function RegisterSuccess() {
   return (
     <Layout>
       <div className="success-page">
-        <div className="success-card">
+        <BorderGlow className="success-card" borderRadius={16}>
           <div className="success-icon-container">
             <div className="success-icon-circle">
               <span className="success-check">✓</span>
             </div>
           </div>
-          
+
           <h1 className="success-title">Account Created Successfully!</h1>
           <p className="success-message">
-            Your registration as a resident of Barangay Labangon has been received.
+            Your registration as a resident of Barangay has been received.
           </p>
 
           <div className="next-steps-container">
@@ -25,7 +26,7 @@ export default function RegisterSuccess() {
             </div>
             <div className="step-item">
               <span className="step-number">2</span>
-              <p>Visit the <strong>Barangay Labangon Hall</strong> with a valid government-issued ID to activate your account.</p>
+              <p>Visit the <strong>Barangay Hall</strong> with a valid government-issued ID to activate your account.</p>
             </div>
             <div className="step-item">
               <span className="step-number">3</span>
@@ -41,7 +42,7 @@ export default function RegisterSuccess() {
               Back to Home
             </a>
           </div>
-        </div>
+        </BorderGlow>
       </div>
     </Layout>
   );

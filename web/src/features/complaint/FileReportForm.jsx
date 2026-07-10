@@ -57,14 +57,14 @@ export default function FileReportForm({ onSuccess, onCancel }) {
     <div className="file-report-container">
 
       <div className="report-notice">
-          <span className="report-notice-icon">ℹ️</span>
-          <p>
-            <strong>Note:</strong> Please provide as much detail as possible. False reports may be subject to legal action. Your report will be reviewed within 24–48 hours.
-          </p>
-        </div>
+        <span className="report-notice-icon">ℹ️</span>
+        <p>
+          <strong>Note:</strong> Please provide as much detail as possible. False reports may be subject to legal action. Your report will be reviewed within 24–48 hours.
+        </p>
+      </div>
 
       <div className="report-form-card">
-        
+
         {error && <div className="alert alert-error">{error}</div>}
 
         <form onSubmit={handleSubmit}>
@@ -75,9 +75,9 @@ export default function FileReportForm({ onSuccess, onCancel }) {
           <div className="report-grid">
             <div className="report-form-group">
               <label>Incident Type *</label>
-              <select 
-                name="incidentType" 
-                value={formData.incidentType} 
+              <select
+                name="incidentType"
+                value={formData.incidentType}
                 onChange={handleChange}
               >
                 {incidentTypes.map(type => (
@@ -88,10 +88,10 @@ export default function FileReportForm({ onSuccess, onCancel }) {
 
             <div className="report-form-group">
               <label>Date of Incident *</label>
-              <input 
-                type="date" 
-                name="incidentDate" 
-                value={formData.incidentDate} 
+              <input
+                type="date"
+                name="incidentDate"
+                value={formData.incidentDate}
                 onChange={handleChange}
                 required
               />
@@ -99,10 +99,10 @@ export default function FileReportForm({ onSuccess, onCancel }) {
 
             <div className="report-form-group">
               <label>Time of Incident *</label>
-              <input 
-                type="time" 
-                name="incidentTime" 
-                value={formData.incidentTime} 
+              <input
+                type="time"
+                name="incidentTime"
+                value={formData.incidentTime}
                 onChange={handleChange}
                 required
               />
@@ -110,10 +110,10 @@ export default function FileReportForm({ onSuccess, onCancel }) {
 
             <div className="report-form-group">
               <label>Location / Place *</label>
-              <input 
-                type="text" 
-                name="location" 
-                value={formData.location} 
+              <input
+                type="text"
+                name="location"
+                value={formData.location}
                 onChange={handleChange}
                 placeholder="e.g. Purok 4, Near Labangon Market"
                 required
@@ -134,10 +134,10 @@ export default function FileReportForm({ onSuccess, onCancel }) {
 
             <div className="report-form-group full-width">
               <label>Persons Involved (if known)</label>
-              <input 
-                type="text" 
-                name="personsInvolved" 
-                value={formData.personsInvolved} 
+              <input
+                type="text"
+                name="personsInvolved"
+                value={formData.personsInvolved}
                 onChange={handleChange}
                 placeholder="Names or descriptions of persons involved"
               />

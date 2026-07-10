@@ -123,7 +123,7 @@ export default function AdminLogin() {
         <div className="login-card admin-login-card" style={{ borderTop: '4px solid #10b981' }}>
           <div className="card-header">
             <h1 className="card-title">Admin Login</h1>
-            <p className="card-subtitle">Barangay Labangon Management System</p>
+            <p className="card-subtitle">Barangay Management System</p>
           </div>
 
           {loginError && (

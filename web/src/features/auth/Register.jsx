@@ -2,6 +2,7 @@ import { useState } from "react";
 import Layout from "../../shared/Layout";
 import "./Register.css";
 import { authAPI } from "../../lib/api";
+import BorderGlow from "@/components/ui/border-glow";
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -23,9 +24,9 @@ export default function Register() {
     confirmPassword: "",
   });
 
-  const [errors, setErrors]   = useState({});
+  const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
-  const [showPw, setShowPw]   = useState(false);
+  const [showPw, setShowPw] = useState(false);
   const [showCpw, setShowCpw] = useState(false);
   const [loading, setLoading] = useState(false);
   const [regError, setRegError] = useState("");
@@ -87,14 +88,14 @@ export default function Register() {
     e.preventDefault();
     const fields = ["firstName", "lastName", "username", "email", "phone", "dateOfBirth", "addressLine", "purok", "password", "confirmPassword"];
     const newTouched = {};
-    const newErrors  = {};
+    const newErrors = {};
     fields.forEach((f) => {
       newTouched[f] = true;
-      newErrors[f]  = validate(f, formData[f]);
+      newErrors[f] = validate(f, formData[f]);
     });
     setTouched(newTouched);
     setErrors(newErrors);
-    
+
     if (Object.values(newErrors).every((e) => !e)) {
       setLoading(true);
       setRegError("");
@@ -147,331 +148,331 @@ export default function Register() {
   return (
     <Layout>
       <div className="reg-page">
-      <div className="reg-card">
+        <BorderGlow className="reg-card" borderRadius={16}>
 
-        {/* ── Header ── */}
-        <div className="reg-header">
-          <h1 className="reg-title">Create your account</h1>
-          <p className="reg-subtitle">Register as a resident of Barangay Labangon</p>
-        </div>
-
-        {/* ── Error banner ── */}
-        {regError && (
-          <div className="reg-alert-error">
-            <span className="reg-alert-icon">⚠️</span>
-            <span>{regError}</span>
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit} noValidate>
-
-          {/* ── Row 1: First Name + Last Name ── */}
-          <div className="reg-row">
-            <div className="reg-group">
-              <label className="reg-label">First name</label>
-              <input
-                name="firstName"
-                type="text"
-                placeholder="Juan"
-                value={formData.firstName}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={inputCls("firstName")}
-              />
-              {hasError("firstName") && <span className="reg-error">{errors.firstName}</span>}
-            </div>
-
-            <div className="reg-group">
-              <label className="reg-label">Last name</label>
-              <input
-                name="lastName"
-                type="text"
-                placeholder="Dela Cruz"
-                value={formData.lastName}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={inputCls("lastName")}
-              />
-              {hasError("lastName") && <span className="reg-error">{errors.lastName}</span>}
-            </div>
+          {/* ── Header ── */}
+          <div className="reg-header">
+            <h1 className="reg-title">Create your account</h1>
+            <p className="reg-subtitle">Register as a resident of Barangay</p>
           </div>
 
-          {/* ── Row 2: Middle Name + Username ── */}
-          <div className="reg-row">
-            <div className="reg-group">
-              <label className="reg-label">Middle name (optional)</label>
-              <input
-                name="middleName"
-                type="text"
-                placeholder="Santos"
-                value={formData.middleName}
-                onChange={handleChange}
-                className="reg-input"
-              />
+          {/* ── Error banner ── */}
+          {regError && (
+            <div className="reg-alert-error">
+              <span className="reg-alert-icon">⚠️</span>
+              <span>{regError}</span>
             </div>
+          )}
 
-            <div className="reg-group">
-              <label className="reg-label">Username</label>
-              <input
-                name="username"
-                type="text"
-                placeholder="juandelacruz"
-                value={formData.username}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={inputCls("username")}
-              />
-              {hasError("username") && <span className="reg-error">{errors.username}</span>}
-            </div>
-          </div>
+          <form onSubmit={handleSubmit} noValidate>
 
-          {/* ── Row 3: Email + Phone ── */}
-          <div className="reg-row">
-            <div className="reg-group">
-              <label className="reg-label">Email</label>
-              <input
-                name="email"
-                type="email"
-                placeholder="juan.delacruz@email.com"
-                value={formData.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={inputCls("email")}
-              />
-              {hasError("email")
-                ? <span className="reg-error">{errors.email}</span>
-                : <span className="reg-hint">We will send a 6-digit code</span>
-              }
-            </div>
-
-            <div className="reg-group">
-              <label className="reg-label">Phone</label>
-              <input
-                name="phone"
-                type="tel"
-                placeholder="+63"
-                value={formData.phone}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={inputCls("phone")}
-              />
-              {hasError("phone")
-                ? <span className="reg-error">{errors.phone}</span>
-                : <span className="reg-hint">Philippine mobile number (13 digits including +63)</span>
-              }
-            </div>
-          </div>
-
-          {/* ── Row 4: Date of Birth + Civil Status ── */}
-          <div className="reg-row">
-            <div className="reg-group">
-              <label className="reg-label">Date of birth</label>
-              <input
-                name="dateOfBirth"
-                type="date"
-                value={formData.dateOfBirth}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={inputCls("dateOfBirth")}
-              />
-              {hasError("dateOfBirth") && <span className="reg-error">{errors.dateOfBirth}</span>}
-            </div>
-
-            <div className="reg-group">
-              <label className="reg-label">Civil Status</label>
-              <select
-                name="civilStatus"
-                value={formData.civilStatus}
-                onChange={handleChange}
-                className="reg-input"
-              >
-                <option value="Single">Single</option>
-                <option value="Married">Married</option>
-                <option value="Widowed">Widowed</option>
-                <option value="Separated">Separated</option>
-              </select>
-            </div>
-          </div>
-
-          {/* ── Row 5: Address Line + Purok ── */}
-          <div className="reg-row">
-            <div className="reg-group">
-              <label className="reg-label">Address line</label>
-              <input
-                name="addressLine"
-                type="text"
-                placeholder="123 Mabuhay Street"
-                value={formData.addressLine}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={inputCls("addressLine")}
-              />
-              {hasError("addressLine")
-                ? <span className="reg-error">{errors.addressLine}</span>
-                : <span className="reg-hint">Street, house number, etc.</span>
-              }
-            </div>
-
-            <div className="reg-group">
-              <label className="reg-label">Purok</label>
-              <input
-                name="purok"
-                type="text"
-                placeholder="Purok 5"
-                value={formData.purok}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={inputCls("purok")}
-              />
-              {hasError("purok") && <span className="reg-error">{errors.purok}</span>}
-            </div>
-          </div>
-
-          {/* ── Row 6: Barangay (prefilled) + City (prefilled) ── */}
-          <div className="reg-row">
-            <div className="reg-group">
-              <label className="reg-label">Barangay</label>
-              <input
-                name="barangay"
-                type="text"
-                value={formData.barangay}
-                readOnly
-                className="reg-input reg-input-prefilled"
-              />
-            </div>
-
-            <div className="reg-group">
-              <label className="reg-label">City</label>
-              <input
-                name="city"
-                type="text"
-                value={formData.city}
-                readOnly
-                className="reg-input reg-input-prefilled"
-              />
-            </div>
-          </div>
-
-          {/* ── Row 7: Province (prefilled) + Postal Code (prefilled) ── */}
-          <div className="reg-row">
-            <div className="reg-group">
-              <label className="reg-label">Province</label>
-              <input
-                name="province"
-                type="text"
-                value={formData.province}
-                readOnly
-                className="reg-input reg-input-prefilled"
-              />
-            </div>
-
-            <div className="reg-group">
-              <label className="reg-label">Postal code</label>
-              <input
-                name="postalCode"
-                type="text"
-                value={formData.postalCode}
-                readOnly
-                className="reg-input reg-input-prefilled"
-              />
-            </div>
-          </div>
-
-          {/* ── Row 8: Password + Confirm Password ── */}
-          <div className="reg-row">
-            <div className="reg-group">
-              <label className="reg-label">Password</label>
-              <div className="pw-wrap">
+            {/* ── Row 1: First Name + Last Name ── */}
+            <div className="reg-row">
+              <div className="reg-group">
+                <label className="reg-label">First name</label>
                 <input
-                  name="password"
-                  type={showPw ? "text" : "password"}
-                  placeholder="Enter at least 8 characters"
-                  value={formData.password}
+                  name="firstName"
+                  type="text"
+                  placeholder="Juan"
+                  value={formData.firstName}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={inputCls("password")}
+                  className={inputCls("firstName")}
                 />
-                <button
-                  type="button"
-                  className="pw-eye"
-                  onClick={() => setShowPw((p) => !p)}
-                  tabIndex={-1}
-                >
-                  {showPw ? "🙈" : "👁️"}
-                </button>
+                {hasError("firstName") && <span className="reg-error">{errors.firstName}</span>}
               </div>
-              {hasError("password")
-                ? <span className="reg-error">{errors.password}</span>
-                : <span className="reg-hint">Minimum 8 characters</span>
-              }
-            </div>
 
-            <div className="reg-group">
-              <label className="reg-label">Confirm password</label>
-              <div className="pw-wrap">
+              <div className="reg-group">
+                <label className="reg-label">Last name</label>
                 <input
-                  name="confirmPassword"
-                  type={showCpw ? "text" : "password"}
-                  placeholder="Re-enter your password"
-                  value={formData.confirmPassword}
+                  name="lastName"
+                  type="text"
+                  placeholder="Dela Cruz"
+                  value={formData.lastName}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={inputCls("confirmPassword")}
+                  className={inputCls("lastName")}
                 />
-                <button
-                  type="button"
-                  className="pw-eye"
-                  onClick={() => setShowCpw((p) => !p)}
-                  tabIndex={-1}
-                >
-                  {showCpw ? "🙈" : "👁️"}
-                </button>
+                {hasError("lastName") && <span className="reg-error">{errors.lastName}</span>}
               </div>
-              {hasError("confirmPassword") && <span className="reg-error">{errors.confirmPassword}</span>}
             </div>
-          </div>
 
-          {/* ── Verification Notice ── */}
-          <div className="reg-notice">
-            <span className="reg-notice-icon">📋</span>
-            <div>
-              <p className="reg-notice-title">
-                <strong>Account Verification Required</strong>
-              </p>
-              <p><strong>Important:</strong> Your account will be created with a <em>pending</em> status upon registration.</p>
-              <p style={{ marginTop: "8px" }}>
-                To activate your account and gain access to the system, you must complete the following verification process:
-              </p>
-              <ol className="reg-notice-list">
-                <li>Visit the <strong>Barangay Hall of Labangon</strong> during office hours</li>
-                <li>
-                  Present any of the following valid documents:
-                  <ul className="reg-notice-sublist">
-                    <li>Government-issued ID (e.g., Philippine National ID, Driver's License, Passport)</li>
-                    <li>NSO/PSA Birth Certificate</li>
-                  </ul>
-                </li>
-                <li>Our staff will verify your identity and activate your account</li>
-              </ol>
-              <p style={{ marginTop: "8px" }}>
-                <strong>Note:</strong> You will not be able to log in until your account has been verified and approved by barangay staff.
-              </p>
+            {/* ── Row 2: Middle Name + Username ── */}
+            <div className="reg-row">
+              <div className="reg-group">
+                <label className="reg-label">Middle name (optional)</label>
+                <input
+                  name="middleName"
+                  type="text"
+                  placeholder="Santos"
+                  value={formData.middleName}
+                  onChange={handleChange}
+                  className="reg-input"
+                />
+              </div>
+
+              <div className="reg-group">
+                <label className="reg-label">Username</label>
+                <input
+                  name="username"
+                  type="text"
+                  placeholder="juandelacruz"
+                  value={formData.username}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={inputCls("username")}
+                />
+                {hasError("username") && <span className="reg-error">{errors.username}</span>}
+              </div>
             </div>
-          </div>
 
-          {/* ── Submit ── */}
-          <div className="reg-footer-row">
-            <button type="submit" className="reg-btn-submit">
-              Create account
-            </button>
-            <span className="reg-signin-text">
-              <a href="/login" className="reg-signin-link">Already have an account?→</a>
-            </span>
-          </div>
+            {/* ── Row 3: Email + Phone ── */}
+            <div className="reg-row">
+              <div className="reg-group">
+                <label className="reg-label">Email</label>
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="juan.delacruz@email.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={inputCls("email")}
+                />
+                {hasError("email")
+                  ? <span className="reg-error">{errors.email}</span>
+                  : <span className="reg-hint">We will send a 6-digit code</span>
+                }
+              </div>
 
-        </form>
+              <div className="reg-group">
+                <label className="reg-label">Phone</label>
+                <input
+                  name="phone"
+                  type="tel"
+                  placeholder="+63"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={inputCls("phone")}
+                />
+                {hasError("phone")
+                  ? <span className="reg-error">{errors.phone}</span>
+                  : <span className="reg-hint">Philippine mobile number (13 digits including +63)</span>
+                }
+              </div>
+            </div>
+
+            {/* ── Row 4: Date of Birth + Civil Status ── */}
+            <div className="reg-row">
+              <div className="reg-group">
+                <label className="reg-label">Date of birth</label>
+                <input
+                  name="dateOfBirth"
+                  type="date"
+                  value={formData.dateOfBirth}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={inputCls("dateOfBirth")}
+                />
+                {hasError("dateOfBirth") && <span className="reg-error">{errors.dateOfBirth}</span>}
+              </div>
+
+              <div className="reg-group">
+                <label className="reg-label">Civil Status</label>
+                <select
+                  name="civilStatus"
+                  value={formData.civilStatus}
+                  onChange={handleChange}
+                  className="reg-input"
+                >
+                  <option value="Single">Single</option>
+                  <option value="Married">Married</option>
+                  <option value="Widowed">Widowed</option>
+                  <option value="Separated">Separated</option>
+                </select>
+              </div>
+            </div>
+
+            {/* ── Row 5: Address Line + Purok ── */}
+            <div className="reg-row">
+              <div className="reg-group">
+                <label className="reg-label">Address line</label>
+                <input
+                  name="addressLine"
+                  type="text"
+                  placeholder="123 Mabuhay Street"
+                  value={formData.addressLine}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={inputCls("addressLine")}
+                />
+                {hasError("addressLine")
+                  ? <span className="reg-error">{errors.addressLine}</span>
+                  : <span className="reg-hint">Street, house number, etc.</span>
+                }
+              </div>
+
+              <div className="reg-group">
+                <label className="reg-label">Purok</label>
+                <input
+                  name="purok"
+                  type="text"
+                  placeholder="Purok 5"
+                  value={formData.purok}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={inputCls("purok")}
+                />
+                {hasError("purok") && <span className="reg-error">{errors.purok}</span>}
+              </div>
+            </div>
+
+            {/* ── Row 6: Barangay (prefilled) + City (prefilled) ── */}
+            <div className="reg-row">
+              <div className="reg-group">
+                <label className="reg-label">Barangay</label>
+                <input
+                  name="barangay"
+                  type="text"
+                  value={formData.barangay}
+                  readOnly
+                  className="reg-input reg-input-prefilled"
+                />
+              </div>
+
+              <div className="reg-group">
+                <label className="reg-label">City</label>
+                <input
+                  name="city"
+                  type="text"
+                  value={formData.city}
+                  readOnly
+                  className="reg-input reg-input-prefilled"
+                />
+              </div>
+            </div>
+
+            {/* ── Row 7: Province (prefilled) + Postal Code (prefilled) ── */}
+            <div className="reg-row">
+              <div className="reg-group">
+                <label className="reg-label">Province</label>
+                <input
+                  name="province"
+                  type="text"
+                  value={formData.province}
+                  readOnly
+                  className="reg-input reg-input-prefilled"
+                />
+              </div>
+
+              <div className="reg-group">
+                <label className="reg-label">Postal code</label>
+                <input
+                  name="postalCode"
+                  type="text"
+                  value={formData.postalCode}
+                  readOnly
+                  className="reg-input reg-input-prefilled"
+                />
+              </div>
+            </div>
+
+            {/* ── Row 8: Password + Confirm Password ── */}
+            <div className="reg-row">
+              <div className="reg-group">
+                <label className="reg-label">Password</label>
+                <div className="pw-wrap">
+                  <input
+                    name="password"
+                    type={showPw ? "text" : "password"}
+                    placeholder="Enter at least 8 characters"
+                    value={formData.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={inputCls("password")}
+                  />
+                  <button
+                    type="button"
+                    className="pw-eye"
+                    onClick={() => setShowPw((p) => !p)}
+                    tabIndex={-1}
+                  >
+                    {showPw ? "🙈" : "👁️"}
+                  </button>
+                </div>
+                {hasError("password")
+                  ? <span className="reg-error">{errors.password}</span>
+                  : <span className="reg-hint">Minimum 8 characters</span>
+                }
+              </div>
+
+              <div className="reg-group">
+                <label className="reg-label">Confirm password</label>
+                <div className="pw-wrap">
+                  <input
+                    name="confirmPassword"
+                    type={showCpw ? "text" : "password"}
+                    placeholder="Re-enter your password"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={inputCls("confirmPassword")}
+                  />
+                  <button
+                    type="button"
+                    className="pw-eye"
+                    onClick={() => setShowCpw((p) => !p)}
+                    tabIndex={-1}
+                  >
+                    {showCpw ? "🙈" : "👁️"}
+                  </button>
+                </div>
+                {hasError("confirmPassword") && <span className="reg-error">{errors.confirmPassword}</span>}
+              </div>
+            </div>
+
+            {/* ── Verification Notice ── */}
+            <div className="reg-notice">
+              <span className="reg-notice-icon">📋</span>
+              <div>
+                <p className="reg-notice-title">
+                  <strong>Account Verification Required</strong>
+                </p>
+                <p><strong>Important:</strong> Your account will be created with a <em>pending</em> status upon registration.</p>
+                <p style={{ marginTop: "8px" }}>
+                  To activate your account and gain access to the system, you must complete the following verification process:
+                </p>
+                <ol className="reg-notice-list">
+                  <li>Visit the <strong>Barangay Hall</strong> during office hours</li>
+                  <li>
+                    Present any of the following valid documents:
+                    <ul className="reg-notice-sublist">
+                      <li>Government-issued ID (e.g., Philippine National ID, Driver's License, Passport)</li>
+                      <li>NSO/PSA Birth Certificate</li>
+                    </ul>
+                  </li>
+                  <li>Our staff will verify your identity and activate your account</li>
+                </ol>
+                <p style={{ marginTop: "8px" }}>
+                  <strong>Note:</strong> You will not be able to log in until your account has been verified and approved by barangay staff.
+                </p>
+              </div>
+            </div>
+
+            {/* ── Submit ── */}
+            <div className="reg-footer-row">
+              <button type="submit" className="reg-btn-submit">
+                Create account
+              </button>
+              <span className="reg-signin-text">
+                <a href="/login" className="reg-signin-link">Already have an account?→</a>
+              </span>
+            </div>
+
+          </form>
+        </BorderGlow>
       </div>
-    </div>
     </Layout>
   );
 }

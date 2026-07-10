@@ -2,6 +2,7 @@ import { useState } from "react";
 import Layout from "../../shared/Layout";
 import "./Login.css";
 import { prefetchUserData } from "../../lib/api";
+import BorderGlow from "@/components/ui/border-glow";
 
 // 4.1 Login Form
 export default function Login() {
@@ -77,7 +78,7 @@ export default function Login() {
       const user = body.user;
 
       if (!user || !user.active) {
-        setLoginError("Your account is not active. Please contact Barangay Labangon.");
+        setLoginError("Your account is not active. Please contact Barangay.");
         setLoading(false);
         return;
       }
@@ -116,7 +117,7 @@ export default function Login() {
   return (
     <Layout>
       <div className="login-page">
-        <div className="login-card">
+        <BorderGlow className="login-card" borderRadius={16}>
           <div className="card-header">
             <h1 className="card-title">Sign In</h1>
             <p className="card-subtitle">Welcome back to ServiLine</p>
@@ -169,7 +170,7 @@ export default function Login() {
           <p className="register-link">
             Don't have an account? <a href="/register">Register here</a>
           </p>
-        </div>
+        </BorderGlow>
       </div>
     </Layout>
   );

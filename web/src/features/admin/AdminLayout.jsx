@@ -13,7 +13,7 @@ export default function AdminLayout({ activeSection, title, subtitle, showHeader
       <div className="admin-topbar">
         <div className="admin-topbar-left">
           <div className="sidebar-logo">
-            <img src="/logo.png" alt="Logo" style={{width: '32px', height: '32px', marginRight: '12px'}} />
+            <img src="/logo.png" alt="Logo" style={{ width: '32px', height: '32px', marginRight: '12px' }} />
             ServiLine <span className="admin-tag">Admin</span>
           </div>
         </div>
@@ -40,7 +40,7 @@ export default function AdminLayout({ activeSection, title, subtitle, showHeader
         {showHeader && (
           <header className="admin-header">
             <h1>{title || activeSection}</h1>
-            <p>{subtitle || 'Manage Barangay Labangon services and resident requests'}</p>
+            <p>{subtitle || 'Manage Barangay services and resident requests'}</p>
           </header>
         )}
         {children}
