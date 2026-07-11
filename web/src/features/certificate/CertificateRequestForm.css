@@ -1,12 +1,27 @@
 .certificate-form-container {
-  width: 100%;
+  width: 95%;
+  max-width: 800px;
+  margin: auto;
+  background: rgba(4, 24, 16, 0.95);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.8), 0 0 50px rgba(16, 185, 129, 0.05);
+  animation: modalFadeIn 0.35s ease-out;
 }
 
-.form-card {
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.certificate-request-card {
   color: #ffffff;
 }
 
-.form-card h2 {
+.certificate-request-card h2 {
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 8px;
@@ -15,11 +30,11 @@
 .form-description {
   font-size: 14px;
   color: #94a3b8;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
 }
 
 .form-group {
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .form-group label {
@@ -135,8 +150,8 @@
 }
 
 .guidelines-section {
-  margin-top: 48px;
-  padding-top: 32px;
+  margin-top: 24px;
+  padding-top: 20px;
   border-top: 1px solid rgba(16, 185, 129, 0.15);
 }
 
@@ -146,7 +161,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .guidelines-section ul {
@@ -154,7 +169,7 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .guidelines-section li {

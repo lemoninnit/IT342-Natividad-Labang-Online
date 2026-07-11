@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { reportAPI } from '../../lib/api'
 import FileReportForm from '../complaint/FileReportForm'
 import ReportHistory from '../history/ReportHistory'
+import Icon from '../../components/ui/Icons'
 import '../complaint/FileReportForm.css'
 import './FileReportPage.css'
 
@@ -61,7 +62,17 @@ export default function FileReportPage() {
         className="btn-toggle-view"
         onClick={() => setCurrentView(currentView === 'history' ? 'form' : 'history')}
       >
-        {currentView === 'history' ? '🚨 File a New Report' : '📂 View My Reports'}
+        {currentView === 'history' ? (
+          <>
+            <Icon name="report" size={16} noBg={true} />
+            <span>File a New Report</span>
+          </>
+        ) : (
+          <>
+            <Icon name="folder" size={16} noBg={true} />
+            <span>View My Reports</span>
+          </>
+        )}
       </button>
     </div>
   )

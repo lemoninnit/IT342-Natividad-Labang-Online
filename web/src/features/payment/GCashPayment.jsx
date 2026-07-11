@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { paymentAPI, certificateAPI } from '../../lib/api'
 import gcashQrImg from '../../assets/gcash_qr.jpg'
+import Icon from '../../components/ui/Icons'
 import './GCashPayment.css'
 
 export default function GCashPayment({ requestId, price, priceVal, onPaymentComplete, onCancel }) {
@@ -158,14 +159,19 @@ export default function GCashPayment({ requestId, price, priceVal, onPaymentComp
                   onClick={onCancel}
                   disabled={loading}
                 >
-                  Cancel
+                  Back
                 </button>
                 <button 
                   className="btn-verify-themed" 
                   onClick={handleVerifyPayment}
                   disabled={loading || !payment}
                 >
-                  {loading ? 'Submitting...' : (!payment ? 'Initializing...' : 'Submit Payment')}
+                  {loading ? (
+                    <span className="btn-content-loading">
+                      <span className="btn-loading-spinner"></span>
+                      Submitting...
+                    </span>
+                  ) : (!payment ? 'Initializing...' : 'Submit Payment')}
                 </button>
               </div>
             </div>
@@ -174,7 +180,9 @@ export default function GCashPayment({ requestId, price, priceVal, onPaymentComp
 
         {paymentState === 'success' && (
           <div className="payment-state success-state">
-            <div className="success-icon-themed">✓</div>
+            <div className="success-icon-themed" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.3)', borderRadius: '50%', padding: '16px', color: '#10b981', marginBottom: '20px' }}>
+              <Icon name="success" size={32} noBg={true} />
+            </div>
             <h2>Payment Submitted</h2>
             <p>Your payment has been submitted for verification. Please wait for the admin to approve your request.</p>
             <button className="btn-done-themed" onClick={onPaymentComplete}>
@@ -185,7 +193,9 @@ export default function GCashPayment({ requestId, price, priceVal, onPaymentComp
 
         {paymentState === 'error' && (
           <div className="payment-state error-state-themed">
-            <div className="error-icon-themed">✕</div>
+            <div className="error-icon-themed" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.3)', borderRadius: '50%', padding: '16px', color: '#ef4444', marginBottom: '20px' }}>
+              <Icon name="error" size={32} noBg={true} />
+            </div>
             <h2>Something went wrong</h2>
             <p>{error || 'An error occurred during payment initialization.'}</p>
             <button className="btn-retry-themed" onClick={initializeGCashPayment}>

@@ -9,6 +9,8 @@ import logoImg from "../../assets/logo.png";
 import pfpImg from "../../assets/pfp.png";
 import residentImg from "../../assets/resident.png";
 import { CircuitBackground } from "../../components/ui/circuit-background";
+import Icon from "../../components/ui/Icons";
+import ThemeToggle from "../../components/ui/ThemeToggle";
 
 // Dashboard Component
 export default function Dashboard() {
@@ -80,7 +82,9 @@ export default function Dashboard() {
   }
 
   function handleLogout() {
-    window.location.href = "/logout";
+    sessionStorage.setItem("pre_logout_path", window.location.pathname);
+    window.history.pushState(null, '', '/logout');
+    window.dispatchEvent(new Event('pushstate'));
   }
 
   return (
@@ -97,7 +101,7 @@ export default function Dashboard() {
               setSidebarOpen(false);
             }}
           >
-            <span className="nav-icon">📢</span>
+            <span className="nav-icon"><Icon name="announcement" size={18} noBg={true} /></span>
             <span className="nav-text">Announcements</span>
             {announcementCount > 0 && (
               <span className="announcement-badge">{announcementCount}</span>
@@ -110,7 +114,7 @@ export default function Dashboard() {
               setSidebarOpen(false);
             }}
           >
-            <span className="nav-icon">👤</span>
+            <span className="nav-icon"><Icon name="profile" size={18} noBg={true} /></span>
             <span className="nav-text">Personal Info</span>
           </button>
 
@@ -119,7 +123,7 @@ export default function Dashboard() {
               className="nav-item admin-nav-item"
               onClick={() => window.location.href = "/admin"}
             >
-              <span className="nav-icon">🛡️</span>
+              <span className="nav-icon"><Icon name="admin" size={18} noBg={true} /></span>
               <span className="nav-text">Admin Panel</span>
             </button>
           )}
@@ -130,7 +134,7 @@ export default function Dashboard() {
               setSidebarOpen(false);
             }}
           >
-            <span className="nav-icon">📄</span>
+            <span className="nav-icon"><Icon name="document" size={18} noBg={true} /></span>
             <span className="nav-text">Document Request</span>
           </button>
           <button 
@@ -140,7 +144,7 @@ export default function Dashboard() {
               setSidebarOpen(false);
             }}
           >
-            <span className="nav-icon">📋</span>
+            <span className="nav-icon"><Icon name="report" size={18} noBg={true} /></span>
             <span className="nav-text">File Report</span>
           </button>
         </nav>
@@ -163,7 +167,8 @@ export default function Dashboard() {
               <span>ServiLine</span>
             </div>
           </div>
-          <div className="topbar-right">
+          <div className="topbar-right" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <ThemeToggle />
             <div className="topbar-user">
               <div className="user-avatar-circle">
                 <img src={getImageUrl(session.profilePicture) || pfpImg} alt="User Profile" className="avatar-img" />
@@ -191,7 +196,10 @@ export default function Dashboard() {
                     <span className="badge-resident">RESIDENT</span>
                   </div>
                 </div>
-                <button className="btn-edit-info" onClick={() => setShowEditModal(true)}>EDIT INFORMATION</button>
+                <button className="btn-edit-info" onClick={() => setShowEditModal(true)}>
+                  <Icon name="edit" size={14} noBg={true} />
+                  <span>EDIT INFORMATION</span>
+                </button>
               </div>
 
               {/* Edit Modal */}

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { reportAPI } from '../../lib/api'
+import Icon from '../../components/ui/Icons'
 import './FileReportForm.css'
 
 export default function FileReportForm({ onSuccess, onCancel }) {
@@ -57,7 +58,7 @@ export default function FileReportForm({ onSuccess, onCancel }) {
     <div className="file-report-container">
 
       <div className="report-notice">
-        <span className="report-notice-icon">ℹ️</span>
+        <Icon name="info" size={16} noBg={true} className="report-notice-icon" />
         <p>
           <strong>Note:</strong> Please provide as much detail as possible. False reports may be subject to legal action. Your report will be reviewed within 24–48 hours.
         </p>
@@ -69,7 +70,8 @@ export default function FileReportForm({ onSuccess, onCancel }) {
 
         <form onSubmit={handleSubmit}>
           <div className="report-section-title">
-            <span>🚨</span> Incident Details
+            <Icon name="report" size={20} noBg={true} style={{ marginRight: '8px', display: 'inline-flex', verticalAlign: 'middle' }} />
+            <span>Incident Details</span>
           </div>
 
           <div className="report-grid">
@@ -161,7 +163,14 @@ export default function FileReportForm({ onSuccess, onCancel }) {
               className="btn-submit-report"
               disabled={loading}
             >
-              {loading ? 'Submitting...' : 'SUBMIT REPORT'}
+              {loading ? (
+                <span className="btn-content-loading">
+                  <span className="btn-loading-spinner"></span>
+                  Submitting...
+                </span>
+              ) : (
+                'SUBMIT REPORT'
+              )}
             </button>
             <button
               type="button"

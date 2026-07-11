@@ -97,7 +97,7 @@ export default function EditProfile({ user, onUpdate, onCancel }) {
         <div className="form-grid-modal">
           {/* Profile Picture Section */}
           <div className="edit-section-modal full-width">
-            <h3 className="section-label">PROFILE PICTURE</h3>
+            <h3 className="edit-section-label">PROFILE PICTURE</h3>
             <div className="pfp-edit-row">
               <div className="pfp-preview-large">
                 <img src={getImageUrl('pfp')} alt="Profile" />
@@ -114,7 +114,7 @@ export default function EditProfile({ user, onUpdate, onCancel }) {
 
           {/* Form Fields */}
           <div className="edit-section-modal">
-            <h3 className="section-label">BASIC INFORMATION</h3>
+            <h3 className="edit-section-label">BASIC INFORMATION</h3>
             <div className="input-group-modal">
               <label>First Name</label>
               <input name="firstName" value={formData.firstName} onChange={handleChange} required />
@@ -130,7 +130,7 @@ export default function EditProfile({ user, onUpdate, onCancel }) {
           </div>
 
           <div className="edit-section-modal">
-            <h3 className="section-label">CONTACT INFO</h3>
+            <h3 className="edit-section-label">CONTACT INFO</h3>
             <div className="input-group-modal">
               <label>Email Address</label>
               <input name="email" type="email" value={formData.email} onChange={handleChange} required />
@@ -152,7 +152,7 @@ export default function EditProfile({ user, onUpdate, onCancel }) {
 
           {/* Address */}
           <div className="edit-section-modal full-width">
-            <h3 className="section-label">ADDRESS DETAILS</h3>
+            <h3 className="edit-section-label">ADDRESS DETAILS</h3>
             <div className="address-grid-modal">
               <div className="input-group-modal">
                 <label>Street Address</label>
@@ -167,7 +167,7 @@ export default function EditProfile({ user, onUpdate, onCancel }) {
 
           {/* Resident ID Section */}
           <div className="edit-section-modal full-width">
-            <h3 className="section-label">RESIDENT ID</h3>
+            <h3 className="edit-section-label">RESIDENT ID</h3>
             <div className="id-edit-row">
               <div className="id-preview-box-modal">
                 <img src={getImageUrl('id')} alt="Resident ID" />
@@ -184,9 +184,16 @@ export default function EditProfile({ user, onUpdate, onCancel }) {
         </div>
 
         <footer className="form-footer-modal">
-          <button type="button" className="btn-cancel-modal" onClick={onCancel}>Cancel</button>
+          <button type="button" className="btn-cancel-modal" onClick={onCancel} disabled={saving}>Cancel</button>
           <button type="submit" className="btn-save-modal" disabled={saving}>
-            {saving ? "Saving Changes..." : "Save Changes"}
+            {saving ? (
+              <span className="btn-content-loading">
+                <span className="btn-loading-spinner"></span>
+                Saving Changes...
+              </span>
+            ) : (
+              "Save Changes"
+            )}
           </button>
         </footer>
       </form>

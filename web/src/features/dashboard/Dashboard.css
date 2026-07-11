@@ -1,15 +1,7 @@
 :root {
-  --bg-dark: #040806;
-  --sidebar-bg: rgba(4, 18, 12, 0.85);
-  --card-bg: rgba(4, 30, 20, 0.65);
-  --topbar-bg: rgba(4, 8, 6, 0.8);
-  --accent: #10b981;
-  --accent-hover: #34d399;
-  --text-light: #ededed;
-  --text-muted: #94a3b8;
-  --border: rgba(16, 185, 129, 0.25);
   --sidebar-width: 260px;
   --danger: #ef4444;
+  --accent: var(--accent-color);
 }
 
 *,
@@ -30,6 +22,13 @@ body {
   display: flex;
   min-height: 100vh;
   font-family: 'Inter', -apple-system, sans-serif;
+}
+
+.dashboard-wrapper > div.relative.z-10 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* ── SIDEBAR ── */
@@ -303,7 +302,6 @@ body {
 .dashboard-content {
   padding: 40px;
   flex: 1;
-  z-index: 1;
   width: 100%;
 }
 
@@ -365,6 +363,9 @@ body {
   cursor: pointer;
   transition: all 0.25s ease;
   box-shadow: 0 0 15px rgba(16, 185, 129, 0.05);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .btn-edit-info:hover {
@@ -474,7 +475,7 @@ body {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   z-index: 2000;
   padding: 40px 20px;
@@ -489,9 +490,12 @@ body {
   border-radius: 24px;
   width: 95%;
   max-width: 850px;
+  margin: auto;
   position: relative;
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 50px rgba(16, 185, 129, 0.05);
   animation: modalFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 @keyframes modalFadeIn {
@@ -664,6 +668,14 @@ body {
 
   .resident-id-card {
     padding: 20px;
+  }
+
+  .modal-overlay-edit {
+    padding: 24px 12px;
+  }
+
+  .modal-content-edit {
+    border-radius: 20px;
   }
 }
 

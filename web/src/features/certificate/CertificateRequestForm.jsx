@@ -45,7 +45,7 @@ export default function CertificateRequestForm({ onSuccess, onCancel, initialCer
 
   return (
     <div className="certificate-form-container">
-      <div className="form-card">
+      <div className="certificate-request-card">
         <h2>Request Certificate</h2>
         <p className="form-description">Select your desired certificate type and provide the purpose</p>
 
@@ -66,7 +66,7 @@ export default function CertificateRequestForm({ onSuccess, onCancel, initialCer
               value={formData.purpose}
               onChange={handleChange}
               placeholder="Please provide a clear reason for your request"
-              rows="5"
+              rows="4"
               required
             ></textarea>
           </div>
@@ -77,7 +77,14 @@ export default function CertificateRequestForm({ onSuccess, onCancel, initialCer
               className="btn-primary"
               disabled={loading}
             >
-              {loading ? 'Submitting...' : 'Submit Request'}
+              {loading ? (
+                <span className="btn-content-loading">
+                  <span className="btn-loading-spinner"></span>
+                  Submitting...
+                </span>
+              ) : (
+                'Submit Request'
+              )}
             </button>
             <button
               type="button"

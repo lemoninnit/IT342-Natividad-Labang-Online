@@ -42,7 +42,7 @@
 .border-glow-card::before {
   border: 1px solid transparent;
   background:
-    linear-gradient(#03140d 0 100%) padding-box,
+    linear-gradient(var(--card-bg) 0 100%) padding-box,
     linear-gradient(rgb(255 255 255 / 0%) 0% 100%) border-box,
     var(--gradient-one, radial-gradient(at 80% 55%, hsla(268, 100%, 76%, 1) 0px, transparent 50%)) border-box,
     var(--gradient-two, radial-gradient(at 69% 34%, hsla(349, 100%, 74%, 1) 0px, transparent 50%)) border-box,
@@ -101,4 +101,26 @@
   z-index: 1;
   width: 100%;
   height: 100%;
+}
+
+/* Hover state border green glow */
+.border-glow-card {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease !important;
+}
+
+.border-glow-card:hover {
+  border-color: #10b981 !important;
+  box-shadow: 
+    0 0 0 1px #10b981, 
+    0 12px 40px rgba(16, 185, 129, 0.2),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Light mode specific hover green glow */
+html[data-theme='light'] .border-glow-card:hover {
+  border-color: #059669 !important;
+  box-shadow: 
+    0 0 0 1px #059669, 
+    0 12px 40px rgba(5, 150, 105, 0.15),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.5) !important;
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { certificateAPI } from '../../lib/api'
+import Icon from '../../components/ui/Icons'
 import './RequestHistory.css'
 
 export default function RequestHistory({ refreshTrigger, onSelectRequest }) {
@@ -104,7 +105,7 @@ export default function RequestHistory({ refreshTrigger, onSelectRequest }) {
                   <div className="request-date">
                     {formatDate(request.createdAt)}
                   </div>
-                  <span className={`expand-icon ${expandedId === request.id ? 'expanded' : ''}`}>▼</span>
+                  <Icon name="chevron" size={14} noBg={true} className={`expand-icon ${expandedId === request.id ? 'expanded' : ''}`} />
                 </div>
 
                 {expandedId === request.id && (

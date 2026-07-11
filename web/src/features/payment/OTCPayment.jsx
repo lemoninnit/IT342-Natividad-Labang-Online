@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { paymentAPI, certificateAPI } from '../../lib/api'
+import Icon from '../../components/ui/Icons'
 import './OTCPayment.css'
 
 export default function OTCPayment({ requestId, price, priceVal, onPaymentComplete, onCancel }) {
@@ -159,7 +160,7 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
                 </div>
 
                 <div className="note-box-themed">
-                  <span className="note-icon">ℹ️</span>
+                  <Icon name="info" size={16} noBg={true} className="note-icon" />
                   <p>Keep your reference number safe. You will need it to verify your payment.</p>
                 </div>
               </div>
@@ -187,13 +188,18 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
               </div>
 
               <div className="payment-actions-themed">
-                <button className="btn-cancel-themed" onClick={onCancel}>Cancel</button>
+                <button className="btn-cancel-themed" onClick={onCancel} disabled={loading}>Back</button>
                 <button
                   className="btn-verify-themed"
                   onClick={handleVerifyPayment}
                   disabled={loading || !payment}
                 >
-                  {loading ? 'Verifying...' : (!payment ? 'Initializing...' : 'Confirm Payment')}
+                  {loading ? (
+                    <span className="btn-content-loading">
+                      <span className="btn-loading-spinner"></span>
+                      Verifying...
+                    </span>
+                  ) : (!payment ? 'Initializing...' : 'Confirm Payment')}
                 </button>
               </div>
             </div>
@@ -202,7 +208,9 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
 
         {paymentState === 'success' && (
           <div className="payment-state success-state">
-            <div className="success-icon-themed">✓</div>
+            <div className="success-icon-themed" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.3)', borderRadius: '50%', padding: '16px', color: '#10b981', marginBottom: '20px' }}>
+              <Icon name="success" size={32} noBg={true} />
+            </div>
             <h2>Payment Submitted</h2>
             <p>Your payment information has been submitted for verification. Please wait for the admin to approve your request after you have paid at the counter.</p>
             <button className="btn-done-themed" onClick={onPaymentComplete}>
@@ -213,7 +221,9 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
 
         {paymentState === 'error' && (
           <div className="payment-state error-state-themed">
-            <div className="error-icon-themed">✕</div>
+            <div className="error-icon-themed" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.3)', borderRadius: '50%', padding: '16px', color: '#ef4444', marginBottom: '20px' }}>
+              <Icon name="error" size={32} noBg={true} />
+            </div>
             <h2>Payment Error</h2>
             <p>{error || 'Something went wrong while processing your payment.'}</p>
             <button className="btn-retry-themed" onClick={initializeOTCPayment}>

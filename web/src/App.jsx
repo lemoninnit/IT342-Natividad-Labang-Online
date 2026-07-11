@@ -30,8 +30,8 @@ function App() {
       if (!anchor) return;
 
       const href = anchor.getAttribute('href');
-      // Only intercept local relative paths starting with / (but not external links or hash-only links on the same page)
-      if (href && href.startsWith('/') && !href.startsWith('//')) {
+      // Only intercept local relative paths starting with / (but not external links, hash-only links, or download links)
+      if (href && href.startsWith('/') && !href.startsWith('//') && !anchor.hasAttribute('download')) {
         // If it's a hash link on the home page and we are already on the home page, let it behave normally for scroll
         if (href.includes('#') && window.location.pathname === href.split('#')[0]) {
           return;
@@ -70,19 +70,30 @@ function App() {
     }
   }, [path]);
 
-  if (path === '/logout') return <Logout />
-  if (path === '/login') return <Login />
-  if (path === '/register') return <Register />
-  if (path === '/register-success') return <RegisterSuccess />
-  if (path === '/dashboard') return <Dashboard />
-  if (path === '/edit-profile') return <EditProfile />
-  if (path === '/admin') return <AdminDashboard />
-  if (path === '/admin/residents') return <AdminDashboard />
-  if (path === '/admin/certificates') return <AdminCertificates />
-  if (path === '/admin/reports') return <AdminReports />
-  if (path === '/admin/announcements') return <AdminAnnouncements />
-  if (path === '/admin/login') return <AdminLogin />
-  return <Landing />
+  const effectivePath = path === '/logout'
+    ? (sessionStorage.getItem("pre_logout_path") || '/dashboard')
+    : path;
+
+  let pageContent;
+  if (effectivePath === '/login') pageContent = <Login />;
+  else if (effectivePath === '/register') pageContent = <Register />;
+  else if (effectivePath === '/register-success') pageContent = <RegisterSuccess />;
+  else if (effectivePath === '/dashboard') pageContent = <Dashboard />;
+  else if (effectivePath === '/edit-profile') pageContent = <EditProfile />;
+  else if (effectivePath === '/admin') pageContent = <AdminDashboard />;
+  else if (effectivePath === '/admin/residents') pageContent = <AdminDashboard />;
+  else if (effectivePath === '/admin/certificates') pageContent = <AdminCertificates />;
+  else if (effectivePath === '/admin/reports') pageContent = <AdminReports />;
+  else if (effectivePath === '/admin/announcements') pageContent = <AdminAnnouncements />;
+  else if (effectivePath === '/admin/login') pageContent = <AdminLogin />;
+  else pageContent = <Landing />;
+
+  return (
+    <>
+      {pageContent}
+      {path === '/logout' && <Logout />}
+    </>
+  );
 }
 
 export default App

@@ -1,14 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --bg-dark: #040806;
-  --bg-card: rgba(4, 30, 20, 0.85);
-  --accent: #10b981;
-  --accent-hover: #059669;
-  --text-light: #e2e8f0;
-  --text-muted: #94a3b8;
-  --border: rgba(16, 185, 129, 0.25);
-  --glow: rgba(16, 185, 129, 0.4);
+  --accent: var(--accent-color);
+  --glow: var(--border);
 }
 
 *, *::before, *::after {
@@ -32,8 +26,8 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #040806;
-  color: #ededed;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
   font-family: 'Inter', -apple-system, sans-serif;
   line-height: 1.5;
   overflow-x: hidden;
@@ -76,10 +70,10 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem 4rem;
-  background: rgba(4, 8, 6, 0.8) !important;
+  background: var(--topbar-bg) !important;
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
-  border-bottom: 1px solid rgba(16, 185, 129, 0.2) !important;
+  border-bottom: 1px solid var(--border) !important;
   transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 

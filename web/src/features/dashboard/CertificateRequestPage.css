@@ -245,7 +245,7 @@
   padding: 40px 20px;
   overflow-y: auto;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 
@@ -292,10 +292,10 @@
   }
   
   .modal-overlay-full {
-    padding: 16px;
+    padding: 24px 12px;
   }
 
   .modal-full {
-    padding: 24px;
+    padding: 20px;
   }
 }

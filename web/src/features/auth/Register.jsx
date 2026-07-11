@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Layout from "../../shared/Layout";
+import Icon from "../../components/ui/Icons";
 import "./Register.css";
 import { authAPI } from "../../lib/api";
 import BorderGlow from "@/components/ui/border-glow";
@@ -16,10 +17,10 @@ export default function Register() {
     civilStatus: "Single",
     addressLine: "",
     purok: "",
-    barangay: "Labangon",
-    city: "Cebu City",
-    province: "Cebu",
-    postalCode: "6000",
+    barangay: "",
+    city: "",
+    province: "",
+    postalCode: "",
     password: "",
     confirmPassword: "",
   });
@@ -57,6 +58,14 @@ export default function Register() {
         return !value.trim() ? "Address line is required" : "";
       case "purok":
         return !value.trim() ? "Purok is required" : "";
+      case "barangay":
+        return !value.trim() ? "Barangay is required" : "";
+      case "city":
+        return !value.trim() ? "City is required" : "";
+      case "province":
+        return !value.trim() ? "Province is required" : "";
+      case "postalCode":
+        return !value.trim() ? "Postal code is required" : "";
       case "password":
         if (!value) return "Password is required";
         if (value.length < 8) return "Must be at least 8 characters";
@@ -86,7 +95,10 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const fields = ["firstName", "lastName", "username", "email", "phone", "dateOfBirth", "addressLine", "purok", "password", "confirmPassword"];
+    const fields = [
+      "firstName", "lastName", "username", "email", "phone", "dateOfBirth", "addressLine", "purok", 
+      "barangay", "city", "province", "postalCode", "password", "confirmPassword"
+    ];
     const newTouched = {};
     const newErrors = {};
     fields.forEach((f) => {
@@ -159,7 +171,7 @@ export default function Register() {
           {/* ── Error banner ── */}
           {regError && (
             <div className="reg-alert-error">
-              <span className="reg-alert-icon">⚠️</span>
+              <Icon name="warning" size={16} noBg={true} className="reg-alert-icon" />
               <span>{regError}</span>
             </div>
           )}
@@ -328,53 +340,73 @@ export default function Register() {
               </div>
             </div>
 
-            {/* ── Row 6: Barangay (prefilled) + City (prefilled) ── */}
+            {/* ── Row 6: Barangay + City ── */}
             <div className="reg-row">
               <div className="reg-group">
-                <label className="reg-label">Barangay</label>
+                <label className="reg-label">Barangay <span className="req">*</span></label>
                 <input
                   name="barangay"
                   type="text"
+                  placeholder="e.g. Labangon"
                   value={formData.barangay}
-                  readOnly
-                  className="reg-input reg-input-prefilled"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={`reg-input ${errors.barangay && touched.barangay ? "input-error" : ""}`}
                 />
+                {errors.barangay && touched.barangay && (
+                  <span className="reg-error">{errors.barangay}</span>
+                )}
               </div>
 
               <div className="reg-group">
-                <label className="reg-label">City</label>
+                <label className="reg-label">City <span className="req">*</span></label>
                 <input
                   name="city"
                   type="text"
+                  placeholder="e.g. Cebu City"
                   value={formData.city}
-                  readOnly
-                  className="reg-input reg-input-prefilled"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={`reg-input ${errors.city && touched.city ? "input-error" : ""}`}
                 />
+                {errors.city && touched.city && (
+                  <span className="reg-error">{errors.city}</span>
+                )}
               </div>
             </div>
 
-            {/* ── Row 7: Province (prefilled) + Postal Code (prefilled) ── */}
+            {/* ── Row 7: Province + Postal Code ── */}
             <div className="reg-row">
               <div className="reg-group">
-                <label className="reg-label">Province</label>
+                <label className="reg-label">Province <span className="req">*</span></label>
                 <input
                   name="province"
                   type="text"
+                  placeholder="e.g. Cebu"
                   value={formData.province}
-                  readOnly
-                  className="reg-input reg-input-prefilled"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={`reg-input ${errors.province && touched.province ? "input-error" : ""}`}
                 />
+                {errors.province && touched.province && (
+                  <span className="reg-error">{errors.province}</span>
+                )}
               </div>
 
               <div className="reg-group">
-                <label className="reg-label">Postal code</label>
+                <label className="reg-label">Postal code <span className="req">*</span></label>
                 <input
                   name="postalCode"
                   type="text"
+                  placeholder="e.g. 6000"
                   value={formData.postalCode}
-                  readOnly
-                  className="reg-input reg-input-prefilled"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={`reg-input ${errors.postalCode && touched.postalCode ? "input-error" : ""}`}
                 />
+                {errors.postalCode && touched.postalCode && (
+                  <span className="reg-error">{errors.postalCode}</span>
+                )}
               </div>
             </div>
 
@@ -398,7 +430,7 @@ export default function Register() {
                     onClick={() => setShowPw((p) => !p)}
                     tabIndex={-1}
                   >
-                    {showPw ? "🙈" : "👁️"}
+                    {showPw ? <Icon name="eye-off" size={16} noBg={true} /> : <Icon name="eye" size={16} noBg={true} />}
                   </button>
                 </div>
                 {hasError("password")
@@ -425,7 +457,7 @@ export default function Register() {
                     onClick={() => setShowCpw((p) => !p)}
                     tabIndex={-1}
                   >
-                    {showCpw ? "🙈" : "👁️"}
+                    {showCpw ? <Icon name="eye-off" size={16} noBg={true} /> : <Icon name="eye" size={16} noBg={true} />}
                   </button>
                 </div>
                 {hasError("confirmPassword") && <span className="reg-error">{errors.confirmPassword}</span>}
@@ -434,7 +466,7 @@ export default function Register() {
 
             {/* ── Verification Notice ── */}
             <div className="reg-notice">
-              <span className="reg-notice-icon">📋</span>
+              <Icon name="report" size={20} noBg={true} className="reg-notice-icon" />
               <div>
                 <p className="reg-notice-title">
                   <strong>Account Verification Required</strong>
@@ -462,8 +494,15 @@ export default function Register() {
 
             {/* ── Submit ── */}
             <div className="reg-footer-row">
-              <button type="submit" className="reg-btn-submit">
-                Create account
+              <button type="submit" className="reg-btn-submit" disabled={loading}>
+                {loading ? (
+                  <span className="btn-content-loading">
+                    <span className="btn-loading-spinner"></span>
+                    Creating Account...
+                  </span>
+                ) : (
+                  "Create account"
+                )}
               </button>
               <span className="reg-signin-text">
                 <a href="/login" className="reg-signin-link">Already have an account?→</a>

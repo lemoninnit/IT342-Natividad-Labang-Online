@@ -3,6 +3,7 @@ import "./Landing.css";
 import logo from "../assets/logo.png";
 import { CircuitBackground } from "@/components/ui/circuit-background";
 import { BorderGlow } from "@/components/ui/border-glow";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 // Reusable CountUp Animation Component using IntersectionObserver
 function CountUp({ end, duration = 1200, suffix = "", prefix = "", format = false }) {
@@ -127,7 +128,8 @@ export default function Landing() {
           <a href="#contact">Contact</a>
         </div>
 
-        <div className="nav-actions">
+        <div className="nav-actions" style={{ display: "flex", alignItems: "center", gap: "1.25rem" }}>
+          <ThemeToggle />
           <a href="/login" className="nav-login">Sign In</a>
           <a href="/register" className="btn-primary btn-sm">Get Started →</a>
         </div>

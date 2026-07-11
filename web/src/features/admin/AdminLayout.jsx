@@ -18,7 +18,11 @@ export default function AdminLayout({ activeSection, title, subtitle, showHeader
           </div>
         </div>
         <div className="admin-topbar-right">
-          <button className="btn-logout-red" onClick={() => window.location.href = '/logout'}>LOGOUT</button>
+          <button className="btn-logout-red" onClick={() => {
+            sessionStorage.setItem("pre_logout_path", window.location.pathname);
+            window.history.pushState(null, '', '/logout');
+            window.dispatchEvent(new Event('pushstate'));
+          }}>LOGOUT</button>
         </div>
       </div>
 

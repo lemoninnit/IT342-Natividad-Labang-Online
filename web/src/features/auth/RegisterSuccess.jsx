@@ -1,4 +1,5 @@
 import Layout from "../../shared/Layout";
+import Icon from "../../components/ui/Icons";
 import "./RegisterSuccess.css";
 import BorderGlow from "@/components/ui/border-glow";
 
@@ -9,7 +10,7 @@ export default function RegisterSuccess() {
         <BorderGlow className="success-card" borderRadius={16}>
           <div className="success-icon-container">
             <div className="success-icon-circle">
-              <span className="success-check">✓</span>
+              <Icon name="success" size={32} noBg={true} />
             </div>
           </div>
 

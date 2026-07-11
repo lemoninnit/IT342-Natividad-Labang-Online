@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Layout from "../../shared/Layout";
+import Icon from "../../components/ui/Icons";
 import "./Login.css";
 import { prefetchUserData } from "../../lib/api";
 import BorderGlow from "@/components/ui/border-glow";
@@ -126,7 +127,7 @@ export default function Login() {
           {/* 4.5 Error banner */}
           {loginError && (
             <div className="alert-error">
-              <span className="alert-icon">⚠️</span>
+              <Icon name="warning" size={16} noBg={true} className="alert-icon" />
               <span>{loginError}</span>
             </div>
           )}
@@ -152,7 +153,7 @@ export default function Login() {
                   className={errors.password && touched.password ? "error" : ""}
                   autoComplete="current-password" />
                 <button type="button" className="eye-btn" onClick={() => setShowPassword(v => !v)}>
-                  {showPassword ? "🙈" : "👁️"}
+                  {showPassword ? <Icon name="eye-off" size={16} noBg={true} /> : <Icon name="eye" size={16} noBg={true} />}
                 </button>
               </div>
               {errors.password && touched.password && <span className="err-msg">{errors.password}</span>}
@@ -160,7 +161,10 @@ export default function Login() {
 
             <button type="submit" className="btn-primary btn-full btn-login" disabled={loading}>
               {loading ? (
-                <span className="loading-row"><span className="spinner" /> Signing in...</span>
+                <span className="btn-content-loading">
+                  <span className="btn-loading-spinner"></span>
+                  Signing In...
+                </span>
               ) : "Sign In"}
             </button>
           </form>

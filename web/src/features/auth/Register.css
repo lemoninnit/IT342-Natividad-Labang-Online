@@ -4,17 +4,12 @@
    ══════════════════════════════════════════════ */
 
 :root {
-  --bg-dark: #040806;
   --bg-card: #111827;
-  --accent: #10b981;
-  --accent-hover: #059669;
-  --text-light: #f3f4f6;
-  --text-muted: #9ca3af;
-  --border: rgba(16, 185, 129, 0.2);
+  --accent: var(--accent-color);
+  --accent-hover: var(--accent-hover);
   --shadow: rgba(0, 0, 0, 0.4);
   --error: #ef4444;
   --error-light: rgba(239, 68, 68, 0.1);
-  --glow: rgba(16, 185, 129, 0.25);
   --prefilled-bg: rgba(16, 185, 129, 0.04);
   --prefilled-border: rgba(16, 185, 129, 0.15);
   --notice-bg: rgba(16, 185, 129, 0.08);
@@ -52,8 +47,8 @@
 
 /* ──────── GLASSMORPHIC CARD ──────── */
 .reg-card {
-  background: rgba(4, 30, 20, 0.85) !important;
-  border: 1px solid rgba(16, 185, 129, 0.25) !important;
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
   border-radius: 16px;

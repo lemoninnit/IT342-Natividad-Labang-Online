@@ -1,5 +1,9 @@
 .gcash-payment-container {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 }
 
 .payment-card-redesign {
@@ -13,6 +17,19 @@
   max-width: 850px;
   width: 95%;
   margin: auto;
+  animation: modalFadeIn 0.35s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .payment-layout-split {
@@ -139,7 +156,8 @@
   margin-top: auto;
 }
 
-.btn-cancel-themed, .btn-submit-payment {
+.btn-cancel-themed,
+.btn-submit-payment {
   padding: 14px;
   border-radius: 100px;
   font-size: 14px;
@@ -308,7 +326,7 @@
 }
 
 /* Status States */
-.success-state-themed, 
+.success-state-themed,
 .error-state-themed {
   padding: 64px;
   text-align: center;
@@ -344,7 +362,7 @@
   margin: 0 auto 24px;
 }
 
-.btn-finish-themed, 
+.btn-finish-themed,
 .btn-retry-themed {
   margin-top: 32px;
   background: #10b981;
@@ -369,8 +387,56 @@
   .payment-layout-split {
     grid-template-columns: 1fr;
   }
+
   .payment-left-qr {
     border-right: none;
     border-bottom: 1px solid rgba(16, 185, 129, 0.15);
+    padding: 24px 16px;
   }
+
+  .qr-image-branded {
+    width: 200px;
+    height: 200px;
+  }
+
+  .payment-right-details {
+    padding: 24px 20px;
+  }
+
+  .payment-title-themed {
+    font-size: 18px;
+  }
+
+  .payment-info-box-themed {
+    padding: 12px;
+    margin-bottom: 16px;
+  }
+
+  .input-group-themed {
+    margin-bottom: 16px;
+  }
+
+}
+
+/* --- Light Theme --- */
+html[data-theme='light'] .payment-left-qr {
+  background: rgba(5, 150, 105, 0.04) !important;
+}
+
+html[data-theme='light'] .input-group-themed input {
+  background: rgba(5, 150, 105, 0.04) !important;
+  color: var(--text-light) !important;
+}
+
+html[data-theme='light'] .input-group-themed input:focus {
+  background: rgba(5, 150, 105, 0.08) !important;
+}
+
+html[data-theme='light'] .file-upload-label {
+  background: rgba(5, 150, 105, 0.04) !important;
+  color: var(--text-muted) !important;
+}
+
+html[data-theme='light'] .file-upload-wrapper:hover .file-upload-label {
+  background: rgba(5, 150, 105, 0.08) !important;
 }

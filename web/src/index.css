@@ -9,9 +9,57 @@
   --accent: oklch(0.7 0.15 195);
   --accent-foreground: oklch(0.1 0 0);
   --ring: oklch(0.75 0.18 195);
+
+  /* Theme Defaults (Dark) */
+  --bg-dark: #040806;
+  --sidebar-bg: rgba(4, 18, 12, 0.85);
+  --card-bg: rgba(4, 30, 20, 0.65);
+  --bg-card: rgba(4, 30, 20, 0.85);
+  --topbar-bg: rgba(4, 8, 6, 0.8);
+  --accent-color: #10b981;
+  --accent-hover: #34d399;
+  --text-light: #ededed;
+  --text-muted: #94a3b8;
+  --border: rgba(16, 185, 129, 0.25);
+  --glow: rgba(16, 185, 129, 0.15);
 }
 
-*, *::before, *::after {
+html[data-theme='light'] {
+  --bg-dark: #f0f7f4;
+  --sidebar-bg: rgba(225, 238, 232, 0.9);
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --bg-card: rgba(255, 255, 255, 0.95);
+  --topbar-bg: rgba(225, 238, 232, 0.85);
+  --accent-color: #059669;
+  --accent-hover: #10b981;
+  --text-light: #061f12;
+  --text-muted: #4e6b5a;
+  --border: rgba(5, 150, 105, 0.25);
+  --glow: rgba(5, 150, 105, 0.1);
+  --primary: oklch(0.55 0.18 150);
+}
+
+body,
+.landing-wrapper,
+.layout-wrapper,
+.dashboard-main,
+.dashboard-sidebar,
+.dashboard-topbar,
+.service-card,
+.stat-card,
+.step-card,
+.test-card,
+.info-card,
+.history-card,
+.form-card,
+.modal-content-edit,
+.modal-content-full {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -20,4 +68,691 @@
 body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Button Loading Spinner Utility */
+.btn-loading-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  border-top-color: currentColor;
+  animation: btnSpinner 0.6s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.btn-content-loading {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+@keyframes btnSpinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ──────── LIGHT THEME CONTRAST & VISIBILITY OVERRIDES ──────── */
+html[data-theme='light'] body,
+html[data-theme='light'] .landing-wrapper,
+html[data-theme='light'] .layout-wrapper {
+  color: #0f241a !important;
+}
+
+html[data-theme='light'] h1,
+html[data-theme='light'] h2,
+html[data-theme='light'] h3,
+html[data-theme='light'] h4,
+html[data-theme='light'] h5,
+html[data-theme='light'] h6,
+html[data-theme='light'] .hero-heading,
+html[data-theme='light'] .section-title,
+html[data-theme='light'] .service-name,
+html[data-theme='light'] .why-title,
+html[data-theme='light'] .cta-title,
+html[data-theme='light'] .nav-logo-text,
+html[data-theme='light'] .footer-logo span,
+html[data-theme='light'] .topbar-logo span,
+html[data-theme='light'] .user-full-name,
+html[data-theme='light'] .card-title,
+html[data-theme='light'] .success-title,
+html[data-theme='light'] .modal-title {
+  color: #0d1e15 !important;
+}
+
+html[data-theme='light'] p,
+html[data-theme='light'] span,
+html[data-theme='light'] li,
+html[data-theme='light'] .hero-subtext,
+html[data-theme='light'] .section-desc,
+html[data-theme='light'] .why-desc,
+html[data-theme='light'] .cta-desc,
+html[data-theme='light'] .service-text,
+html[data-theme='light'] .step-card p,
+html[data-theme='light'] .test-card p,
+html[data-theme='light'] .footer-desc,
+html[data-theme='light'] .footer-bottom,
+html[data-theme='light'] .nav-login,
+html[data-theme='light'] .nav-links-pill a,
+html[data-theme='light'] label,
+html[data-theme='light'] .card-subtitle,
+html[data-theme='light'] .reg-subtitle,
+html[data-theme='light'] .success-message,
+html[data-theme='light'] .modal-desc,
+html[data-theme='light'] .info-label,
+html[data-theme='light'] .info-value,
+html[data-theme='light'] .info-text {
+  color: #3b5245 !important;
+}
+
+/* Hover overrides */
+html[data-theme='light'] .nav-login:hover,
+html[data-theme='light'] .nav-links-pill a:hover {
+  color: #059669 !important;
+}
+
+/* Ensure glassmorphism cards and inputs are fully visible and readable */
+html[data-theme='light'] .login-card,
+html[data-theme='light'] .reg-card,
+html[data-theme='light'] .success-card,
+html[data-theme='light'] .service-card,
+html[data-theme='light'] .stat-card,
+html[data-theme='light'] .step-card,
+html[data-theme='light'] .test-card,
+html[data-theme='light'] .info-card,
+html[data-theme='light'] .history-card,
+html[data-theme='light'] .form-card,
+html[data-theme='light'] .announcement-card,
+html[data-theme='light'] .report-card,
+html[data-theme='light'] .personal-info-card,
+html[data-theme='light'] .certificate-form-container,
+html[data-theme='light'] .modal-content-edit,
+html[data-theme='light'] .modal-content-full {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(5, 150, 105, 0.25) !important;
+  box-shadow: 0 20px 40px rgba(4, 30, 20, 0.05), 0 0 30px rgba(5, 150, 105, 0.02) !important;
+}
+
+/* Inputs light theme visibility */
+html[data-theme='light'] input,
+html[data-theme='light'] select,
+html[data-theme='light'] textarea,
+html[data-theme='light'] .reg-input {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(5, 150, 105, 0.25) !important;
+  color: #061f12 !important;
+}
+
+html[data-theme='light'] input:focus,
+html[data-theme='light'] select:focus,
+html[data-theme='light'] textarea:focus,
+html[data-theme='light'] .reg-input:focus {
+  background: #ffffff !important;
+  border-color: #059669 !important;
+  box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.15) !important;
+}
+
+html[data-theme='light'] input::placeholder,
+html[data-theme='light'] textarea::placeholder,
+html[data-theme='light'] .reg-input::placeholder {
+  color: #8fa397 !important;
+}
+
+/* Button & Link light contrast adjustments */
+html[data-theme='light'] .btn-secondary,
+html[data-theme='light'] .btn-cancel-report,
+html[data-theme='light'] .btn-secondary-success {
+  background: rgba(5, 150, 105, 0.05) !important;
+  color: #059669 !important;
+  border: 1px solid rgba(5, 150, 105, 0.3) !important;
+}
+
+html[data-theme='light'] .btn-secondary:hover,
+html[data-theme='light'] .btn-cancel-report:hover,
+html[data-theme='light'] .btn-secondary-success:hover {
+  background: rgba(5, 150, 105, 0.12) !important;
+  border-color: #059669 !important;
+}
+
+html[data-theme='light'] .nav-links-pill {
+  background: rgba(5, 150, 105, 0.04) !important;
+  border: 1px solid rgba(5, 150, 105, 0.25) !important;
+}
+
+html[data-theme='light'] .text-emerald,
+html[data-theme='light'] .hero-italic,
+html[data-theme='light'] .service-badge,
+html[data-theme='light'] .service-link,
+html[data-theme='light'] .step-num,
+html[data-theme='light'] .forgot-link,
+html[data-theme='light'] .register-link a,
+html[data-theme='light'] .reg-signin-link {
+  color: #059669 !important;
+}
+
+html[data-theme='light'] .service-card-header .service-icon {
+  background: rgba(5, 150, 105, 0.06) !important;
+  color: #059669 !important;
+  border: 1px solid rgba(5, 150, 105, 0.2) !important;
+}
+
+/* Dark theme specific fixes to prevent conflicts */
+html[data-theme='dark'] .nav-logo-text {
+  color: #fff !important;
+}
+
+/* ──────── UNIFIED PREMIUM BUTTON OVERRIDES (HIGH VISIBILITY & CONTRAST) ──────── */
+/* Primary Buttons */
+.btn-primary,
+.btn-submit-report,
+.reg-btn-submit,
+.btn-primary-success,
+.btn-login {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  border: 1px solid rgba(16, 185, 129, 0.2) !important;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4), 0 0 0 1px rgba(16, 185, 129, 0.1) !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+}
+
+/* Hover state for primary buttons */
+.btn-primary:hover:not(:disabled),
+.btn-submit-report:hover:not(:disabled),
+.reg-btn-submit:hover:not(:disabled),
+.btn-primary-success:hover:not(:disabled),
+.btn-login:hover:not(:disabled) {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 100%) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.5), 0 0 0 2px rgba(52, 211, 153, 0.2) !important;
+}
+
+/* Active / Pressed state for primary buttons */
+.btn-primary:active:not(:disabled),
+.btn-submit-report:active:not(:disabled),
+.reg-btn-submit:active:not(:disabled),
+.btn-primary-success:active:not(:disabled),
+.btn-login:active:not(:disabled) {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+  transform: translateY(0) !important;
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3) !important;
+}
+
+/* Disabled state */
+.btn-primary:disabled,
+.btn-submit-report:disabled,
+.reg-btn-submit:disabled,
+.btn-primary-success:disabled,
+.btn-login:disabled {
+  background: rgba(16, 185, 129, 0.35) !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+  border-color: rgba(16, 185, 129, 0.2) !important;
+  box-shadow: none !important;
+  cursor: not-allowed !important;
+  opacity: 0.7 !important;
+}
+
+/* Secondary / Cancel Buttons */
+.btn-secondary,
+.btn-cancel-report,
+.btn-secondary-success {
+  background: rgba(16, 185, 129, 0.05) !important;
+  color: var(--accent-color) !important;
+  border: 1px solid rgba(16, 185, 129, 0.35) !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+}
+
+.btn-secondary:hover:not(:disabled),
+.btn-cancel-report:hover:not(:disabled),
+.btn-secondary-success:hover:not(:disabled) {
+  background: rgba(16, 185, 129, 0.15) !important;
+  color: var(--accent-hover) !important;
+  border-color: var(--accent-hover) !important;
+  transform: translateY(-1px) !important;
+}
+
+.btn-secondary:active:not(:disabled),
+.btn-cancel-report:active:not(:disabled),
+.btn-secondary-success:active:not(:disabled) {
+  transform: translateY(0) !important;
+  background: rgba(16, 185, 129, 0.2) !important;
+}
+
+.btn-secondary:disabled,
+.btn-cancel-report:disabled,
+.btn-secondary-success:disabled {
+  background: transparent !important;
+  color: #4b5563 !important;
+  border-color: #374151 !important;
+  cursor: not-allowed !important;
+  opacity: 0.5 !important;
+}
+
+/* ──────── ADDITIONAL LIGHT MODE & CARD OUTLINE HOVER OVERRIDES ──────── */
+html[data-theme='light'] .reg-label {
+  color: #3b5245 !important;
+}
+
+html[data-theme='light'] .header-title-section h1,
+html[data-theme='light'] .report-header-title h1,
+html[data-theme='light'] .edit-header-modal h1,
+html[data-theme='light'] .edit-modal-body,
+html[data-theme='light'] .important-notice strong {
+  color: #0b291b !important;
+}
+
+html[data-theme='light'] .important-notice p,
+html[data-theme='light'] .edit-header-modal p {
+  color: #3b5245 !important;
+}
+
+html[data-theme='light'] .edit-section-modal {
+  background: rgba(5, 150, 105, 0.05) !important;
+  border: 1px solid rgba(5, 150, 105, 0.2) !important;
+}
+
+html[data-theme='light'] .info-header-text h2,
+html[data-theme='light'] .btn-edit-info {
+  color: #0d1e15 !important;
+}
+
+html[data-theme='light'] .info-section {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(5, 150, 105, 0.2) !important;
+  box-shadow: 0 8px 30px rgba(5, 150, 105, 0.05) !important;
+}
+
+html[data-theme='light'] .resident-id-card {
+  background: rgba(5, 150, 105, 0.03) !important;
+  border-color: rgba(5, 150, 105, 0.25) !important;
+}
+
+html[data-theme='light'] .btn-edit-info {
+  background: rgba(5, 150, 105, 0.05) !important;
+  border-color: rgba(5, 150, 105, 0.3) !important;
+}
+
+html[data-theme='light'] .btn-edit-info:hover {
+  background: rgba(5, 150, 105, 0.1) !important;
+  border-color: #059669 !important;
+}
+
+html[data-theme='light'] .info-header-card {
+  box-shadow: 0 10px 30px rgba(5, 150, 105, 0.05) !important;
+}
+
+html[data-theme='light'] .nav-item {
+  color: #4e6b5a !important;
+}
+
+html[data-theme='light'] .nav-item:hover,
+html[data-theme='light'] .nav-item.active {
+  color: #059669 !important;
+  background: rgba(5, 150, 105, 0.08) !important;
+}
+
+html[data-theme='light'] .next-steps-container {
+  background: rgba(5, 150, 105, 0.04) !important;
+  border: 1px solid rgba(5, 150, 105, 0.15) !important;
+}
+
+html[data-theme='light'] .step-item p {
+  color: #3b5245 !important;
+}
+
+html[data-theme='light'] .step-item p strong {
+  color: #0b291b !important;
+}
+
+html[data-theme='light'] .payment-method-card {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(5, 150, 105, 0.2) !important;
+  color: #061f12 !important;
+}
+
+html[data-theme='light'] .payment-method-card:hover {
+  background: rgba(5, 150, 105, 0.05) !important;
+  border-color: #059669 !important;
+}
+
+html[data-theme='light'] .payment-method-card.selected {
+  background: rgba(5, 150, 105, 0.1) !important;
+  border-color: #059669 !important;
+}
+
+/* Landing Page Footer Light Mode Visibility Overrides */
+html[data-theme='light'] .landing-footer {
+  background: rgba(225, 238, 232, 0.98) !important;
+  border-top: 1px solid rgba(5, 150, 105, 0.25) !important;
+}
+
+html[data-theme='light'] .landing-footer h4 {
+  color: #059669 !important;
+}
+
+html[data-theme='light'] .landing-footer a,
+html[data-theme='light'] .landing-footer p,
+html[data-theme='light'] .landing-footer span,
+html[data-theme='light'] .landing-footer .footer-logo,
+html[data-theme='light'] .landing-footer .footer-logo span {
+  color: #3b5245 !important;
+}
+
+html[data-theme='light'] .landing-footer a:hover {
+  color: #059669 !important;
+}
+
+html[data-theme='light'] .landing-footer .footer-bottom {
+  border-top: 1px solid rgba(5, 150, 105, 0.2) !important;
+  color: #5c7566 !important;
+}
+
+/* Landing Page Cards Light Mode Visibility Overrides */
+html[data-theme='light'] .section-title,
+html[data-theme='light'] .why-title,
+html[data-theme='light'] .cta-title,
+html[data-theme='light'] .service-name,
+html[data-theme='light'] .step-card h4,
+html[data-theme='light'] .stat-card .stat-title,
+html[data-theme='light'] .stat-val,
+html[data-theme='light'] .test-name,
+html[data-theme='light'] .why-list li {
+  color: #0b291b !important;
+}
+
+html[data-theme='light'] .section-desc,
+html[data-theme='light'] .why-desc,
+html[data-theme='light'] .cta-desc,
+html[data-theme='light'] .service-text,
+html[data-theme='light'] .service-list li,
+html[data-theme='light'] .step-card p,
+html[data-theme='light'] .stat-card .stat-desc,
+html[data-theme='light'] .stat-lbl,
+html[data-theme='light'] .test-role,
+html[data-theme='light'] .test-card p,
+html[data-theme='light'] .footer-desc {
+  color: #3b5245 !important;
+}
+
+html[data-theme='light'] .check {
+  color: #059669 !important;
+}
+
+html[data-theme='light'] .progress-bar {
+  background: rgba(5, 150, 105, 0.1) !important;
+}
+
+html[data-theme='light'] .progress-fill {
+  background: #059669 !important;
+  color: #ffffff !important;
+}
+
+html[data-theme='light'] .stat-breakdown li {
+  color: #3b5245 !important;
+}
+
+/* ──────── NEW DYNAMIC LIGHT MODE COMPONENT ADAPTATIONS ──────── */
+
+/* Login & Register Shared Layout Footer */
+html[data-theme='light'] .layout-footer {
+  background: rgba(225, 238, 232, 0.98) !important;
+  border-top: 1px solid rgba(5, 150, 105, 0.25) !important;
+}
+
+html[data-theme='light'] .layout-footer .footer-bottom,
+html[data-theme='light'] .layout-footer .footer-bottom span,
+html[data-theme='light'] .layout-footer .footer-bottom p {
+  color: #3b5245 !important;
+}
+
+/* Login Page OR divider span */
+html[data-theme='light'] .divider span {
+  background: var(--card-bg) !important;
+  color: #3b5245 !important;
+}
+
+html[data-theme='light'] .divider::before {
+  background: rgba(5, 150, 105, 0.15) !important;
+}
+
+/* Register Page Footer Row */
+html[data-theme='light'] .reg-footer-row {
+  border-top: 1px solid rgba(5, 150, 105, 0.15) !important;
+}
+
+/* Document Request (Certificates) Page & Modals */
+html[data-theme='light'] .cert-card {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(5, 150, 105, 0.2) !important;
+}
+
+html[data-theme='light'] .cert-title {
+  color: #0b291b !important;
+}
+
+html[data-theme='light'] .requirements-section {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(5, 150, 105, 0.2) !important;
+}
+
+html[data-theme='light'] .req-title {
+  color: #0b291b !important;
+}
+
+html[data-theme='light'] .modal-overlay-full,
+html[data-theme='light'] .modal-overlay-edit {
+  background: rgba(240, 247, 244, 0.25) !important;
+  backdrop-filter: blur(16px) !important;
+}
+
+html[data-theme='light'] .modal-full {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-color: rgba(5, 150, 105, 0.3) !important;
+  color: #0b291b !important;
+}
+
+html[data-theme='light'] .back-btn-themed:hover {
+  color: #0b291b !important;
+}
+
+/* Select Payment Mode Modal */
+html[data-theme='light'] .selection-card {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-color: rgba(5, 150, 105, 0.35) !important;
+  box-shadow: 0 40px 100px -20px rgba(5, 150, 105, 0.1), 0 0 50px rgba(5, 150, 105, 0.03) !important;
+  color: #0b291b !important;
+}
+
+html[data-theme='light'] .selection-card h2 {
+  color: #0b291b !important;
+}
+
+/* Announcements Page Category Tabs & Card Details */
+html[data-theme='light'] .announcement-filters {
+  background: rgba(5, 150, 105, 0.05) !important;
+  border-color: rgba(5, 150, 105, 0.2) !important;
+}
+
+html[data-theme='light'] .filter-btn {
+  color: #3b5245 !important;
+}
+
+html[data-theme='light'] .filter-btn:hover {
+  background: rgba(5, 150, 105, 0.05) !important;
+  color: #059669 !important;
+}
+
+html[data-theme='light'] .filter-btn.active {
+  background: rgba(5, 150, 105, 0.12) !important;
+  color: #059669 !important;
+  border-color: rgba(5, 150, 105, 0.3) !important;
+}
+
+html[data-theme='light'] .announcement-card {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(5, 150, 105, 0.2) !important;
+}
+
+html[data-theme='light'] .announcement-card h2,
+html[data-theme='light'] .modal-body h1 {
+  color: #0b291b !important;
+}
+
+html[data-theme='light'] .announcement-preview,
+html[data-theme='light'] .modal-full-content {
+  color: #3b5245 !important;
+}
+
+html[data-theme='light'] .modal-overlay {
+  background: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(16px) !important;
+}
+
+html[data-theme='light'] .modal-content {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-color: rgba(5, 150, 105, 0.35) !important;
+  box-shadow: 0 40px 100px -20px rgba(5, 150, 105, 0.1), 0 0 50px rgba(5, 150, 105, 0.03) !important;
+}
+
+html[data-theme='light'] .empty-state p {
+  color: #0b291b !important;
+}
+
+html[data-theme='light'] .empty-state .sub-text {
+  color: #3b5245 !important;
+}
+
+html[data-theme='light'] .modal-meta {
+  border-bottom-color: rgba(5, 150, 105, 0.15) !important;
+}
+
+html[data-theme='light'] .announcement-footer {
+  border-top-color: rgba(5, 150, 105, 0.15) !important;
+}
+
+/* File Report Form Card & Notice */
+html[data-theme='light'] .report-form-card {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(5, 150, 105, 0.25) !important;
+  box-shadow: 0 10px 30px rgba(5, 150, 105, 0.05) !important;
+}
+
+html[data-theme='light'] .report-notice {
+  background: rgba(5, 150, 105, 0.04) !important;
+  border-color: rgba(5, 150, 105, 0.15) !important;
+}
+
+html[data-theme='light'] .report-notice p {
+  color: #3b5245 !important;
+}
+
+html[data-theme='light'] .report-notice strong {
+  color: #0b291b !important;
+}
+
+/* View My Reports Page & Report History Item details */
+html[data-theme='light'] .report-item {
+  background: rgba(5, 150, 105, 0.03) !important;
+  border-color: rgba(5, 150, 105, 0.15) !important;
+}
+
+html[data-theme='light'] .report-item:hover {
+  background: rgba(5, 150, 105, 0.06) !important;
+  border-color: rgba(5, 150, 105, 0.3) !important;
+}
+
+html[data-theme='light'] .report-item-header {
+  background-color: rgba(5, 150, 105, 0.02) !important;
+}
+
+html[data-theme='light'] .report-item-header:hover {
+  background-color: rgba(5, 150, 105, 0.06) !important;
+}
+
+html[data-theme='light'] .report-item-details {
+  background: rgba(5, 150, 105, 0.02) !important;
+  border-top-color: rgba(5, 150, 105, 0.15) !important;
+}
+
+html[data-theme='light'] .report-detail-text {
+  background-color: rgba(5, 150, 105, 0.05) !important;
+  color: var(--text-light) !important;
+  border-color: rgba(5, 150, 105, 0.15) !important;
+}
+
+html[data-theme='light'] .summary-card {
+  background: rgba(5, 150, 105, 0.04) !important;
+  border-color: rgba(5, 150, 105, 0.2) !important;
+}
+
+html[data-theme='light'] .report-history-header {
+  border-bottom-color: rgba(5, 150, 105, 0.15) !important;
+}
+
+html[data-theme='light'] .report-summary-cards {
+  border-top-color: rgba(5, 150, 105, 0.15) !important;
+}
+
+/* Logout Modal Overlay & Container */
+html[data-theme='light'] .logout-overlay {
+  background: rgba(255, 255, 255, 0.6) !important;
+}
+
+html[data-theme='light'] .logout-modal {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(5, 150, 105, 0.35) !important;
+  box-shadow: 0 40px 100px -20px rgba(5, 150, 105, 0.1), 0 0 50px rgba(5, 150, 105, 0.03) !important;
+  color: #0b291b !important;
+}
+
+html[data-theme='light'] .btn-cancel,
+html[data-theme='light'] .btn-cancel-modal {
+  border-color: rgba(5, 150, 105, 0.3) !important;
+  color: #3b5245 !important;
+}
+
+html[data-theme='light'] .btn-cancel:hover,
+html[data-theme='light'] .btn-cancel-modal:hover {
+  background: rgba(5, 150, 105, 0.05) !important;
+  color: #059669 !important;
+  border-color: #059669 !important;
+}
+
+/* Admin Dashboard Report Details modal */
+html[data-theme='light'] .request-modal-content,
+html[data-theme='light'] .user-modal-content {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-color: rgba(5, 150, 105, 0.3) !important;
+  color: #0b291b !important;
+  box-shadow: 0 40px 100px -20px rgba(5, 150, 105, 0.1) !important;
+}
+
+html[data-theme='light'] .request-modal-header h2,
+html[data-theme='light'] .user-modal-header h2 {
+  color: #0b291b !important;
+}
+
+html[data-theme='light'] .request-label,
+html[data-theme='light'] .detail-label {
+  color: #3b5245 !important;
+}
+
+html[data-theme='light'] .request-value,
+html[data-theme='light'] .detail-value {
+  color: #0d1e15 !important;
+}
+
+html[data-theme='light'] .request-purpose-box {
+  color: #3b5245 !important;
+  background: rgba(5, 150, 105, 0.03) !important;
+  border-color: rgba(5, 150, 105, 0.15) !important;
 }

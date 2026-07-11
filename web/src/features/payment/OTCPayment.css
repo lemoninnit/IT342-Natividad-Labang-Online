@@ -1,5 +1,9 @@
 .otc-payment-container {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 }
 
 .payment-card-redesign {
@@ -13,6 +17,19 @@
   max-width: 850px;
   width: 95%;
   margin: auto;
+  animation: modalFadeIn 0.35s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .payment-layout-split-otc {
@@ -198,7 +215,8 @@
   margin-top: auto;
 }
 
-.btn-cancel-themed, .btn-verify-themed {
+.btn-cancel-themed,
+.btn-verify-themed {
   padding: 14px;
   border-radius: 100px;
   font-size: 14px;
@@ -241,7 +259,7 @@
 }
 
 /* Status States */
-.success-state-themed, 
+.success-state-themed,
 .error-state-themed {
   padding: 64px;
   text-align: center;
@@ -291,16 +309,45 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 768px) {
   .payment-layout-split-otc {
     grid-template-columns: 1fr;
   }
+
   .payment-left-instructions {
     border-right: none;
     border-bottom: 1px solid rgba(16, 185, 129, 0.15);
+    padding: 24px 16px;
   }
+
+  .payment-right-verify {
+    padding: 24px 20px;
+  }
+
+  .payment-title-themed {
+    font-size: 18px;
+  }
+
+  .payment-details-themed {
+    padding: 12px;
+    margin-bottom: 16px;
+  }
+
+  .input-group-themed {
+    margin-bottom: 16px;
+  }
+}
+
+/* --- Light Theme --- */
+html[data-theme='light'] .payment-left-instructions {
+  background: rgba(5, 150, 105, 0.04) !important;
 }

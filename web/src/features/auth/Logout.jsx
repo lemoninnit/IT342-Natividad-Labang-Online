@@ -1,15 +1,19 @@
 import { useEffect } from "react";
 import Layout from "../../shared/Layout";
+import Icon from "../../components/ui/Icons";
 import "./Logout.css";
 
 export default function Logout() {
   const redirectToLogin = () => {
     sessionStorage.removeItem("serviline_session");
-    window.location.href = "/login";
+    window.history.pushState(null, '', '/login');
+    window.dispatchEvent(new Event('pushstate'));
   };
 
   const redirectToDashboard = () => {
-    window.location.href = "/dashboard";
+    const preLogoutPath = sessionStorage.getItem("pre_logout_path") || "/dashboard";
+    window.history.pushState(null, '', preLogoutPath);
+    window.dispatchEvent(new Event('pushstate'));
   };
 
   useEffect(() => {
@@ -28,7 +32,9 @@ export default function Logout() {
     <div className="logout-container">
       <div className="logout-overlay" onClick={redirectToDashboard}></div>
       <div className="logout-modal">
-        <div className="logout-icon">🚪</div>
+        <div className="logout-icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: '24px' }}>
+          <Icon name="logout" size={24} />
+        </div>
         <h2>Are you sure you want to logout?</h2>
         <p>You will be signed out of your ServiLine account. Your data is safe and secure.</p>
 

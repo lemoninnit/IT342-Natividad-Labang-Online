@@ -1,6 +1,7 @@
 import "./Layout.css";
 import logo from "../assets/logo.png";
 import { CircuitBackground } from "@/components/ui/circuit-background";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 export default function Layout({ children }) {
   const goToHome = () => {
@@ -23,6 +24,10 @@ export default function Layout({ children }) {
           <a href="/#why-us">Why Us</a>
           <a href="/#how-it-works">How It Works</a>
           <a href="/#contact">Contact</a>
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <ThemeToggle />
         </div>
       </header>
 

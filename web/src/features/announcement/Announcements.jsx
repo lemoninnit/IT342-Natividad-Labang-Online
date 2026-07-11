@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { announcementAPI } from '../../lib/api'
+import Icon from '../../components/ui/Icons'
 import './Announcements.css'
 
 export default function Announcements() {
@@ -213,7 +214,7 @@ export default function Announcements() {
 
         <div className="header-actions">
           <div className="search-box">
-            <span className="search-icon">🔍</span>
+            <Icon name="search" size={16} noBg={true} className="search-icon" />
             <input
               type="text"
               placeholder="Search announcements..."
@@ -233,7 +234,10 @@ export default function Announcements() {
         <div className="admin-form-section">
           <div className="form-card">
             <div className="form-card-header">
-              <h2>{isEditing ? '📝 Edit Announcement' : '➕ Create New Announcement'}</h2>
+              <h2>
+                <Icon name={isEditing ? 'report' : 'plus'} size={20} noBg={true} style={{ marginRight: '8px', display: 'inline-flex', verticalAlign: 'middle' }} />
+                <span>{isEditing ? 'Edit Announcement' : 'Create New Announcement'}</span>
+              </h2>
               {previewMode && <span className="preview-badge">PREVIEW MODE</span>}
             </div>
 
@@ -327,8 +331,8 @@ export default function Announcements() {
                     </div>
                     <h2>{formData.title}</h2>
                     <div className="announcement-meta">
-                      <div className="meta-item"><span>📅</span> {formatDate(new Date())}</div>
-                      <div className="meta-item"><span>👤</span> {formData.postedBy}</div>
+                      <div className="meta-item"><Icon name="calendar" size={14} noBg={true} style={{ marginRight: '4px', display: 'inline-flex', verticalAlign: 'middle' }} /> {formatDate(new Date())}</div>
+                      <div className="meta-item"><Icon name="profile" size={14} noBg={true} style={{ marginRight: '4px', display: 'inline-flex', verticalAlign: 'middle' }} /> {formData.postedBy}</div>
                     </div>
                     <div className="announcement-content">
                       {formData.content}
@@ -383,7 +387,9 @@ export default function Announcements() {
       <div className="announcements-list">
         {filteredAnnouncements.length === 0 ? (
           <div className="empty-state">
-            <div className="empty-icon">📢</div>
+            <div className="empty-icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(16, 185, 129, 0.08)', border: '1px solid rgba(16, 185, 129, 0.2)', borderRadius: '50%', padding: '16px', color: '#10b981', marginBottom: '16px' }}>
+              <Icon name="announcement" size={32} noBg={true} />
+            </div>
             <p>No announcements found.</p>
             {searchQuery && <p className="sub-text">Try adjusting your search or filters.</p>}
           </div>
@@ -402,13 +408,13 @@ export default function Announcements() {
 
               <div className="announcement-meta">
                 <div className="meta-item">
-                  <span>📅</span> {formatDate(announcement.createdAt)}
+                  <Icon name="calendar" size={14} noBg={true} style={{ marginRight: '4px', display: 'inline-flex', verticalAlign: 'middle' }} /> {formatDate(announcement.createdAt)}
                 </div>
                 <div className="meta-item">
-                  <span>⏰</span> {formatTime(announcement.createdAt)}
+                  <Icon name="clock" size={14} noBg={true} style={{ marginRight: '4px', display: 'inline-flex', verticalAlign: 'middle' }} /> {formatTime(announcement.createdAt)}
                 </div>
                 <div className="meta-item">
-                  <span>👤</span> {announcement.postedBy || 'Admin'}
+                  <Icon name="profile" size={14} noBg={true} style={{ marginRight: '4px', display: 'inline-flex', verticalAlign: 'middle' }} /> {announcement.postedBy || 'Admin'}
                 </div>
               </div>
 
@@ -460,9 +466,9 @@ export default function Announcements() {
               <h1>{selectedAnnouncement.title}</h1>
 
               <div className="announcement-meta modal-meta">
-                <div className="meta-item"><span>📅</span> {formatDate(selectedAnnouncement.createdAt)}</div>
-                <div className="meta-item"><span>⏰</span> {formatTime(selectedAnnouncement.createdAt)}</div>
-                <div className="meta-item"><span>👤</span> Posted by: {selectedAnnouncement.postedBy || 'Administrator'}</div>
+                <div className="meta-item"><Icon name="calendar" size={14} noBg={true} style={{ marginRight: '4px', display: 'inline-flex', verticalAlign: 'middle' }} /> {formatDate(selectedAnnouncement.createdAt)}</div>
+                <div className="meta-item"><Icon name="clock" size={14} noBg={true} style={{ marginRight: '4px', display: 'inline-flex', verticalAlign: 'middle' }} /> {formatTime(selectedAnnouncement.createdAt)}</div>
+                <div className="meta-item"><Icon name="profile" size={14} noBg={true} style={{ marginRight: '4px', display: 'inline-flex', verticalAlign: 'middle' }} /> Posted by: {selectedAnnouncement.postedBy || 'Administrator'}</div>
               </div>
 
               <div className="modal-full-content">
