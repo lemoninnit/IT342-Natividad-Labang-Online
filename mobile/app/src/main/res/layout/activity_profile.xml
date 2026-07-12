@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#10131a"
+    android:background="@color/bg_primary"
     tools:context=".dashboard.ProfileActivity">
 
     <!-- ── Top Bar ── -->
@@ -15,7 +15,7 @@
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:paddingHorizontal="16dp"
-        android:background="#10131a"
+        android:background="@color/bg_primary"
         android:layout_alignParentTop="true"
         android:elevation="4dp">
 
@@ -31,7 +31,7 @@
             android:text="ServiLine"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="#54e98a"
+            android:textColor="@color/labang_green"
             android:layout_marginStart="12dp" />
 
         <ImageView
@@ -39,8 +39,8 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:padding="8dp"
-            android:src="@drawable/logout"
-            app:tint="#54e98a"
+            android:src="@drawable/ic_logout"
+            app:tint="@color/labang_green"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
@@ -53,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:orientation="horizontal"
-        android:background="#1d2026"
+        android:background="@color/bg_card"
         android:layout_alignParentBottom="true"
         android:elevation="16dp">
 
@@ -71,15 +71,15 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/news"
-                app:tint="#bbcbbb"
+                android:src="@drawable/ic_announcements"
+                app:tint="@color/text_secondary"
                 android:scaleType="fitCenter" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="News"
                 android:textSize="12sp"
-                android:textColor="#bbcbbb"
+                android:textColor="@color/text_secondary"
                 android:layout_marginTop="4dp"/>
         </LinearLayout>
 
@@ -98,7 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="16dp"
-                app:cardBackgroundColor="#1A54e98a"
+                app:cardBackgroundColor="@color/labang_emerald_glow"
                 app:cardElevation="0dp">
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -110,15 +110,15 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/profile"
-                        app:tint="#54e98a"
+                        android:src="@drawable/ic_profile"
+                        app:tint="@color/labang_green"
                         android:scaleType="fitCenter" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Profile"
                         android:textSize="12sp"
-                        android:textColor="#54e98a"
+                        android:textColor="@color/labang_green"
                         android:textStyle="bold"
                         android:layout_marginTop="4dp"/>
                 </LinearLayout>
@@ -139,15 +139,15 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/request"
-                app:tint="#bbcbbb"
+                android:src="@drawable/ic_requests"
+                app:tint="@color/text_secondary"
                 android:scaleType="fitCenter" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Requests"
                 android:textSize="12sp"
-                android:textColor="#bbcbbb"
+                android:textColor="@color/text_secondary"
                 android:layout_marginTop="4dp"/>
         </LinearLayout>
         
@@ -162,19 +162,18 @@
             android:clickable="true"
             android:focusable="true"
             android:background="?attr/selectableItemBackground">
-
             <ImageView
-                android:layout_width="19dp"
+                android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/report"
-                app:tint="#bbcbbb" />
+                android:src="@drawable/ic_report"
+                app:tint="@color/text_secondary"
+                android:scaleType="fitCenter" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Report"
                 android:textSize="12sp"
-                android:textColor="#bbcbbb"
+                android:textColor="@color/text_secondary"
                 android:layout_marginTop="4dp"/>
         </LinearLayout>
     </LinearLayout>
@@ -199,8 +198,8 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="#1d2026"
-                app:strokeColor="#1f2937"
+                app:cardBackgroundColor="@color/bg_card"
+                app:strokeColor="@color/border_default"
                 app:strokeWidth="1dp"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="0dp"
@@ -225,10 +224,10 @@
                             android:layout_centerInParent="true"
                             android:clickable="true"
                             android:focusable="true"
-                            app:cardBackgroundColor="#1A54e98a"
+                            app:cardBackgroundColor="@color/labang_emerald_glow"
                             app:cardCornerRadius="48dp"
                             app:cardElevation="0dp"
-                            app:strokeColor="#54e98a"
+                            app:strokeColor="@color/labang_green"
                             app:strokeWidth="2dp">
 
                             <ImageView
@@ -247,7 +246,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Lenon Lee Natividad"
-                        android:textColor="#f3f4f6"
+                        android:textColor="@color/text_primary"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -256,7 +255,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="16dp"
-                        app:cardBackgroundColor="#3d4a3e"
+                        app:cardBackgroundColor="@color/labang_green_light"
                         app:cardCornerRadius="16dp"
                         app:cardElevation="0dp">
 
@@ -267,7 +266,7 @@
                             android:paddingHorizontal="12dp"
                             android:paddingVertical="4dp"
                             android:text="RESIDENT"
-                            android:textColor="#54e98a"
+                            android:textColor="@color/labang_green"
                             android:textSize="12sp"
                             android:textStyle="bold" />
                     </com.google.android.material.card.MaterialCardView>
@@ -277,12 +276,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="EDIT INFORMATION"
-                        android:textColor="#54e98a"
+                        android:textColor="@color/labang_green"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         app:backgroundTint="@android:color/transparent"
                         app:cornerRadius="8dp"
-                        app:strokeColor="#54e98a"
+                        app:strokeColor="@color/labang_green"
                         app:strokeWidth="1dp" />
 
                 </LinearLayout>
@@ -292,8 +291,8 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="#1d2026"
-                app:strokeColor="#1f2937"
+                app:cardBackgroundColor="@color/bg_card"
+                app:strokeColor="@color/border_default"
                 app:strokeWidth="1dp"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="0dp"
@@ -315,7 +314,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="USER INFORMATION"
-                            android:textColor="#bbcbbb"
+                            android:textColor="@color/text_secondary"
                             android:textSize="12sp"
                             android:textStyle="bold"
                             android:letterSpacing="0.05"
@@ -337,14 +336,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Full Name"
-                                android:textColor="#4b5563"
+                                android:textColor="@color/text_muted"
                                 android:textSize="12sp" />
                             <TextView
                                 android:id="@+id/tvFullName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Lenon Lee Natividad"
-                                android:textColor="#f3f4f6"
+                                android:textColor="@color/text_primary"
                                 android:textSize="14sp"
                                 android:textStyle="bold"
                                 android:layout_marginTop="4dp" />
@@ -358,14 +357,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Username"
-                                android:textColor="#4b5563"
+                                android:textColor="@color/text_muted"
                                 android:textSize="12sp" />
                             <TextView
                                 android:id="@+id/tvUsername"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="lemoninnit"
-                                android:textColor="#f3f4f6"
+                                android:textColor="@color/text_primary"
                                 android:textSize="14sp"
                                 android:textStyle="bold"
                                 android:layout_marginTop="4dp" />
@@ -387,14 +386,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Date of Birth"
-                                android:textColor="#4b5563"
+                                android:textColor="@color/text_muted"
                                 android:textSize="12sp" />
                             <TextView
                                 android:id="@+id/tvDob"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="July 31, 2005"
-                                android:textColor="#f3f4f6"
+                                android:textColor="@color/text_primary"
                                 android:textSize="14sp"
                                 android:textStyle="bold"
                                 android:layout_marginTop="4dp" />
@@ -408,14 +407,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Civil Status"
-                                android:textColor="#4b5563"
+                                android:textColor="@color/text_muted"
                                 android:textSize="12sp" />
                             <TextView
                                 android:id="@+id/tvCivilStatus"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Single"
-                                android:textColor="#f3f4f6"
+                                android:textColor="@color/text_primary"
                                 android:textSize="14sp"
                                 android:textStyle="bold"
                                 android:layout_marginTop="4dp" />
@@ -432,14 +431,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Address"
-                            android:textColor="#4b5563"
+                            android:textColor="@color/text_muted"
                             android:textSize="12sp" />
                         <TextView
                             android:id="@+id/tvAddress"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Tisa, Tisa, Labangon, Cebu City, Cebu, 6000"
-                            android:textColor="#f3f4f6"
+                            android:textColor="@color/text_primary"
                             android:textSize="14sp"
                             android:textStyle="bold"
                             android:layout_marginTop="4dp" />
@@ -449,8 +448,8 @@
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:cardBackgroundColor="#0d1016"
-                        app:strokeColor="#331f2937"
+                        app:cardBackgroundColor="@color/bg_secondary"
+                        app:strokeColor="@color/border_subtle"
                         app:strokeWidth="1dp"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="0dp"
@@ -467,7 +466,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="Resident Confirmed"
-                                android:textColor="#f3f4f6"
+                                android:textColor="@color/text_primary"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
                             
@@ -479,12 +478,12 @@
                                 <ImageView
                                     android:layout_width="18dp"
                                     android:layout_height="18dp"
-                                    android:src="@drawable/check"                                    app:tint="#54e98a" />
+                                    android:src="@drawable/check"                                    app:tint="@color/labang_green" />
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Yes"
-                                    android:textColor="#54e98a"
+                                    android:textColor="@color/labang_green"
                                     android:textSize="14sp"
                                     android:textStyle="bold"
                                     android:layout_marginStart="4dp" />
@@ -499,8 +498,8 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="#1d2026"
-                app:strokeColor="#1f2937"
+                app:cardBackgroundColor="@color/bg_card"
+                app:strokeColor="@color/border_default"
                 app:strokeWidth="1dp"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="0dp"
@@ -522,7 +521,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="CONTACT INFORMATION"
-                            android:textColor="#bbcbbb"
+                            android:textColor="@color/text_secondary"
                             android:textSize="12sp"
                             android:textStyle="bold"
                             android:letterSpacing="0.05"
@@ -548,14 +547,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Mobile"
-                                android:textColor="#4b5563"
+                                android:textColor="@color/text_muted"
                                 android:textSize="12sp" />
                             <TextView
                                 android:id="@+id/tvMobile"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="+639932886723"
-                                android:textColor="#f3f4f6"
+                                android:textColor="@color/text_primary"
                                 android:textSize="14sp"
                                 android:textStyle="bold"
                                 android:layout_marginTop="2dp" />
@@ -578,14 +577,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Email"
-                                android:textColor="#4b5563"
+                                android:textColor="@color/text_muted"
                                 android:textSize="12sp" />
                             <TextView
                                 android:id="@+id/tvEmail"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="lenonleenatividad4@gmail.com"
-                                android:textColor="#f3f4f6"
+                                android:textColor="@color/text_primary"
                                 android:textSize="14sp"
                                 android:textStyle="bold"
                                 android:ellipsize="end"
@@ -600,8 +599,8 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="#1d2026"
-                app:strokeColor="#1f2937"
+                app:cardBackgroundColor="@color/bg_card"
+                app:strokeColor="@color/border_default"
                 app:strokeWidth="1dp"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="0dp"
@@ -623,7 +622,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="RESIDENT ID"
-                            android:textColor="#bbcbbb"
+                            android:textColor="@color/text_secondary"
                             android:textSize="12sp"
                             android:textStyle="bold"
                             android:letterSpacing="0.05"
@@ -633,8 +632,8 @@
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:cardBackgroundColor="#10131a"
-                        app:strokeColor="#1f2937"
+                        app:cardBackgroundColor="@color/bg_primary"
+                        app:strokeColor="@color/border_default"
                         app:strokeWidth="2dp"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="0dp"
@@ -662,22 +661,22 @@
                                     android:layout_width="48dp"
                                     android:layout_height="48dp"
                                     app:cardCornerRadius="24dp"
-                                    app:cardBackgroundColor="#141922"
+                                    app:cardBackgroundColor="@color/bg_input"
                                     app:cardElevation="0dp"
                                     android:layout_marginBottom="12dp">
                                     <ImageView
                                         android:layout_width="24dp"
                                         android:layout_height="24dp"
                                         android:layout_gravity="center"
-                                        android:src="@drawable/report"
-                                        app:tint="#4b5563" />
+                                        android:src="@drawable/ic_info"
+                                        app:tint="@color/text_muted" />
                                 </com.google.android.material.card.MaterialCardView>
                                 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="No Resident ID uploaded yet"
-                                    android:textColor="#bbcbbb"
+                                    android:textColor="@color/text_secondary"
                                     android:textSize="12sp"
                                     android:textStyle="bold" />
                             </LinearLayout>

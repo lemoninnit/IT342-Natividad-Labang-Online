@@ -22,7 +22,7 @@ import java.io.ByteArrayOutputStream
 class GCashPaymentActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityGcashPaymentBinding
-    private var paymentId: Long = -1
+    private var requestId: Long = -1
     private var amount: Double = 0.0
     private var receiptBase64: String? = null
 
@@ -48,7 +48,7 @@ class GCashPaymentActivity : AppCompatActivity() {
         binding = ActivityGcashPaymentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        paymentId = intent.getLongExtra("PAYMENT_ID", -1)
+        requestId = intent.getLongExtra("REQUEST_ID", -1)
         amount = intent.getDoubleExtra("AMOUNT", 0.0)
 
         binding.tvAmount.text = "₱%.2f".format(amount)
@@ -85,18 +85,32 @@ class GCashPaymentActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences("labangonline_prefs", Context.MODE_PRIVATE)
         val userId = sharedPref.getLong("user_id", -1)
 
-        val dto = PaymentVerificationDTO(
-            paymentId = paymentId,
-            referenceNumber = refNum,
-            proofImage = receiptBase64,
-            status = "PENDING"
-        )
-
         binding.loadingIndicator.visibility = View.VISIBLE
         binding.btnSubmit.isEnabled = false
 
         lifecycleScope.launch {
             try {
+                // 1. Initiate Payment to create the record only upon submit
+                val initDto = edu.cit.natividad.serviline.api.models.PaymentDTO(
+                    certificateRequestId = requestId,
+                    paymentMethod = "GCASH",
+                    amount = amount
+                )
+                val initResponse = ApiClient.getPaymentService().initiatePayment(userId, initDto)
+                if (!initResponse.isSuccessful) {
+                    Toast.makeText(this@GCashPaymentActivity, "Failed to initiate payment", Toast.LENGTH_SHORT).show()
+                    return@launch
+                }
+                val newPaymentId = initResponse.body()?.paymentId ?: -1L
+
+                // 2. Verify Payment with reference and receipt
+                val dto = PaymentVerificationDTO(
+                    paymentId = newPaymentId,
+                    referenceNumber = refNum,
+                    proofImage = receiptBase64,
+                    status = "PENDING"
+                )
+
                 val response = ApiClient.getPaymentService().verifyPayment(userId, dto)
                 if (response.isSuccessful) {
                     Toast.makeText(this@GCashPaymentActivity, "Payment submitted for verification", Toast.LENGTH_LONG).show()

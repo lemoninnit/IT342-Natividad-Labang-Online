@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#10131a"
+    android:background="@color/bg_primary"
     tools:context=".auth.LoginActivity">
 
     <!-- Pinned Header Component -->
@@ -15,7 +15,7 @@
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:paddingHorizontal="16dp"
-        android:background="#10131a"
+        android:background="@color/bg_primary"
         android:elevation="4dp">
 
         <ImageView
@@ -33,7 +33,7 @@
             android:text="ServiLine"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="#54e98a"
+            android:textColor="@color/labang_green"
             android:layout_marginStart="12dp" />
     </LinearLayout>
 
@@ -83,7 +83,7 @@
                 app:cardCornerRadius="16dp"
                 app:cardElevation="0dp"
                 app:strokeWidth="1dp"
-                app:strokeColor="#2d3748">
+                app:strokeColor="@color/border_subtle">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -117,7 +117,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Incorrect username or password."
-                            android:textColor="#fca5a5"
+                            android:textColor="@color/status_error"
                             android:textSize="13sp" />
                     </LinearLayout>
 
@@ -145,7 +145,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text=" *"
-                                android:textColor="#ef4444"
+                                android:textColor="@color/status_error"
                                 android:textSize="12sp" />
                         </LinearLayout>
 
@@ -157,7 +157,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="Enter your username"
-                                android:textColor="@android:color/white"
+                                android:textColor="@color/text_primary"
                                 android:textColorHint="@color/text_muted"
                                 android:padding="16dp"
                                 android:inputType="text"
@@ -189,7 +189,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text=" *"
-                                android:textColor="#ef4444"
+                                android:textColor="@color/status_error"
                                 android:textSize="12sp" />
                         </LinearLayout>
 
@@ -203,7 +203,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="Enter your password"
-                                android:textColor="@android:color/white"
+                                android:textColor="@color/text_primary"
                                 android:textColorHint="@color/text_muted"
                                 android:padding="16dp"
                                 android:inputType="textPassword"
@@ -241,7 +241,7 @@
                             android:layout_width="0dp"
                             android:layout_height="1dp"
                             android:layout_weight="1"
-                            android:background="#2d3748" />
+                            android:background="@color/border_subtle" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -254,7 +254,7 @@
                             android:layout_width="0dp"
                             android:layout_height="1dp"
                             android:layout_weight="1"
-                            android:background="#2d3748" />
+                            android:background="@color/border_subtle" />
                     </LinearLayout>
 
                     <!-- Register Link -->

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#10131a"
+    android:background="@color/bg_primary"
     android:fillViewport="true">
 
     <LinearLayout
@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Verify Payment"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_primary"
             android:textSize="24sp"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"/>
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Enter the 13-digit reference number and upload receipt image"
-            android:textColor="#bbcbbb"
+            android:textColor="@color/text_secondary"
             android:textSize="14sp"
             android:layout_marginBottom="24dp"/>
 
@@ -55,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Scan this QR using your GCash App"
-                    android:textColor="#4b5563"
+                    android:textColor="@color/text_muted"
                     android:textSize="12sp"
                     android:layout_marginTop="16dp" />
             </LinearLayout>
@@ -66,8 +66,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            app:cardBackgroundColor="#13241b"
-            app:strokeColor="#1d3b2b"
+            app:cardBackgroundColor="@color/labang_green_light"
+            app:strokeColor="@color/border_subtle"
             app:strokeWidth="1dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="0dp">
@@ -84,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Amount to Pay:"
-                    android:textColor="#bbcbbb"
+                    android:textColor="@color/text_secondary"
                     android:textSize="14sp" />
                     
                 <TextView
@@ -92,7 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="₱0.00"
-                    android:textColor="#54e98a"
+                    android:textColor="@color/labang_green"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -103,7 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Reference Number"
-            android:textColor="#bbcbbb"
+            android:textColor="@color/text_secondary"
             android:textSize="12sp"
             android:layout_marginBottom="8dp"/>
             
@@ -113,10 +113,10 @@
             android:layout_height="50dp"
             android:background="@drawable/bg_input_field"
             android:padding="12dp"
-            android:textColor="#ffffff"
+            android:textColor="@color/text_primary"
             android:textSize="14sp"
             android:hint="e.g. 9012345678901"
-            android:textColorHint="#4b5563"
+            android:textColorHint="@color/text_muted"
             android:inputType="number"
             android:maxLength="13"
             android:layout_marginBottom="16dp" />
@@ -126,7 +126,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Receipt Image"
-            android:textColor="#bbcbbb"
+            android:textColor="@color/text_secondary"
             android:textSize="12sp"
             android:layout_marginBottom="8dp"/>
             
@@ -135,10 +135,10 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="Choose receipt image..."
-            app:backgroundTint="#10131a"
-            app:strokeColor="#1f2937"
+            app:backgroundTint="@color/bg_primary"
+            app:strokeColor="@color/border_default"
             app:strokeWidth="1dp"
-            android:textColor="#bbcbbb"
+            android:textColor="@color/text_secondary"
             android:gravity="center_vertical|start"
             android:paddingStart="12dp"
             app:cornerRadius="8dp"
@@ -172,10 +172,10 @@
                 android:layout_height="56dp"
                 android:layout_weight="1"
                 android:text="Cancel"
-                app:backgroundTint="#10131a"
-                app:strokeColor="#1f2937"
+                app:backgroundTint="@color/bg_primary"
+                app:strokeColor="@color/border_default"
                 app:strokeWidth="1dp"
-                android:textColor="#bbcbbb"
+                android:textColor="@color/text_secondary"
                 android:textSize="14sp"
                 app:cornerRadius="8dp"
                 android:layout_marginEnd="8dp" />
@@ -186,8 +186,8 @@
                 android:layout_height="56dp"
                 android:layout_weight="1"
                 android:text="Submit Payment"
-                app:backgroundTint="#00b894"
-                android:textColor="#10131a"
+                app:backgroundTint="@color/labang_green"
+                android:textColor="@color/bg_primary"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:cornerRadius="8dp"

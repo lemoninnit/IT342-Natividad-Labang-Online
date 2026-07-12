@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#10131a"
+    android:background="@color/bg_primary"
     android:fillViewport="true">
 
     <LinearLayout
@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Payment Instructions"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_primary"
             android:textSize="24sp"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"/>
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Please visit the Barangay Office to complete your payment at your convenience."
-            android:textColor="#bbcbbb"
+            android:textColor="@color/text_secondary"
             android:textSize="14sp"
             android:layout_marginBottom="24dp"/>
 
@@ -34,8 +34,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            app:cardBackgroundColor="#1d2026"
-            app:strokeColor="#1f2937"
+            app:cardBackgroundColor="@color/bg_card"
+            app:strokeColor="@color/border_default"
             app:strokeWidth="1dp"
             app:cardCornerRadius="12dp"
             app:cardElevation="0dp">
@@ -56,14 +56,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Payment Reference:"
-                        android:textColor="#bbcbbb"
+                        android:textColor="@color/text_secondary"
                         android:textSize="14sp" />
                     <TextView
                         android:id="@+id/tvRefNum"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="REF-XXXX"
-                        android:textColor="#54e98a"
+                        android:textColor="@color/labang_green"
                         android:textSize="14sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -78,14 +78,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Amount to Pay:"
-                        android:textColor="#bbcbbb"
+                        android:textColor="@color/text_secondary"
                         android:textSize="14sp" />
                     <TextView
                         android:id="@+id/tvAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="₱0.00"
-                        android:textColor="#54e98a"
+                        android:textColor="@color/labang_green"
                         android:textSize="14sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -99,13 +99,13 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Service Type:"
-                        android:textColor="#bbcbbb"
+                        android:textColor="@color/text_secondary"
                         android:textSize="14sp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Certificate Request"
-                        android:textColor="#54e98a"
+                        android:textColor="@color/labang_green"
                         android:textSize="14sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -116,10 +116,10 @@
                     android:text="Print Receipt"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
-                    app:backgroundTint="#13241b"
-                    app:strokeColor="#1d3b2b"
+                    app:backgroundTint="@color/labang_green_light"
+                    app:strokeColor="@color/border_subtle"
                     app:strokeWidth="1dp"
-                    android:textColor="#54e98a"
+                    android:textColor="@color/labang_green"
                     app:cornerRadius="8dp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -129,7 +129,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Steps to Complete Payment:"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_primary"
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginBottom="12dp"/>
@@ -138,7 +138,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1. Proceed to Barangay Labangon Office\n2. Provide your reference number\n3. Pay the amount to the staff\n4. Receive your payment receipt\n5. Enter the transaction ID below to verify"
-            android:textColor="#bbcbbb"
+            android:textColor="@color/text_secondary"
             android:textSize="14sp"
             android:lineSpacingExtra="6dp"
             android:layout_marginBottom="24dp"/>
@@ -148,7 +148,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="After Payment"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_primary"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"/>
@@ -157,7 +157,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Once you have completed the payment, enter your reference number below:"
-            android:textColor="#bbcbbb"
+            android:textColor="@color/text_secondary"
             android:textSize="14sp"
             android:layout_marginBottom="16dp"/>
             
@@ -167,10 +167,10 @@
             android:layout_height="50dp"
             android:background="@drawable/bg_input_field"
             android:padding="12dp"
-            android:textColor="#ffffff"
+            android:textColor="@color/text_primary"
             android:textSize="14sp"
             android:hint="Enter Transaction ID from receipt"
-            android:textColorHint="#4b5563"
+            android:textColorHint="@color/text_muted"
             android:layout_marginBottom="24dp" />
 
         <ProgressBar
@@ -193,10 +193,10 @@
                 android:layout_height="56dp"
                 android:layout_weight="1"
                 android:text="Cancel"
-                app:backgroundTint="#10131a"
-                app:strokeColor="#1f2937"
+                app:backgroundTint="@color/bg_primary"
+                app:strokeColor="@color/border_default"
                 app:strokeWidth="1dp"
-                android:textColor="#bbcbbb"
+                android:textColor="@color/text_secondary"
                 android:textSize="14sp"
                 app:cornerRadius="8dp"
                 android:layout_marginEnd="8dp" />
@@ -207,8 +207,8 @@
                 android:layout_height="56dp"
                 android:layout_weight="1"
                 android:text="Confirm Payment"
-                app:backgroundTint="#00b894"
-                android:textColor="#10131a"
+                app:backgroundTint="@color/labang_green"
+                android:textColor="@color/bg_primary"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:cornerRadius="8dp"

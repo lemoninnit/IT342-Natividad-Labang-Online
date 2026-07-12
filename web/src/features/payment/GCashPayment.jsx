@@ -13,26 +13,8 @@ export default function GCashPayment({ requestId, price, priceVal, onPaymentComp
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
-    initializeGCashPayment()
-  }, [])
-
-  const initializeGCashPayment = async () => {
-    try {
-      setLoading(true)
-      setError('')
-      const response = await paymentAPI.initiate(requestId, priceVal || 500, 'GCASH')
-      setPayment(response.data)
-      setPaymentState('qr')
-    } catch (err) {
-      console.error('GCash Payment initiation failed:', err)
-      const errorMsg = err.response?.data?.error || err.response?.data?.message || err.message || 'Failed to initialize GCash payment';
-      setError(errorMsg)
-      setPaymentState('error')
-    } finally {
-      setLoading(false)
-    }
-  }
+  // Payment initialization is now deferred until submission
+  // to avoid creating orphaned payment records if the user cancels.
 
   const handleImageChange = (e) => {
     const file = e.target.files[0]
@@ -67,20 +49,20 @@ export default function GCashPayment({ requestId, price, priceVal, onPaymentComp
       return
     }
 
-    if (!payment) {
-      setError('Payment is still initializing. Please wait a moment.')
-      return
-    }
-
     try {
       setLoading(true)
       setError('')
       
       // 1. Convert image to base64
       const base64Image = await toBase64(proofImage)
+
+      // 2. Initiate payment FIRST to create the record only when user submits
+      const initResponse = await paymentAPI.initiate(requestId, priceVal || 500, 'GCASH')
+      const paymentData = initResponse.data
+      setPayment(paymentData)
       
-      // 2. Call verification API with reference number and base64 image
-      await paymentAPI.verify(payment.paymentId, referenceNumber, base64Image)
+      // 3. Call verification API with reference number and base64 image
+      await paymentAPI.verify(paymentData.paymentId, referenceNumber, base64Image)
       
       // If verification succeeds, it means the backend updated the status to PROCESSING
       setPaymentState('success')
@@ -164,14 +146,14 @@ export default function GCashPayment({ requestId, price, priceVal, onPaymentComp
                 <button 
                   className="btn-verify-themed" 
                   onClick={handleVerifyPayment}
-                  disabled={loading || !payment}
+                  disabled={loading}
                 >
                   {loading ? (
                     <span className="btn-content-loading">
                       <span className="btn-loading-spinner"></span>
                       Submitting...
                     </span>
-                  ) : (!payment ? 'Initializing...' : 'Submit Payment')}
+                  ) : 'Submit Payment'}
                 </button>
               </div>
             </div>
@@ -198,7 +180,7 @@ export default function GCashPayment({ requestId, price, priceVal, onPaymentComp
             </div>
             <h2>Something went wrong</h2>
             <p>{error || 'An error occurred during payment initialization.'}</p>
-            <button className="btn-retry-themed" onClick={initializeGCashPayment}>
+            <button className="btn-retry-themed" onClick={() => setPaymentState('qr')}>
               Try Again
             </button>
           </div>

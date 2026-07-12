@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#10131a"
+    android:background="@color/bg_primary"
     tools:context=".ServiLineApplication">
 
     <LinearLayout
@@ -19,7 +19,7 @@
             android:orientation="vertical"
             android:gravity="center"
             android:padding="32dp"
-            android:background="#111827">
+            android:background="@color/bg_secondary">
 
             <!-- Logo circle -->
             <FrameLayout
@@ -48,7 +48,7 @@
                 android:text="ServiLine"
                 android:textSize="32sp"
                 android:textStyle="bold"
-                android:textColor="#10b981"
+                android:textColor="@color/labang_green"
                 android:fontFamily="sans-serif-medium"
                 android:letterSpacing="0.02" />
 
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:text="Barangay Labangon Community Service Hub"
                 android:textSize="13sp"
-                android:textColor="#94a3b8"
+                android:textColor="@color/text_secondary"
                 android:gravity="center"
                 android:layout_marginTop="8dp" />
 
@@ -66,7 +66,7 @@
                 android:layout_width="48dp"
                 android:layout_height="2dp"
                 android:layout_marginTop="16dp"
-                android:background="#10b981" />
+                android:background="@color/labang_green" />
         </LinearLayout>
 
         <!-- ── Main Content ── -->
@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Welcome to ServiLine"
-                android:textColor="#e2e8f0"
+                android:textColor="@color/text_primary"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
@@ -92,7 +92,7 @@
                 android:layout_marginBottom="32dp"
                 android:lineSpacingMultiplier="1.5"
                 android:text="Your digital connection to Barangay Labangon services and announcements."
-                android:textColor="#94a3b8"
+                android:textColor="@color/text_secondary"
                 android:textSize="14sp" />
 
             <!-- ── Action Buttons ── -->
@@ -103,10 +103,10 @@
                 android:layout_marginBottom="12dp"
                 android:letterSpacing="0.05"
                 android:text="Sign In"
-                android:textColor="#ffffff"
+                android:textColor="@color/text_primary"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:backgroundTint="#10b981"
+                app:backgroundTint="@color/labang_green"
                 app:cornerRadius="12dp"
                 app:strokeWidth="0dp" />
 
@@ -117,12 +117,12 @@
                 android:layout_marginBottom="32dp"
                 android:letterSpacing="0.05"
                 android:text="Create Account"
-                android:textColor="#10b981"
+                android:textColor="@color/labang_green"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:backgroundTint="#1e293b"
+                app:backgroundTint="@color/bg_card"
                 app:cornerRadius="12dp"
-                app:strokeColor="#10b981"
+                app:strokeColor="@color/labang_green"
                 app:strokeWidth="1.5dp" />
 
             <!-- ── Features Card ── -->
@@ -130,7 +130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="#1e293b"
+                app:cardBackgroundColor="@color/bg_card"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="0dp">
 
@@ -145,14 +145,14 @@
                         android:layout_width="32dp"
                         android:layout_height="3dp"
                         android:layout_marginBottom="14dp"
-                        android:background="#10b981" />
+                        android:background="@color/labang_green" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
                         android:text="What You Can Do"
-                        android:textColor="#e2e8f0"
+                        android:textColor="@color/text_primary"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -183,7 +183,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Request Certificates"
-                                android:textColor="#e2e8f0"
+                                android:textColor="@color/text_primary"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
@@ -191,7 +191,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Clearance, Residency, Indigency &amp; more"
-                                android:textColor="#64748b"
+                                android:textColor="@color/text_muted"
                                 android:textSize="12sp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -223,7 +223,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="File Incident Reports"
-                                android:textColor="#e2e8f0"
+                                android:textColor="@color/text_primary"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
@@ -231,7 +231,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Submit and track community reports"
-                                android:textColor="#64748b"
+                                android:textColor="@color/text_muted"
                                 android:textSize="12sp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -262,7 +262,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Community Announcements"
-                                android:textColor="#e2e8f0"
+                                android:textColor="@color/text_primary"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
@@ -270,7 +270,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Stay updated with barangay news"
-                                android:textColor="#64748b"
+                                android:textColor="@color/text_muted"
                                 android:textSize="12sp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -289,7 +289,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
-                    app:cardBackgroundColor="#1e293b"
+                    app:cardBackgroundColor="@color/bg_card"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="0dp">
 
@@ -304,7 +304,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="5-10 mins"
-                            android:textColor="#10b981"
+                            android:textColor="@color/labang_green"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -313,7 +313,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="Request Time"
-                            android:textColor="#64748b"
+                            android:textColor="@color/text_muted"
                             android:textSize="11sp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -324,7 +324,7 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="4dp"
                     android:layout_weight="1"
-                    app:cardBackgroundColor="#1e293b"
+                    app:cardBackgroundColor="@color/bg_card"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="0dp">
 
@@ -339,7 +339,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="24/7"
-                            android:textColor="#10b981"
+                            android:textColor="@color/labang_green"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -348,7 +348,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="Available"
-                            android:textColor="#64748b"
+                            android:textColor="@color/text_muted"
                             android:textSize="11sp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -358,7 +358,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
-                    app:cardBackgroundColor="#1e293b"
+                    app:cardBackgroundColor="@color/bg_card"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="0dp">
 
@@ -373,7 +373,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Secure"
-                            android:textColor="#10b981"
+                            android:textColor="@color/labang_green"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -382,7 +382,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="Verified"
-                            android:textColor="#64748b"
+                            android:textColor="@color/text_muted"
                             android:textSize="11sp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -395,7 +395,7 @@
                 android:layout_marginBottom="24dp"
                 android:gravity="center"
                 android:text="© 2026 Barangay Labangon • ServiLine"
-                android:textColor="#334155"
+                android:textColor="@color/text_disabled"
                 android:textSize="12sp" />
 
         </LinearLayout>

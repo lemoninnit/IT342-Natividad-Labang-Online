@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#10131a"
+    android:background="@color/bg_primary"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -19,7 +19,7 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:src="@android:drawable/ic_menu_close_clear_cancel"
-            app:tint="#bbcbbb"
+            app:tint="@color/text_secondary"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="MY FILED REPORTS"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_primary"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginStart="16dp" />
@@ -40,10 +40,10 @@
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:text="Refresh"
-            android:textColor="#54e98a"
+            android:textColor="@color/labang_green"
             android:textSize="10sp"
             app:backgroundTint="@android:color/transparent"
-            app:strokeColor="#54e98a"
+            app:strokeColor="@color/labang_green"
             app:strokeWidth="1dp"
             app:cornerRadius="4dp"
             android:insetTop="0dp"
@@ -67,7 +67,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#1f2937"
+        android:background="@color/border_default"
         android:layout_marginBottom="16dp" />
 
     <!-- Summary Cards -->
@@ -82,8 +82,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
-            app:cardBackgroundColor="#1d2026"
-            app:strokeColor="#1f2937"
+            app:cardBackgroundColor="@color/bg_card"
+            app:strokeColor="@color/border_default"
             app:strokeWidth="1dp"
             app:cardCornerRadius="8dp">
             
@@ -98,7 +98,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TOTAL REPORTS:"
-                    android:textColor="#bbcbbb"
+                    android:textColor="@color/text_secondary"
                     android:textSize="10sp"
                     android:textStyle="bold" />
                     
@@ -107,7 +107,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textColor="#54e98a"
+                    android:textColor="@color/labang_green"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:layout_marginTop="8dp" />
@@ -119,8 +119,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
-            app:cardBackgroundColor="#1d2026"
-            app:strokeColor="#1f2937"
+            app:cardBackgroundColor="@color/bg_card"
+            app:strokeColor="@color/border_default"
             app:strokeWidth="1dp"
             app:cardCornerRadius="8dp">
             
@@ -135,7 +135,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="PENDING:"
-                    android:textColor="#bbcbbb"
+                    android:textColor="@color/text_secondary"
                     android:textSize="10sp"
                     android:textStyle="bold" />
                     
@@ -144,7 +144,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textColor="#54e98a"
+                    android:textColor="@color/labang_green"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:layout_marginTop="8dp" />
@@ -155,8 +155,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:cardBackgroundColor="#1d2026"
-            app:strokeColor="#1f2937"
+            app:cardBackgroundColor="@color/bg_card"
+            app:strokeColor="@color/border_default"
             app:strokeWidth="1dp"
             app:cardCornerRadius="8dp">
             
@@ -171,7 +171,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="REVIEWED:"
-                    android:textColor="#bbcbbb"
+                    android:textColor="@color/text_secondary"
                     android:textSize="10sp"
                     android:textStyle="bold" />
                     
@@ -180,7 +180,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textColor="#54e98a"
+                    android:textColor="@color/labang_green"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:layout_marginTop="8dp" />
@@ -192,8 +192,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        app:cardBackgroundColor="#1d2026"
-        app:strokeColor="#1f2937"
+        app:cardBackgroundColor="@color/bg_card"
+        app:strokeColor="@color/border_default"
         app:strokeWidth="1dp"
         app:cardCornerRadius="8dp">
         
@@ -208,7 +208,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="REJECTED:"
-                android:textColor="#bbcbbb"
+                android:textColor="@color/text_secondary"
                 android:textSize="10sp"
                 android:textStyle="bold" />
                 

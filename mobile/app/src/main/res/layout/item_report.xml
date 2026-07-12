@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
-    app:cardBackgroundColor="#1d2026"
-    app:strokeColor="#1f2937"
+    app:cardBackgroundColor="@color/bg_card"
+    app:strokeColor="@color/border_default"
     app:strokeWidth="1dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="0dp">
@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Noise Complaint"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_primary"
                 android:textSize="14sp"
                 android:textStyle="bold" />
                 
@@ -45,7 +45,7 @@
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="4dp"
                 android:text="REVIEWED"
-                android:textColor="#54e98a"
+                android:textColor="@color/labang_green"
                 android:textSize="10sp"
                 android:textStyle="bold" />
                 
@@ -59,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Jan 1, 1970, 07:30 AM"
-                android:textColor="#bbcbbb"
+                android:textColor="@color/text_secondary"
                 android:textSize="12sp"
                 android:layout_marginEnd="8dp" />
                 
@@ -68,7 +68,7 @@
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:src="@android:drawable/arrow_down_float"
-                app:tint="#54e98a" />
+                app:tint="@color/labang_green" />
         </LinearLayout>
 
         <!-- Expanded Details -->
@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="INCIDENT DETAILS"
-                android:textColor="#54e98a"
+                android:textColor="@color/labang_green"
                 android:textSize="10sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="16dp" />
@@ -105,14 +105,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="REPORT ID:"
-                        android:textColor="#bbcbbb"
+                        android:textColor="@color/text_secondary"
                         android:textSize="10sp" />
                     <TextView
                         android:id="@+id/tvReportId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/text_primary"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         android:layout_marginTop="4dp" />
@@ -127,7 +127,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="STATUS:"
-                        android:textColor="#bbcbbb"
+                        android:textColor="@color/text_secondary"
                         android:textSize="10sp" />
                     <TextView
                         android:id="@+id/tvStatusDetail"
@@ -137,7 +137,7 @@
                         android:paddingHorizontal="8dp"
                         android:paddingVertical="4dp"
                         android:text="REVIEWED"
-                        android:textColor="#54e98a"
+                        android:textColor="@color/labang_green"
                         android:textSize="10sp"
                         android:textStyle="bold"
                         android:layout_marginTop="4dp" />
@@ -152,14 +152,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="SUBMITTED:"
-                        android:textColor="#bbcbbb"
+                        android:textColor="@color/text_secondary"
                         android:textSize="10sp" />
                     <TextView
                         android:id="@+id/tvSubmitted"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Jan 1, 1970, 07:30 AM"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/text_primary"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         android:layout_marginTop="4dp" />
@@ -174,14 +174,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="LAST UPDATED:"
-                        android:textColor="#bbcbbb"
+                        android:textColor="@color/text_secondary"
                         android:textSize="10sp" />
                     <TextView
                         android:id="@+id/tvUpdated"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Jan 1, 1970, 07:30 AM"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/text_primary"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         android:layout_marginTop="4dp" />
@@ -203,7 +203,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Incident Date &amp; Time:"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/text_primary"
                         android:textStyle="bold"
                         android:textSize="12sp" />
                     <TextView
@@ -211,7 +211,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Apr 30, 2026 at 12:00"
-                        android:textColor="#bbcbbb"
+                        android:textColor="@color/text_secondary"
                         android:textSize="12sp"
                         android:layout_marginTop="4dp" />
                 </LinearLayout>
@@ -225,7 +225,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Location:"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/text_primary"
                         android:textStyle="bold"
                         android:textSize="12sp" />
                     <TextView
@@ -233,7 +233,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sitio Kangingit"
-                        android:textColor="#bbcbbb"
+                        android:textColor="@color/text_secondary"
                         android:textSize="12sp"
                         android:layout_marginTop="4dp" />
                 </LinearLayout>
@@ -247,7 +247,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Persons Involved:"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/text_primary"
                         android:textStyle="bold"
                         android:textSize="12sp" />
                     <TextView
@@ -255,7 +255,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Silingan"
-                        android:textColor="#bbcbbb"
+                        android:textColor="@color/text_secondary"
                         android:textSize="12sp"
                         android:layout_marginTop="4dp" />
                 </LinearLayout>
@@ -265,7 +265,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="DESCRIPTION OF INCIDENT"
-                android:textColor="#54e98a"
+                android:textColor="@color/labang_green"
                 android:textSize="10sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
@@ -277,7 +277,7 @@
                 android:background="@drawable/bg_input_field"
                 android:padding="12dp"
                 android:text="Saba kanta2"
-                android:textColor="#bbcbbb"
+                android:textColor="@color/text_secondary"
                 android:textSize="14sp" />
                 
         </LinearLayout>

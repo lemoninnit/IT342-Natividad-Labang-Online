@@ -4,42 +4,143 @@ import logo from "../assets/logo.png";
 import { CircuitBackground } from "@/components/ui/circuit-background";
 import { BorderGlow } from "@/components/ui/border-glow";
 import ThemeToggle from "@/components/ui/ThemeToggle";
+import InfiniteCarousel from "@/components/ui/InfiniteCarousel";
 
-// Reusable CountUp Animation Component using IntersectionObserver
-function CountUp({ end, duration = 1200, suffix = "", prefix = "", format = false }) {
+// ── Carousel data ────────────────────────────────────────────────
+const CAROUSEL_ITEMS = [
+  {
+    id: 1,
+    label: 'SPEED',
+    title: '5–10 mins',
+    subtitle: 'Avg. processing time',
+    description: 'From submission to barangay review — faster than any walk-in queue.',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+      </svg>
+    ),
+  },
+  {
+    id: 2,
+    label: 'SECURITY',
+    title: 'Secure',
+    subtitle: 'Encrypted & verified',
+    description: 'Your personal data and documents are end-to-end encrypted at all times.',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path d="m9 11 2 2 4-4" />
+      </svg>
+    ),
+  },
+  {
+    id: 3,
+    label: 'MOBILE',
+    title: 'Mobile-ready',
+    subtitle: 'Works on any device',
+    description: 'Fully responsive web app — access from your phone, tablet, or desktop.',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
+        <line x1="12" x2="12.01" y1="18" y2="18" />
+      </svg>
+    ),
+  },
+  {
+    id: 4,
+    label: 'LOCAL',
+    title: 'Local-first',
+    subtitle: 'Built for the community',
+    description: 'Tailored for barangay governance — every feature designed for residents.',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+        <polyline points="9 22 9 12 15 12 15 22" />
+      </svg>
+    ),
+  },
+  {
+    id: 5,
+    label: 'PAPERLESS',
+    title: 'Zero paper',
+    subtitle: 'Fully digital workflow',
+    description: 'Request, pay, and receive documents without a single physical form.',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+        <polyline points="14 2 14 8 20 8" />
+        <path d="m9 15 2 2 4-4" />
+      </svg>
+    ),
+  },
+  {
+    id: 6,
+    label: 'TRACKING',
+    title: 'Live tracking',
+    subtitle: 'Know your request status',
+    description: 'Get real-time status updates from submission through barangay approval.',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <polyline points="12 6 12 12 16 14" />
+      </svg>
+    ),
+  },
+  {
+    id: 7,
+    label: 'SUPPORT',
+    title: '24 / 7 access',
+    subtitle: 'Always available online',
+    description: 'Submit requests any time of day — no need to wait for office hours.',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M18 20V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v14" />
+        <path d="M2 20h20" />
+        <path d="M14 12v.01" />
+      </svg>
+    ),
+  },
+  {
+    id: 8,
+    label: 'COMMUNITY',
+    title: 'Announcements',
+    subtitle: 'Stay in the loop',
+    description: 'Barangay news, health alerts, and events delivered directly to you.',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="m3 11 18-5v12L3 13v-2z" />
+        <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" />
+      </svg>
+    ),
+  },
+];
+
+// Reusable CountUp Animation Component with start trigger and delayed anim
+function CountUp({ end, duration = 2000, suffix = "", prefix = "", format = false, start = false, delay = 800 }) {
   const [count, setCount] = useState(0);
-  const elementRef = useRef(null);
-  const [hasStarted, setHasStarted] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setHasStarted(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
+    if (!start) {
+      setCount(0);
+      return;
     }
-    return () => observer.disconnect();
-  }, []);
 
-  useEffect(() => {
-    if (!hasStarted) return;
-    let startTimestamp = null;
-    const step = (timestamp) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      const current = Math.floor(progress * end);
-      setCount(current);
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
-      }
-    };
-    window.requestAnimationFrame(step);
-  }, [hasStarted, end, duration]);
+    let timeoutId = setTimeout(() => {
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const current = Math.floor(progress * end);
+        setCount(current);
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
+    }, delay);
+
+    return () => clearTimeout(timeoutId);
+  }, [start, end, duration, delay]);
 
   const formatNumber = (num) => {
     if (format) {
@@ -49,7 +150,7 @@ function CountUp({ end, duration = 1200, suffix = "", prefix = "", format = fals
   };
 
   return (
-    <span ref={elementRef}>
+    <span>
       {prefix}
       {formatNumber(count)}
       {suffix}
@@ -58,15 +159,16 @@ function CountUp({ end, duration = 1200, suffix = "", prefix = "", format = fals
 }
 
 // Reusable Scroll Intersection Observer Wrapper Component
-function ScrollAnimateSection({ children, className = "", id, tagName = "section" }) {
+function ScrollAnimateSection({ children, className = "", id, tagName = "section", onInView }) {
   const [inView, setInView] = useState(false);
   const ref = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
+        setInView(entry.isIntersecting);
+        if (onInView) {
+          onInView(entry.isIntersecting);
         }
       },
       { threshold: 0.05 }
@@ -75,7 +177,7 @@ function ScrollAnimateSection({ children, className = "", id, tagName = "section
       observer.observe(ref.current);
     }
     return () => observer.disconnect();
-  }, []);
+  }, [onInView]);
 
   const Tag = tagName;
 
@@ -90,9 +192,11 @@ function ScrollAnimateSection({ children, className = "", id, tagName = "section
   );
 }
 
+
 export default function Landing() {
   const [scrolled, setScrolled] = useState(false);
   const [heroActive, setHeroActive] = useState(false);
+  const [whyUsInView, setWhyUsInView] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -166,59 +270,9 @@ export default function Landing() {
             <span className="trusted-text">Trusted by <strong>4,200+</strong> residents</span>
           </div>
 
-          <div className="stats-grid">
-            <BorderGlow className="stat-card" borderRadius={12}>
-              <div className="stat-icon-box">
-                <svg className="landing-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-                </svg>
-              </div>
-              <div className="stat-content">
-                <div className="stat-title">
-                  <CountUp end={5} />—<CountUp end={10} /> mins
-                </div>
-                <div className="stat-desc">Avg. processing time</div>
-              </div>
-            </BorderGlow>
-
-            <BorderGlow className="stat-card" borderRadius={12}>
-              <div className="stat-icon-box">
-                <svg className="landing-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                  <path d="m9 11 2 2 4-4" />
-                </svg>
-              </div>
-              <div className="stat-content">
-                <div className="stat-title">Secure</div>
-                <div className="stat-desc">Encrypted & verified</div>
-              </div>
-            </BorderGlow>
-
-            <BorderGlow className="stat-card" borderRadius={12}>
-              <div className="stat-icon-box">
-                <svg className="landing-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
-                  <line x1="12" x2="12.01" y1="18" y2="18" />
-                </svg>
-              </div>
-              <div className="stat-content">
-                <div className="stat-title">Mobile-ready</div>
-                <div className="stat-desc">Works on any device</div>
-              </div>
-            </BorderGlow>
-
-            <BorderGlow className="stat-card" borderRadius={12}>
-              <div className="stat-icon-box">
-                <svg className="landing-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                  <polyline points="9 22 9 12 15 12 15 22" />
-                </svg>
-              </div>
-              <div className="stat-content">
-                <div className="stat-title">Local-first</div>
-                <div className="stat-desc">Built for Labangon</div>
-              </div>
-            </BorderGlow>
+          {/* ── Infinite Carousel (replaces static stats-grid) ── */}
+          <div className="hero-carousel-wrapper">
+            <InfiniteCarousel items={CAROUSEL_ITEMS} speed={0.7} />
           </div>
         </section>
 
@@ -337,7 +391,7 @@ export default function Landing() {
         </ScrollAnimateSection>
 
         {/* WHY US */}
-        <ScrollAnimateSection id="why-us" className="why-us-section">
+        <ScrollAnimateSection id="why-us" className="why-us-section" onInView={setWhyUsInView}>
           <div className="why-us-content">
             <div className="why-us-text">
               <div className="section-label">WHY SERVILINE</div>
@@ -354,13 +408,13 @@ export default function Landing() {
               <div className="stats-row">
                 <div className="stat-col">
                   <div className="stat-val">
-                    <CountUp end={4287} format={true} />
+                    <CountUp end={4287} format={true} start={whyUsInView} delay={800} />
                   </div>
                   <div className="stat-lbl">Active residents</div>
                 </div>
                 <div className="stat-col">
                   <div className="stat-val">
-                    <CountUp end={12940} format={true} />
+                    <CountUp end={12940} format={true} start={whyUsInView} delay={800} />
                   </div>
                   <div className="stat-lbl">Requests served</div>
                 </div>
@@ -370,13 +424,13 @@ export default function Landing() {
               </div>
               <ul className="stat-breakdown">
                 <li>
-                  <span className="dot dot-cert"></span> Certificates - <CountUp end={6210} format={true} />
+                  <span className="dot dot-cert"></span> Certificates - <CountUp end={6210} format={true} start={whyUsInView} delay={800} />
                 </li>
                 <li>
-                  <span className="dot dot-rep"></span> Reports - <CountUp end={4108} format={true} />
+                  <span className="dot dot-rep"></span> Reports - <CountUp end={4108} format={true} start={whyUsInView} delay={800} />
                 </li>
                 <li>
-                  <span className="dot dot-ann"></span> Announcements - <CountUp end={2622} format={true} />
+                  <span className="dot dot-ann"></span> Announcements - <CountUp end={2622} format={true} start={whyUsInView} delay={800} />
                 </li>
               </ul>
             </BorderGlow>

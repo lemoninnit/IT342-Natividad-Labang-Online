@@ -10,19 +10,8 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
-    initializeOTCPayment()
-  }, [])
-
-  const initializeOTCPayment = async () => {
-    try {
-      const response = await paymentAPI.initiate(requestId, priceVal || 500, 'OVER_THE_COUNTER')
-      setPayment(response.data)
-    } catch (err) {
-      setError(err.response?.data?.message || 'Failed to initialize OTC payment')
-      setPaymentState('error')
-    }
-  }
+  // Payment initialization is now deferred until submission
+  // to avoid creating orphaned payment records if the user cancels.
 
   const handleVerifyPayment = async (e) => {
     if (e) e.preventDefault()
@@ -35,16 +24,16 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
       return
     }
 
-    if (!payment) {
-      setError('Payment is still initializing. Please wait a moment.')
-      return
-    }
-
     setLoading(true)
 
     try {
-      // Call verification API with the 13-digit reference number provided
-      await paymentAPI.verify(payment.paymentId, referenceNumber)
+      // 1. Initiate payment FIRST to create the record only when user submits
+      const initResponse = await paymentAPI.initiate(requestId, priceVal || 500, 'OVER_THE_COUNTER')
+      const paymentData = initResponse.data
+      setPayment(paymentData)
+
+      // 2. Call verification API with the 13-digit reference number provided
+      await paymentAPI.verify(paymentData.paymentId, referenceNumber)
 
       // Verification succeeded, backend updated status to PROCESSING
       setPaymentState('success')
@@ -83,7 +72,7 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
             
             <div class="detail-row">
               <span class="label">Reference Number:</span>
-              <span>${payment.referenceNumber}</span>
+              <span>${payment?.referenceNumber || 'N/A'}</span>
             </div>
             <div class="detail-row">
               <span class="label">Amount to Pay:</span>
@@ -126,7 +115,7 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
                 <div className="payment-details-themed">
                   <div className="detail-row-themed">
                     <span className="detail-label-themed">Payment Reference:</span>
-                    <span className="detail-value-themed">{payment?.referenceNumber || 'Generating...'}</span>
+                    <span className="detail-value-themed">{payment?.referenceNumber || 'N/A (Generate upon submit)'}</span>
                   </div>
                   <div className="detail-row-themed">
                     <span className="detail-label-themed">Amount to Pay:</span>
@@ -144,7 +133,7 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
                     onClick={handlePrintReceipt}
                     disabled={!payment}
                   >
-                    {payment ? 'Print Receipt' : 'Loading...'}
+                    {payment ? 'Print Receipt' : 'Complete submission to enable print'}
                   </button>
                 </div>
 
@@ -152,7 +141,7 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
                   <h4>Steps to Complete Payment:</h4>
                   <ul>
                     <li>Proceed to Barangay Office</li>
-                    <li>Provide your reference number: <strong>{payment?.referenceNumber || 'Generating...'}</strong></li>
+                    <li>Provide your reference number</li>
                     <li>Pay the amount of <strong>{price || '₱500.00'}</strong> to the staff</li>
                     <li>Receive your payment receipt</li>
                     <li>Enter the transaction ID below to verify</li>
@@ -188,18 +177,18 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
               </div>
 
               <div className="payment-actions-themed">
-                <button className="btn-cancel-themed" onClick={onCancel} disabled={loading}>Back</button>
-                <button
-                  className="btn-verify-themed"
+                <button className="btn btn-secondary btn-cancel-themed" onClick={onCancel} disabled={loading}>Back</button>
+                <button 
+                  className="btn btn-primary btn-verify-otc" 
                   onClick={handleVerifyPayment}
-                  disabled={loading || !payment}
+                  disabled={loading}
                 >
                   {loading ? (
                     <span className="btn-content-loading">
                       <span className="btn-loading-spinner"></span>
                       Verifying...
                     </span>
-                  ) : (!payment ? 'Initializing...' : 'Confirm Payment')}
+                  ) : 'Submit Payment'}
                 </button>
               </div>
             </div>
@@ -226,7 +215,7 @@ export default function OTCPayment({ requestId, price, priceVal, onPaymentComple
             </div>
             <h2>Payment Error</h2>
             <p>{error || 'Something went wrong while processing your payment.'}</p>
-            <button className="btn-retry-themed" onClick={initializeOTCPayment}>
+            <button className="btn-retry-otc" onClick={() => setPaymentState('pending')}>
               Try Again
             </button>
           </div>

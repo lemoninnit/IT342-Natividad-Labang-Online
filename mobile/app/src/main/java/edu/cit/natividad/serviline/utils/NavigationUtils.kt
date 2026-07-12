@@ -55,7 +55,7 @@ fun Activity.setupBottomNavigation() {
 
 fun Activity.showLogoutDialog() {
     val dialogView = layoutInflater.inflate(R.layout.dialog_logout, null)
-    val dialog = android.app.AlertDialog.Builder(this)
+    val dialog = com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
         .setView(dialogView)
         .create()
 

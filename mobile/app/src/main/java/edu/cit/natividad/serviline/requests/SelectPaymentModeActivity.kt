@@ -68,50 +68,19 @@ class SelectPaymentModeActivity : AppCompatActivity() {
     private fun initiatePayment() {
         if (selectedMode == null) return
 
-        val sharedPref = getSharedPreferences("labangonline_prefs", Context.MODE_PRIVATE)
-        val userId = sharedPref.getLong("user_id", -1)
-
-        val dto = PaymentDTO(
-            certificateRequestId = requestId,
-            paymentMethod = selectedMode!!,
-            amount = amount
-        )
-
-        binding.loadingIndicator.visibility = View.VISIBLE
-        binding.btnProceed.isEnabled = false
-
-        lifecycleScope.launch {
-            try {
-                val response = ApiClient.getPaymentService().initiatePayment(userId, dto)
-                if (response.isSuccessful) {
-                    val paymentRes = response.body()
-                    val paymentId = paymentRes?.paymentId ?: -1L
-                    val refNum = paymentRes?.referenceNumber ?: ""
-                    
-                    if (selectedMode == "GCASH") {
-                        val intent = Intent(this@SelectPaymentModeActivity, GCashPaymentActivity::class.java).apply {
-                            putExtra("PAYMENT_ID", paymentId)
-                            putExtra("AMOUNT", amount)
-                        }
-                        startActivity(intent)
-                    } else {
-                        val intent = Intent(this@SelectPaymentModeActivity, OTCPaymentActivity::class.java).apply {
-                            putExtra("PAYMENT_ID", paymentId)
-                            putExtra("AMOUNT", amount)
-                            putExtra("REF_NUM", refNum)
-                        }
-                        startActivity(intent)
-                    }
-                    finish()
-                } else {
-                    Toast.makeText(this@SelectPaymentModeActivity, "Failed to initiate payment", Toast.LENGTH_SHORT).show()
-                }
-            } catch (e: Exception) {
-                Toast.makeText(this@SelectPaymentModeActivity, "Network error", Toast.LENGTH_SHORT).show()
-            } finally {
-                binding.loadingIndicator.visibility = View.GONE
-                binding.btnProceed.isEnabled = true
+        if (selectedMode == "GCASH") {
+            val intent = Intent(this@SelectPaymentModeActivity, GCashPaymentActivity::class.java).apply {
+                putExtra("REQUEST_ID", requestId)
+                putExtra("AMOUNT", amount)
             }
+            startActivity(intent)
+        } else {
+            val intent = Intent(this@SelectPaymentModeActivity, OTCPaymentActivity::class.java).apply {
+                putExtra("REQUEST_ID", requestId)
+                putExtra("AMOUNT", amount)
+            }
+            startActivity(intent)
         }
+        finish()
     }
 }

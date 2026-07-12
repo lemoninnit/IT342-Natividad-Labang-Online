@@ -44,13 +44,22 @@ cd backend
 A native Android client for residents on the go.
 
 #### Setting up the API endpoint:
-1. Open the project in Android Studio.
-2. Locate the API client configuration file:
-   `mobile/app/src/main/java/edu/cit/natividad/serviline/api/ApiClient.kt`
-3. Update the `SERVER_IP` constant with your machine's local IPv4 address (e.g., `192.168.1.XX`):
-   ```kotlin
-   private const val SERVER_IP = "192.168.1.25" // Replace with your local IPv4 address
-   ```
+1. Navigate to the `mobile` directory.
+2. Open the `local.properties` file located at `mobile/local.properties` (this file contains local SDK configurations and project properties).
+3. Look for the `api.url` property. You can comment/uncomment the desired endpoint using `#`:
+   - **Production (Render):**
+     ```properties
+     api.url=https://serviline-backend.onrender.com/api/
+     ```
+   - **Local Emulator (Android Studio):** Use the loopback IP `10.0.2.2` which points to your host computer's localhost.
+     ```properties
+     api.url=http://10.0.2.2:8080/api/
+     ```
+   - **Local Physical Device (Wi-Fi):** Use your computer's local network IP address (e.g., `http://192.168.1.XX:8080/api/`). Ensure your phone and computer are connected to the same Wi-Fi network.
+     ```properties
+     api.url=http://192.168.1.41:8080/api/
+     ```
+4. Clean and rebuild the project in Android Studio (or run `./gradlew clean` then build) so Gradle can regenerate the `BuildConfig` class with the updated URL.
 
 #### Building the APK:
 ```bash

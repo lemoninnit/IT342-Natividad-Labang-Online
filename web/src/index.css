@@ -184,6 +184,22 @@ html[data-theme='light'] .reg-input {
   background: rgba(255, 255, 255, 0.9) !important;
   border: 1px solid rgba(5, 150, 105, 0.25) !important;
   color: #061f12 !important;
+  color-scheme: light !important;
+}
+
+/* Autofill fixes for Light Mode */
+html[data-theme='light'] input:-webkit-autofill,
+html[data-theme='light'] input:-webkit-autofill:hover,
+html[data-theme='light'] input:-webkit-autofill:focus,
+html[data-theme='light'] textarea:-webkit-autofill,
+html[data-theme='light'] textarea:-webkit-autofill:hover,
+html[data-theme='light'] textarea:-webkit-autofill:focus,
+html[data-theme='light'] select:-webkit-autofill,
+html[data-theme='light'] select:-webkit-autofill:hover,
+html[data-theme='light'] select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #061f12 !important;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.9) inset !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 html[data-theme='light'] input:focus,
@@ -755,4 +771,13 @@ html[data-theme='light'] .request-purpose-box {
   color: #3b5245 !important;
   background: rgba(5, 150, 105, 0.03) !important;
   border-color: rgba(5, 150, 105, 0.15) !important;
+}
+
+/* Loading State Overrides */
+html[data-theme='light'] .loading-state {
+  background: #f0f7f4 !important;
+}
+
+html[data-theme='light'] .loading-text {
+  color: #0b291b !important;
 }

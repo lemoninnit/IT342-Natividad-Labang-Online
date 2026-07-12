@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#10131a"
+    android:background="@color/bg_primary"
     tools:context=".requests.RequestsActivity">
 
     <!-- Top Bar -->
@@ -16,7 +16,7 @@
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:paddingHorizontal="16dp"
-        android:background="#10131a"
+        android:background="@color/bg_primary"
         android:layout_alignParentTop="true"
         android:elevation="4dp">
 
@@ -32,7 +32,7 @@
             android:text="ServiLine"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="#54e98a"
+            android:textColor="@color/labang_green"
             android:layout_marginStart="12dp" />
 
         <ImageView
@@ -40,8 +40,8 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:padding="8dp"
-            android:src="@drawable/logout"
-            app:tint="#54e98a"
+            android:src="@drawable/ic_logout"
+            app:tint="@color/labang_green"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
@@ -55,7 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:orientation="horizontal"
-        android:background="#1d2026"
+        android:background="@color/bg_card"
         android:layout_alignParentBottom="true"
         android:elevation="16dp">
 
@@ -73,15 +73,15 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/news"
-                app:tint="#bbcbbb"
+                android:src="@drawable/ic_announcements"
+                app:tint="@color/text_secondary"
                 android:scaleType="fitCenter" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="News"
                 android:textSize="12sp"
-                android:textColor="#bbcbbb"
+                android:textColor="@color/text_secondary"
                 android:layout_marginTop="4dp"/>
         </LinearLayout>
 
@@ -99,15 +99,15 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/profile"
-                app:tint="#bbcbbb"
+                android:src="@drawable/ic_profile"
+                app:tint="@color/text_secondary"
                 android:scaleType="fitCenter" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Profile"
                 android:textSize="12sp"
-                android:textColor="#bbcbbb"
+                android:textColor="@color/text_secondary"
                 android:layout_marginTop="4dp"/>
         </LinearLayout>
         
@@ -126,7 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="16dp"
-                app:cardBackgroundColor="#1A54e98a"
+                app:cardBackgroundColor="@color/labang_emerald_glow"
                 app:cardElevation="0dp">
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -138,15 +138,15 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/request"
-                        app:tint="#54e98a"
+                        android:src="@drawable/ic_requests"
+                        app:tint="@color/labang_green"
                         android:scaleType="fitCenter" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Requests"
                         android:textSize="12sp"
-                        android:textColor="#54e98a"
+                        android:textColor="@color/labang_green"
                         android:textStyle="bold"
                         android:layout_marginTop="4dp"/>
                 </LinearLayout>
@@ -167,15 +167,15 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/report"
-                app:tint="#bbcbbb"
+                android:src="@drawable/ic_report"
+                app:tint="@color/text_secondary"
                 android:scaleType="fitCenter" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Report"
                 android:textSize="12sp"
-                android:textColor="#bbcbbb"
+                android:textColor="@color/text_secondary"
                 android:layout_marginTop="4dp"/>
         </LinearLayout>
     </LinearLayout>
@@ -212,7 +212,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Request Certificate"
-                        android:textColor="#e1e2eb"
+                        android:textColor="@color/text_primary"
                         android:textSize="24sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="4dp" />
@@ -221,7 +221,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Select the type of certificate you need and we'll guide you through the process."
-                        android:textColor="#bbcbbb"
+                        android:textColor="@color/text_secondary"
                         android:textSize="14sp" />
                 </LinearLayout>
 
@@ -233,12 +233,12 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="16dp"
                     android:text="RECORDS"
-                    android:textColor="#54e98a"
+                    android:textColor="@color/labang_green"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     app:backgroundTint="@android:color/transparent"
                     app:cornerRadius="8dp"
-                    app:strokeColor="#54e98a"
+                    app:strokeColor="@color/labang_green"
                     app:strokeWidth="1dp" />
             </RelativeLayout>
 
@@ -247,9 +247,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                app:cardBackgroundColor="#1A2ecc71"
+                app:cardBackgroundColor="@color/labang_emerald_glow"
                 app:cardCornerRadius="12dp"
-                app:strokeColor="#1f2937"
+                app:strokeColor="@color/border_default"
                 app:strokeWidth="1dp"
                 app:cardElevation="0dp">
 
@@ -263,14 +263,14 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@android:drawable/ic_dialog_info"
-                        app:tint="#54e98a"
+                        app:tint="@color/labang_green"
                         android:layout_marginEnd="12dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Note: Make sure your profile information is complete and accurate before requesting certificates. Processing time is typically 3-5 business days."
-                        android:textColor="#bbcbbb"
+                        android:textColor="@color/text_secondary"
                         android:textSize="14sp"
                         android:lineSpacingExtra="4dp" />
                 </LinearLayout>
@@ -282,9 +282,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="#1d2026"
+                app:cardBackgroundColor="@color/bg_card"
                 app:cardCornerRadius="12dp"
-                app:strokeColor="#1f2937"
+                app:strokeColor="@color/border_default"
                 app:strokeWidth="1dp"
                 app:cardElevation="0dp"
                 android:clickable="true"
@@ -301,7 +301,7 @@
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        app:cardBackgroundColor="#32353c"
+                        app:cardBackgroundColor="@color/bg_secondary"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="0dp"
                         app:strokeWidth="0dp"
@@ -310,8 +310,8 @@
                             android:layout_width="28dp"
                             android:layout_height="28dp"
                             android:layout_gravity="center"
-                            android:src="@android:drawable/ic_dialog_map"
-                            app:tint="#54e98a" />
+                            android:src="@drawable/ic_requests"
+                            app:tint="@color/labang_green" />
                     </com.google.android.material.card.MaterialCardView>
 
                     <LinearLayout
@@ -327,7 +327,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Barangay Clearance"
-                                android:textColor="#e1e2eb"
+                                android:textColor="@color/text_primary"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
                             
@@ -336,7 +336,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
                                 android:text="₱50.00"
-                                android:textColor="#54e98a"
+                                android:textColor="@color/labang_green"
                                 android:textStyle="bold" />
                         </RelativeLayout>
 
@@ -344,7 +344,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Required for employment, business permits, and other legal purposes within the barangay."
-                            android:textColor="#bbcbbb"
+                            android:textColor="@color/text_secondary"
                             android:textSize="12sp"
                             android:lineSpacingExtra="4dp"
                             android:layout_marginBottom="12dp" />
@@ -358,7 +358,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Request Now"
-                                android:textColor="#54e98a"
+                                android:textColor="@color/labang_green"
                                 android:textSize="12sp"
                                 android:textStyle="bold" />
                             <ImageView
@@ -366,7 +366,7 @@
                                 android:layout_height="16dp"
                                 android:layout_marginStart="4dp"
                                 android:src="@android:drawable/ic_media_next"
-                                app:tint="#54e98a" />
+                                app:tint="@color/labang_green" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -378,9 +378,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="#1d2026"
+                app:cardBackgroundColor="@color/bg_card"
                 app:cardCornerRadius="12dp"
-                app:strokeColor="#1f2937"
+                app:strokeColor="@color/border_default"
                 app:strokeWidth="1dp"
                 app:cardElevation="0dp"
                 android:clickable="true"
@@ -396,7 +396,7 @@
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        app:cardBackgroundColor="#32353c"
+                        app:cardBackgroundColor="@color/bg_secondary"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="0dp"
                         app:strokeWidth="0dp"
@@ -405,8 +405,8 @@
                             android:layout_width="28dp"
                             android:layout_height="28dp"
                             android:layout_gravity="center"
-                            android:src="@android:drawable/ic_menu_myplaces"
-                            app:tint="#54e98a" />
+                            android:src="@drawable/ic_residency"
+                            app:tint="@color/labang_green" />
                     </com.google.android.material.card.MaterialCardView>
 
                     <LinearLayout
@@ -422,7 +422,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Certificate of Residency"
-                                android:textColor="#e1e2eb"
+                                android:textColor="@color/text_primary"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
                             
@@ -431,7 +431,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
                                 android:text="₱30.00"
-                                android:textColor="#54e98a"
+                                android:textColor="@color/labang_green"
                                 android:textStyle="bold" />
                         </RelativeLayout>
 
@@ -439,7 +439,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Proof of residence in Barangay Labangon for government transactions and applications."
-                            android:textColor="#bbcbbb"
+                            android:textColor="@color/text_secondary"
                             android:textSize="12sp"
                             android:lineSpacingExtra="4dp"
                             android:layout_marginBottom="12dp" />
@@ -453,7 +453,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Request Now"
-                                android:textColor="#54e98a"
+                                android:textColor="@color/labang_green"
                                 android:textSize="12sp"
                                 android:textStyle="bold" />
                             <ImageView
@@ -461,7 +461,7 @@
                                 android:layout_height="16dp"
                                 android:layout_marginStart="4dp"
                                 android:src="@android:drawable/ic_media_next"
-                                app:tint="#54e98a" />
+                                app:tint="@color/labang_green" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -473,9 +473,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="#1d2026"
+                app:cardBackgroundColor="@color/bg_card"
                 app:cardCornerRadius="12dp"
-                app:strokeColor="#1f2937"
+                app:strokeColor="@color/border_default"
                 app:strokeWidth="1dp"
                 app:cardElevation="0dp"
                 android:clickable="true"
@@ -491,7 +491,7 @@
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        app:cardBackgroundColor="#32353c"
+                        app:cardBackgroundColor="@color/bg_secondary"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="0dp"
                         app:strokeWidth="0dp"
@@ -500,8 +500,8 @@
                             android:layout_width="28dp"
                             android:layout_height="28dp"
                             android:layout_gravity="center"
-                            android:src="@android:drawable/ic_menu_info_details"
-                            app:tint="#54e98a" />
+                            android:src="@drawable/ic_requests"
+                            app:tint="@color/labang_green" />
                     </com.google.android.material.card.MaterialCardView>
 
                     <LinearLayout
@@ -517,7 +517,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Certificate of Indigency"
-                                android:textColor="#e1e2eb"
+                                android:textColor="@color/text_primary"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
                             
@@ -526,7 +526,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
                                 android:text="₱20.00"
-                                android:textColor="#54e98a"
+                                android:textColor="@color/labang_green"
                                 android:textStyle="bold" />
                         </RelativeLayout>
 
@@ -534,7 +534,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="For residents requiring financial assistance or applying for free medical services."
-                            android:textColor="#bbcbbb"
+                            android:textColor="@color/text_secondary"
                             android:textSize="12sp"
                             android:lineSpacingExtra="4dp"
                             android:layout_marginBottom="12dp" />
@@ -548,7 +548,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Request Now"
-                                android:textColor="#54e98a"
+                                android:textColor="@color/labang_green"
                                 android:textSize="12sp"
                                 android:textStyle="bold" />
                             <ImageView
@@ -556,7 +556,7 @@
                                 android:layout_height="16dp"
                                 android:layout_marginStart="4dp"
                                 android:src="@android:drawable/ic_media_next"
-                                app:tint="#54e98a" />
+                                app:tint="@color/labang_green" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -568,9 +568,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="#1d2026"
+                app:cardBackgroundColor="@color/bg_card"
                 app:cardCornerRadius="12dp"
-                app:strokeColor="#1f2937"
+                app:strokeColor="@color/border_default"
                 app:strokeWidth="1dp"
                 app:cardElevation="0dp"
                 android:clickable="true"
@@ -586,7 +586,7 @@
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        app:cardBackgroundColor="#32353c"
+                        app:cardBackgroundColor="@color/bg_secondary"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="0dp"
                         app:strokeWidth="0dp"
@@ -595,8 +595,8 @@
                             android:layout_width="28dp"
                             android:layout_height="28dp"
                             android:layout_gravity="center"
-                            android:src="@android:drawable/btn_star_big_on"
-                            app:tint="#54e98a" />
+                            android:src="@drawable/ic_moral"
+                            app:tint="@color/labang_green" />
                     </com.google.android.material.card.MaterialCardView>
 
                     <LinearLayout
@@ -612,7 +612,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Good Moral Character"
-                                android:textColor="#e1e2eb"
+                                android:textColor="@color/text_primary"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
                             
@@ -621,7 +621,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
                                 android:text="₱40.00"
-                                android:textColor="#54e98a"
+                                android:textColor="@color/labang_green"
                                 android:textStyle="bold" />
                         </RelativeLayout>
 
@@ -629,7 +629,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Required for school applications, employment, and character reference purposes."
-                            android:textColor="#bbcbbb"
+                            android:textColor="@color/text_secondary"
                             android:textSize="12sp"
                             android:lineSpacingExtra="4dp"
                             android:layout_marginBottom="12dp" />
@@ -643,7 +643,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Request Now"
-                                android:textColor="#54e98a"
+                                android:textColor="@color/labang_green"
                                 android:textSize="12sp"
                                 android:textStyle="bold" />
                             <ImageView
@@ -651,7 +651,7 @@
                                 android:layout_height="16dp"
                                 android:layout_marginStart="4dp"
                                 android:src="@android:drawable/ic_media_next"
-                                app:tint="#54e98a" />
+                                app:tint="@color/labang_green" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -663,9 +663,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="32dp"
-                app:cardBackgroundColor="#1d2026"
+                app:cardBackgroundColor="@color/bg_card"
                 app:cardCornerRadius="12dp"
-                app:strokeColor="#1f2937"
+                app:strokeColor="@color/border_default"
                 app:strokeWidth="1dp"
                 app:cardElevation="0dp"
                 android:clickable="true"
@@ -681,7 +681,7 @@
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        app:cardBackgroundColor="#32353c"
+                        app:cardBackgroundColor="@color/bg_secondary"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="0dp"
                         app:strokeWidth="0dp"
@@ -690,8 +690,8 @@
                             android:layout_width="28dp"
                             android:layout_height="28dp"
                             android:layout_gravity="center"
-                            android:src="@android:drawable/ic_menu_sort_by_size"
-                            app:tint="#54e98a" />
+                            android:src="@drawable/ic_business"
+                            app:tint="@color/labang_green" />
                     </com.google.android.material.card.MaterialCardView>
 
                     <LinearLayout
@@ -707,7 +707,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Business Clearance"
-                                android:textColor="#e1e2eb"
+                                android:textColor="@color/text_primary"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
                             
@@ -716,7 +716,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
                                 android:text="₱100.00"
-                                android:textColor="#54e98a"
+                                android:textColor="@color/labang_green"
                                 android:textStyle="bold" />
                         </RelativeLayout>
 
@@ -724,7 +724,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Required for starting or renewing a business within Barangay Labangon."
-                            android:textColor="#bbcbbb"
+                            android:textColor="@color/text_secondary"
                             android:textSize="12sp"
                             android:lineSpacingExtra="4dp"
                             android:layout_marginBottom="12dp" />
@@ -738,7 +738,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Request Now"
-                                android:textColor="#54e98a"
+                                android:textColor="@color/labang_green"
                                 android:textSize="12sp"
                                 android:textStyle="bold" />
                             <ImageView
@@ -746,7 +746,7 @@
                                 android:layout_height="16dp"
                                 android:layout_marginStart="4dp"
                                 android:src="@android:drawable/ic_media_next"
-                                app:tint="#54e98a" />
+                                app:tint="@color/labang_green" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -757,7 +757,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="32dp"
-                app:cardBackgroundColor="#272a31"
+                app:cardBackgroundColor="@color/bg_secondary"
                 app:cardCornerRadius="12dp"
                 app:strokeWidth="0dp"
                 app:cardElevation="0dp"
@@ -774,7 +774,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="General Requirements"
-                        android:textColor="#e1e2eb"
+                        android:textColor="@color/text_primary"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="16dp" />
@@ -790,12 +790,12 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/check"
-                            app:tint="#54e98a" />
+                            app:tint="@color/labang_green" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Valid government-issued ID"
-                            android:textColor="#bbcbbb"
+                            android:textColor="@color/text_secondary"
                             android:textSize="14sp"
                             android:layout_marginStart="12dp" />
                     </LinearLayout>
@@ -811,12 +811,12 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/check"
-                            app:tint="#54e98a" />
+                            app:tint="@color/labang_green" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Proof of residency in Barangay Labangon"
-                            android:textColor="#bbcbbb"
+                            android:textColor="@color/text_secondary"
                             android:textSize="14sp"
                             android:layout_marginStart="12dp" />
                     </LinearLayout>
@@ -832,12 +832,12 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/check"
-                            app:tint="#54e98a" />
+                            app:tint="@color/labang_green" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Completed and verified user profile"
-                            android:textColor="#bbcbbb"
+                            android:textColor="@color/text_secondary"
                             android:textSize="14sp"
                             android:layout_marginStart="12dp" />
                     </LinearLayout>
@@ -852,12 +852,12 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/check"
-                            app:tint="#54e98a" />
+                            app:tint="@color/labang_green" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Payment for processing fees (if applicable)"
-                            android:textColor="#bbcbbb"
+                            android:textColor="@color/text_secondary"
                             android:textSize="14sp"
                             android:layout_marginStart="12dp" />
                     </LinearLayout>

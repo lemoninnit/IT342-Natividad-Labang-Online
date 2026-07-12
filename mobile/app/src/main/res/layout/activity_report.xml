@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#10131a"
+    android:background="@color/bg_primary"
     tools:context=".report.ReportActivity">
 
     <!-- ── Top Bar ── -->
@@ -15,7 +15,7 @@
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:paddingHorizontal="16dp"
-        android:background="#10131a"
+        android:background="@color/bg_primary"
         android:layout_alignParentTop="true"
         android:elevation="4dp">
 
@@ -31,7 +31,7 @@
             android:text="ServiLine"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="#54e98a"
+            android:textColor="@color/labang_green"
             android:layout_marginStart="12dp" />
 
         <ImageView
@@ -39,8 +39,8 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:padding="8dp"
-            android:src="@drawable/logout"
-            app:tint="#54e98a"
+            android:src="@drawable/ic_logout"
+            app:tint="@color/labang_green"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
@@ -53,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:orientation="horizontal"
-        android:background="#1d2026"
+        android:background="@color/bg_card"
         android:layout_alignParentBottom="true"
         android:elevation="16dp">
 
@@ -71,15 +71,15 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/news"
-                app:tint="#bbcbbb"
+                android:src="@drawable/ic_announcements"
+                app:tint="@color/text_secondary"
                 android:scaleType="fitCenter" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="News"
                 android:textSize="12sp"
-                android:textColor="#bbcbbb"
+                android:textColor="@color/text_secondary"
                 android:layout_marginTop="4dp"/>
         </LinearLayout>
 
@@ -97,15 +97,15 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/profile"
-                app:tint="#bbcbbb"
+                android:src="@drawable/ic_profile"
+                app:tint="@color/text_secondary"
                 android:scaleType="fitCenter" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Profile"
                 android:textSize="12sp"
-                android:textColor="#bbcbbb"
+                android:textColor="@color/text_secondary"
                 android:layout_marginTop="4dp"/>
         </LinearLayout>
         
@@ -123,15 +123,15 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/request"
-                app:tint="#bbcbbb"
+                android:src="@drawable/ic_requests"
+                app:tint="@color/text_secondary"
                 android:scaleType="fitCenter" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Requests"
                 android:textSize="12sp"
-                android:textColor="#bbcbbb"
+                android:textColor="@color/text_secondary"
                 android:layout_marginTop="4dp"/>
         </LinearLayout>
         
@@ -150,7 +150,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="16dp"
-                app:cardBackgroundColor="#1A54e98a"
+                app:cardBackgroundColor="@color/labang_emerald_glow"
                 app:cardElevation="0dp">
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -162,15 +162,15 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/report"
-                        app:tint="#54e98a"
+                        android:src="@drawable/ic_report"
+                        app:tint="@color/labang_green"
                         android:scaleType="fitCenter" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Report"
                         android:textSize="12sp"
-                        android:textColor="#54e98a"
+                        android:textColor="@color/labang_green"
                         android:textStyle="bold"
                         android:layout_marginTop="4dp"/>
                 </LinearLayout>
@@ -209,14 +209,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="File a Report"
-                        android:textColor="#e1e2eb"
+                        android:textColor="@color/text_primary"
                         android:textSize="24sp"
                         android:textStyle="bold" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Notify the Barangay about incidents or complaints in your area"
-                        android:textColor="#bbcbbb"
+                        android:textColor="@color/text_secondary"
                         android:textSize="14sp"
                         android:layout_marginTop="4dp" />
                 </LinearLayout>
@@ -228,12 +228,12 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:text="REPORTS"
-                    android:textColor="#54e98a"
+                    android:textColor="@color/labang_green"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     app:backgroundTint="@android:color/transparent"
                     app:cornerRadius="8dp"
-                    app:strokeColor="#54e98a"
+                    app:strokeColor="@color/labang_green"
                     app:strokeWidth="1dp" />
             </LinearLayout>
 
@@ -243,9 +243,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                app:cardBackgroundColor="#1A2ecc71"
+                app:cardBackgroundColor="@color/labang_emerald_glow"
                 app:cardCornerRadius="12dp"
-                app:strokeColor="#1f2937"
+                app:strokeColor="@color/border_default"
                 app:strokeWidth="1dp"
                 app:cardElevation="0dp">
 
@@ -259,14 +259,14 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@android:drawable/ic_dialog_info"
-                        app:tint="#54e98a"
+                        app:tint="@color/labang_green"
                         android:layout_marginEnd="12dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Note: Please provide accurate and detailed information to help the barangay address the issue effectively. Processing time is typically 3-5 business days."
-                        android:textColor="#bbcbbb"
+                        android:textColor="@color/text_secondary"
                         android:textSize="14sp"
                         android:lineSpacingExtra="4dp" />
                 </LinearLayout>
@@ -276,8 +276,8 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="#1d2026"
-                app:strokeColor="#1f2937"
+                app:cardBackgroundColor="@color/bg_card"
+                app:strokeColor="@color/border_default"
                 app:strokeWidth="1dp"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="0dp"
@@ -298,7 +298,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="INCIDENT DETAILS"
-                            android:textColor="#bbcbbb"
+                            android:textColor="@color/text_secondary"
                             android:textSize="12sp"
                             android:textStyle="bold"
                             android:layout_marginStart="8dp" />
@@ -315,7 +315,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Incident Type *"
-                            android:textColor="#bbcbbb"
+                            android:textColor="@color/text_secondary"
                             android:textSize="12sp"
                             android:layout_marginBottom="4dp" />
 
@@ -324,8 +324,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                            app:boxStrokeColor="#1f2937"
-                            app:boxBackgroundColor="#191c22"
+                            app:boxStrokeColor="@color/border_default"
+                            app:boxBackgroundColor="@color/bg_input"
                             app:boxCornerRadiusTopStart="12dp"
                             app:boxCornerRadiusTopEnd="12dp"
                             app:boxCornerRadiusBottomStart="12dp"
@@ -337,10 +337,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="none"
-                                android:textColor="#e1e2eb"
+                                android:textColor="@color/text_primary"
                                 android:padding="16dp"
                                 android:text="Noise Complaint"
-                                android:popupBackground="#191c22" />
+                                android:popupBackground="@color/bg_input" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <!-- Date / Time Grid -->
@@ -362,7 +362,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Date of Incident *"
-                                    android:textColor="#bbcbbb"
+                                    android:textColor="@color/text_secondary"
                                     android:textSize="12sp"
                                     android:layout_marginBottom="4dp" />
 
@@ -371,11 +371,15 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="48dp"
                                     android:background="@drawable/bg_input_field"
-                                    android:textColor="#000000"         android:textColorHint="#757575"     android:hint="mm/dd/yyyy"
+                                    android:textColor="@color/text_primary"
+                                    android:textColorHint="@color/text_muted"
+                                    android:hint="mm/dd/yyyy"
                                     android:paddingHorizontal="16dp"
                                     android:focusable="false"
                                     android:textSize="14sp"
-                                    android:clickable="true"/>
+                                    android:clickable="true"
+                                    android:drawableEnd="@drawable/ic_calendar"
+                                    android:drawableTint="@color/text_muted"/>
 
                             </LinearLayout>
                             
@@ -389,7 +393,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Time of Incident *"
-                                    android:textColor="#bbcbbb"
+                                    android:textColor="@color/text_secondary"
                                     android:textSize="12sp"
                                     android:layout_marginBottom="4dp" />
                                 <EditText
@@ -397,8 +401,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="48dp"
                                     android:background="@drawable/bg_input_field"
-                                    android:textColor="#e1e2eb"
-                                    android:textColorHint="#869486"
+                                    android:textColor="@color/text_primary"
+                                    android:textColorHint="@color/text_muted"
                                     android:hint="--:-- --"
                                     android:paddingHorizontal="16dp"
                                     android:focusable="false"
@@ -411,7 +415,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Location / Place *"
-                            android:textColor="#bbcbbb"
+                            android:textColor="@color/text_secondary"
                             android:textSize="12sp"
                             android:layout_marginBottom="4dp" />
                         <EditText
@@ -419,8 +423,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="48dp"
                             android:background="@drawable/bg_input_field"
-                            android:textColor="#e1e2eb"
-                            android:textColorHint="#869486"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_muted"
                             android:textSize="14sp"
                             android:hint="e.g. Purok 4, Near Labangon Market"
                             android:paddingHorizontal="16dp"
@@ -431,7 +435,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Description of Incident *"
-                            android:textColor="#bbcbbb"
+                            android:textColor="@color/text_secondary"
                             android:textSize="12sp"
                             android:layout_marginBottom="4dp" />
                         <EditText
@@ -440,8 +444,8 @@
                             android:layout_height="wrap_content"
                             android:minHeight="96dp"
                             android:background="@drawable/bg_input_field"
-                            android:textColor="#e1e2eb"
-                            android:textColorHint="#869486"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_muted"
                             android:hint="Please describe what happened in detail..."
                             android:textSize="14sp"                            android:padding="16dp"
                             android:gravity="top|start"
@@ -453,7 +457,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Persons Involved (if known)"
-                            android:textColor="#bbcbbb"
+                            android:textColor="@color/text_secondary"
                             android:textSize="12sp"
                             android:layout_marginBottom="4dp" />
                         <EditText
@@ -461,8 +465,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="48dp"
                             android:background="@drawable/bg_input_field"
-                            android:textColor="#e1e2eb"
-                            android:textColorHint="#869486"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_muted"
                             android:hint="Names or descriptions of persons involved"
                             android:textSize="14sp"
                             android:paddingHorizontal="16dp"
@@ -473,7 +477,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Additional Notes"
-                            android:textColor="#bbcbbb"
+                            android:textColor="@color/text_secondary"
                             android:textSize="12sp"
                             android:layout_marginBottom="4dp" />
                         <EditText
@@ -482,8 +486,8 @@
                             android:layout_height="wrap_content"
                             android:minHeight="72dp"
                             android:background="@drawable/bg_input_field"
-                            android:textColor="#e1e2eb"
-                            android:textColorHint="#869486"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_muted"
                             android:hint="Any other relevant information..."
                             android:textSize="14sp"
                             android:padding="16dp"
@@ -505,9 +509,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
                             android:text="SUBMIT REPORT"
-                            android:textColor="#005027"
+                            android:textColor="@android:color/white"
                             android:textStyle="bold"
-                            app:backgroundTint="#54e98a"
+                            app:backgroundTint="@color/labang_green"
                             app:cornerRadius="12dp"
                             android:layout_marginBottom="12dp" />
 

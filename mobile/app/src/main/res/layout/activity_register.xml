@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#10131a"
+    android:background="@color/bg_primary"
     tools:context=".auth.RegisterActivity">
 
     <!-- Pinned Header Component -->
@@ -15,7 +15,7 @@
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:paddingHorizontal="16dp"
-        android:background="#10131a"
+        android:background="@color/bg_primary"
         android:elevation="4dp">
 
         <ImageView
@@ -33,7 +33,7 @@
             android:text="ServiLine"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="#54e98a"
+            android:textColor="@color/labang_green"
             android:layout_marginStart="12dp" />
     </LinearLayout>
 
@@ -101,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Registration failed. Please try again."
-                    android:textColor="#fca5a5"
+                    android:textColor="@color/status_error"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -113,7 +113,7 @@
                 app:cardCornerRadius="16dp"
                 app:cardElevation="0dp"
                 app:strokeWidth="1dp"
-                app:strokeColor="#2d3748">
+                app:strokeColor="@color/border_subtle">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -628,10 +628,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="32dp"
                         android:layout_marginBottom="32dp"
-                        app:cardBackgroundColor="#0f172a"
+                        app:cardBackgroundColor="@color/bg_input"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="0dp"
-                        app:strokeColor="#1a3d31"
+                        app:strokeColor="@color/labang_green_light"
                         app:strokeWidth="1dp">
 
                         <LinearLayout
