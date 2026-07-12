@@ -1001,6 +1001,16 @@ html[data-theme='light'] .progress-bar {
   transition-delay: 1.2s;
 }
 
+/* Ensure hover transitions are responsive and have 0s delay when active */
+.services-section.in-view .services-grid .service-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 12px 40px rgba(16, 185, 129, 0.15);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition-delay: 0s;
+}
+
+
 /* How It Works Section */
 .how-it-works-section.in-view .section-label {
   opacity: 1;
