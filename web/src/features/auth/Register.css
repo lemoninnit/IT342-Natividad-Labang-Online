@@ -409,8 +409,8 @@
 
 /* ──────── RESPONSIVE ──────── */
 @media (max-width: 640px) {
-  .reg-card {
-    padding: 36px 24px;
+  .reg-card > .border-glow-inner {
+    padding: 32px 24px;
   }
 
   .reg-row {
@@ -437,5 +437,28 @@
     width: 100%;
     text-align: center;
     padding: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .reg-card > .border-glow-inner {
+    padding: 24px 16px;
+  }
+
+  .reg-title {
+    font-size: 20px;
+  }
+
+  .reg-logo-row {
+    margin-bottom: 16px;
+  }
+
+  .reg-header {
+    margin-bottom: 24px;
+  }
+
+  .reg-notice {
+    padding: 14px 16px;
+    margin: 16px 0 24px;
   }
 }

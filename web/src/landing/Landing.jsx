@@ -164,27 +164,52 @@ function ScrollAnimateSection({ children, className = "", id, tagName = "section
   const ref = useRef(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setInView(entry.isIntersecting);
-        if (onInView) {
-          onInView(entry.isIntersecting);
-        }
-      },
-      { threshold: 0.05 }
-    );
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-    return () => observer.disconnect();
+    const node = ref.current;
+    if (!node) return;
+
+    // Force a synchronous reflow so the hidden starting styles are
+    // actually committed/painted before intersection is ever checked.
+    // Otherwise sections already inside the viewport on load/refresh can
+    // flip to visible in the same frame they're painted, and the CSS
+    // transition has nothing to animate from — it just snaps into place.
+    // eslint-disable-next-line no-unused-expressions
+    node.getBoundingClientRect();
+
+    let observer;
+    const rafId1 = requestAnimationFrame(() => {
+      const rafId2 = requestAnimationFrame(() => {
+        observer = new IntersectionObserver(
+          ([entry]) => {
+            // IMPORTANT: this goes through React state (not classList.toggle
+            // directly on the node) — the parent Landing component re-renders
+            // on every scroll event, and a plain DOM class change would get
+            // wiped out by that next re-render since JSX would render a
+            // static className with no memory of it.
+            setInView(entry.isIntersecting);
+            if (onInView) {
+              onInView(entry.isIntersecting);
+            }
+          },
+          { threshold: 0.05 }
+        );
+        observer.observe(node);
+      });
+      node.__raf2 = rafId2;
+    });
+
+    return () => {
+      cancelAnimationFrame(rafId1);
+      if (node.__raf2) cancelAnimationFrame(node.__raf2);
+      if (observer) observer.disconnect();
+    };
   }, [onInView]);
 
   const Tag = tagName;
 
   return (
-    <Tag 
-      id={id} 
-      ref={ref} 
+    <Tag
+      id={id}
+      ref={ref}
       className={`${className} ${inView ? 'in-view' : ''}`}
     >
       {children}
@@ -207,7 +232,7 @@ export default function Landing() {
       }
     };
     window.addEventListener("scroll", handleScroll);
-    
+
     // Animate Hero Section on mount
     const timer = setTimeout(() => setHeroActive(true), 100);
 
@@ -220,7 +245,7 @@ export default function Landing() {
   return (
     <CircuitBackground className="landing-wrapper" opacity={0.08} animated={true}>
       <header className={`landing-nav ${scrolled ? "scrolled" : ""}`}>
-        <div className="nav-logo">
+        <div className="nav-logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ cursor: 'pointer' }}>
           <img src={logo} alt="ServiLine" className="nav-logo-icon" />
           <span className="nav-logo-text">ServiLine</span>
         </div>
