@@ -1,4 +1,4 @@
-# ServiLine: Barangay Labangon Service Portal
+<img width="1620" height="593" alt="image" src="https://github.com/user-attachments/assets/b52d48eb-4ad5-4c40-bc73-2f3d3d07e24b" /># ServiLine: Barangay Labangon Service Portal
 
 ServiLine is a digitized service portal designed for the residents and administrators of Barangay Labangon. It enables residents to file reports, request official certificates, make payments via GCash, and view community announcements on both web and mobile platforms.
 
@@ -79,3 +79,6 @@ cd mobile
 - **GCash Integration**: Fast and easy mock GCash payment flow.
 - **Incident Reporting**: File incident reports and view their real-time validation status.
 - **Announcements Feed**: Keep up-to-date with local barangay news.
+
+### Deplyoment (Render)
+This application is ready for production and configured for deployment on [Render](https://serviline-web.onrender.com/).
